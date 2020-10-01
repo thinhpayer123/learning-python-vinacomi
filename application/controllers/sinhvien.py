@@ -1,5 +1,5 @@
 from application.extensions import apimanager
-from application.models.model import sinhVien, QRUser, QRworker
+from application.models.model import Student, QRUser, QRworker
 from application.extensions import auth
 from application.database import db
 from gatco.exceptions import ServerError
@@ -12,13 +12,13 @@ import time
 from gatco.response import json
 from application.server import app
 from application.config import Config
-import psycopg2
+# import psycopg2
 config = Config()
-import pandas as pd
-import xlrd
-import qrcode
-import shutil
-import asyncio
+# import pandas as pd
+# import xlrd
+# import qrcode
+# import shutil
+# import asyncio
 
 
 def auth_func(request=None, **kw):
@@ -32,8 +32,8 @@ def auth_func(request=None, **kw):
 async def file_load(request):
     path = request.args.get("path", None)
     ret = None
-    url_qr = config.QR_SERVICE_URL
-    url = config.FILE_SERVICE_URL
+    # url_qr = config.QR_SERVICE_URL
+    # url = config.FILE_SERVICE_URL
     fsroot = config.FS_ROOT
 
     if request.method == 'POST':
@@ -51,27 +51,34 @@ async def file_load(request):
             async with aiofiles.open(fsroot + subPath + extname, 'wb+') as f:
                 await f.write(file.body)
             link_local = fsroot + subPath + extname
-            id  = request.args.get("id")
-            type(link_local)
-            print(id)
-            print(            type(link_local))
-            qrworker = QRworker()
-            qrworker.uid = id
-            qrworker.saveDirectory = link_local
-            qrworker.status = 'PENDING'
-            qrworker.namefile = extname
-            linkdowload = qrworker.linkdowload
-            db.session.add(qrworker)
-            db.session.commit()
+            data = pd.read_excel(link_local)
+            df = pd.DataFrame(data, columns=['Niên Khóa', 'Mã Lớp', 'Mã Sinh Viên', 'Tên Sinh Viên', 'Ngày Sinh', 'Giới Tính'])
+            alchemyEngine = create_engine('postgresql://icangteen_user:123456abcA@localhost:5432/icangteen', pool_recycle=3600);
+            postgreSQLConnection = alchemyEngine.connect();
+            postgreSQLTable = 'student';
+            df.to_sql(postgreSQLTable, alchemyEngine, if_exists='append', index=False)
+            # id  = request.args.get("id")
+            # type(link_local)
+            # print(id)
+            # print(            type(link_local))
+            # qrworker = QRworker()
+            # qrworker.uid = id
+            # qrworker.saveDirectory = link_local
+            # qrworker.status = 'PENDING'
+            # qrworker.namefile = extname
+            # linkdowload = qrworker.linkdowload
+            # db.session.add(qrworker)
+            # db.session.commit()
 
 
             ret = {
-                "notify":"upload success please waiting.... we are processing",
-                "link": linkdowload
+                "notify":"upload file success ",
                 # "id": id
 
             }
     return json(ret)
+
+
 apimanager.create_api(collection_name='qrworker', model=QRworker,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
