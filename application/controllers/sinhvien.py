@@ -20,7 +20,7 @@ import qrcode
 import shutil
 import asyncio
 import datetime
-
+# import json
 
 def auth_func(request=None, **kw):
     #uid = auth.current_user(request)
@@ -57,10 +57,14 @@ async def file_load(request):
             print(data)
             df = pd.DataFrame(data, columns=['student_school_year', 'student_class', 'student_id', 'student_name', 'birthday', 'gender'])
             print(df)
-            alchemyEngine = create_engine('postgresql://icangteen_user:123456abcA@localhost:5432/icangteen', pool_recycle=3600);
-            postgreSQLConnection = alchemyEngine.connect();
-            postgreSQLTable = 'student';
-            df.to_sql(postgreSQLTable, alchemyEngine, if_exists='append', index=False)
+            result = df.to_json(orient='records')
+            print(result)
+
+
+            # alchemyEngine = create_engine('postgresql://icangteen_user:123456abcA@localhost:5432/icangteen', pool_recycle=3600);
+            # postgreSQLConnection = alchemyEngine.connect();
+            # postgreSQLTable = 'student';
+            # df.to_sql(postgreSQLTable, alchemyEngine, if_exists='append', index=False)
 #
 
 

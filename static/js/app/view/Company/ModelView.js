@@ -4,36 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/TinhThanh/tpl/model.html'),
-    	schema 				= require('json!schema/TinhThanhSchema.json');
-    var QuocGiaSelectView   = require('app/view/QuocGia/SelectView');
-    
-    
-    var Model = Gonrin.Model.extend({
-    	defaults: Gonrin.getDefaultModel(schema),
-    	computeds: {
-	    	quocgia: {
-	    		deps: ["quocgia_id", "tenquocgia"],
-	            get: function( quocgia_id, tenquocgia ) {
-	                return {
-						"id": quocgia_id,
-						"ten": tenquocgia,
-						};
-	            },
-	            set: function( obj ) {
-	                return {quocgia_id: obj.id, tenquocgia: obj.ten};
-	            }
-		    },
-    	},
-		urlRoot : "/api/v1/tinhthanh"
-    });
+    var template 			= require('text!app/view/Company/tpl/model.html'),
+    	schema 				= require('json!schema/CompanySchema.json');
     
     return Gonrin.ModelView.extend({
     	template : template,
-    	//modelSchema	: schema,
-    	modelClass: Model,
+    	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "tinhthanh",
+    	collectionName: "company",
     	tools : [
     	    {
     	    	name: "defaultgr",
@@ -55,7 +33,7 @@ define(function (require) {
 		    	    	name: "save",
 		    	    	type: "button",
 		    	    	buttonClass: "btn-success btn-sm",
-		    	    	label: "TRANSLATE:SAVE",
+		    	    	label: "Lưu Thong Tin",
 		    	    	command: function(){
 		    	    		var self = this;
 		    	    		
@@ -96,16 +74,6 @@ define(function (require) {
 		    	    },
     	    	],
     	    }],
-    	uiControl:{
-    		fields:[
-        		{
-    				field:"quocgia",
-    				uicontrol:"ref",
-    				textField: "ten",
-    				dataSource: QuocGiaSelectView
-    			},
-        	]
-    	},
     	render:function(){
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");
@@ -117,7 +85,7 @@ define(function (require) {
         				self.applyBindings();
         			},
         			error:function(){
-    					self.getApp().notify("Không tìm thấy dữ liệu!");
+    					self.getApp().notify("Get data Eror");
     				},
         		});
     		}else{

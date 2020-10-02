@@ -7,13 +7,89 @@ define(function (require) {
 		{
 			"collectionName": "company", 
 			"route": "company/collection(/:param)",
-			"$ref": "app/Company/view/CollectionView",
+			"$ref": "app/view/Company/CollectionView",
 		},
 		{
 			"collectionName": "company",
 			"route": "company/model(/:param)",
-			"$ref": "app/Company/view/ModelView",
+			"$ref": "app/view/Company/ModelView",
 		},
+		{
+			"collectionName": "membercard", 
+			"route": "membercard/collection(/:param)",
+			"$ref": "app/view/MemberCard/CollectionView",
+		},
+		{
+			"collectionName": "membercard",
+			"route": "membercard/model(/:param)",
+			"$ref": "app/view/MemberCard/ModelView",
+		},		
+		{
+			"collectionName": "role", 
+			"route": "role/collection(/:param)",
+			"$ref": "app/view/Role/CollectionView",
+		},
+		{
+			"collectionName": "role",
+			"route": "role/model(/:param)",
+			"$ref": "app/view/Role/ModelView",
+		},		
+		{
+			"collectionName": "store", 
+			"route": "store/collection(/:param)",
+			"$ref": "app/view/Store/CollectionView",
+		},
+		{
+			"collectionName": "store",
+			"route": "store/model(/:param)",
+			"$ref": "app/view/Store/ModelView",
+		},
+		{
+			"collectionName": "transaction", 
+			"route": "transaction/collection(/:param)",
+			"$ref": "app/view/Transaction/CollectionView",
+		},
+		{
+			"collectionName": "transaction",
+			"route": "transaction/model(/:param)",
+			"$ref": "app/view/Transaction/ModelView",
+		},
+		{
+			"collectionName": "users", 
+			"route": "users/collection(/:param)",
+			"$ref": "app/view/User/CollectionView",
+		},
+		{
+			"collectionName": "users",
+			"route": "users/model(/:param)",
+			"$ref": "app/view/User/ModelView",
+		},
+		{
+			"collectionName": "userwallet", 
+			"route": "userwallet/collection(/:param)",
+			"$ref": "app/view/UserWallet/CollectionView",
+		},
+		{
+			"collectionName": "userwallet",
+			"route": "userwallet/model(/:param)",
+			"$ref": "app/view/UserWallet/ModelView",
+		},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		{
 			"collectionName": "quocgia", 
 			"route": "quocgia/collection(/:id)",
