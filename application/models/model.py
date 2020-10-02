@@ -9,7 +9,7 @@ from sqlalchemy import (
 from sqlalchemy import (
     Column, String, Integer, DateTime, Date, Boolean, DECIMAL, ForeignKey, Text
 )
-from sqlalchemy.dialects.postgresql import UUID
+from sqlalchemy.dialects.postgresql import UUID, JSONB
 
 from sqlalchemy.orm import relationship, backref
 
