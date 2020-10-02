@@ -1,85 +1,122 @@
-<div class="page-header-wrapper">
-	<div  class="page-header navbar navbar-fixed-top">
-		<!-- BEGIN HEADER INNER -->
-		<div class="page-header-inner">
-			<!-- BEGIN LOGO -->
-			<div class="page-logo">
-				<a style="min-width: 300px" id="logo" href="javascript:void(0);">
-				<img height="40px" src="static/images/icons/logo.png" alt="logo" class="logo-default"/>			
+<div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
+	<div class="c-sidebar-brand d-lg-down-none">
+		<svg class="c-sidebar-brand-full" width="118" height="46" alt="CoreUI Logo">
+			<use xlink:href="/static/vendor/CoreUI/assets/brand/coreui.svg#full"></use>
+		</svg>
+		<svg class="c-sidebar-brand-minimized" width="46" height="46" alt="CoreUI Logo">
+			<use xlink:href="/static/vendor/CoreUI/assets/brand/coreui.svg#signet"></use>
+		</svg>
+	</div>
+	<ul class="c-sidebar-nav" id="sidebar-nav"></ul>
+	<button class="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent"
+		data-class="c-sidebar-minimized"></button>
+</div>
+
+
+<div class="c-wrapper c-fixed-components">
+	<header class="c-header c-header-light c-header-fixed c-header-with-subheader">
+		<button class="c-header-toggler c-class-toggler d-lg-none mfe-auto" type="button" data-target="#sidebar"
+			data-class="c-sidebar-show">
+			<svg class="c-icon c-icon-lg">
+				<use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-menu"></use>
+			</svg>
+		</button><a class="c-header-brand d-lg-none" href="#">
+			<svg width="118" height="46" alt="CoreUI Logo">
+				<use xlink:href="assets/brand/coreui.svg#full"></use>
+			</svg></a>
+		<button class="c-header-toggler c-class-toggler mfs-3 d-md-down-none" type="button" data-target="#sidebar"
+			data-class="c-sidebar-lg-show" responsive="true">
+			<svg class="c-icon c-icon-lg">
+				<use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-menu"></use>
+			</svg>
+		</button>
+		<ul class="c-header-nav d-md-down-none">
+			<li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Dashboard</a></li>
+			<li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Users</a></li>
+			<li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Settings</a></li>
+		</ul>
+		<ul class="c-header-nav ml-auto mr-4">
+			<li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
+					<svg class="c-icon">
+						<use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-bell"></use>
+					</svg></a></li>
+			<li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
+					<svg class="c-icon">
+						<use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-list-rich"></use>
+					</svg></a></li>
+			<li class="c-header-nav-item d-md-down-none mx-2"><a class="c-header-nav-link" href="#">
+					<svg class="c-icon">
+						<use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-envelope-open"></use>
+					</svg></a></li>
+			<li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#"
+					role="button" aria-haspopup="true" aria-expanded="false">
+					<div class="c-avatar"><img class="c-avatar-img" src="assets/img/avatars/6.jpg" alt="user@email.com">
+					</div>
 				</a>
-				<div class="menu-toggler sidebar-toggler hide">
-					<!-- DOC: Remove the above "hide" to enable the sidebar toggler button on header -->
+				<div class="dropdown-menu dropdown-menu-right pt-0">
+					<div class="dropdown-header bg-light py-2"><strong>Account</strong></div><a class="dropdown-item"
+						href="#">
+						<svg class="c-icon mr-2">
+							<use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-bell"></use>
+						</svg> Updates<span class="badge badge-info ml-auto">42</span></a><a class="dropdown-item"
+						href="#">
+						<svg class="c-icon mr-2">
+							<use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-envelope-open"></use>
+						</svg> Messages<span class="badge badge-success ml-auto">42</span></a><a class="dropdown-item"
+						href="#">
+						<svg class="c-icon mr-2">
+							<use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-task"></use>
+						</svg> Tasks<span class="badge badge-danger ml-auto">42</span></a><a class="dropdown-item"
+						href="#">
+						<svg class="c-icon mr-2">
+							<use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-comment-square"></use>
+						</svg> Comments<span class="badge badge-warning ml-auto">42</span></a>
+					<div class="dropdown-header bg-light py-2"><strong>Settings</strong></div><a class="dropdown-item"
+						href="#">
+						<svg class="c-icon mr-2">
+							<use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-user"></use>
+						</svg> Profile</a><a class="dropdown-item" href="#">
+						<svg class="c-icon mr-2">
+							<use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-settings"></use>
+						</svg> Settings</a><a class="dropdown-item" href="#">
+						<svg class="c-icon mr-2">
+							<use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-credit-card"></use>
+						</svg> Payments<span class="badge badge-secondary ml-auto">42</span></a><a class="dropdown-item"
+						href="#">
+						<svg class="c-icon mr-2">
+							<use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-file"></use>
+						</svg> Projects<span class="badge badge-primary ml-auto">42</span></a>
+					<div class="dropdown-divider"></div><a class="dropdown-item" href="#">
+						<svg class="c-icon mr-2">
+							<use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-lock-locked"></use>
+						</svg> Lock Account</a><a class="dropdown-item" href="#">
+						<svg class="c-icon mr-2">
+							<use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-account-logout"></use>
+						</svg> Logout</a>
+				</div>
+			</li>
+		</ul>
+		<!-- <div class="c-subheader px-3">
+			
+			<ol class="breadcrumb border-0 m-0">
+				<li class="breadcrumb-item">Home</li>
+				<li class="breadcrumb-item">Admin</li>
+				<li class="breadcrumb-item active">Dashboard</li>
+				
+			</ol>
+		</div> -->
+	</header>
+	<div class="c-body">
+		<main class="c-main">
+			<div class="container-fluid">
+				<div class="fade-in" id="main-content">
+					<h1>Hellowolrd</h1>
 				</div>
 			</div>
-			<!-- END LOGO -->
-			<!-- BEGIN RESPONSIVE MENU TOGGLER -->
-			<a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
-			</a>
-			<!-- END RESPONSIVE MENU TOGGLER -->
-			<!-- BEGIN TOP NAVIGATION MENU -->
-			<div class="top-menu">
-				<ul class="nav navbar-nav pull-right">
-					<!-- BEGIN USER LOGIN DROPDOWN -->
-					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-					<li class="dropdown dropdown-user">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-						<img alt="" class="img-circle" src="static/images/icons/user.png"/>
-						<span id="fullname" class="username username-hide-on-mobile">
-						... </span>
-						<i class="fa fa-angle-down"></i>
-						</a>
-						<ul class="dropdown-menu dropdown-menu-right" style="background-color: antiquewhite;">
-							<li>
-								<a href="javascript:void(0);" id="userprofile">
-								<i class="fa fa-cog"></i> Cài Đặt </a>
-							</li>
-							<li>
-								<a href="javascript:void(0);" id="logout">
-								<i class="fa fa-sign-out"></i> Đăng xuất </a>
-							</li>
-						</ul>
-					</li>
-					<!-- END USER LOGIN DROPDOWN -->
-					<!-- BEGIN QUICK SIDEBAR TOGGLER -->
-					<!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
-					<li class="dropdown dropdown-quick-sidebar-toggler">
-						<a href="javascript:;" class="dropdown-toggle">
-						<i class="icon-logout"></i>
-						</a>
-					</li>
-					<!-- END QUICK SIDEBAR TOGGLER -->
-				</ul>
-			</div>
-			<!-- END TOP NAVIGATION MENU -->
-		</div>
-		<!-- END HEADER INNER -->
-	</div>
-</div>
-<!-- END HEADER -->
-<div class="clearfix">
-</div>
-<!-- BEGIN CONTAINER -->
-<div class="page-container page-container-fixed">
-	<div id="loading" class="hidden"></div>
-	<div class="page-navbar-wrapper">
-		<div class="page-navbar">
-
-		</div>
-	</div>
-	<div style="background: #DDDD" class="page-content-wrapper">
-		<div style="background-images:{staic/images/hihi.jpg}" class="page-content">
-			<div class="row">
-				<div class="tools-area col-lg-4 col-md-4 col-sm-8 col-xs-11"></div>
-			</div>
-			<div class="content-area"></div>
-		</div>
-	</div>
-</div>
-<div class="page-footer">
-	<div class="page-footer-inner">
-
-	</div>
-	<div class="scroll-to-top">
-		<i class="icon-arrow-up"></i>
+		</main>
+		<footer class="c-footer">
+			<div><a href="https://coreui.io">CoreUI</a> &copy; 2020 creativeLabs.</div>
+			<div class="ml-auto">Powered by&nbsp;<a href="https://coreui.io/">CoreUI</a></div>
+		</footer>
 	</div>
 </div>

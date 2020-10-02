@@ -2,6 +2,7 @@ define('jquery', [], function () {
 	return jQuery;
 });
 
+
 require.config({
 	baseUrl: static_url + '/js/lib',
 	//    baseUrl: '/static/js/lib',
@@ -45,7 +46,6 @@ require(['jquery', 'gonrin', 'app/router',
 			lang: lang,
 			//layout: layout,
 			initialize: function () {
-				console.log("Applicaiton initialize");
 				this.getRouter().registerAppRoute();
 				this.getCurrentUser();
 				
@@ -57,37 +57,44 @@ require(['jquery', 'gonrin', 'app/router',
 				return string ? string[1] : undefined;
 			},
 			getCurrentUser: function () {
-				console.log("Applicaiton getCurrentUser");
 				var self = this;
-				$.ajax({
-					url: self.serviceURL + '/user/current_user',
-					dataType: "json",
-					success: function (data) {
-						self.postLogin(data);
-					},
-					error: function (XMLHttpRequest, textStatus, errorThrown) {
-						console.log("Before navigate login");
-						self.router.navigate("login");
-					}
+				// $.ajax({
+				// 	url: self.serviceURL + '/user/current_user',
+				// 	dataType: "json",
+				// 	success: function (data) {
+				// 		self.postLogin(data);
+				// 	},
+				// 	error: function (XMLHttpRequest, textStatus, errorThrown) {
+				// 		console.log("Before navigate login");
+				// 		self.router.navigate("login");
+				// 	}
+				// });
+
+
+				self.postLogin({
+					fullname: "Cuong"
 				});
 			},
-			hasRole: function (role) {
-				return (gonrinApp().currentUser != null && gonrinApp().currentUser.roles != null) && gonrinApp().currentUser.roles.indexOf(role) >= 0;
-			},
+			
 			postLogin: function (data) {
 				var self = this;
-
-				$('body').html(layout);
+				$('#body-container').html(layout);
 				self.currentUser = new Gonrin.User(data);
-				this.$header = $('body').find(".page-header");
-				this.$content = $('body').find(".content-area");
-				this.$navbar = $('body').find(".page-navbar");
-				var $user = self.$header.find("span.username");
-				if (!data.fullname || data.fullname === "") {
-					data.fullname = data.id;
-				}
-				self.$header.find("span.username").html(data.fullname);
-				this.$toolbox = $('body').find(".tools-area");
+
+				// this.$header = $('body').find(".page-header");
+				this.$content = $('body').find('#main-content');
+
+
+				this.$navbar = $('body').find("#sidebar-nav");
+
+
+
+				// var $user = self.$header.find("span.username");
+				// if (!data.fullname || data.fullname === "") {
+				// 	data.fullname = data.id;
+				// }
+				// self.$header.find("span.username").html(data.fullname);
+				// this.$toolbox = $('body').find(".tools-area");
 				
 				this.navView = new NavView({
 					el: this.$navbar

@@ -2,10 +2,12 @@
 # Libraries
 
 import sys
-from os.path import abspath, dirname
-sys.path.insert(0, dirname(abspath(__file__)))
+import json
 import random
 import string
+import uuid
+from os.path import abspath, dirname
+sys.path.insert(0, dirname(abspath(__file__)))
 import sqlalchemy
 from sqlalchemy.inspection import inspect
 import json
@@ -19,6 +21,9 @@ from application.extensions import auth
 from application.models.model import User, Role
 # from application.
 
+def generator_salt():
+    data = ''.join(random.choice(string.ascii_lowercase + string.digits) for _ in range(24))
+    return data
 
 def init_app():
     from application.config import Config
@@ -29,6 +34,23 @@ def init_app():
     init_database(app)
 # Constants.
 manager = Manager()
+
+@manager.command
+def add_user():
+    init_app()
+    role1 = db.session.query(Role).filter(Role.name == 'admin').first()
+    if role1 is None:
+        role1 = Role(name='admin', display_name='Admin')
+        db.session.add(role1)
+
+    user1 = db.session.query(User).filter(User.user_name == 'admin').first()
+    if user1 is None:
+        salt = str(generator_salt())
+        user1 = User(user_name='admin', full_name='Admin', email='admin@heonvang.vn', password=auth.encrypt_password('123456',salt), active=True, salt = salt)
+        user1.roles.append(role1)
+        db.session.add(user1)
+    
+    db.session.commit()
 
 
 @manager.command

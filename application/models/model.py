@@ -22,17 +22,32 @@ roles_users = db.Table('roles_users',
                        db.Column('role_id', Integer, db.ForeignKey('role.id', onupdate='cascade'), primary_key=True))
 
 
+class Company(CommonModel):
+    __tablename__ = 'company'
+
+
+class Brand(CommonModel):
+    __tablename__ = 'brand'
+    company_id = 
+
+class Store(CommonModel):
+    __tablename__ = 'store'
+    company_id = 
+
+class Item(CommonModel):
+    __tablename__ = 'item'
+    company_id = 
+
+class ItemStore(CommonModel):
+    __tablename__ = 'item'
+    company_id = 
+
 class Role(CommonModel):
     __tablename__ = 'role'
     id = db.Column(Integer, autoincrement=True, primary_key=True)
-    role_name = db.Column(String(100), index=True, nullable=False, unique=True)
+    name = db.Column(String(100), index=True, nullable=False, unique=True)
     display_name = db.Column(String(255), nullable=False)
     description = db.Column(String(255))
-
-
-
-
-
 
 class User(CommonModel):
     __tablename__ = 'users'
@@ -47,12 +62,52 @@ class User(CommonModel):
     salt = db.Column(String(255), nullable=False)
 
     # Permission Based Attributes.
-    is_active = db.Column(Boolean, default=True)
+    active = db.Column(Boolean, default=True)
+    roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
+    
+    #company_id
 
     # Methods
     def __repr__(self):
         """ Show user object info. """
         return '<User: {}>'.format(self.id)
+
+
+class MemberCard(CommonModel):
+    __tablename__ = 'membercard'
+    #QR Code here
+    id = 
+    company_id =
+    card_id = 
+    wallet_id = String # tai khoan gan khi thanh toan
+    status = active # deactive
+    start_date =
+    expire_date = 
+
+
+class UserWallet(CommonModel):
+    __tablename__ = 'user_wallet'
+    company_id =
+    user_id
+    membercard_id
+    relationship
+
+
+class Transaction(CommonModel):
+    __tablename__ = 'transaction'
+
+
+
+
+## Company Model
+
+## Brand
+
+
+# ItemStore
+
+# Item
+
 
 class QuocGia(CommonModel):
     __tablename__ = 'quocgia'

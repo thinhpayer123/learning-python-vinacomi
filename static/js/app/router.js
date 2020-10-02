@@ -34,7 +34,7 @@ define(function (require) {
         },
         login: function () {
             console.log("Chay login function tai router.js");
-            var loginview = new LoginView({ el: $('body') });
+            var loginview = new LoginView({ el: $('#body-container') });
             loginview.render();
         },
         logout: function () {

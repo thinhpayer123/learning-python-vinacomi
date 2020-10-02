@@ -5,6 +5,16 @@ define(function (require) {
 		Gonrin = require('gonrin');
 	return [
 		{
+			"collectionName": "company", 
+			"route": "company/collection(/:param)",
+			"$ref": "app/Company/view/CollectionView",
+		},
+		{
+			"collectionName": "company",
+			"route": "company/model(/:param)",
+			"$ref": "app/Company/view/ModelView",
+		},
+		{
 			"collectionName": "quocgia", 
 			"route": "quocgia/collection(/:id)",
 			"$ref": "app/view/QuocGia/CollectionView",
