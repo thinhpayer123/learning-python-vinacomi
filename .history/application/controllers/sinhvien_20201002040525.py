@@ -19,7 +19,6 @@ import xlrd
 import qrcode
 import shutil
 import asyncio
-import datetime
 
 
 def auth_func(request=None, **kw):
@@ -75,13 +74,11 @@ async def file_load(request):
 async def genqr(request):
     fsroot = config.FS_ROOT
     url = config.FILE_SERVICE_URL
-    qr = config.QR_ARCHIVE
 
     # print(id)
-    if request.method == 'POST':
-        path = request.args.get('')
-        
-        students =Student.query.order_by(Student.id).all()
+    if request.method == 'GET':
+        students = alchemyEngine.execute('SELECT * FROM Student;').fetchall()
+            # linkQR = config.QR_ARCHIVE
 
 
         for sv in students:
@@ -94,16 +91,34 @@ async def genqr(request):
             qr.saveDirectory = link_img
             db.session.add(qr)
             db.session.commit()
+            a_string = str(job.namefile)
+            split_string = a_string.split(".", 1)
+            substring = split_string[0]
 
-            zipfile = shutil.make_archive(fsroot, 'zip', fsroot, 'qrcode/')
+            print(substring)
+        # archive (full_duong_dan, kieu nen , thumuc truoc dan , file name)
+            shutil.make_archive(fsroot+substring, 'zip', fsroot, 'qrcode/')
 
-            # print(zipfile)
+        # print(linkQR)
+        # print(name_zip)
 
-        ret = {
-            "link": url
-        }
-        print(ret)
-    return json(ret)
+            ret = {
+                "link": url + substring+'.zip'
+            }
+            print(ret)
+    #         q = db.session.query(QRworker).with_for_update(nowait=True, of=QRworker)
+
+    #         job = db.session.query(QRworker).filter(QRworker.status == "PROCESSING").with_for_update().first()
+    # # this row is now locked
+
+    #         job.status = "SUCCESS"
+    #         job.linkdowload = url +substring+'.zip'
+    #         # db.session.add(foo)
+
+    #         db.session.commit()
+    #         except:
+    #             pass
+    # # if request.method == 'POST':
 
 
 

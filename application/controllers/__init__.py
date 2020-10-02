@@ -7,10 +7,10 @@ def init_views(app):
     # import application.controllers.quocgia
     # import application.controllers.tinhthanh
 
-    # import application.controllers.khachhang
-    # import application.controllers.hanghoa
-    # import application.controllers.hoadon
-    # import application.controllers.sinhvien
+    import application.controllers.khachhang
+    import application.controllers.hanghoa
+    import application.controllers.hoadon
+    import application.controllers.sinhvien
     
     
     @app.route('/')

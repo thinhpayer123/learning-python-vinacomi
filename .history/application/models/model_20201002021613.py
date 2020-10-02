@@ -22,32 +22,17 @@ roles_users = db.Table('roles_users',
                        db.Column('role_id', Integer, db.ForeignKey('role.id', onupdate='cascade'), primary_key=True))
 
 
-class Company(CommonModel):
-    __tablename__ = 'company'
-
-
-class Brand(CommonModel):
-    __tablename__ = 'brand'
-    company_id = 
-
-class Store(CommonModel):
-    __tablename__ = 'store'
-    company_id = 
-
-class Item(CommonModel):
-    __tablename__ = 'item'
-    company_id = 
-
-class ItemStore(CommonModel):
-    __tablename__ = 'item'
-    company_id = 
-
 class Role(CommonModel):
     __tablename__ = 'role'
     id = db.Column(Integer, autoincrement=True, primary_key=True)
-    name = db.Column(String(100), index=True, nullable=False, unique=True)
+    role_name = db.Column(String(100), index=True, nullable=False, unique=True)
     display_name = db.Column(String(255), nullable=False)
     description = db.Column(String(255))
+
+
+
+
+
 
 class User(CommonModel):
     __tablename__ = 'users'
@@ -62,90 +47,13 @@ class User(CommonModel):
     salt = db.Column(String(255), nullable=False)
 
     # Permission Based Attributes.
-    active = db.Column(Boolean, default=True)
-    roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
-    
-    #company_id
+    is_active = db.Column(Boolean, default=True)
 
     # Methods
     def __repr__(self):
         """ Show user object info. """
         return '<User: {}>'.format(self.id)
 
-<<<<<<< HEAD
-
-class MemberCard(CommonModel):
-    __tablename__ = 'membercard'
-    #QR Code here
-    id = 
-    company_id =
-    card_id = 
-    wallet_id = String # tai khoan gan khi thanh toan
-    status = active # deactive
-    start_date =
-    expire_date = 
-
-
-class UserWallet(CommonModel):
-    __tablename__ = 'user_wallet'
-    company_id =
-    user_id
-    membercard_id
-    relationship
-
-
-class Transaction(CommonModel):
-    __tablename__ = 'transaction'
-
-
-
-
-## Company Model
-
-## Brand
-
-
-# ItemStore
-
-# Item
-
-
-class QuocGia(CommonModel):
-    __tablename__ = 'quocgia'
-    id = db.Column(Integer, primary_key=True)
-    ma = db.Column(String(255), unique=True)
-    ten = db.Column(String(255), nullable=False)
-    mota = db.Column(String(255), nullable=True)
-    tinhthanh = db.relationship("TinhThanh", order_by="TinhThanh.id", cascade="all, delete-orphan")
-    
-class TinhThanh(CommonModel):
-    __tablename__ = 'tinhthanh'
-    id = db.Column(Integer, primary_key=True)
-    ma = db.Column(String(255), unique=True)
-    ten = db.Column(String(255), nullable=False)
-    quocgia_id = db.Column(Integer, ForeignKey('quocgia.id'), nullable=False)
-    quocgia = db.relationship('QuocGia')
-
-class KhachHang(CommonModel):
-    __tablename__ = 'khachhang'
-    id = db.Column(Integer, primary_key=True)
-    ma = db.Column(String(255), unique=True)
-    ten = db.Column(String(255), nullable=False)
-    quocgia_id = db.Column(Integer, ForeignKey('quocgia.id'), nullable=False)
-    quocgia = db.relationship('QuocGia')
-    sodienthoai = db.Column(String(255))
-    email = db.Column(String(255))
-    diachi = db.Column(String(255))
-
-class HangHoa(CommonModel):
-    __tablename__ = 'hanghoa'
-    id = db.Column(Integer, primary_key=True)
-    ma = db.Column(String(255), unique=True)
-    ten = db.Column(String(255), nullable=False)
-    gia = db.Column(Integer)
-    ghichu = db.Column(String(255))
-=======
->>>>>>> 1e48fad0f2edd1c0ef19b0968f9dd5fed4502a32
 
 
 # class sinhVien(CommonModel):
@@ -160,7 +68,7 @@ class HangHoa(CommonModel):
 
 class Student(CommonModel):
     __tablename__ = 'student'
-    id = db.Column(Integer, primary_key=True)
+    _id = db.Column(Integer, primary_key=True)
     student_school_year = db.Column(String(30), nullable=False)
     student_class = db.Column(String(30), nullable=False)
     student_id = db.Column(String(20), nullable=False)
@@ -171,14 +79,14 @@ class Student(CommonModel):
 
 class QRUser(CommonModel):
     __tablename__ = 'qruser'
-    id = db.Column(Integer, primary_key=True)
+    _id = db.Column(Integer, primary_key=True)
     nameqr = db.Column(String(255), nullable=False)
     saveDirectory = db.Column(String(255), nullable=False)
 
 
 class QRworker(CommonModel):
     __tablename__ = 'qrworker'
-    id = db.Column(Integer, primary_key=True)
+    _id = db.Column(Integer, primary_key=True)
     uid = db.Column(String(30), nullable=False)
     save_directory = db.Column(String(255), nullable=False)
     status = db.Column(String(10))

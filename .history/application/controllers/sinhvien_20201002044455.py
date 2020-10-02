@@ -19,7 +19,6 @@ import xlrd
 import qrcode
 import shutil
 import asyncio
-import datetime
 
 
 def auth_func(request=None, **kw):
@@ -75,13 +74,17 @@ async def file_load(request):
 async def genqr(request):
     fsroot = config.FS_ROOT
     url = config.FILE_SERVICE_URL
-    qr = config.QR_ARCHIVE
+    
 
     # print(id)
     if request.method == 'POST':
         path = request.args.get('')
         
         students =Student.query.order_by(Student.id).all()
+
+
+        # students = alchemyEngine.execute('SELECT * FROM Student;').fetchall()
+            # linkQR = config.QR_ARCHIVE
 
 
         for sv in students:
@@ -95,12 +98,11 @@ async def genqr(request):
             db.session.add(qr)
             db.session.commit()
 
-            zipfile = shutil.make_archive(fsroot, 'zip', fsroot, 'qrcode/')
+            shutil.make_archive(fsroot, 'zip', fsroot, 'qrcode/')
 
-            # print(zipfile)
 
         ret = {
-            "link": url
+            "link": url + fsroot+'.zip'
         }
         print(ret)
     return json(ret)

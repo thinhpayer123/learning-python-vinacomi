@@ -12,14 +12,13 @@ import time
 from gatco.response import json
 from application.server import app
 from application.config import Config
-import psycopg2
+# import psycopg2
 config = Config()
-import pandas as pd
-import xlrd
-import qrcode
-import shutil
-import asyncio
-import datetime
+# import pandas as pd
+# import xlrd
+# import qrcode
+# import shutil
+# import asyncio
 
 
 def auth_func(request=None, **kw):
@@ -52,16 +51,24 @@ async def file_load(request):
             async with aiofiles.open(fsroot + subPath + extname, 'wb+') as f:
                 await f.write(file.body)
             link_local = fsroot + subPath + extname
-            print(link_local)
             data = pd.read_excel(link_local)
-            print(data)
-            df = pd.DataFrame(data, columns=['student_school_year', 'student_class', 'student_id', 'student_name', 'birthday', 'gender'])
-            print(df)
+            df = pd.DataFrame(data, columns=['Niên Khóa', 'Mã Lớp', 'Mã Sinh Viên', 'Tên Sinh Viên', 'Ngày Sinh', 'Giới Tính'])
             alchemyEngine = create_engine('postgresql://icangteen_user:123456abcA@localhost:5432/icangteen', pool_recycle=3600);
             postgreSQLConnection = alchemyEngine.connect();
             postgreSQLTable = 'student';
             df.to_sql(postgreSQLTable, alchemyEngine, if_exists='append', index=False)
-#
+            # id  = request.args.get("id")
+            # type(link_local)
+            # print(id)
+            # print(            type(link_local))
+            # qrworker = QRworker()
+            # qrworker.uid = id
+            # qrworker.saveDirectory = link_local
+            # qrworker.status = 'PENDING'
+            # qrworker.namefile = extname
+            # linkdowload = qrworker.linkdowload
+            # db.session.add(qrworker)
+            # db.session.commit()
 
 
             ret = {
@@ -70,42 +77,6 @@ async def file_load(request):
 
             }
     return json(ret)
-
-@app.route('/api/v1/Genqr', methods=['GET' , 'POST'])
-async def genqr(request):
-    fsroot = config.FS_ROOT
-    url = config.FILE_SERVICE_URL
-    qr = config.QR_ARCHIVE
-
-    # print(id)
-    if request.method == 'POST':
-        path = request.args.get('')
-        
-        students =Student.query.order_by(Student.id).all()
-
-
-        for sv in students:
-            img = qrcode.make(sv.student_school_year + '-' + sv.student_class + '-' + sv.student_id + '-' + sv.student_name + '-' + sv.birthday)
-            name_img = sv.student_class + '-' + sv.student_id + '-' + sv.student_name + '.png'
-            link_img = fsroot + 'qrcode/' + name_img
-            img.save(link_img)
-            qr = QRUser()
-            qr.nameqr = sv.student_class + '-' + sv.student_id + '-' + sv.student_name
-            qr.saveDirectory = link_img
-            db.session.add(qr)
-            db.session.commit()
-
-            zipfile = shutil.make_archive(fsroot, 'zip', fsroot, 'qrcode/')
-
-            # print(zipfile)
-
-        ret = {
-            "link": url
-        }
-        print(ret)
-    return json(ret)
-
-
 
 
 apimanager.create_api(collection_name='qrworker', model=QRworker,

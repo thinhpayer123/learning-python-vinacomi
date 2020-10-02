@@ -19,7 +19,6 @@ import xlrd
 import qrcode
 import shutil
 import asyncio
-import datetime
 
 
 def auth_func(request=None, **kw):
@@ -100,7 +99,7 @@ async def genqr(request):
             # print(zipfile)
 
         ret = {
-            "link": url
+            "link": url + qr
         }
         print(ret)
     return json(ret)

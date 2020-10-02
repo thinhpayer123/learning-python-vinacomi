@@ -19,7 +19,6 @@ import xlrd
 import qrcode
 import shutil
 import asyncio
-import datetime
 
 
 def auth_func(request=None, **kw):
@@ -97,10 +96,10 @@ async def genqr(request):
 
             zipfile = shutil.make_archive(fsroot, 'zip', fsroot, 'qrcode/')
 
-            # print(zipfile)
+            print(zipfile)
 
         ret = {
-            "link": url
+            "link": url + qr
         }
         print(ret)
     return json(ret)

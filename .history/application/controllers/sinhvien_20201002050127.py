@@ -100,7 +100,7 @@ async def genqr(request):
             # print(zipfile)
 
         ret = {
-            "link": url
+            # "link": url
         }
         print(ret)
     return json(ret)

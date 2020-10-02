@@ -87,7 +87,7 @@ async def genqr(request):
         for sv in students:
             img = qrcode.make(sv.student_school_year + '-' + sv.student_class + '-' + sv.student_id + '-' + sv.student_name + '-' + sv.birthday)
             name_img = sv.student_class + '-' + sv.student_id + '-' + sv.student_name + '.png'
-            link_img = fsroot + 'qrcode/' + name_img
+            link_img+datetime.date.day = fsroot + 'qrcode/' + name_img
             img.save(link_img)
             qr = QRUser()
             qr.nameqr = sv.student_class + '-' + sv.student_id + '-' + sv.student_name
@@ -100,7 +100,7 @@ async def genqr(request):
             # print(zipfile)
 
         ret = {
-            "link": url
+            # "link": url
         }
         print(ret)
     return json(ret)
