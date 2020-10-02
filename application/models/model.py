@@ -72,7 +72,6 @@ class User(CommonModel):
         """ Show user object info. """
         return '<User: {}>'.format(self.id)
 
-<<<<<<< HEAD
 
 class MemberCard(CommonModel):
     __tablename__ = 'membercard'
@@ -144,8 +143,6 @@ class HangHoa(CommonModel):
     ten = db.Column(String(255), nullable=False)
     gia = db.Column(Integer)
     ghichu = db.Column(String(255))
-=======
->>>>>>> 1e48fad0f2edd1c0ef19b0968f9dd5fed4502a32
 
 
 # class sinhVien(CommonModel):
