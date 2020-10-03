@@ -6,43 +6,82 @@ define(function (require) {
 			"icon":`<svg class="c-sidebar-nav-icon"><use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-puzzle"></use></svg>`,
 			"type": "category",
 			"entries": [
-				{
-					"text":"Doanh nghiep",
-					// "icon":"fa fa-child",
-					"type":"view",
-					"route":"company/model"
-				},
-				{
-					"text":"Người dùng",
-					// "icon":"fa fa-child",
-					"type":"view",
-					"route":"user/collection"
-				},
+				// {
+				// 	"text":"Doanh nghiep",
+				// 	// "icon":"fa fa-child",
+				// 	"type":"view",
+				// 	"route":"company/collection"
+				// },
+				// {
+				// 	"text":"Thẻ Người Dùng",
+				// 	// "icon":"fa fa-child",
+				// 	"type":"view",
+				// 	"route":"membercard/collection"
+				// },
+				// {
+				// 	"text":"Vai Trò",
+				// 	// "icon":"fa fa-child",
+				// 	"type":"view",
+				// 	"route":"role/collection"
+				// },
+				// {
+				// 	"text":"Store",
+				// 	// "icon":"fa fa-child",
+				// 	"type":"view",
+				// 	"route":"store/collection"
+				// },
+				// {
+				// 	"text":"Giao Dịch",
+				// 	// "icon":"fa fa-child",
+				// 	"type":"view",
+				// 	"route":"transaction/collection"
+				// },
+				// {
+				// 	"text":"User",
+				// 	// "icon":"fa fa-child",
+				// 	"type":"view",
+				// 	"route":"users/collection"
+				// },
+				// {
+				// 	"text":"Ví Người Dùng",
+				// 	// "icon":"fa fa-child",
+				// 	"type":"view",
+				// 	"route":"userwallet/collection"
+				// },
+
+
+
+				// {
+				// 	"text":"Người dùng",
+				// 	// "icon":"fa fa-child",
+				// 	"type":"view",
+				// 	"route":"user/collection"
+				// },
 				// {
 				// 	"text":"Vai trò",
 				// 	// "icon":"fa fa-child",
 				// 	"type":"view",
 				// 	"route":"role/collection"
 				// },
-				{
-					"text":"Vnexpress",
-					// "icon":"fa fa-child",
-					"type":"link",
-					"href":"https://vnexpress.net",
-					// "visible": false
-				},
-				{
-					"text":"Quốc gia",
-					// "icon":"fa fa-child",
-					"type":"view",
-				    "route":"quocgia/collection"
-				},
-				{
-					"text":"Tỉnh thành",
-					// "icon":"fa fa-child",
-					"type":"link",
-				    "href":"/#tinhthanh/collection"
-				},
+				// {
+				// 	"text":"Vnexpress",
+				// 	// "icon":"fa fa-child",
+				// 	"type":"link",
+				// 	"href":"https://vnexpress.net",
+				// 	// "visible": false
+				// },
+				// {
+				// 	"text":"Quốc gia",
+				// 	// "icon":"fa fa-child",
+				// 	"type":"view",
+				//     "route":"quocgia/collection"
+				// },
+				// {
+				// 	"text":"Tỉnh thành",
+				// 	// "icon":"fa fa-child",
+				// 	"type":"link",
+				//     "href":"/#tinhthanh/collection"
+				// },
 			]
 		},
 		{
@@ -51,17 +90,53 @@ define(function (require) {
 			"type": "category",
 			"entries": [
 				{
-					"text":"Khách hàng",
+					"text":"Đơn Vị",
 					// "icon":"fa fa-child",
 					"type":"view",
-					"route":"khachhang/collection"
+					"route":"company/collection"
+				},
+				// {
+				// 	"text":"Example",
+				// 	// "icon":"fa fa-child",
+				// 	"type":"link",
+				// 	"href":"https://coreui.io/demo/3.2.0/"
+				// },
+				{
+					"text":"Thẻ Người Dùng",
+					// "icon":"fa fa-child",
+					"type":"view",
+					"route":"membercard/collection"
 				},
 				{
-					"text":"Example",
+					"text":"Vai Trò",
 					// "icon":"fa fa-child",
-					"type":"link",
-					"href":"https://coreui.io/demo/3.2.0/"
+					"type":"view",
+					"route":"role/collection"
 				},
+				{
+					"text":"Store",
+					// "icon":"fa fa-child",
+					"type":"view",
+					"route":"store/collection"
+				},
+				{
+					"text":"Giao Dịch",
+					// "icon":"fa fa-child",
+					"type":"view",
+					"route":"transaction/collection"
+				},
+				{
+					"text":"User",
+					// "icon":"fa fa-child",
+					"type":"view",
+					"route":"users/collection"
+				},
+				{
+					"text":"Ví Người Dùng",
+					// "icon":"fa fa-child",
+					"type":"view",
+					"route":"userwallet/collection"
+				}
 			]
 		},
 		// {
