@@ -1,0 +1,29 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "number",
+        "primary": true
+    },
+    "nameqr": {
+        "type": "string",
+        "required": true,
+        "length": 255
+    },
+    "saveDirectory": {
+        "type": "string",
+        "required": true,
+        "length": 255
+    }
+}

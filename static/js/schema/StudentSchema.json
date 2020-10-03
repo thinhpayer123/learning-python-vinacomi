@@ -1,0 +1,47 @@
+{
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "id": {
+        "type": "number",
+        "primary": true
+    },
+    "student_school_year": {
+        "type": "string",
+        "required": true,
+        "length": 30
+    },
+    "student_class": {
+        "type": "string",
+        "required": true,
+        "length": 30
+    },
+    "student_id": {
+        "type": "string",
+        "required": true,
+        "length": 20
+    },
+    "student_name": {
+        "type": "string",
+        "required": true,
+        "length": 255
+    },
+    "birthday": {
+        "type": "string",
+        "length": 20
+    },
+    "gender": {
+        "type": "string",
+        "length": 10
+    }
+}

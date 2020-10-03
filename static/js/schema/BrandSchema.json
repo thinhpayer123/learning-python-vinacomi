@@ -13,35 +13,31 @@
         "type": "datetime"
     },
     "id": {
-        "type": "number",
+        "type": "string",
         "primary": true
     },
-    "ma": {
+    "brand_id": {
         "type": "string",
-        "length": 255
-    },
-    "ten": {
-        "type": "string",
-        "required": true,
-        "length": 255
-    },
-    "quocgia_id": {
-        "type": "number",
         "required": true
     },
-    "sodienthoai": {
+    "company_id": {
         "type": "string",
-        "length": 255
+        "required": true
+    },
+    "brand_logo_url": {
+        "type": "string"
     },
     "email": {
-        "type": "string",
-        "length": 255
+        "type": "string"
     },
-    "diachi": {
-        "type": "string",
-        "length": 255
+    "phone_number": {
+        "type": "string"
     },
-    "quocgia": {
-        "type": "dict"
+    "extra_data": {
+        "type": "json"
+    },
+    "active": {
+        "type": "boolean",
+        "default": true
     }
 }

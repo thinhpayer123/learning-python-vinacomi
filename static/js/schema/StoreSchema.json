@@ -13,35 +13,98 @@
         "type": "datetime"
     },
     "id": {
-        "type": "number",
+        "type": "string",
         "primary": true
     },
-    "ma": {
+    "store_id": {
         "type": "string",
-        "length": 255
-    },
-    "ten": {
-        "type": "string",
-        "required": true,
-        "length": 255
-    },
-    "quocgia_id": {
-        "type": "number",
         "required": true
     },
-    "sodienthoai": {
+    "brand_id": {
         "type": "string",
-        "length": 255
+        "required": true
     },
-    "email": {
+    "company_id": {
         "type": "string",
-        "length": 255
+        "required": true
     },
-    "diachi": {
-        "type": "string",
-        "length": 255
+    "store_name": {
+        "type": "string"
     },
-    "quocgia": {
-        "type": "dict"
+    "open_time": {
+        "type": "string"
+    },
+    "phone_number": {
+        "type": "string"
+    },
+    "estimate_price": {
+        "type": "number"
+    },
+    "estimate_price_max": {
+        "type": "number"
+    },
+    "wifi_password": {
+        "type": "string"
+    },
+    "is_car_parking": {
+        "type": "number"
+    },
+    "is_visa": {
+        "type": "number"
+    },
+    "is_sticky": {
+        "type": "number"
+    },
+    "store_longitude": {
+        "type": "number"
+    },
+    "store_latitude": {
+        "type": "number"
+    },
+    "store_radius_detail": {
+        "type": "number"
+    },
+    "store_master_id": {
+        "type": "string"
+    },
+    "district_id": {
+        "type": "string"
+    },
+    "city_id": {
+        "type": "string"
+    },
+    "city_name": {
+        "type": "string"
+    },
+    "store_address": {
+        "type": "string"
+    },
+    "image_path": {
+        "type": "string"
+    },
+    "image_path_thumb": {
+        "type": "string"
+    },
+    "workstation_id": {
+        "type": "string"
+    },
+    "wallet_id": {
+        "type": "string"
+    },
+    "wallet_fullname": {
+        "type": "string"
+    },
+    "wallet_phone": {
+        "type": "string"
+    },
+    "wallet_method": {
+        "type": "string"
+    },
+    "extra_data": {
+        "type": "json"
+    },
+    "active": {
+        "type": "boolean",
+        "default": true
     }
 }

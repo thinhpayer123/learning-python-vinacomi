@@ -13,10 +13,10 @@
         "type": "datetime"
     },
     "id": {
-        "type": "number",
+        "type": "string",
         "primary": true
     },
-    "role_name": {
+    "name": {
         "type": "string",
         "required": true,
         "length": 100
@@ -29,5 +29,8 @@
     "description": {
         "type": "string",
         "length": 255
+    },
+    "users": {
+        "type": "list"
     }
 }

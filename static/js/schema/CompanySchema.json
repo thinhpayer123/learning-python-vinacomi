@@ -13,16 +13,34 @@
         "type": "datetime"
     },
     "id": {
-        "type": "number",
+        "type": "string",
         "primary": true
     },
-    "ma": {
+    "company_type": {
         "type": "string",
-        "length": 255
+        "required": true
     },
-    "ten": {
+    "company_no": {
+        "type": "string"
+    },
+    "name": {
+        "type": "string"
+    },
+    "description": {
+        "type": "string"
+    },
+    "phone_number": {
         "type": "string",
-        "required": true,
-        "length": 255
+        "length": 63
+    },
+    "email": {
+        "type": "string"
+    },
+    "extra_data": {
+        "type": "json"
+    },
+    "active": {
+        "type": "boolean",
+        "default": true
     }
 }

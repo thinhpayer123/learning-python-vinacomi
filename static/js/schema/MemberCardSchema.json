@@ -13,35 +13,32 @@
         "type": "datetime"
     },
     "id": {
-        "type": "number",
+        "type": "string",
         "primary": true
     },
-    "ma": {
+    "company_id": {
         "type": "string",
-        "length": 255
-    },
-    "ten": {
-        "type": "string",
-        "required": true,
-        "length": 255
-    },
-    "quocgia_id": {
-        "type": "number",
         "required": true
     },
-    "sodienthoai": {
+    "membercard_id": {
         "type": "string",
-        "length": 255
+        "required": true
     },
-    "email": {
+    "wallet_id": {
         "type": "string",
-        "length": 255
+        "required": true
     },
-    "diachi": {
-        "type": "string",
-        "length": 255
+    "start_date": {
+        "type": ""
     },
-    "quocgia": {
-        "type": "dict"
+    "expire_date": {
+        "type": ""
+    },
+    "extra_data": {
+        "type": "json"
+    },
+    "status": {
+        "type": "number",
+        "default": 1
     }
 }
