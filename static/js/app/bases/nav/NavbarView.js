@@ -49,6 +49,7 @@ define(function (require) {
 							"text": entry_text,
 							"icon": entry_icon
 						});
+						
 					}else if(entry_type === "view"  && entry_text !== undefined){
 						_html = gonrin.template(view_tpl)({
 							"text": entry_text,
@@ -62,25 +63,32 @@ define(function (require) {
 						});
 					}
 
+					var $entry_el = $('<div/>').html(_html).contents();
+
 
 					if(self.isEntryVisible(entry)){
-						$el.append(_html);
-					}
-					if (entry_entries) {
-						var _nav_list = $el.find(".c-sidebar-nav-dropdown-items");
-						self.loadEntries(_nav_list, entry_entries, false);
-					}
-					if(entry_type === "view"){
-						var $a = $el.find('a');
+						$el.append($entry_el);
+
+						if(entry_type === "category"){	
+							if ((entry_entries)&& (entry_entries.length > 0)) {
+								var _nav_list = $entry_el.find(".c-sidebar-nav-dropdown-items");
+								self.loadEntries(_nav_list, entry_entries, false);
+							}
+						}
 						
-						if($a){
-							$a.unbind("click").bind("click", function(e){
-								e.preventDefault();
-								var link = _.result(entry, 'href') || _.result(entry, 'route') ;
-								self.getApp().getRouter().navigate(link, {trigger:true});
-							});
+						if(entry_type === "view"){
+							var $a = $entry_el.find('a');
+							
+							if($a){
+								$a.unbind("click").bind("click", function(e){
+									e.preventDefault();
+									var link = _.result(entry, 'href') || _.result(entry, 'route') ;
+									self.getApp().getRouter().navigate(link, {trigger:true});
+								});
+							}
 						}
 					}
+					
 				});// end _.each
 			};
 			return this;

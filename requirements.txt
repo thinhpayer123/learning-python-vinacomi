@@ -27,3 +27,5 @@ passlib
 psycopg2-binary
 pandas 
 xlrd
+qrcode
+pillow
