@@ -190,7 +190,7 @@ def create_admin(password='123456'):
     if(role_user is None):
         role_user = Role(name='user', display_name="User")
         db.session.add(role_user)
-        db.session.flush()
+        db.session.flush() 
 
 
     user = User.query.filter(User.user_name == "admin").first()
