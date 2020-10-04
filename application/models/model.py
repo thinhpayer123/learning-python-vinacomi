@@ -190,14 +190,5 @@ class QRworker(CommonModel):
     dowload_url = db.Column(String(255))
 # test api 
 
-class XaPhuong(CommonModel):
-    __tablename__ = 'xaphuong'
-    id = db.Column(String(), primary_key=True)
-    company_type = db.Column(String(), nullable=False)
-    ma = db.Column(String(255), unique= True)
-    name = db.Column(String())
-    
-
-
 
 
