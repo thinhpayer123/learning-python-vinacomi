@@ -4,14 +4,13 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/Company/tpl/model.html'),
-    	schema 				= require('json!schema/CompanySchema.json');
-    
+    var template 			= require('text!app/view/Brand/tpl/model.html'),
+    	schema 				= require('json!schema/BrandSchema.json');
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "company",
+    	collectionName: "brand",
     	tools : [
     	    {
     	    	name: "defaultgr",
@@ -33,7 +32,7 @@ define(function (require) {
 		    	    	name: "save",
 		    	    	type: "button",
 		    	    	buttonClass: "btn-success btn-sm",
-		    	    	label: "Lưu Thong Tin",
+		    	    	label: "Lưu Thông Tin ",
 		    	    	command: function(){
 		    	    		var self = this;
 		    	    		

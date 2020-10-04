@@ -15,6 +15,16 @@ define(function (require) {
 			"$ref": "app/view/Company/ModelView",
 		},
 		{
+			"collectionName": "brand", 
+			"route": "brand/collection(/:param)",
+			"$ref": "app/view/Brand/CollectionView",
+		},
+		{
+			"collectionName": "brand",
+			"route": "brand/model(/:param)",
+			"$ref": "app/view/Brand/ModelView",
+		},
+		{
 			"collectionName": "membercard", 
 			"route": "membercard/collection(/:param)",
 			"$ref": "app/view/MemberCard/CollectionView",

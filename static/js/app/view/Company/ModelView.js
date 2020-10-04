@@ -33,7 +33,7 @@ define(function (require) {
 		    	    	name: "save",
 		    	    	type: "button",
 		    	    	buttonClass: "btn-success btn-sm",
-		    	    	label: "Lưu Thong Tin",
+		    	    	label: "Lưu Thông Tin ",
 		    	    	command: function(){
 		    	    		var self = this;
 		    	    		

@@ -95,12 +95,12 @@ define(function (require) {
 					"type":"view",
 					"route":"company/collection"
 				},
-				// {
-				// 	"text":"Example",
-				// 	// "icon":"fa fa-child",
-				// 	"type":"link",
-				// 	"href":"https://coreui.io/demo/3.2.0/"
-				// },
+				{
+					"text":"Thương Hiệu",
+					// "icon":"fa fa-child",
+					"type":"view",
+					"href":"brand/collection"
+				},
 				{
 					"text":"Thẻ Người Dùng",
 					// "icon":"fa fa-child",
