@@ -2,6 +2,9 @@ from application.extensions import apimanager
 from application.models.model import User, Company, Brand, Store, Role, MemberCard, UserWallet, Transaction
 from application.extensions import auth
 from gatco.exceptions import ServerError
+import json
+from application.server import app
+
 def auth_func(request=None, **kw):
     #uid = auth.current_user(request)
     #if uid is None:
@@ -50,10 +53,10 @@ async def partner_send_point_transaction(request):
     
 
     if (company_id is None) or (membercard_id is None) or (point_name is None):
-        return json({"error_code": "PARAM_ERROR", "error_message": "", status=520})
+        return json({"error_code": "PARAM_ERROR", "error_message": ""}, status=520)
 
     if (main_value is None) or (sub_value is None):
-        return json({"error_code": "PARAM_ERROR", "error_message": "Value error", status=520})
+        return json({"error_code": "PARAM_ERROR", "error_message": "Value error"}, status=520)
 
     
     card = MemberCard.query.filter(MemberCard.membercard_id == membercard_id).\
@@ -66,7 +69,7 @@ async def partner_send_point_transaction(request):
         from_wallet_id = card.wallet_id
 
     if (to_wallet_id is None) or (from_wallet_id is None):
-        return json({"error_code": "NOT_FOUND", "error_message": "Not found wallet", status=520})
+        return json({"error_code": "NOT_FOUND", "error_message": "Not found wallet"}, status=520)
 
     url = app.config.get("WALLET_API_URL") + "/wallet/api/v1/privilege_send_point_transaction"
     app_id = app.config.get("HEOVANG_APP_ID")
