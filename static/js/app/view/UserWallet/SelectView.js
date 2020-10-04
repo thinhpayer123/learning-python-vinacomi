@@ -11,7 +11,7 @@ define(function (require) {
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "userwallet",
+    	collectionName: "user_wallet",
     	textField: "ten",
     	valueField: "id",
     	tools : [
@@ -36,8 +36,34 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-	    	     { field: "ma", label: "Mã", width:150},
-		     	 { field: "ten", label: "Tên", width:250 },
+				{ 
+	    	    	field: "id",label:"ID", width=100
+				 },
+				 { 
+	    	    	field: "company_id",label:"Mã Đơn Vị ",width=100
+				 },
+				 { 
+	    	    	field: "company_type",label:"Kiểu Đơn Vị",width=100
+				 },
+				 { 
+	    	    	field: "company_no",label:"Số Đơn Vị",width=100
+				 },
+				 { 
+	    	    	field: "user_id",label:"Mã Người Dùng",width=100
+				 },
+				 { 
+	    	    	field: "user_no",label:"Số Người Dùng",width=100
+				 },
+				 { 
+	    	    	field: "wallet_id",label:"Mã Ví",width=100
+				 },
+				 { 
+	    	    	field: "relationship",label:"Vai Trò",width=100
+				 },
+
+				 { 
+	    	    	field: "extra_data",label:"Thông Tin Chi Tiết",width=100
+	    	     },
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;

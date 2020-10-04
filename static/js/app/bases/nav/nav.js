@@ -95,18 +95,13 @@ define(function (require) {
 					"type":"view",
 					"route":"company/collection"
 				},
-				// {
-				// 	"text":"Example",
-				// 	// "icon":"fa fa-child",
-				// 	"type":"link",
-				// 	"href":"https://coreui.io/demo/3.2.0/"
-				// },
 				{
-					"text":"Thẻ Người Dùng",
+					"text":"Thương Hiệu",
 					// "icon":"fa fa-child",
 					"type":"view",
-					"route":"membercard/collection"
+					"href":"brand/collection"
 				},
+
 				{
 					"text":"Vai Trò",
 					// "icon":"fa fa-child",
@@ -126,17 +121,44 @@ define(function (require) {
 					"route":"transaction/collection"
 				},
 				{
-					"text":"User",
+					"text":"Quản Lý User",
 					// "icon":"fa fa-child",
-					"type":"view",
-					"route":"users/collection"
+					"type":"category",
+					"route":"",
+					"entries":[
+						{
+							"text":"Quản Lý User Hệ Thống",
+							// "icon":"fa fa-child",
+							"type":"view",
+							"route":"users/collection"
+						},
+						{
+							"text":"Quản Lý User Người Dùng",
+							// "icon":"fa fa-child",
+							"type":"view",
+							"route":"userwallet/collection"
+						},				
+						{
+							"text":"Quản Lý Thẻ Người Dùng",
+							// "icon":"fa fa-child",
+							"type":"view",
+							"route":"membercard/collection"
+						},
+					]
 				},
-				{
-					"text":"Ví Người Dùng",
-					// "icon":"fa fa-child",
-					"type":"view",
-					"route":"userwallet/collection"
-				}
+
+				// {
+				// 	"text":"User",
+				// 	// "icon":"fa fa-child",
+				// 	"type":"view",
+				// 	"route":"users/collection"
+				// },
+				// {
+				// 	"text":"Ví Người Dùng",
+				// 	// "icon":"fa fa-child",
+				// 	"type":"view",
+				// 	"route":"userwallet/collection"
+				// }
 			]
 		},
 		// {

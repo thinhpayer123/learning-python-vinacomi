@@ -36,8 +36,30 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-	    	     { field: "ma", label: "Mã", width:150},
-		     	 { field: "ten", label: "Tên", width:250 },
+				{ 
+	    	    	field: "id",label:"ID",
+				 },
+				 { 
+	    	    	field: "company_id",label:"Mã Công Ty",width=100
+				 },
+				 { 
+	    	    	field: "brand_id",label:"Mã Thương Hiệu",width=100
+				 },
+				 { 
+	    	    	field: "store_id",label:"Mã Cửa Hàng",width=100
+				 },
+				 { 
+	    	    	field: "store_name",label:"Tên Cửa Hàng",width=100
+				 },
+				 { 
+	    	    	field: "phone_number",label:"Số Điện Thoại ",width=100
+				 },
+				 { 
+	    	    	field: "image_path",label:"Ảnh Đại Diện ",width=100
+				 },
+				 { 
+	    	    	field: "active",label:"Trạng Thái ",width=100
+				 },
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;

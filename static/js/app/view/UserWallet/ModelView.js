@@ -11,7 +11,7 @@ define(function (require) {
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "userwallet",
+    	collectionName: "user_wallet",
     	tools : [
     	    {
     	    	name: "defaultgr",

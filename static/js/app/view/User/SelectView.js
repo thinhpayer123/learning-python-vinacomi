@@ -36,8 +36,35 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-	    	     { field: "ma", label: "Mã", width:150},
-		     	 { field: "ten", label: "Tên", width:250 },
+				{ 
+	    	    	field: "id",label:"ID",width=100
+				 },
+				 { 
+	    	    	field: "company_id",label:"Mã Công Ty ",width=100
+				 },
+				 { 
+	    	    	field: "full_name",label:"Họ Và Tên",width=100
+				 },
+				 { 
+	    	    	field: "user_name",label:"Tên Tài Khoản",width=100
+				 },
+
+				 { 
+	    	    	field: "password",label:"Mật Khẩu",width=100
+				 },
+				 { 
+	    	    	field: "email",label:"Email",width=100
+				 },
+				 { 
+	    	    	field: "active",label:"Trạng Thái",width=100
+				 },
+				 { 
+	    	    	field: "roles",label:"Roles",width=100
+				 },
+				 { 
+	    	    	field: "extra_data",label:"Thông Tin Chi Tiết ",width=100
+				 },
+
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;

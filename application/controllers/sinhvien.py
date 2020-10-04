@@ -1,5 +1,5 @@
 from application.extensions import apimanager
-from application.models.model import Student, QRUser, QRworker, User, UserWallet
+from application.models.model import  QRUser,  User, UserWallet
 from application.extensions import auth
 from application.database import db
 from gatco.exceptions import ServerError
@@ -117,42 +117,43 @@ async def genqr(request):
     fsroot = config.FS_ROOT
     url = config.FILE_SERVICE_URL
     qr = config.QR_ARCHIVE
-
+    # userWallets =[]
     # print(id)
     if request.method == 'POST':
         path = request.args.get('')
         
-        students =Student.query.order_by(Student.id).all()
-
-
-        for sv in students:
-            img = qrcode.make(sv.student_school_year + '-' + sv.student_class + '-' + sv.student_id + '-' + sv.student_name + '-' + sv.birthday)
-            name_img = sv.student_class + '-' + sv.student_id + '-' + sv.student_name + '.png'
+        userWallets = UserWallet.query.order_by(UserWallet.id).all()
+        for user in userWallets:
+            # format_data = ujson.loads
+            info_user = user.extra_data
+            student_id = info_user['student_id']
+            student_school_year = info_user['student_school_year']
+            student_class = info_user['student_class']
+            student_name = info_user['student_name']
+            birthday = info_user['birthday']
+            img = qrcode.make(student_school_year + '-' + student_class + '-' + student_id + '-' + student_name + '-' + birthday)
+            name_img =  student_class + '-' +  student_id + '-' +  student_name + '.png'
             link_img = fsroot + 'qrcode/' + name_img
             img.save(link_img)
             qr = QRUser()
-            qr.nameqr = sv.student_class + '-' + sv.student_id + '-' + sv.student_name
+            qr.nameqr =  student_class + '-' +  student_id + '-' +  student_name
             qr.saveDirectory = link_img
             db.session.add(qr)
             db.session.commit()
 
-            zipfile = shutil.make_archive(fsroot, 'zip', fsroot, 'qrcode/')
-
-            # print(zipfile)
-
+        zipfile = shutil.make_archive(fsroot, 'zip', fsroot, 'qrcode/')
         ret = {
             "link": url
         }
-        print(ret)
     return json(ret)
 
 
 
 
-apimanager.create_api(collection_name='qrworker', model=QRworker,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func]),
-    )
+# apimanager.create_api(collection_name='qrworker', model=QRworker,
+#     methods=['GET', 'POST', 'DELETE', 'PUT'],
+#     url_prefix='/api/v1',
+#     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func]),
+#     )
 
 
