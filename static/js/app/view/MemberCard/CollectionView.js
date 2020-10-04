@@ -35,12 +35,16 @@ define(function (require) {
 		],
     	uiControl:{
     		fields: [
-	    	     { 
-	    	    	field: "id",label:"ID",
-				 },
+	    	    //  { 
+	    	    // 	field: "id",label:"ID",
+				//  },
 				 { 
 	    	    	field: "company_id",label:"Mã Công Ty ",
 				 },
+				 { field: "user_id", label: "Mã Chủ Thẻ", },
+
+	    	     { field: "full_name", label: "Tên Chủ Thẻ"},
+				 
 				 { 
 	    	    	field: "membercard_id",label:"Mã Thẻ ",
 				 },
@@ -59,7 +63,6 @@ define(function (require) {
 				 { 
 	    	    	field: "extra_data",label:"Thông Tin Chi Tiết ",
 	    	     },
-	    	    //  { field: "ma", label: "Mã"},
 				//   { field: "ten", label: "Tên", width:250 },
 				//   { field: "gia", label: "Giá" },
 		     ],

@@ -50,6 +50,8 @@ define(function (require) {
 				 { 
 	    	    	field: "store_name",label:"Tên Cửa Hàng",
 				 },
+	    	     { field: "wallet_id", label: "Mã Ví Cửa hàng"},
+
 				 { 
 	    	    	field: "phone_number",label:"Số Điện Thoại ",
 				 },
@@ -60,7 +62,6 @@ define(function (require) {
 	    	    	field: "active",label:"Trạng Thái ",
 				 },
 				 
-	    	    //  { field: "ma", label: "Mã"},
 				//   { field: "ten", label: "Tên", width:250 },
 				//   { field: "gia", label: "Giá" },
 		     ],

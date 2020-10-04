@@ -67,27 +67,36 @@
 			<div class="box-body table-responsive">
 				<div block-bind="content" class="row" style="margin-right: 0px; margin-left: 0px;">
 					<div class="col-lg-6 base-content">
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label>ID</label>
 							<input type="text" data-bind="value:id" class="form-control inputbox">
-						</div>
+						</div> -->
 						
 						<div class="form-group">
 							<label>Mã Đơn Vị</label>
 							<input type="text" data-bind="value:company_id" class="form-control inputbox">
 						</div>
 						<div class="form-group">
+							<label>Mã Chủ Thẻ </label>
+							<input type="text" data-bind="value:user_id" class="form-control inputbox">
+						</div>
+						<div class="form-group">
+							<label>Tên Chủ Thẻ</label>
+							<input type="text" data-bind="value:full_name" class="form-control inputbox">
+						</div>
+						<div class="form-group">
 							<label>Mã Thẻ</label>
 							<input type="text" data-bind="value:membercard_id" class="form-control inputbox">
 						</div>
-						<div class="form-group">
-							<label>Mã Ví</label>
-							<input type="text" data-bind="value:wallet_id" class="form-control inputbox">
-						</div>
+						
 
 					</div>
 					<div class="col-lg-6 base-content">
 						<div class="form-group">
+							<div class="form-group">
+								<label>Mã Ví</label>
+								<input type="text" data-bind="value:wallet_id" class="form-control inputbox">
+							</div>
 							<label>Ngày Mở Thẻ</label>
 							<input type="text"id="datetime" data-bind="value:start_date" class="form-control inputbox">
 						</div>

@@ -51,7 +51,7 @@ define(function (require) {
 	    	    	field: "email",label:"Email",
 				 },	    	     
 				 { 
-	    	    	field: "active",label:"active",
+	    	    	field: "active",label:"Active",
 				 },
 
 

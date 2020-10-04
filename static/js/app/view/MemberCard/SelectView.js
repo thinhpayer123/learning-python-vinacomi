@@ -42,6 +42,9 @@ define(function (require) {
 				 { 
 	    	    	field: "company_id",label:"Mã Công Ty ",width:100
 				 },
+				 { field: "user_id", label: "Mã Chủ Thẻ", },
+
+	    	     { field: "full_name", label: "Tên Chủ Thẻ"},
 				 { 
 	    	    	field: "membercard_id",label:"Mã Thẻ ",width:100
 				 },
