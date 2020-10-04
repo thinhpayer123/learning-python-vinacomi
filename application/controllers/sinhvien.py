@@ -58,8 +58,9 @@ async def file_load(request):
             data = pd.read_excel(link_local)
             print(data)
             df = pd.DataFrame(data, columns=['student_school_year', 'student_class', 'student_id', 'student_name', 'birthday', 'gender','email'])
-            print('122112'+df)
-            company_id =  request.args.get("company_id")
+            # print('122112'+df)
+            # company_id =  request.args.get("company_id")
+            company_id = 'TEST'
             # print(company_id)
             # result = []
             a =df.get(["student_school_year", "student_class", "student_id",'student_name','birthday','gender','email']) 

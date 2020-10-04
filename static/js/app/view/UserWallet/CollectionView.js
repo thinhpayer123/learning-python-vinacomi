@@ -18,16 +18,50 @@ define(function (require) {
 				type: "group",
 				groupClass: "toolbar-group",
 				buttons: [
+					// {
+					// 	name: "create",
+					// 	type: "button",
+					// 	buttonClass: "btn-success btn-sm",
+					// 	label: "Tạo mới",
+					// 	command: function(){
+					// 		var self = this;
+					// 		var path = self.collectionName + '/model';
+					// 		self.getApp().getRouter().navigate(path);
+					// 	}
+						
+					// },
 					{
-						name: "create",
+						name: "import_excel",
 						type: "button",
-						buttonClass: "btn-success btn-sm",
-						label: "Tạo mới",
-						command: function(){
-							var self = this;
-							var path = self.collectionName + '/model';
-							self.getApp().getRouter().navigate(path);
-						}
+						buttonClass: "btn-danger margin-2",
+						label: "Nhập excel",
+						command: function() {
+							// var self = this;
+		    	    		
+		                    // self.model.save(null,{
+		                    //     success: function (data, respose, options) {
+		                    //         self.getApp().notify("Lưu thông tin thành công");
+		                    //         self.getApp().getRouter().navigate(self.collectionName + "/collection");
+		                            
+		                    //     }
+							var self = this
+							self.$el.find("#form-import").show()
+							var url = self.getApp().serviceURL + '/api/v1/file/upload';
+							var input = document.querySelector('input[type="file"]')
+
+							var data = new FormData()
+							data.append('file', input.files[0])
+							// data.append('user', 'hubot')
+							
+							fetch('/api/v1/file/upload', {
+							  method: 'POST',
+							  body: data
+							})
+							self.getApp().notify("upload success");
+							self.getApp().getRouter().navigate(self.collectionName+ "/collection")
+							
+		
+						},
 					},
 					
 				]
