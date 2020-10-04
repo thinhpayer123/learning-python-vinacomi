@@ -1,5 +1,5 @@
 from application.extensions import apimanager
-from application.models.model import Student, QRUser, QRworker, User, UserWallet
+from application.models.model import  QRUser,  User, UserWallet
 from application.extensions import auth
 from application.database import db
 from gatco.exceptions import ServerError
@@ -150,10 +150,10 @@ async def genqr(request):
 
 
 
-apimanager.create_api(collection_name='qrworker', model=QRworker,
-    methods=['GET', 'POST', 'DELETE', 'PUT'],
-    url_prefix='/api/v1',
-    preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func]),
-    )
+# apimanager.create_api(collection_name='qrworker', model=QRworker,
+#     methods=['GET', 'POST', 'DELETE', 'PUT'],
+#     url_prefix='/api/v1',
+#     preprocess=dict(GET_SINGLE=[auth_func], GET_MANY=[auth_func], POST=[auth_func], PUT_SINGLE=[auth_func]),
+#     )
 
 

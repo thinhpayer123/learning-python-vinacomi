@@ -36,8 +36,11 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-	    	     { field: "ma", label: "Mã", width:150},
-		     	 { field: "ten", label: "Tên", width:250 },
+				{ 
+	    	    	field: "id",label:"ID",
+	    	     },
+	    	     { field: "company_id", label: "Mã Đơn Vị"},
+				  { field: "extra_data", label: "Thông Tin Chi Tiết ", width:250 },
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;

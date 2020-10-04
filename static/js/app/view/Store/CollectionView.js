@@ -37,10 +37,32 @@ define(function (require) {
     		fields: [
 	    	     { 
 	    	    	field: "id",label:"ID",
-	    	     },
-	    	     { field: "ma", label: "Mã"},
-				  { field: "ten", label: "Tên", width:250 },
-				  { field: "gia", label: "Giá" },
+				 },
+				 { 
+	    	    	field: "company_id",label:"Mã Công Ty",
+				 },
+				 { 
+	    	    	field: "brand_id",label:"Mã Thương Hiệu",
+				 },
+				 { 
+	    	    	field: "store_id",label:"Mã Cửa Hàng",
+				 },
+				 { 
+	    	    	field: "store_name",label:"Tên Cửa Hàng",
+				 },
+				 { 
+	    	    	field: "phone_number",label:"Số Điện Thoại ",
+				 },
+				 { 
+	    	    	field: "image_path",label:"Ảnh Đại Diện ",
+				 },
+				 { 
+	    	    	field: "active",label:"Trạng Thái ",
+				 },
+				 
+	    	    //  { field: "ma", label: "Mã"},
+				//   { field: "ten", label: "Tên", width:250 },
+				//   { field: "gia", label: "Giá" },
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

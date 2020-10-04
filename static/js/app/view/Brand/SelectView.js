@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/Role/tpl/collection.html'),
-    	schema 				= require('json!schema/RoleSchema.json');
+    var template 			= require('text!app/view/Brand/tpl/collection.html'),
+    	schema 				= require('json!schema/BrandSchema.json');
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "role",
+    	collectionName: "brand",
     	textField: "ten",
     	valueField: "id",
     	tools : [
@@ -36,10 +36,31 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-				{ field: "id", label: "ID"},
-				{ field: "name", label: "Tên Role "},
-				{ field: "display_name", label: "Tên Hiển Thị ", width:250 },
-				{ field: "description", label: "Mô Tả " },
+	    	    //  { field: "ma", label: "Mã", width:150},
+				 //  { field: "ten", label: "Tên", width:250 },
+				 { 
+	    	    	field: "id",label:"ID",
+				 },
+				 { 
+	    	    	field: "company_id",label:"Mã Đơn Vị",
+				 },
+				 { 
+	    	    	field: "brand_id",label:"Mã Thương Hiệu",
+				 },
+				 { 
+	    	    	field: "brand_logo_url",label:"Logo",
+				 },
+				 { 
+	    	    	field: "email",label:"Email",
+				 },	    	     
+				 { 
+	    	    	field: "active",label:"active",
+				 },
+
+
+	    	     { field: "phone_number", label: "Số ĐIện Thoại"},
+				  { field: "extra_data", label: "Thông Tin Chi Tiết", width:250 },
+				
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;

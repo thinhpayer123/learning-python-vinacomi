@@ -38,9 +38,8 @@ define(function (require) {
 	    	     { 
 	    	    	field: "id",label:"ID",
 	    	     },
-	    	     { field: "ma", label: "Mã"},
-				  { field: "ten", label: "Tên", width:250 },
-				  { field: "gia", label: "Giá" },
+	    	     { field: "company_id", label: "Mã Đơn Vị"},
+				  { field: "extra_data", label: "Thông Tin Chi Tiết ", width:250 },
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

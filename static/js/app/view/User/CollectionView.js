@@ -37,10 +37,36 @@ define(function (require) {
     		fields: [
 	    	     { 
 	    	    	field: "id",label:"ID",
-	    	     },
-	    	     { field: "ma", label: "Mã"},
-				  { field: "ten", label: "Tên", width:250 },
-				  { field: "gia", label: "Giá" },
+				 },
+				 { 
+	    	    	field: "company_id",label:"Mã Công Ty ",
+				 },
+				 { 
+	    	    	field: "full_name",label:"Họ Và Tên",
+				 },
+				 { 
+	    	    	field: "user_name",label:"Tên Tài Khoản",
+				 },
+
+				 { 
+	    	    	field: "password",label:"Mật Khẩu",
+				 },
+				 { 
+	    	    	field: "email",label:"Email",
+				 },
+				 { 
+	    	    	field: "active",label:"Trạng Thái",
+				 },
+				 { 
+	    	    	field: "roles",label:"Roles",
+				 },
+				 { 
+	    	    	field: "extra_data",label:"Thông Tin Chi Tiết ",
+				 },
+
+	    	    //  { field: "ma", label: "Mã"},
+				//   { field: "ten", label: "Tên", width:250 },
+				//   { field: "gia", label: "Giá" },
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

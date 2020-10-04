@@ -37,10 +37,26 @@ define(function (require) {
     		fields: [
 	    	     { 
 	    	    	field: "id",label:"ID",
-	    	     },
-	    	     { field: "ma", label: "Mã"},
-				  { field: "ten", label: "Tên", width:250 },
-				  { field: "gia", label: "Giá" },
+				 },
+				 { 
+	    	    	field: "company_type",label:"Loai",
+				 },
+				 { 
+	    	    	field: "company_no",label:"Mã Đơn Vị",
+				 },
+				 { 
+	    	    	field: "name",label:"Tên Đơn Vị ",
+				 },
+				 { 
+	    	    	field: "phone_number",label:"Số Điện Thoại",
+				 },	    	     
+				 { 
+	    	    	field: "active",label:"active",
+				 },
+
+	    	    //  { field: "ma", label: "Mã"},
+				//   { field: "ten", label: "Tên", width:250 },
+				//   { field: "gia", label: "Giá" },
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

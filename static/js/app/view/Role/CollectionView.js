@@ -38,9 +38,9 @@ define(function (require) {
 	    	     { 
 	    	    	field: "id",label:"ID",
 	    	     },
-	    	     { field: "ma", label: "Mã"},
-				  { field: "ten", label: "Tên", width:250 },
-				  { field: "gia", label: "Giá" },
+	    	     { field: "name", label: "Tên Role "},
+				  { field: "display_name", label: "Tên Hiển Thị ", width:250 },
+				  { field: "description", label: "Mô Tả " },
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

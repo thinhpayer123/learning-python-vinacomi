@@ -7,21 +7,52 @@
 		</div>
 	</div>
 	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Mã</label></div>
+		<div class="col-md-2 text-right"><label>Mã Đơn Vị </label></div>
 		<div class="col-md-3">
-			<input type="text" data-bind="value:ma" class="form-control"/>
+			<input type="text" data-bind="value:company_id" class="form-control"/>
 		</div>
 	</div>
 	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Tên</label></div>
+		<div class="col-md-2 text-right"><label>Kiểu Đơn Vị</label></div>
 		<div class="col-md-3">
-			<input type="text" data-bind="value:ten"/>
+			<input type="text" data-bind="value:company_type"/>
 		</div>
 	</div>
 	<div class="row text-center" style="margin-bottom:10px">
-			<div class="col-md-2 text-right"><label>Giá</label></div>
+			<div class="col-md-2 text-right"><label>Số Đơn Vị</label></div>
 			<div class="col-md-3">
-				<input type="text" data-bind="value:gia"/>
+				<input type="text" data-bind="value:company_no"/>
 			</div>
 	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-2 text-right"><label>Mã Người Dùng</label></div>
+		<div class="col-md-3">
+			<input type="text" class="form-control" data-bind="value:user_id" readonly/>
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-2 text-right"><label>Số Người Dùng</label></div>
+		<div class="col-md-3">
+			<input type="text" data-bind="value:user_no" class="form-control"/>
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-2 text-right"><label>Mã Ví</label></div>
+		<div class="col-md-3">
+			<input type="text" data-bind="value:wallet_id"/>
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-2 text-right"><label>Vai Trò</label></div>
+			<div class="col-md-3">
+				<input type="text" data-bind="value:relationship"/>
+			</div>
+	</div>
+		<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-2 text-right"><label>Thông Tin Chi Tiết</label></div>
+		<div class="col-md-3">
+			<input type="text" class="form-control" data-bind="value:extra_data" readonly/>
+		</div>
+	</div>
+
 </div>

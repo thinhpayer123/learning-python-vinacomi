@@ -7,21 +7,45 @@
 		</div>
 	</div>
 	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Mã</label></div>
+		<div class="col-md-2 text-right"><label>Mã Công Ty</label></div>
 		<div class="col-md-3">
-			<input type="text" data-bind="value:ma" class="form-control"/>
+			<input type="text" data-bind="value:company_id" class="form-control"/>
 		</div>
 	</div>
 	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Tên</label></div>
+		<div class="col-md-2 text-right"><label>Mã Thương Hiệu</label></div>
 		<div class="col-md-3">
-			<input type="text" data-bind="value:ten"/>
+			<input type="text" data-bind="value:brand_id"/>
 		</div>
 	</div>
 	<div class="row text-center" style="margin-bottom:10px">
-			<div class="col-md-2 text-right"><label>Giá</label></div>
+			<div class="col-md-2 text-right"><label>Mã Cửa Hàng</label></div>
 			<div class="col-md-3">
-				<input type="text" data-bind="value:gia"/>
+				<input type="text" data-bind="value:store_id"/>
+			</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-2 text-right"><label>Tên Cửa Hàng</label></div>
+		<div class="col-md-3">
+			<input type="text" class="form-control" data-bind="value:store_name" readonly/>
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-2 text-right"><label>Số Điện Thoại</label></div>
+		<div class="col-md-3">
+			<input type="text" data-bind="value:phone_number" class="form-control"/>
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-2 text-right"><label>Ảnh Đại Diện</label></div>
+		<div class="col-md-3">
+			<input type="text" data-bind="value:image_path"/>
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-2 text-right"><label>Trạng Thái</label></div>
+			<div class="col-md-3">
+				<input type="text" data-bind="value:active"/>
 			</div>
 	</div>
 </div>

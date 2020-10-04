@@ -21,29 +21,23 @@
         "required": true
     },
     "company_type": {
-        "type": "string",
-        "required": true
+        "type": "string"
     },
     "user_id": {
-        "type": "string",
-        "required": true
+        "type": "string"
     },
     "wallet_id": {
-        "type": "string",
-        "required": true
+        "type": "string"
     },
     "relationship": {
-        "type": "string",
-        "required": true
+        "type": "string"
     },
     "company_no": {
         "type": "string",
-        "required": true,
         "length": 15
     },
     "user_no": {
         "type": "string",
-        "required": true,
         "length": 63
     },
     "extra_data": {

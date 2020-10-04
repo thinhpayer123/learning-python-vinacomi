@@ -161,15 +161,15 @@ class Transaction(CommonModel):
 
 
 
-class Student(CommonModel):
-    __tablename__ = 'student'
-    id = db.Column(Integer, primary_key=True)
-    student_school_year = db.Column(String(30), nullable=False)
-    student_class = db.Column(String(30), nullable=False)
-    student_id = db.Column(String(20), nullable=False)
-    student_name = db.Column(String(255), nullable=False)
-    birthday = db.Column(String(20))
-    gender = db.Column(String(10))
+# class Student(CommonModel):
+#     __tablename__ = 'student'
+#     id = db.Column(Integer, primary_key=True)
+#     student_school_year = db.Column(String(30), nullable=False)
+#     student_class = db.Column(String(30), nullable=False)
+#     student_id = db.Column(String(20), nullable=False)
+#     student_name = db.Column(String(255), nullable=False)
+#     birthday = db.Column(String(20))
+#     gender = db.Column(String(10))
 
 
 class QRUser(CommonModel):
@@ -179,14 +179,14 @@ class QRUser(CommonModel):
     saveDirectory = db.Column(String(255), nullable=False)
 
 
-class QRworker(CommonModel):
-    __tablename__ = 'qrworker'
-    id = db.Column(Integer, primary_key=True)
-    uid = db.Column(String(30), nullable=False)
-    save_directory = db.Column(String(255), nullable=False)
-    status = db.Column(String(10))
-    namefile = db.Column(String(255))
-    dowload_url = db.Column(String(255))
+# class QRworker(CommonModel):
+#     __tablename__ = 'qrworker'
+#     id = db.Column(Integer, primary_key=True)
+#     uid = db.Column(String(30), nullable=False)
+#     save_directory = db.Column(String(255), nullable=False)
+#     status = db.Column(String(10))
+#     namefile = db.Column(String(255))
+#     dowload_url = db.Column(String(255))
 
 
 

@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/UserWallet/tpl/model.html'),
-    	schema 				= require('json!schema/UserWalletSchema.json');
+    var template 			= require('text!app/view/Company/tpl/model.html'),
+    	schema 				= require('json!schema/CompanySchema.json');
     
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "user_wallet",
+    	collectionName: "company",
     	tools : [
     	    {
     	    	name: "defaultgr",
@@ -33,7 +33,7 @@ define(function (require) {
 		    	    	name: "save",
 		    	    	type: "button",
 		    	    	buttonClass: "btn-success btn-sm",
-		    	    	label: "Lưu quốc gia",
+		    	    	label: "Lưu Thong Tin",
 		    	    	command: function(){
 		    	    		var self = this;
 		    	    		

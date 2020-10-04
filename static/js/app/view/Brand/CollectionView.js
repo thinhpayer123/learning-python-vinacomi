@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/UserWallet/tpl/collection.html');
-    var	schema 				= require('json!schema/UserWalletSchema.json');
+    var template 			= require('text!app/view/Brand/tpl/collection.html');
+    var	schema 				= require('json!schema/BrandSchema.json');
     
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-		collectionName: "user_wallet",
+		collectionName: "brand",
 		tools: [
 			{
 				name: "default",
@@ -39,31 +39,25 @@ define(function (require) {
 	    	    	field: "id",label:"ID",
 				 },
 				 { 
-	    	    	field: "company_id",label:"Mã Đơn Vị ",
+	    	    	field: "company_id",label:"Mã Đơn Vị",
 				 },
 				 { 
-	    	    	field: "company_type",label:"Kiểu Đơn Vị",
+	    	    	field: "brand_id",label:"Mã Thương Hiệu",
 				 },
 				 { 
-	    	    	field: "company_no",label:"Số Đơn Vị",
+	    	    	field: "brand_logo_url",label:"Logo",
 				 },
 				 { 
-	    	    	field: "user_id",label:"Mã Người Dùng",
-				 },
+	    	    	field: "email",label:"Email",
+				 },	    	     
 				 { 
-	    	    	field: "user_no",label:"Số Người Dùng",
-				 },
-				 { 
-	    	    	field: "wallet_id",label:"Mã Ví",
-				 },
-				 { 
-	    	    	field: "relationship",label:"Vai Trò",
+	    	    	field: "active",label:"active",
 				 },
 
-				 { 
-	    	    	field: "extra_data",label:"Thông Tin Chi Tiết",
-	    	     },
 
+	    	     { field: "phone_number", label: "Số ĐIện Thoại"},
+				  { field: "extra_data", label: "Thông Tin Chi Tiết", width:250 },
+				//   { field: "gia", label: "Giá" },
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

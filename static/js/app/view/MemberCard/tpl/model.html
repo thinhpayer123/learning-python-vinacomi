@@ -7,21 +7,45 @@
 		</div>
 	</div>
 	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Mã</label></div>
+		<div class="col-md-2 text-right"><label>Mã Đơn Vị</label></div>
 		<div class="col-md-3">
-			<input type="text" data-bind="value:ma" class="form-control"/>
+			<input type="text" data-bind="value:company_id" class="form-control"/>
 		</div>
 	</div>
 	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Tên</label></div>
+		<div class="col-md-2 text-right"><label>Mã Thẻ</label></div>
 		<div class="col-md-3">
-			<input type="text" data-bind="value:ten"/>
+			<input type="text" data-bind="value:membercard_id"/>
 		</div>
 	</div>
 	<div class="row text-center" style="margin-bottom:10px">
-			<div class="col-md-2 text-right"><label>Giá</label></div>
+			<div class="col-md-2 text-right"><label>Mã Ví</label></div>
 			<div class="col-md-3">
-				<input type="text" data-bind="value:gia"/>
+				<input type="text" data-bind="value:wallet_id"/>
+			</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-2 text-right"><label>Ngày Mở Thẻ</label></div>
+		<div class="col-md-3">
+			<input type="text" class="form-control" data-bind="value:start_date" readonly/>
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-2 text-right"><label>Ngày Hết Hạn</label></div>
+		<div class="col-md-3">
+			<input type="text" data-bind="value:expire_date" class="form-control"/>
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+		<div class="col-md-2 text-right"><label>Trạng Thái</label></div>
+		<div class="col-md-3">
+			<input type="text" data-bind="value:status"/>
+		</div>
+	</div>
+	<div class="row text-center" style="margin-bottom:10px">
+			<div class="col-md-2 text-right"><label>Thông Tin Chi Tiết</label></div>
+			<div class="col-md-3">
+				<input type="text" data-bind="value:extra_data"/>
 			</div>
 	</div>
 </div>
