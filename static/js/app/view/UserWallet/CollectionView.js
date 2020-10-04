@@ -35,12 +35,20 @@ define(function (require) {
 		],
     	uiControl:{
     		fields: [
-	    	     { 
-	    	    	field: "id",label:"ID",
-	    	     },
-	    	     { field: "ma", label: "Mã"},
-				  { field: "ten", label: "Tên", width:250 },
-				  { field: "gia", label: "Giá" },
+	    	    //  { 
+	    	    // 	field: "id",label:"ID",
+	    	    //  },
+	    	     { field: "company_id", label: "ID công ty"},
+				  { field: "company_type", label: "kiểu công ty", width:250 },
+				  { field: "user_id", label: "ID người dùng" },
+				  { field: "wallet_id", label: "ID ví tiền" },
+				  { field: "relationship", label: "Quan hệ" },
+				  { field: "company_no", label: "Hóa đơn công ty" },
+				  { field: "user_no", label: "Hóa đơn người dùng" },
+				//   { field: "extra_data", label: "extra_data" },
+
+
+
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

@@ -36,6 +36,7 @@ class Company(CommonModel):
     active = db.Column(Boolean(), default=True)
 
 
+
 class Brand(CommonModel):
     __tablename__ = 'brand'
     id = db.Column(String(), primary_key=True)
@@ -187,7 +188,15 @@ class QRworker(CommonModel):
     status = db.Column(String(10))
     namefile = db.Column(String(255))
     dowload_url = db.Column(String(255))
+# test api 
 
+class XaPhuong(CommonModel):
+    __tablename__ = 'xaphuong'
+    id = db.Column(String(), primary_key=True)
+    company_type = db.Column(String(), nullable=False)
+    ma = db.Column(String(255), unique= True)
+    name = db.Column(String())
+    
 
 
 

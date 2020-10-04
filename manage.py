@@ -18,7 +18,7 @@ from application import run_app
 from application.database import db
 
 from application.extensions import auth
-from application.models.model import User, Role
+from application.models.model import User, Role, Company
 # from application.
 
 def generator_salt():
@@ -160,6 +160,8 @@ def generate_schema(path = "static/js/schema", exclude = None, prettyprint = Tru
                 json.dump(schema,  outfile,)
 
 
+
+
 @manager.command
 def update_admin(password='123456'):
     user = User.query.filter(User.user_name == "admin").first()
@@ -174,18 +176,26 @@ def update_admin(password='123456'):
 def create_admin(password='123456'):
     """ Create default data. """
 
-    role_admin = Role.query.filter(Role.role_name == "admin").first()
+    role_admin = Role.query.filter(Role.name == "admin").first()
     if(role_admin is None):
-        role_admin = Role(role_name='admin', display_name="Admin")
+        role_admin = Role(name='admin', display_name="Admin")
         db.session.add(role_admin)
         db.session.flush()
     
-    role_user = Role.query.filter(Role.role_name == "user").first()
+    role_user = Role.query.filter(Role.name == "user").first()
     if(role_user is None):
-        role_user = Role(role_name='user', display_name="User")
+        role_user = Role(name='user', display_name="User")
         db.session.add(role_user)
         db.session.flush()
 
+    company = Company()
+
+    company.id = "1"
+    company.company_type = "TEST"
+    company.name = "GonStack"
+
+    db.session.add(company)
+    db.session.flush()
 
     user = User.query.filter(User.user_name == "admin").first()
     if user is None:
@@ -198,7 +208,7 @@ def create_admin(password='123456'):
 
         #create user
         user = User(user_name='admin', full_name="Admin User", email="admin@gonrin.com",\
-            password=user_password, salt=user_salt)
+            password=user_password, salt=user_salt, company_id=company.id)
         
         db.session.add(user)
  

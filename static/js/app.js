@@ -58,44 +58,48 @@ require(['jquery', 'gonrin', 'app/router',
 			},
 			getCurrentUser: function () {
 				var self = this;
-				// $.ajax({
-				// 	url: self.serviceURL + '/user/current_user',
-				// 	dataType: "json",
-				// 	success: function (data) {
-				// 		self.postLogin(data);
-				// 	},
-				// 	error: function (XMLHttpRequest, textStatus, errorThrown) {
-				// 		console.log("Before navigate login");
-				// 		self.router.navigate("login");
-				// 	}
-				// });
-
-
-				self.postLogin({
-					fullname: "Cuong"
+				$.ajax({
+					url: self.serviceURL + '/user/current_user',
+					dataType: "json",
+					success: function (data) {
+						self.postLogin(data);
+					},
+					error: function (XMLHttpRequest, textStatus, errorThrown) {
+						console.log("Before navigate login");
+						self.router.navigate("login");
+					}
 				});
+
+
+				// // self.postLogin({
+				// // 	fullname: "Cuong"
+				// });
 			},
 			
 			postLogin: function (data) {
 				var self = this;
 				$('#body-container').html(layout);
 				self.currentUser = new Gonrin.User(data);
+// cmnt
+				this.$header = $('body').find(".page-header");
 
-				// this.$header = $('body').find(".page-header");
+
 				this.$content = $('body').find('#main-content');
 
 
 				this.$navbar = $('body').find("#sidebar-nav");
 
+// cmnt
 
-
-				// var $user = self.$header.find("span.username");
-				// if (!data.fullname || data.fullname === "") {
-				// 	data.fullname = data.id;
-				// }
-				// self.$header.find("span.username").html(data.fullname);
-				// this.$toolbox = $('body').find(".tools-area");
+				var $user = self.$header.find("span.username");
+				if (!data.fullname || data.fullname === "") {
+					data.fullname = data.id;
+				}
+				self.$header.find("span.username").html(data.fullname);
+				this.$toolbox = $('body').find(".tools-area");
 				
+
+
 				this.navView = new NavView({
 					el: this.$navbar
 				});
