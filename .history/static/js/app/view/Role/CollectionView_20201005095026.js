@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/Store/tpl/collection.html');
-    var	schema 				= require('json!schema/StoreSchema.json');
+    var template 			= require('text!app/view/Role/tpl/collection.html');
+    var	schema 				= require('json!schema/RoleSchema.json');
     
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-		collectionName: "store",
+		collectionName: "role",
 		tools: [
 			{
 				name: "default",
@@ -35,35 +35,12 @@ define(function (require) {
 		],
     	uiControl:{
     		fields: [
-	    	    //  { 
-	    	    // 	field: "id",label:"ID",
-				//  },
-				 { 
-	    	    	field: "company_id",label:"Mã Công Ty",
-				 },
-				 { 
-	    	    	field: "brand_id",label:"Mã Thương Hiệu",
-				 },
-				 { 
-	    	    	field: "store_id",label:"Mã Cửa Hàng",
-				 },
-				 { 
-	    	    	field: "store_name",label:"Tên Cửa Hàng",
-				 },
-	    	     { field: "wallet_id", label: "Mã Ví Cửa hàng"},
-
-				 { 
-	    	    	field: "phone_number",label:"Số Điện Thoại ",
-				 },
-				 { 
-	    	    	field: "image_path",label:"Ảnh Đại Diện ",
-				 },
-				 { 
-	    	    	field: "active",label:"Trạng Thái ",
-				 },
-				 
-				//   { field: "ten", label: "Tên", width:250 },
-				//   { field: "gia", label: "Giá" },
+	    	     { 
+	    	    	field: "id",label:"ID",
+	    	     },
+	    	     { field: "name", label: "Tên Role "},
+				  { field: "display_name", label: "Tên Hiển Thị ", width:250 },
+				  { field: "description", label: "Mô Tả " },
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

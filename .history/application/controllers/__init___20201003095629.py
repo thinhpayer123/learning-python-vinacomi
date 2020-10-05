@@ -14,9 +14,9 @@ def init_views(app):
     import application.controllers.brand
     import application.controllers.company
     import application.controllers.sinhvien
-    import application.controllers.role
     # import application.controllers.khachhang
     # import application.controllers.khachhang
+
     # import application.controllers.hanghoa
     # import application.controllers.hoadon
     # import application.controllers.sinhvien

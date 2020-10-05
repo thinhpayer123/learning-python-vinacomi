@@ -36,7 +36,6 @@ class Company(CommonModel):
     active = db.Column(Boolean(), default=True)
 
 
-
 class Brand(CommonModel):
     __tablename__ = 'brand'
     id = db.Column(String(), primary_key=True)
@@ -141,13 +140,13 @@ class MemberCard(CommonModel):
 class UserWallet(CommonModel):
     __tablename__ = 'user_wallet'
     id = db.Column(String, primary_key=True, default=default_uuid)
-    company_id = db.Column(String(), index=True, nullable=True)
+    company_id = db.Column(String(), index=True, nullable=False)
     company_type = db.Column(String(), nullable=True)
     user_id = db.Column(String(), index=True, nullable=True)
     wallet_id = db.Column(String(), index=True, nullable=True)
     relationship = db.Column(String(), nullable=True)
     company_no = db.Column(String(15), nullable=True)
-    user_no = db.Column(String(63), nullable=True) # student_id
+    user_no = db.Column(String(63), nullable=True) # student_id 
     extra_data = db.Column(JSONB())
 
 
@@ -162,15 +161,15 @@ class Transaction(CommonModel):
 
 
 
-# class Student(CommonModel):
-#     __tablename__ = 'student'
-#     id = db.Column(Integer, primary_key=True)
-#     student_school_year = db.Column(String(30), nullable=False)
-#     student_class = db.Column(String(30), nullable=False)
-#     student_id = db.Column(String(20), nullable=False)
-#     student_name = db.Column(String(255), nullable=False)
-#     birthday = db.Column(String(20))
-#     gender = db.Column(String(10))
+class Student(CommonModel):
+    __tablename__ = 'student'
+    id = db.Column(Integer, primary_key=True)
+    student_school_year = db.Column(String(30), nullable=False)
+    student_class = db.Column(String(30), nullable=False)
+    student_id = db.Column(String(20), nullable=False)
+    student_name = db.Column(String(255), nullable=False)
+    birthday = db.Column(String(20))
+    gender = db.Column(String(10))
 
 
 class QRUser(CommonModel):
@@ -188,7 +187,8 @@ class QRworker(CommonModel):
     status = db.Column(String(10))
     namefile = db.Column(String(255))
     dowload_url = db.Column(String(255))
-# test api 
+
+
 
 
 
