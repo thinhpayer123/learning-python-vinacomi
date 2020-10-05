@@ -180,7 +180,6 @@ class QRUser(CommonModel):
     saveDirectory = db.Column(String(255), nullable=False)
 
 
-<<<<<<< HEAD
 class QRworker(CommonModel):
     __tablename__ = 'qrworker'
     id = db.Column(Integer, primary_key=True)
@@ -190,18 +189,6 @@ class QRworker(CommonModel):
     namefile = db.Column(String(255))
     dowload_url = db.Column(String(255))
 # test api 
-=======
-# class QRworker(CommonModel):
-#     __tablename__ = 'qrworker'
-#     id = db.Column(Integer, primary_key=True)
-#     uid = db.Column(String(30), nullable=False)
-#     save_directory = db.Column(String(255), nullable=False)
-#     status = db.Column(String(10))
-#     namefile = db.Column(String(255))
-#     dowload_url = db.Column(String(255))
-
-
->>>>>>> 07f6e8832b42d3ca8513c373df1a80e44ac99421
 
 
 

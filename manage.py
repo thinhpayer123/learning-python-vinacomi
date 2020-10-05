@@ -214,12 +214,8 @@ def create_admin(password='123456'):
 
         #create user
         user = User(user_name='admin', full_name="Admin User", email="admin@gonrin.com",\
-<<<<<<< HEAD
-            password=user_password, salt=user_salt, company_id=company.id)
-=======
             password=user_password, salt=user_salt)
         user.company_id = company.id
->>>>>>> 07f6e8832b42d3ca8513c373df1a80e44ac99421
         
         db.session.add(user)
  
