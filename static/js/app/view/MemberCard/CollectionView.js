@@ -19,14 +19,49 @@ define(function (require) {
 				groupClass: "toolbar-group",
 				buttons: [
 					{
-						name: "create",
+						name: "Tạo QR Code",
 						type: "button",
 						buttonClass: "btn-success btn-sm",
 						label: "Tạo mới",
 						command: function(){
 							var self = this;
-							var path = self.collectionName + '/model';
+							var path = self.collectionName+'model/';
 							self.getApp().getRouter().navigate(path);
+						}
+					},
+					
+				]
+			},
+			{
+				name: "default",
+				type: "group",
+				groupClass: "toolbar-group",
+				buttons: [
+					{
+						name: "Tạo QR Code",
+						type: "button",
+						buttonClass: "btn-warning btn-sm",
+						label: "Tạo QR Code",
+						command: function(){
+							var self = this;
+							// var url = self.getApp().urlPrefix + 'genqr';
+							// var path = self.collectionName+'model/';
+							// self.getApp().getRouter().navigate(path);
+							fetch('/api/v1/membercard ', {
+								method: 'POST',
+								// body: data
+							  })
+							  self.model.save(null,{
+		                        success: function (model, respose, options) {
+		                            self.getApp().notify("Lưu thông tin thành công");
+		                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
+		                            
+		                        },
+		                        error: function (model, xhr, options) {
+		                            self.getApp().notify('Lưu thông tin không thành công!');
+		                           
+		                        }
+		                    });
 						}
 					},
 					
