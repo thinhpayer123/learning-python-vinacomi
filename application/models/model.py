@@ -141,7 +141,7 @@ class MemberCard(CommonModel):
 class UserWallet(CommonModel):
     __tablename__ = 'user_wallet'
     id = db.Column(String, primary_key=True, default=default_uuid)
-    company_id = db.Column(String(), index=True, nullable=False)
+    company_id = db.Column(String(), index=True, nullable=True)
     company_type = db.Column(String(), nullable=True)
     user_id = db.Column(String(), index=True, nullable=True)
     wallet_id = db.Column(String(), index=True, nullable=True)

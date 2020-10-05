@@ -1778,7 +1778,20 @@
          font-size: 12px;
      }
  }
- 
+ .form-group.form-import {
+    margin-left: -27px;
+}
+.btn-group {
+    margin-top: -15px !important;
+margin-right: 8px !important;
+}
+.pagination > li > a {
+    /* border-top-color: #f39c12; */
+    padding: 10px !important;
+    margin: 1px;
+    border: 1px solid #bab4ff;
+    border-radius: 5px;
+}
  .box {
     position: relative;
     border-radius: 11px;
