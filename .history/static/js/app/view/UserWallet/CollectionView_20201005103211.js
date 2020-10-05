@@ -61,8 +61,7 @@ define(function (require) {
 							self.getApp().getRouter().navigate(self.collectionName+ "/collection")
 							
 		
-						}
-						,
+						},
 					},
 					
 				]
