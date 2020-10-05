@@ -69,6 +69,7 @@ define(function (require) {
 		],
     	uiControl:{
     		fields: [
+<<<<<<< HEAD
 	    	    //  { 
 	    	    // 	field: "id",label:"ID",
 	    	    //  },
@@ -82,6 +83,36 @@ define(function (require) {
 				//   { field: "extra_data", label: "extra_data" },
 
 
+=======
+	    	     { 
+	    	    	field: "id",label:"ID",
+				 },
+				 { 
+	    	    	field: "company_id",label:"Mã Đơn Vị ",
+				 },
+				 { 
+	    	    	field: "company_type",label:"Kiểu Đơn Vị",
+				 },
+				 { 
+	    	    	field: "company_no",label:"Số Đơn Vị",
+				 },
+				 { 
+	    	    	field: "user_id",label:"Mã Người Dùng",
+				 },
+				 { 
+	    	    	field: "user_no",label:"Số Người Dùng",
+				 },
+				 { 
+	    	    	field: "wallet_id",label:"Mã Ví",
+				 },
+				 { 
+	    	    	field: "relationship",label:"Vai Trò",
+				 },
+
+				 { 
+	    	    	field: "extra_data",label:"Thông Tin Chi Tiết",
+	    	     },
+>>>>>>> 07f6e8832b42d3ca8513c373df1a80e44ac99421
 
 		     ],
 		     onRowClick: function(event){
