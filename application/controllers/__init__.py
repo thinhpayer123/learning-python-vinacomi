@@ -8,7 +8,7 @@ def init_views(app):
     # import application.controllers.tinhthanh
 
     import application.controllers.transaction
-    import application.controllers.userWallet
+    import application.controllers.user_wallet
     import application.controllers.membercard
     import application.controllers.store
     import application.controllers.brand
