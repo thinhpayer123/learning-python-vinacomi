@@ -6,7 +6,7 @@ define(function (require) {
     
     var template 			= require('text!app/view/MemberCard/tpl/collection.html');
 	var	schema 				= require('json!schema/MemberCardSchema.json');
-	var ModelDialogView = require('app/view/MemberCard/ModelDialogView');
+	// var ModelDialogView = require('app/view/MemberCard/ModelDialogView');
 	// var TemplateHelper = require('text!app/common/TemplateHelper');
     // var CustomFilterView = require('text!app/common/CustomFilterView');
     
@@ -49,33 +49,16 @@ define(function (require) {
 							var self = this;
 							var url = self.getApp().serviceURL + '/api/v1/Genqr';
 							$.ajax({
-								// type: 'GET',
 								url: url,
 								dataType: "json",
 								success: function (data) {
-									// console.log(data);
-									var dialogView = new ModelDialogView({
-										viewData: {
-											link: link
-										}
-									});
-									dialogView.dialog();
+									console.log(data)
 								},
 								error: function (XMLHttpRequest, textStatus, errorThrown) {
 									console.log("Before navigate login");
 								
 								}
 							});
-
-							// var link ="hello Trung Anh"
-
-							// var dialogView = new ModelDialogView({
-							// 	viewData: {
-							// 		link: link
-							// 	}
-							// });
-
-							// dialogView.dialog();
 
 
 

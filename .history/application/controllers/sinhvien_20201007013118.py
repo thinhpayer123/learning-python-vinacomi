@@ -131,7 +131,7 @@ async def genqr(request):
     ret = None
     # userWallets =[]
     # print(id)
-    if request.method == 'POST':
+    if request.method == 'GET':
         path = request.args.get('')
         
         userWallets = db.session.query(UserWallet).all()

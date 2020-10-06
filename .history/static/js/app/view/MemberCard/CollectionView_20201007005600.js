@@ -49,7 +49,6 @@ define(function (require) {
 							var self = this;
 							var url = self.getApp().serviceURL + '/api/v1/Genqr';
 							$.ajax({
-								// type: 'GET',
 								url: url,
 								dataType: "json",
 								success: function (data) {
@@ -59,7 +58,7 @@ define(function (require) {
 											link: link
 										}
 									});
-									dialogView.dialog();
+
 								},
 								error: function (XMLHttpRequest, textStatus, errorThrown) {
 									console.log("Before navigate login");
@@ -69,13 +68,13 @@ define(function (require) {
 
 							// var link ="hello Trung Anh"
 
-							// var dialogView = new ModelDialogView({
-							// 	viewData: {
-							// 		link: link
-							// 	}
-							// });
+							var dialogView = new ModelDialogView({
+								viewData: {
+									link: link
+								}
+							});
 
-							// dialogView.dialog();
+							dialogView.dialog();
 
 
 

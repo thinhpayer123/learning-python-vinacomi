@@ -48,34 +48,28 @@ define(function (require) {
 						command: function(){
 							var self = this;
 							var url = self.getApp().serviceURL + '/api/v1/Genqr';
-							$.ajax({
-								// type: 'GET',
-								url: url,
-								dataType: "json",
-								success: function (data) {
-									// console.log(data);
-									var dialogView = new ModelDialogView({
-										viewData: {
-											link: link
-										}
-									});
-									dialogView.dialog();
-								},
-								error: function (XMLHttpRequest, textStatus, errorThrown) {
-									console.log("Before navigate login");
+							// $.ajax({
+							// 	url: url,
+							// 	dataType: "json",
+							// 	success: function (data) {
+							// 		console.log(data);
+
+							// 	},
+							// 	error: function (XMLHttpRequest, textStatus, errorThrown) {
+							// 		console.log("Before navigate login");
 								
-								}
-							});
-
-							// var link ="hello Trung Anh"
-
-							// var dialogView = new ModelDialogView({
-							// 	viewData: {
-							// 		link: link
 							// 	}
 							// });
 
-							// dialogView.dialog();
+							var link ="hello Trung Anh"
+
+							var dialogView = new ModelDialogView({
+								viewData: {
+									link: link
+								}
+							});
+
+							dialogView.dialog();
 
 
 

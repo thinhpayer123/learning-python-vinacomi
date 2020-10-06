@@ -128,17 +128,15 @@ async def genqr(request):
     fsroot = config.FS_ROOT
     url = config.FILE_SERVICE_URL
     qr = config.QR_ARCHIVE
-    ret = None
     # userWallets =[]
     # print(id)
-    if request.method == 'POST':
+    if request.method == 'GET':
         path = request.args.get('')
         
-        userWallets = db.session.query(UserWallet).all()
+        userWallets = UserWallet.query.order_by(UserWallet.id).all()
         for user in userWallets:
             # format_data = ujson.loads
             info_user = user.extra_data
-            print(info_user)
             if info_user is None:
                 return json({"a":"aaaaa"})
             else:
@@ -150,7 +148,6 @@ async def genqr(request):
 
                 student_id = info_user['student_id']
                 print(student_id)
-                print(type(student_id))
                 student_school_year = info_user['student_school_year']
                 student_class = info_user['student_class']
                 student_name = info_user['student_name']
@@ -160,7 +157,7 @@ async def genqr(request):
                 status = 'active'
 
 
-                img = qrcode.make(str(student_school_year) + '-' + str(student_class) + '-' + str(student_id) + '-' + str(student_name) + '-' + str(birthday))
+                img = qrcode.make(student_school_year + '-' + student_class + '-' + student_id + '-' + student_name + '-' + birthday)
                 name_img =  student_class + '-' +  student_id + '-' +  student_name + '.png'
                 link_img = fsroot + 'qrcode/' + name_img
                 img.save(link_img)
@@ -176,13 +173,10 @@ async def genqr(request):
                 db.session.commit()
 
             zipfile = shutil.make_archive(fsroot, 'zip', fsroot, 'qrcode/')
-            returna = None
-            # returna = {
-            #     "link": url
-            # }
-    return json({
-        "link": url
-    })
+            ret = {
+                "link": url
+            }
+    return json(ret)
 
 
 

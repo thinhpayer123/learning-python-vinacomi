@@ -6,7 +6,7 @@ define(function (require) {
     
     var template 			= require('text!app/view/MemberCard/tpl/collection.html');
 	var	schema 				= require('json!schema/MemberCardSchema.json');
-	var ModelDialogView = require('app/view/MemberCard/ModelDialogView');
+	// var ModelDialogView = require('app/view/MemberCard/ModelDialogView');
 	// var TemplateHelper = require('text!app/common/TemplateHelper');
     // var CustomFilterView = require('text!app/common/CustomFilterView');
     
@@ -47,35 +47,31 @@ define(function (require) {
 						label: "Tạo QR Code",
 						command: function(){
 							var self = this;
-							var url = self.getApp().serviceURL + '/api/v1/Genqr';
-							$.ajax({
-								// type: 'GET',
-								url: url,
-								dataType: "json",
-								success: function (data) {
-									// console.log(data);
-									var dialogView = new ModelDialogView({
-										viewData: {
-											link: link
-										}
-									});
-									dialogView.dialog();
-								},
-								error: function (XMLHttpRequest, textStatus, errorThrown) {
-									console.log("Before navigate login");
-								
+							var URL = self.getApp().serviceURL + '/api/v1/Genqr';
+							const data = {
+
+							 };
+							// Send a GET request without any data to the server
+							fetch(URL, {
+								method: "POST",
+								body: JSON.stringify(data),
+								headers: {
+									"Content-type": "application/json; charset=UTF-8"
 								}
-							});
+								
+						})	
+							.then(res => res.json())
+							// // Print the result
+							.then(console.log)
+							// .then(data => console.log(json(data)));
+						// console.log(res => res.json())
+						// .then(res = res.json())
+						// .then(console.log)
+						// console.log(data)
 
-							// var link ="hello Trung Anh"
+						
+							// // Get the JSON data from the raw response
 
-							// var dialogView = new ModelDialogView({
-							// 	viewData: {
-							// 		link: link
-							// 	}
-							// });
-
-							// dialogView.dialog();
 
 
 

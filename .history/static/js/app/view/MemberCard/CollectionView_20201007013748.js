@@ -49,7 +49,7 @@ define(function (require) {
 							var self = this;
 							var url = self.getApp().serviceURL + '/api/v1/Genqr';
 							$.ajax({
-								// type: 'GET',
+								type: 'GET',
 								url: url,
 								dataType: "json",
 								success: function (data) {

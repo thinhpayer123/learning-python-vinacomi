@@ -131,7 +131,7 @@ async def genqr(request):
     ret = None
     # userWallets =[]
     # print(id)
-    if request.method == 'POST':
+    if request.method == 'GET':
         path = request.args.get('')
         
         userWallets = db.session.query(UserWallet).all()
@@ -160,7 +160,7 @@ async def genqr(request):
                 status = 'active'
 
 
-                img = qrcode.make(str(student_school_year) + '-' + str(student_class) + '-' + str(student_id) + '-' + str(student_name) + '-' + str(birthday))
+                img = qrcode.make(student_school_year + '-' + student_class + '-' + student_id + '-' + student_name + '-' + birthday)
                 name_img =  student_class + '-' +  student_id + '-' +  student_name + '.png'
                 link_img = fsroot + 'qrcode/' + name_img
                 img.save(link_img)

@@ -27,7 +27,6 @@ define(function (require) {
             }],
         render: function () {
             var self = this;
-            self.$el.find("#link").html(self.viewData.link)
             
         },
         

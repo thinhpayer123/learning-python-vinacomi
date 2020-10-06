@@ -33,13 +33,12 @@ def auth_func(request=None, **kw):
 async def file_load(request):
     path = request.args.get("path", None)
     ret = None
-
     # url_qr = config.QR_SERVICE_URL
     # url = config.FILE_SERVICE_URL
     fsroot = config.FS_ROOT
 
     if request.method == 'POST':
-
+        
 
         file = request.files.get('file', None)
         if file:
@@ -61,31 +60,21 @@ async def file_load(request):
             df = pd.DataFrame(data, columns=['student_school_year', 'student_class', 'student_id', 'student_name', 'birthday', 'gender','email'])
             # print('122112'+df)
             # company_id =  request.args.get("company_id")
-            # company_id = 'TEST'
+            company_id = 'TEST'
             # print(company_id)
             # result = []
-            # a =df.get(["student_school_year", "student_class", "student_id",'student_name','birthday','gender','email']) 
+            a =df.get(["student_school_year", "student_class", "student_id",'student_name','birthday','gender','email']) 
             result = df.to_json(orient='records')
             result_ujson = ujson.loads(result)
-            print(result_ujson)
             item_result = []
-            current_user_id = auth.current_user(request)
-            user_info =  db.session.query(User).filter(User.id == current_user_id).first()
-            # company_id = 
-            print(user_info.company_id)
+
             for item in result_ujson: 
-
                 user_no = item.get("student_id",{})
-                # extra_data = item
-                
-                print(extra_data+'12221')
-                new_entry = UserWallet(user_no=user_no,\
-                               company_id=company_id,\
+                extra_data = item
+                new_entry = UserWallet(user_no=user_no,
+                               company_id=company_id,
                                extra_data=extra_data)
-
                 item_result.append(new_entry)
-            print(item_result)
-
             db.session.add_all(item_result)
             db.session.commit()
             
@@ -128,17 +117,15 @@ async def genqr(request):
     fsroot = config.FS_ROOT
     url = config.FILE_SERVICE_URL
     qr = config.QR_ARCHIVE
-    ret = None
     # userWallets =[]
     # print(id)
-    if request.method == 'POST':
+    if request.method == 'GET':
         path = request.args.get('')
         
-        userWallets = db.session.query(UserWallet).all()
+        userWallets = UserWallet.query.order_by(UserWallet.id).all()
         for user in userWallets:
             # format_data = ujson.loads
             info_user = user.extra_data
-            print(info_user)
             if info_user is None:
                 return json({"a":"aaaaa"})
             else:
@@ -149,40 +136,30 @@ async def genqr(request):
 
 
                 student_id = info_user['student_id']
-                print(student_id)
-                print(type(student_id))
                 student_school_year = info_user['student_school_year']
                 student_class = info_user['student_class']
                 student_name = info_user['student_name']
                 birthday = info_user['birthday']
-                membercard_id = company_id + random.choice('122esadasdaqfdada')
+                membercard_id = company_id + random(21)
                 wallet_id = '123456'
                 status = 'active'
 
 
-                img = qrcode.make(str(student_school_year) + '-' + str(student_class) + '-' + str(student_id) + '-' + str(student_name) + '-' + str(birthday))
+                img = qrcode.make(student_school_year + '-' + student_class + '-' + student_id + '-' + student_name + '-' + birthday)
                 name_img =  student_class + '-' +  student_id + '-' +  student_name + '.png'
                 link_img = fsroot + 'qrcode/' + name_img
                 img.save(link_img)
-                memcard = MemberCard()
+                qr = MemberCard()
                 # qr.nameqr =  student_class + '-' +  student_id + '-' +  student_name
-                membercard.company_id = company_id
-                memcard.student_id = student_id
-                memcard.membercard_id = membercard_id
-                memcard.wallet_id = wallet_id
-                memcard.status = status
-
-                db.session.add(memcard)
+                qr. = link_img 
+                db.session.add(qr)
                 db.session.commit()
 
             zipfile = shutil.make_archive(fsroot, 'zip', fsroot, 'qrcode/')
-            returna = None
-            # returna = {
-            #     "link": url
-            # }
-    return json({
-        "link": url
-    })
+            ret = {
+                "link": url
+            }
+    return json(ret)
 
 
 
