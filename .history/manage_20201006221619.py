@@ -49,18 +49,19 @@ def add_user():
         user1 = User(user_name='admin', full_name='Admin', email='admin@heonvang.vn', password=auth.encrypt_password('123456',salt), active=True, salt = salt)
         user1.roles.append(role1)
         db.session.add(user1)
+    
     db.session.commit()
 @manager.command
-def add_company(name="KMA"):
+def add_company(company_name='KMA'):
     init_app()
-    company = db.session.query(Company).filter(Company.name == name).first()
-    print(name)
+    company = db.session.query(Company).filter(Company.name == company_name).first()
+    print(company)
     if company is None:
-        cpny = Company(name=name,description='truong '+ name,company_type='education',company_no=name+'1',email='trunganhact@gmail.com',active= True)
-        print(cpny)
-        db.session.add(cpny)
-        db.session.commit()
-
+        company = Company(name=company_name,description='don vi '+ company_name,company_type='education',company_no=company_name+'1',email='trunganhact@gmail.com',active= True)
+        db.session.add(company)
+    # company1 = db.session.query(Company).filter(Company.name == company_name).first()
+    # if company1 is None:
+    #     company1 = Company(company_type='education',company_no,name,)
 
 
 

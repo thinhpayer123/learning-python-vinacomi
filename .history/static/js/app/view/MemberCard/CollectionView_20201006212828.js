@@ -5,10 +5,7 @@ define(function (require) {
         Gonrin				= require('gonrin');
     
     var template 			= require('text!app/view/MemberCard/tpl/collection.html');
-	var	schema 				= require('json!schema/MemberCardSchema.json');
-	var ModelDialogView = require('app/view/MemberCard/ModelDialogView');
-	// var TemplateHelper = require('text!app/common/TemplateHelper');
-    // var CustomFilterView = require('text!app/common/CustomFilterView');
+    var	schema 				= require('json!schema/MemberCardSchema.json');
     
     return Gonrin.CollectionView.extend({
     	template : template,
@@ -154,36 +151,15 @@ define(function (require) {
 	    	     },
 				//   { field: "ten", label: "Tên", width:250 },
 				//   { field: "gia", label: "Giá" },
-			 ],
+		     ],
 		     onRowClick: function(event){
-		    	// if(event.rowId){
-		        // 		var path = this.collectionName + '/model?id='+ event.rowId;
-		        // 		this.getApp().getRouter().navigate(path);
-				// }
-				var self = this;
-                if (event.rowId) {
-                    var view = new ModelDialogView({
-                        viewData: {
-                            id: event.rowId
-                        }
-                    });
-                    view.dialog({
-                        size: "large"
-                    });
-                    view.on("close", function (data) {
-                        self.getApp().router.refresh();
-                    });
-                }
-				
+		    	if(event.rowId){
+		        		var path = this.collectionName + '/model?id='+ event.rowId;
+		        		this.getApp().getRouter().navigate(path);
+		        }
 		    	
-			},
-			onRendered: function() {
-                loader.hide();
-			},
-		},
-			initialize: function() {
-				loader.show();
-			},
+		    }
+    	},
 	    render:function(){
 	    	 this.applyBindings();
 	    	 return this;

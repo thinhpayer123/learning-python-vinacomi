@@ -6,7 +6,7 @@ define(function (require) {
     
     var template 			= require('text!app/view/MemberCard/tpl/collection.html');
 	var	schema 				= require('json!schema/MemberCardSchema.json');
-	var ModelDialogView = require('app/view/MemberCard/ModelDialogView');
+	var ModelDialogView = require('text!app/view/MemberCard/ModelDialogView');
 	// var TemplateHelper = require('text!app/common/TemplateHelper');
     // var CustomFilterView = require('text!app/common/CustomFilterView');
     

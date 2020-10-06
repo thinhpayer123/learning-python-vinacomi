@@ -49,6 +49,7 @@ def add_user():
         user1 = User(user_name='admin', full_name='Admin', email='admin@heonvang.vn', password=auth.encrypt_password('123456',salt), active=True, salt = salt)
         user1.roles.append(role1)
         db.session.add(user1)
+    
     db.session.commit()
 @manager.command
 def add_company(name="KMA"):
