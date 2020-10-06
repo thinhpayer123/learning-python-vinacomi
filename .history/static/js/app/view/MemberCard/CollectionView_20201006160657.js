@@ -60,7 +60,6 @@ define(function (require) {
 							.then(res => res.json())
 							// // Print the result
 							.then(console.log)
-							// .then(data => console.log(json(data)));
 						// console.log(res => res.json())
 						// .then(res = res.json())
 						// .then(console.log)

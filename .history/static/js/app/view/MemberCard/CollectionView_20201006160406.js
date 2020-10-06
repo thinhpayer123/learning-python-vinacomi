@@ -56,19 +56,16 @@ define(function (require) {
 									"Content-type": "application/json; charset=UTF-8"
 								}
 								
-						})	
-							.then(res => res.json())
-							// // Print the result
-							.then(console.log)
-							// .then(data => console.log(json(data)));
-						// console.log(res => res.json())
+						})
 						// .then(res = res.json())
 						// .then(console.log)
 						// console.log(data)
 
 						
 							// // Get the JSON data from the raw response
-
+							// .then(res => res.json())
+							// // Print the result
+							// .then(console.log)
 
 
 

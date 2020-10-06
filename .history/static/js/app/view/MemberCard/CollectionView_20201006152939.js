@@ -18,6 +18,36 @@ define(function (require) {
 				type: "group",
 				groupClass: "toolbar-group",
 				buttons: [
+					// {
+		    	    // 	name: "Create",
+		    	    // 	type: "button",
+		    	    // 	buttonClass: "btn-success btn-sm",
+		    	    // 	label: "Tạo QR Code ",
+		    	    // 	command: function(){
+					// 		var self = this;
+		    	    // 		var List = Backbone.Collection.extend({
+					// 			model: 'qruser',
+							
+					// 			url: self.getApp().urlPrefix + 'genqr',
+							
+					// 			parse: function(response) {
+					// 				return response.results;
+					// 			},
+							
+					// 			sync: function(method, model, options) {
+					// 				var self = this;
+					// 				var params = _.extend({
+					// 					type: 'POST',
+					// 					dataType: 'jsonp',
+					// 					url: self.url,
+					// 					processData: false
+					// 				}, options);
+							
+					// 				return $.ajax(params);
+					// 			}
+					// 		});
+		    	    // 	}
+		    	    // }
 					{
 						name: "Tạo QR Code",
 						type: "button",
@@ -30,6 +60,7 @@ define(function (require) {
 						}
 					},
 					
+
 				]
 			},
 			{
@@ -43,55 +74,55 @@ define(function (require) {
 						buttonClass: "btn-warning btn-sm",
 						label: "Tạo QR Code",
 						command: function(){
+							var settings = {
+								"async": true,
+								"crossDomain": true,
+								"url": self.getApp().urlPrefix + 'genqr,
+								"method": "GET"
+							  }
+						   
+							  $.ajax(settings).done(function (response) {
+								console.log(response);
+							  });
 							var self = this;
-							var URL = self.getApp().serviceURL + '/api/v1/Genqr';
-							const data = {
-
-							 };
-							// Send a GET request without any data to the server
-							fetch(URL, {
-								method: "POST",
-								body: JSON.stringify(data),
-								headers: {
-									"Content-type": "application/json; charset=UTF-8"
-								}
-								
-						})	
-							.then(res => res.json())
-							// // Print the result
-							.then(console.log)
-							// .then(data => console.log(json(data)));
-						// console.log(res => res.json())
-						// .then(res = res.json())
-						// .then(console.log)
-						// console.log(data)
-
-						
-							// // Get the JSON data from the raw response
-
-
-
-
-
-
-
-
-
-
-
-
-							// var self = this;
 							// var url = self.getApp().urlPrefix + 'genqr';
 							// var path = self.collectionName+'model/';
 							// self.getApp().getRouter().navigate(path);
-							// self.collectionName.fetch('/api/v1/Genqr', {
-							// 	method: 'POST',
+							fetch('/api/v1/Genqr ', {
+								method: 'POST',
 								
-							// 	// body: data
-							//   })
-
-
+								// body: data
 							  
+							// self.model.save(null,{
+		                        success: function (model, respose, options) {
+		                            self.getApp().notify("Lưu thông tin thành công");
+		                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
+		                            
+		                        },
+		                        error: function (model, xhr, options) {
+		                            self.getApp().notify('Lưu thông tin không thành công!');
+								   
+									}
+								
+		                        // }
+							
+						})
+							// $(document).ready(function(){})
+							// $.ajax({ 
+							// 	type: 'GET', 
+							// 	url: self.getApp().urlPrefix + 'genqr', 
+							// 	data: { get_param: 'link' }, 
+							// 	dataType: 'json',
+							// 	success: function (data) { 
+							// 		$.each(data, function(index, element) {
+							// 			// $('body').append($('<div>', {
+							// 			// 	text: element.name
+							// 			// }));
+							// 			console.log(data)
+							// 		});
+							// 	}
+							// });
+							
 						}
 					},
 					

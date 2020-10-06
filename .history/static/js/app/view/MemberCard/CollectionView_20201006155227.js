@@ -43,32 +43,13 @@ define(function (require) {
 						buttonClass: "btn-warning btn-sm",
 						label: "Tạo QR Code",
 						command: function(){
-							var self = this;
-							var URL = self.getApp().serviceURL + '/api/v1/Genqr';
-							const data = {
-
-							 };
+							const URL = self.getApp().urlPrefix + 'Genqr'
 							// Send a GET request without any data to the server
-							fetch(URL, {
-								method: "POST",
-								body: JSON.stringify(data),
-								headers: {
-									"Content-type": "application/json; charset=UTF-8"
-								}
-								
-						})	
+							fetch(URL, {method: "GET"})
+							// Get the JSON data from the raw response
 							.then(res => res.json())
-							// // Print the result
+							// Print the result
 							.then(console.log)
-							// .then(data => console.log(json(data)));
-						// console.log(res => res.json())
-						// .then(res = res.json())
-						// .then(console.log)
-						// console.log(data)
-
-						
-							// // Get the JSON data from the raw response
-
 
 
 
