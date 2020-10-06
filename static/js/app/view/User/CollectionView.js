@@ -33,53 +33,90 @@ define(function (require) {
 				]
 			},
 		],
-    	uiControl:{
-    		fields: [
-	    	     { 
-	    	    	field: "id",label:"ID",
-				 },
-				 { 
-	    	    	field: "company_id",label:"Mã Công Ty ",
-				 },
-				 { 
-	    	    	field: "full_name",label:"Họ Và Tên",
-				 },
-				 { 
-	    	    	field: "user_name",label:"Tên Tài Khoản",
-				 },
+		uiControl:{
+			fields: [
+				//  { 
+				// 	field: "id",label:"ID",
+				//  },
+				{ 
+					field: "company_id",label:"Mã Đơn Vị",
+				},
+				{ 
+					field: "brand_id",label:"Mã Thương Hiệu",
+				},
+				{ 
+				field: "brand_logo_url",label:"Logo",
+				},
+				{ 
+				field: "email",label:"Email",
+				},	    	     
+				{ 
+				field: "active",label:"Active",
+				},
+					
+					
+				{ field: "phone_number", label: "Số ĐIện Thoại"},
+				{ field: "extra_data", label: "Thông Tin Chi Tiết", width:250 },
+									//   { field: "gia", label: "Giá" },
+				  { field: "gia", label: "Giá" },
+			 ],
+			 onRowClick: function(event){
+				if(event.rowId){
+						var path = this.collectionName + '/model?id='+ event.rowId;
+						this.getApp().getRouter().navigate(path);
+				}
+				
+			}
+		},
+		render:function(){
+			 this.applyBindings();
+			 return this;
+		},
+		});
+		
+		});
+//      	uiControl:{
+//     		fields: [
+// 	    	     { 
+// 	    	    	field: "id",label:"ID",
+// 				 },
+// 				 { 
+// 	    	    	field: "company_id",label:"Mã Đơn Vị",
+// 				 },
+// 				 { 
+// 	    	    	field: "brand_id",label:"Mã Thương Hiệu",
+// 				 },
+// 				 { 
+// 	    	    	field: "brand_logo_url",label:"Logo",
+// 				 },
+// 				 { 
+// 	    	    	field: "email",label:"Email",
+// 				 },	    	     
+// 				 { 
+// 	    	    	field: "active",label:"Active",
+// 				 },
 
-				 { 
-	    	    	field: "password",label:"Mật Khẩu",
-				 },
-				 { 
-	    	    	field: "email",label:"Email",
-				 },
-				 { 
-	    	    	field: "active",label:"Trạng Thái",
-				 },
-				 { 
-	    	    	field: "roles",label:"Roles",
-				 },
-				 { 
-	    	    	field: "extra_data",label:"Thông Tin Chi Tiết ",
-				 },
 
-	    	    //  { field: "ma", label: "Mã"},
-				//   { field: "ten", label: "Tên", width:250 },
-				//   { field: "gia", label: "Giá" },
-		     ],
-		     onRowClick: function(event){
-		    	if(event.rowId){
-		        		var path = this.collectionName + '/model?id='+ event.rowId;
-		        		this.getApp().getRouter().navigate(path);
-		        }
+// 	    	     { field: "phone_number", label: "Số ĐIện Thoại"},
+// 				  { field: "extra_data", label: "Thông Tin Chi Tiết", width:250 },
+// 				//   { field: "gia", label: "Giá" },
+// 		     ],
+// 		     onRowClick: function(event){
+// 		    	if(event.rowId){
+// 		        		var path = this.collectionName + '/model?id='+ event.rowId;
+// 		        		this.getApp().getRouter().navigate(path);
+// 		        }
 		    	
-		    }
-    	},
-	    render:function(){
-	    	 this.applyBindings();
-	    	 return this;
-    	},
-    });
+// 		    }
+//     	},
+// 	    render:function(){
+// 	    	 this.applyBindings();
+// 	    	 return this;
+//     	},
+//     });
 
-});
+// });
+
+
+
+

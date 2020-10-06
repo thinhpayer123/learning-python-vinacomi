@@ -33,6 +33,8 @@ define(function (require) {
 				]
 			},
 		],
+
+		
     	uiControl:{
     		fields: [
 	    	     { 
