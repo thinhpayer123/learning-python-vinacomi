@@ -146,7 +146,7 @@ async def genqr(request):
             current_user_id = auth.current_user(request)
             user_info =  db.session.query(User).filter(User.id == current_user_id).first()
             company_id = user_info.company_id
-            print(company_id)
+            # print(company_id)
                 # membercard_id = company_id+
 
             user_info = ujson.dumps(info_user)
@@ -157,33 +157,31 @@ async def genqr(request):
             student_class = info_user['student_class']
             student_name = info_user['student_name']
             birthday = info_user['birthday']
-            # user_name = info_user['']
-            membercard_id = company_id + random.choice('122esadasdaqfdada')+student_id+student_school_year
+            membercard_id = company_id + random.choice('122esadasdaqfdada')
             wallet_id = '123456'
-            status = 1
-            # print(student_school_year)
-            # print(student_class)
-            # print(student_name)
-            # print(birthday)
-            # print(membercard_id)
+            status = 'active'
+            print(student_school_year)
+            print(student_class)
+            print(student_name)
+            print(birthday)
+            print(membercard_id)
 
-            img = qrcode.make(student_school_year + '-' + student_class + '-' + student_id + '-' + student_name + '-' + birthday)
-            name_img =  student_class + '-' +  student_id + '-' +  student_name + '.png'
-            link_img = fsroot + 'qrcode/' + name_img
-            img.save(link_img)
-            memcard = MemberCard()
-            memcard.save_dir =  link_img
-            memcard.company_id = company_id
-            memcard.user_no = student_id
-            memcard.user_name = student_name
-            memcard.membercard_id = membercard_id
-            memcard.wallet_id = wallet_id
-            memcard.status = status
+                # img = qrcode.make(str(student_school_year) + '-' + str(student_class) + '-' + str(student_id) + '-' + str(student_name) + '-' + str(birthday))
+                # name_img =  student_class + '-' +  student_id + '-' +  student_name + '.png'
+                # link_img = fsroot + 'qrcode/' + name_img
+                # img.save(link_img)
+                # memcard = MemberCard()
+                # # qr.nameqr =  student_class + '-' +  student_id + '-' +  student_name
+                # memcard.company_id = company_id
+                # memcard.student_id = student_id
+                # memcard.membercard_id = membercard_id
+                # memcard.wallet_id = wallet_id
+                # memcard.status = status
 
-            db.session.add(memcard)
-            db.session.commit()
+            # db.session.add(memcard)
+            # db.session.commit()
 
-        shutil.make_archive(fsroot, 'zip', fsroot, 'qrcode/')
+            # shutil.make_archive(fsroot, 'zip', fsroot, 'qrcode/')
             # returna = None
             # returna = {
             #     "link": url

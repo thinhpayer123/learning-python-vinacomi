@@ -61,7 +61,8 @@ define(function (require) {
 									// console.log(data);
 									var dialogView = new ModelDialogView({
 										viewData: {
-											link: link
+											link: link,
+											
 										}
 											
 									});

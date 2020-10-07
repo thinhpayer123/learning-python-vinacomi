@@ -55,15 +55,13 @@ define(function (require) {
 
 								dataType: "json",
 								success: function (data) {
-									// console.log(data)
-									var link  = data.link;
-									// console.log(link)
+									Console.log(data)
+									// var link  = 
 									// console.log(data);
 									var dialogView = new ModelDialogView({
 										viewData: {
 											link: link
 										}
-											
 									});
 									dialogView.dialog();
 								},

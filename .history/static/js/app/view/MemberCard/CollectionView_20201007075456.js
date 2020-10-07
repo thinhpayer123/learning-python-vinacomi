@@ -57,13 +57,12 @@ define(function (require) {
 								success: function (data) {
 									// console.log(data)
 									var link  = data.link;
-									// console.log(link)
+									console.log(link)
 									// console.log(data);
 									var dialogView = new ModelDialogView({
 										viewData: {
 											link: link
 										}
-											
 									});
 									dialogView.dialog();
 								},

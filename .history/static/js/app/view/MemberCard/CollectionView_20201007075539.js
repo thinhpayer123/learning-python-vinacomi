@@ -63,7 +63,6 @@ define(function (require) {
 										viewData: {
 											link: link
 										}
-											
 									});
 									dialogView.dialog();
 								},

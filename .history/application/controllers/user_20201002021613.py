@@ -56,7 +56,5 @@ async def user_logout(request):
 @app.route("/user/current_user", methods=["GET"])
 async def user_current_user(request):
     user_id = auth.current_user(request)
-    if user_id is not None:
-        user = db.session.query(User).filter(User.id == user_id).first()
-        return json({"id": user.id, "user_name": user.user_name})
+    print(user_id)
     return text("current_user")

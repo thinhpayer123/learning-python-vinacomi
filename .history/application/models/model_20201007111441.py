@@ -137,9 +137,7 @@ class MemberCard(CommonModel):
     status = db.Column(SmallInteger(), default=1)  # 1: active, 0: deactive
     save_dir = db.Column(String())
     user_no = db.Column(String(63), nullable=True) # student_id 
-    # user_name =db.Column(String(),index=True, nullable=False)
-    user_name = db.Column(String(255), nullable=False, index=True)
-
+    user_name =db.Column(String(), nullable=False)
 
 
 

@@ -61,7 +61,13 @@ define(function (require) {
 									// console.log(data);
 									var dialogView = new ModelDialogView({
 										viewData: {
-											link: link
+											link: $(document).ready(function(){
+												$('a[href^=""]').each(function(){ 
+													var oldUrl = $(this).attr("href"); // Get current url
+													var newUrl = oldUrl.replace("", data.link); // Create new url
+													$(this).attr("href", newUrl); // Set herf value
+												});
+											})
 										}
 											
 									});

@@ -60,37 +60,35 @@ async def file_load(request):
             # print(data)
             df = pd.DataFrame(data, columns=['student_school_year', 'student_class', 'student_id', 'student_name', 'birthday', 'gender','email'])
             # print('122112'+df)
-            # company_id =  request.args.get("company_id")
+            company_id =  request.args.get("company_id")
             # company_id = 'TEST'
             # print(company_id)
             # result = []
             a =df.get(["student_school_year", "student_class", "student_id",'student_name','birthday','gender','email']) 
             result = a.to_json(orient='records')
             print(result)
-            print('---------------------------------------------')
             result_ujson = ujson.loads(result)
             print(result_ujson)
             item_result = []
             current_user_id = auth.current_user(request)
             user_info =  db.session.query(User).filter(User.id == current_user_id).first()
-            company_id = user_info.company_id
-            # print(user_info.company_id)
+            # company_id = 
+            print(user_info.company_id)
             for item in result_ujson: 
 
                 user_no = item.get("student_id",{})
-                print(user_no)
-                extra_data = result
-                print('------------------'+extra_data)
                 extra_data = item
                 user_wallets = UserWallet()
-                user_wallets.user_no = user_no
-                user_wallets.company_id = company_id
-                user_wallets.extra_data = extra_data
-                db.session.add(user_wallets)
-                db.session.commit()
+                print(extra_data)
+                new_entry = UserWallet(user_no=user_no,\
+                               company_id=company_id,\
+                               extra_data=extra_data)
 
+                item_result.append(new_entry)
+            print(item_result)
 
-
+            db.session.add_all(item_result)
+            db.session.commit()
             
 
 
@@ -141,49 +139,49 @@ async def genqr(request):
         for user in userWallets:
             # format_data = ujson.loads
             info_user = user.extra_data
-            # print(info_user)
-            # print(type(info_user))
-            current_user_id = auth.current_user(request)
-            user_info =  db.session.query(User).filter(User.id == current_user_id).first()
-            company_id = user_info.company_id
-            print(company_id)
+            print(info_user)
+            if info_user is None:
+                return json({"a":"aaaaa"})
+            else:
+                current_user_id = auth.current_user(request)
+                user_info =  db.session.query(User).filter(User.id == current_user_id).first()
+                company_id = user_info.company_id
+                print(company_id)
                 # membercard_id = company_id+
 
-            user_info = ujson.dumps(info_user)
-            student_id = info_user['student_id']
-            # print(student_id)
-            # print(type(student_id))
-            student_school_year = info_user['student_school_year']
-            student_class = info_user['student_class']
-            student_name = info_user['student_name']
-            birthday = info_user['birthday']
-            # user_name = info_user['']
-            membercard_id = company_id + random.choice('122esadasdaqfdada')+student_id+student_school_year
-            wallet_id = '123456'
-            status = 1
-            # print(student_school_year)
-            # print(student_class)
-            # print(student_name)
-            # print(birthday)
-            # print(membercard_id)
 
-            img = qrcode.make(student_school_year + '-' + student_class + '-' + student_id + '-' + student_name + '-' + birthday)
-            name_img =  student_class + '-' +  student_id + '-' +  student_name + '.png'
-            link_img = fsroot + 'qrcode/' + name_img
-            img.save(link_img)
-            memcard = MemberCard()
-            memcard.save_dir =  link_img
-            memcard.company_id = company_id
-            memcard.user_no = student_id
-            memcard.user_name = student_name
-            memcard.membercard_id = membercard_id
-            memcard.wallet_id = wallet_id
-            memcard.status = status
+                student_id = info_user['student_id']
+                print(student_id)
+                print(type(student_id))
+                student_school_year = info_user['student_school_year']
+                student_class = info_user['student_class']
+                student_name = info_user['student_name']
+                birthday = info_user['birthday']
+                membercard_id = company_id + random.choice('122esadasdaqfdada')
+                wallet_id = '123456'
+                status = 'active'
+                print()
+                print()
+                print()
+                print()
+                print()
+
+                # img = qrcode.make(str(student_school_year) + '-' + str(student_class) + '-' + str(student_id) + '-' + str(student_name) + '-' + str(birthday))
+                # name_img =  student_class + '-' +  student_id + '-' +  student_name + '.png'
+                # link_img = fsroot + 'qrcode/' + name_img
+                # img.save(link_img)
+                memcard = MemberCard()
+                # qr.nameqr =  student_class + '-' +  student_id + '-' +  student_name
+                memcard.company_id = company_id
+                memcard.student_id = student_id
+                memcard.membercard_id = membercard_id
+                memcard.wallet_id = wallet_id
+                memcard.status = status
 
             db.session.add(memcard)
             db.session.commit()
 
-        shutil.make_archive(fsroot, 'zip', fsroot, 'qrcode/')
+            shutil.make_archive(fsroot, 'zip', fsroot, 'qrcode/')
             # returna = None
             # returna = {
             #     "link": url

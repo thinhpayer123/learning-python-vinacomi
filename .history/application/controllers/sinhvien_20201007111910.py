@@ -158,7 +158,7 @@ async def genqr(request):
             student_name = info_user['student_name']
             birthday = info_user['birthday']
             # user_name = info_user['']
-            membercard_id = company_id + random.choice('122esadasdaqfdada')+student_id+student_school_year
+            membercard_id = company_id + random.choice('122esadasdaqfdada')
             wallet_id = '123456'
             status = 1
             # print(student_school_year)

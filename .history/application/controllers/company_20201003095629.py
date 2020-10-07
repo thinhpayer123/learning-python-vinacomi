@@ -2,15 +2,12 @@ from application.extensions import apimanager
 from application.models.model import User, Company, Brand, Store, Role, MemberCard, UserWallet, Transaction
 from application.extensions import auth
 from gatco.exceptions import ServerError
-
-
 def auth_func(request=None, **kw):
     #uid = auth.current_user(request)
     #if uid is None:
     #    raise ServerError("abc")
     
     pass
-
 apimanager.create_api(collection_name='company', model=Company,
     methods=['GET', 'POST', 'DELETE', 'PUT'],
     url_prefix='/api/v1',
