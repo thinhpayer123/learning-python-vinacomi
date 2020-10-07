@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/MemberCard/tpl/collection.html'),
-    	schema 				= require('json!schema/MemberCardSchema.json');
+    var template 			= require('text!app/view/User/tpl/collection.html'),
+    	schema 				= require('json!schema/UserSchema.json');
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "membercard",
+    	collectionName: "users",
     	textField: "ten",
     	valueField: "id",
     	tools : [
@@ -37,34 +37,34 @@ define(function (require) {
     	uiControl:{
     		fields: [
 				{ 
-	    	    	field: "id",label:"ID",width:50
+	    	    	field: "id",label:"ID",width=100
 				 },
 				 { 
-	    	    	field: "company_id",label:"Mã Công Ty ",width:100
+	    	    	field: "company_id",label:"Mã Công Ty ",width=100
 				 },
-				 { field: "user_no", label: "Mã Chủ Thẻ", },
+				 { 
+	    	    	field: "full_name",label:"Họ Và Tên",width=100
+				 },
+				 { 
+	    	    	field: "user_name",label:"Tên Tài Khoản",width=100
+				 },
 
-	    	     { field: "user_name", label: "Tên Chủ Thẻ"},
 				 { 
-	    	    	field: "membercard_id",label:"Mã Thẻ ",width:100
+	    	    	field: "password",label:"Mật Khẩu",width=100
 				 },
 				 { 
-	    	    	field: "wallet_id",label:"Mã Ví",width:100
+	    	    	field: "email",label:"Email",width=100
 				 },
 				 { 
-	    	    	field: "start_date",label:"Ngày Mở Thẻ",width:100
+	    	    	field: "active",label:"Trạng Thái",width=100
 				 },
 				 { 
-	    	    	field: "expire_date",label:"Ngày Hết Hạn",width:100
+	    	    	field: "roles",label:"Roles",width=100
 				 },
 				 { 
-	    	    	field: "status",label:"Trạng Thái",width:100
+	    	    	field: "extra_data",label:"Thông Tin Chi Tiết ",width=100
 				 },
-				 { 
-	    	    	field: "extra_data",label:"Thông Tin Chi Tiết ",width:100
-	    	     },
-				//  { field: "ma", label: "Mã", width:150},
-		     	//  { field: "ten", label: "Tên", width:250 },
+
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;

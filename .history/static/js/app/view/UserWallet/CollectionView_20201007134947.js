@@ -68,7 +68,7 @@ define(function (require) {
 	    	    // 	field: "id",label:"ID",
 	    	    //  },
 	    	     { field: "company_id", label: "ID công ty"},
-				  { field: "company_type", label: "kiểu công ty", width:200 },
+				  { field: "company_type", label: "kiểu công ty", width:250 },
 				  { field: "company_no", label: "Mã Đơn Vị" },
 
 				  { field: "user_id", label: "ID người dùng" },

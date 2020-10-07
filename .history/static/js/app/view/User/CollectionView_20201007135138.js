@@ -11,7 +11,7 @@ define(function (require) {
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-		collectionName: "users",
+		collectionName: "user",
 		tools: [
 			{
 				name: "default",
