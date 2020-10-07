@@ -36,6 +36,61 @@ class Company(CommonModel):
     active = db.Column(Boolean(), default=True)
 
 
+class Application(CommonModel):
+    __tablename__ = 'application'
+    id = db.Column(String(), primary_key=True,default=default_uuid)
+    company_id = db.Column(String(), index=True) 
+    app_id = db.Column(String(), index=True)
+    app_secret = db.Column(String())
+    name = db.Column(String())
+    app_url = db.Column(String())
+
+    foodbook_access_token = db.Column(String())
+    foodbook_partner_id = db.Column(String())
+    firebase_server_key = db.Column(String())
+
+    wallet_require_pass = db.Column(Boolean(), default=True)
+
+    ios_release_version = db.Column(String(63))
+    ios_link_update = db.Column(String())
+    android_release_version = db.Column(String(63))
+    android_link_update = db.Column(String())
+    message_update = db.Column(String())
+
+    phone_number = db.Column(String(63))
+    email = db.Column(String(63))
+
+    sms_api_key = db.Column(String())
+    sms_secret_key = db.Column(String())
+    sms_brand_name = db.Column(String(63))
+    sms_text = db.Column(String())
+    sms_partner = db.Column(String(63))
+    active = db.Column(Boolean(), default=True)
+
+    
+
+
+#     "ios_release_version": "1.1.7",
+#   "android_release_version": "15",
+#   "message_update": "Phiên bản bạn đang sử dụng chưa phải là bản mới nhất trên chợ ứng dụng. Vui lòng cập nhật để tiếp tục?",
+#   "phone_number": "+84972731210",
+#   "email": "tech@soyagarden.com",
+#   "ios_link_update": "https://apps.apple.com/app/apple-store/id1472964012",
+#   "android_link_update": "https://play.google.com/store/apps/details?id=com.soyagarden.android",
+#   "firebase_wb_api_key": "AIzaSyAC-8c5yj01lFTC0q2JoiLz6OCm76oe-II",
+#   "phone_countrey_prefix": "84",
+#   "phone_national_number": "972731210",
+#   "user_id": "e26d5070015e5b8230e50eaea52e0687",
+#   "user_fullname": "Lê Thị Lan",
+#   "wallet_type": "user",
+#   "sms_api_key": "..",
+#   "sms_secret_key": "",
+#   "sms_brand_name": "Soya Garden",
+#   "sms_text": "Ma OTP cua quy khach la ****** (Soya Garden)",
+#   "sms_partner": "VMG_V2"
+
+
+
 class Brand(CommonModel):
     __tablename__ = 'brand'
     id = db.Column(String(), primary_key=True)
