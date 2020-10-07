@@ -39,15 +39,15 @@ class Company(CommonModel):
 class Application(CommonModel):
     __tablename__ = 'application'
     id = db.Column(String(), primary_key=True,default=default_uuid)
-    company_id = db.Column(String(), index=True) 
-    app_id = db.Column(String(), index=True)
-    app_secret = db.Column(String())
-    name = db.Column(String())
-    app_url = db.Column(String())
+    # company_id = db.Column(String(), index=True) 
+    # app_id = db.Column(String(), index=True)
+    # app_secret = db.Column(String())
+    # name = db.Column(String())
+    # app_url = db.Column(String())
 
-    foodbook_access_token = db.Column(String())
-    foodbook_partner_id = db.Column(String())
-    firebase_server_key = db.Column(String())
+    # foodbook_access_token = db.Column(String())
+    # foodbook_partner_id = db.Column(String())
+    # firebase_server_key = db.Column(String())
 
     wallet_require_pass = db.Column(Boolean(), default=True)
 
@@ -171,7 +171,7 @@ class User(CommonModel):
     active = db.Column(Boolean, default=True)
     roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
     
-    company_id = db.Column(String(), index=True, nullable=False)
+    # company_id = db.Column(String(), index=True, nullable=False)
     extra_data = db.Column(JSONB())
 
     # Methods
@@ -197,18 +197,33 @@ class MemberCard(CommonModel):
 
 
 
-
-class UserWallet(CommonModel):
-    __tablename__ = 'user_wallet'
+# luu tru cac user co wallet cua cong ty
+class WalletUser(CommonModel):
+    __tablename__ = 'wallet_user'
     id = db.Column(String, primary_key=True, default=default_uuid)
     company_id = db.Column(String(), index=True, nullable=False)
     company_type = db.Column(String(), nullable=True)
-    # user_id = db.Column(String(), index=True, nullable=True)
+    user_id = db.Column(String(), index=True, nullable=True)
     wallet_id = db.Column(String(), index=True, nullable=True)
-    relationship = db.Column(String(), nullable=True)
+    relationship = db.Column(String(), nullable=True) #id owner / subcriber
     company_no = db.Column(String(15), nullable=True)
-    user_no = db.Column(String(63), nullable=True) # student_id 
+    user_no = db.Column(String(), nullable=True) # student_id 
     extra_data = db.Column(JSONB())
+
+
+#Bangr luu cac tai khoan chi nhanh cua cong ty
+class WalletCompany(CommonModel):
+    __tablename__ = 'wallet_company'
+    id = db.Column(String, primary_key=True, default=default_uuid)
+    company_id = db.Column(String(), index=True, nullable=False)
+    fullname = db.Column(String())
+    wallet_id = db.Column(String(), index=True, nullable=True)
+  
+    extra_data = db.Column(JSONB())
+    description = db.Column(String())
+    active = db.Column(Boolean(), default=True)
+    list_wallet_follow = db.Column(JSONB())
+    wallet_type = db.Column(String())
 
 
 class Transaction(CommonModel):
@@ -222,15 +237,15 @@ class Transaction(CommonModel):
 
 
 
-class Student(CommonModel):
-    __tablename__ = 'student'
-    id = db.Column(Integer, primary_key=True)
-    student_school_year = db.Column(String(30), nullable=False)
-    student_class = db.Column(String(30), nullable=False)
-    student_id = db.Column(String(20), nullable=False)
-    student_name = db.Column(String(255), nullable=False)
-    birthday = db.Column(String(20))
-    gender = db.Column(String(10))
+# class Student(CommonModel):
+#     __tablename__ = 'student'
+#     id = db.Column(Integer, primary_key=True)
+#     student_school_year = db.Column(String(30), nullable=False)
+#     student_class = db.Column(String(30), nullable=False)
+#     student_id = db.Column(String(20), nullable=False)
+#     student_name = db.Column(String(255), nullable=False)
+#     birthday = db.Column(String(20))
+#     gender = db.Column(String(10))
 
 
 class QRUser(CommonModel):
