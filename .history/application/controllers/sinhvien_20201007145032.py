@@ -64,7 +64,7 @@ async def file_load(request):
             # company_id = 'TEST'
             # print(company_id)
             # result = []
-            a =df.get(["student_school_year", "student_class", "student_id",'student_name','birthday','gender',]) 
+            a =df.get(["student_school_year", "student_class", "student_id",'student_name','birthday','gender','email']) 
             result = a.to_json(orient='records')
             print(result)
             print('---------------------------------------------')
