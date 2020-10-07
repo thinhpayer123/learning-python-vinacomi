@@ -1,5 +1,5 @@
 from application.extensions import apimanager
-from application.models.model import User, Company, Brand, Store, Role, MemberCard, WalletUser, Transaction
+from application.models.model import User, Company, Brand, Store, Role, MemberCard, UserWallet, Transaction
 from application.extensions import auth
 from gatco.exceptions import ServerError
 import json

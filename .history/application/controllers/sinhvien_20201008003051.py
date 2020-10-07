@@ -1,5 +1,6 @@
 from application.extensions import apimanager
-from application.models.model import  QRUser,  User, WalletUser , MemberCard
+from application.models.model import  QRUser,  User, Wak
+ , MemberCard
 from application.extensions import auth
 from application.database import db
 from gatco.exceptions import ServerError
@@ -72,20 +73,19 @@ async def file_load(request):
             print('---------------------------------------------')
             result_ujson = ujson.loads(result)
             print(result_ujson)
-            # item_result = []
-            # current_user_id = auth.current_user(request)
-            # user_info =  db.session.query(User).filter(User.id == current_user_id).first()
-            # company_id = user_info.company_id
+            item_result = []
+            current_user_id = auth.current_user(request)
+            user_info =  db.session.query(User).filter(User.id == current_user_id).first()
+            company_id = user_info.company_id
             # print(user_info.company_id)
             for item in result_ujson: 
 
                 user_no = item.get("student_id",{})
-                company_id = item.get("company_id",{})
                 print(user_no)
                 extra_data = result
                 print('------------------'+extra_data)
                 extra_data = item
-                user_wallets = WalletUser()
+                user_wallets = UserWallet()
                 user_wallets.user_no = user_no
                 user_wallets.company_id = company_id
                 user_wallets.extra_data = extra_data
@@ -110,20 +110,20 @@ async def genqr(request):
     if request.method == 'GET':
         path = request.args.get('')
         
-        userWallets = db.session.query(WalletUser).all()
+        userWallets = db.session.query(UserWallet).all()
         for user in userWallets:
             # format_data = ujson.loads
             info_user = user.extra_data
             # print(info_user)
             # print(type(info_user))
-            # current_user_id = auth.current_user(request)
-            # user_info =  db.session.query(User).filter(User.id == current_user_id).first()
-            # company_id = user_info.company_id
+            current_user_id = auth.current_user(request)
+            user_info =  db.session.query(User).filter(User.id == current_user_id).first()
+            company_id = user_info.company_id
 
-            # user_info = ujson.dumps(info_user)
+            user_info = ujson.dumps(info_user)
             student_id = info_user['student_id']
 
-            company_id = info_user['company_id']
+            student_class = info_user['company_id']
             student_name = info_user['student_name']
             birthday = info_user['birthday']
             # user_name = info_user['']

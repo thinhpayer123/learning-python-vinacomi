@@ -11,7 +11,7 @@ define(function (require) {
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "wallet_user",
+    	collectionName: "user_wallet",
     	textField: "ten",
     	valueField: "id",
     	tools : [

@@ -72,15 +72,14 @@ async def file_load(request):
             print('---------------------------------------------')
             result_ujson = ujson.loads(result)
             print(result_ujson)
-            # item_result = []
-            # current_user_id = auth.current_user(request)
-            # user_info =  db.session.query(User).filter(User.id == current_user_id).first()
-            # company_id = user_info.company_id
+            item_result = []
+            current_user_id = auth.current_user(request)
+            user_info =  db.session.query(User).filter(User.id == current_user_id).first()
+            company_id = user_info.company_id
             # print(user_info.company_id)
             for item in result_ujson: 
 
                 user_no = item.get("student_id",{})
-                company_id = item.get("company_id",{})
                 print(user_no)
                 extra_data = result
                 print('------------------'+extra_data)
