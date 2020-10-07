@@ -118,10 +118,15 @@ async def genqr(request):
             current_user_id = auth.current_user(request)
             user_info =  db.session.query(User).filter(User.id == current_user_id).first()
             company_id = user_info.company_id
+            # print(company_id)
+                # membercard_id = company_id+
 
             user_info = ujson.dumps(info_user)
             student_id = info_user['student_id']
-
+            # company_id = info_user['company_id']
+            # print(student_id)
+            # print(type(student_id))
+            # student_school_year = info_user['student_school_year']
             student_class = info_user['company_id']
             student_name = info_user['student_name']
             birthday = info_user['birthday']
