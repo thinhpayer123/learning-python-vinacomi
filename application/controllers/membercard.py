@@ -59,7 +59,10 @@ def create_wallet_user(request):
 
         url_sent = "https://app.heovang.vn/merchant/api/v1/app_login"
         headers = {'content-type': 'application/json','X-APP-KEY': 'TestCanteenApp'}
-        r = requests.post(url_sent,data=ujson.dumps(dataSent), headers = headers)
-
+        response = requests.post(url_sent,data=ujson.dumps(dataSent), headers = headers)
+        if response is not None:
+            content = response.content.decode('utf-8')
+            json_data = ujson.loads(content)
+            
         
     return json({"r":"r"})
