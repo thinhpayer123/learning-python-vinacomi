@@ -18,6 +18,12 @@
 }
 .grid-header {
     text-align: center;
+
+    /* margin-top: 30px !important; */
+}
+.box-header {
+    /* margin-bottom: 53px !important; */
+    /* border-bottom: 1px solid #ddd !important; */
 }
 .box-header > .box-tools {
     position: absolute;
@@ -26,9 +32,7 @@
 }
 .grid_container {
     background-color: white;
-    border-radius: 22px;
-    margin-top: -30px;
-}
+    border-radius: 22px;}
 /* .c-wrapper.c-fixed-components {
     background-color: white;
 } 
@@ -3153,9 +3157,11 @@ margin-right: 8px !important;
  .table tr td .progress {
      margin-top: 5px;
  }
- 
+
  .table-bordered {
      border: 1px solid #f4f4f4;
+     margin-top: 58px !important;
+
  }
  
  .table-bordered>thead>tr>th,

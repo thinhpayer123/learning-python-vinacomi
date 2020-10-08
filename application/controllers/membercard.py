@@ -45,43 +45,49 @@ def create_wallet_user(request):
     # current_user = auth.current_user(request)
     # current_info = db.session.query(User).filter(User.id == current_user).first()
     # print(current_info)
-    dataSent = {}
-    userWallet = db.session.query(WalletUser).filter(WalletUser.user_no=='6737251').first()
-    extra_userWallet =  userWallet.extra_data
-    dataSent['user_id'] = str(extra_userWallet['student_id'])
-    dataSent['company_id'] = extra_userWallet['company_id']
-    dataSent['user_fullname'] = extra_userWallet['student_name']
-    dataSent['user_token'] = ''.join(random.choice(string.ascii_letters) for i in range(128))
-    dataSent['point_name'] = "HEOXU"
-    url_sent = "https://app.heovang.vn/merchant/api/v1/app_login"
-    headers = {'content-type': 'application/json','X-APP-KEY': 'TestCanteenApp'}
-    response = requests.post(url_sent,data=ujson.dumps(dataSent), headers = headers)
-    if response.status_code == 200 :
-        data_receiver = response.json()
-        membercard = membercard()
-        membercard.wallet_id = data_receiver['wallet_id']
-        db.session.add(membercard)
-        db.session.commit()
-    else:
-        print("ERROR")
-            # response.text()
-        pass
-    # userWallet = db.session.query(WalletUser).all()
-    # for item in userWallet:
-    #     extra_userWallet =  item.extra_data
-    #     dataSent = {}
+    # dataSent = {}
+    # userWallet = db.session.query(WalletUser).filter(WalletUser.user_no=='6737251').first()
+    # extra_userWallet =  userWallet.extra_data
+    # print(extra_userWallet)
+    # dataSent['user_id'] = str(extra_userWallet['student_id'])
+    # dataSent['company_id'] = extra_userWallet['company_id']
+    # dataSent['user_fullname'] = extra_userWallet['student_name']
+    # dataSent['user_token'] = ''.join(random.choice(string.ascii_letters) for i in range(128))
 
-    #     dataSent['user_id'] = str(extra_userWallet['student_id'])
-    #     dataSent['company_id'] = extra_userWallet['company_id']
-    #     dataSent['user_fullname'] = extra_userWallet['student_name']
-    #     dataSent['user_token'] = ''.join(random.choice(string.ascii_letters) for i in range(128))
-    #     dataSent['point_name'] = "HEOXU"
-    #     print(ujson.dumps(dataSent))
+    # dataSent['point_name'] = "HEOXU"
+    # print(dataSent)
 
-        # url_sent = "https://app.heovang.vn/merchant/api/v1/app_login"
-        # headers = {'content-type': 'application/json','X-APP-KEY': 'TestCanteenApp'}
-        # response = requests.post(url_sent,data=ujson.dumps(dataSent), headers = headers)
-#         response = {
+    # url_sent = "https://app.heovang.vn/merchant/api/v1/app_login"
+    # headers = {'content-type': 'application/json','X-APP-KEY': 'TestCanteenApp'}
+    # response = requests.post(url_sent,data=ujson.dumps(dataSent), headers = headers)
+    # if response.status_code == 200 :
+    #     data_receiver = response.json()
+    #     membercard = MemberCard()
+    #     membercard.wallet_id = data_receiver['wallet_id']
+    #     print(data_receiver['wallet_id'])
+
+    #     # db.session.update(membercard)
+    #     db.session.commit()
+    # else:
+    #     print("ERROR")
+    #         # response.text()
+    #     pass
+    userWallet = db.session.query(WalletUser).all()
+    for item in userWallet:
+        extra_userWallet =  item.extra_data
+        dataSent = {}
+
+        dataSent['user_id'] = str(extra_userWallet['student_id'])
+        dataSent['company_id'] = extra_userWallet['company_id']
+        dataSent['user_fullname'] = extra_userWallet['student_name']
+        dataSent['user_token'] = ''.join(random.choice(string.ascii_letters) for i in range(128))
+        dataSent['point_name'] = "HEOXU"
+        print(ujson.dumps(dataSent))
+
+        url_sent = "https://app.heovang.vn/merchant/api/v1/app_login"
+        headers = {'content-type': 'application/json','X-APP-KEY': 'TestCanteenApp'}
+        response = requests.post(url_sent,data=ujson.dumps(dataSent), headers = headers)
+        # response = {
 #     "_id": "wallet_point_HEOXU_AE00651265",
 #     "wallet_id": "AE00651265",
 #     "wallet_fullname": "",
@@ -120,15 +126,18 @@ def create_wallet_user(request):
         #     db.session.add(membercard)
         #     db.session.commit()
             
-        # if response.status_code == 200 :
-        #     data_receiver = response.json()
-        #     membercard = membercard()
-        #     membercard.wallet_id = data_receiver['wallet_id']
-        #     db.session.add(membercard)
-        #     db.session.commit()
-        # else:
-        #     # response.text()
-        #     pass
+        if response.status_code == 200 :
+            data_receiver = response.json()
+            # membercard = MemberCard()
+            userno = data_receiver['user_id']
+            walletid = data_receiver['wallet_id']
+            admin = MemberCard.query.filter_by(user_no = userno).update(dict(wallet_id = walletid))
+
+            # db.session.add(membercard)
+            db.session.commit()
+        else:
+            # response.text()
+            pass
 
         
     return json({"notify":"notify"})
