@@ -24,6 +24,11 @@
     right: 10px;
     top: 5px;
 }
+.grid_container {
+    background-color: white;
+    border-radius: 22px;
+    margin-top: -30px;
+}
 /* .c-wrapper.c-fixed-components {
     background-color: white;
 } 
@@ -1782,9 +1787,22 @@
     margin-left: -27px;
 }
 .btn-group {
+    /* margin-left: 0px; */
+    margin-bottom: 10px;
+}
+#file-name {
+    margin-right: 3px;
+    margin-top: 5px;
+}
+/* .btn-group {
     margin-top: -15px !important;
 margin-right: 8px !important;
-}
+} */
+/* .btn-group {
+    margin-top: -15px !important;
+    margin-right: 8px !important;
+    width: 200px;
+} */
 .pagination > li > a {
     /* border-top-color: #f39c12; */
     padding: 10px !important;
@@ -2260,7 +2278,13 @@ margin-right: 8px !important;
      margin-right: 5px;
      cursor: pointer;
  }
- 
+.toolbar-userwallet {
+
+    text-align: right !important;
+    width: 187px;
+    margin-bottom: 10px;
+
+}
  .todo-list>li:hover .tools {
      display: inline-block;
  }

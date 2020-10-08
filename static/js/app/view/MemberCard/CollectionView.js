@@ -73,61 +73,27 @@ define(function (require) {
 								}
 							});
 
-							// var link ="hello Trung Anh"
-
-							// var dialogView = new ModelDialogView({
-							// 	viewData: {
-							// 		link: link
-							// 	}
-							// });
-
-							// dialogView.dialog();
-
-
-
-
-
-
-
-
-
-
-
-							// var self = this;
-							// var url = self.getApp().urlPrefix + 'genqr';
-							// var path = self.collectionName+'model/';
-							// self.getApp().getRouter().navigate(path);
-							// self.collectionName.fetch('/api/v1/Genqr', {
-							// 	method: 'POST',
-								
-							// 	// body: data
-							//   })
-
-
-							  
 						}
 					},
-					// {
-                    //     name: "sync",
-                    //     type: "button",
-                    //     buttonClass: "btn-warning btn-sm ml-2",
-                    //     label: "<i class='fas fa-sync-alt'></i> Đồng bộ thủ công",
-                    //     command: function () {
-                    //         const self = this;
-                    //         loader.show('Đang đồng bộ dữ liệu, vui lòng chờ...');
-                    //         $.ajax({
-                    //             url: self.getApp().serviceURL + '/api/v1/Genqr',
-                    //             type: 'GET',
-                    //             data: {},
-                    //             success: function (response) {
-                    //                 loader.hide();
-                    //             },
-                    //             error: function (xhr) {
-                    //                 loader.hide();
-                    //             }
-                    //         });
-                    //     }
-                    // }
+
+				]
+			},
+			{
+				name: "default",
+				type: "group",
+				groupClass: "toolbar-group",
+				buttons: [
+					{
+						name: "Tạo Wallet ID",
+						type: "button",
+						buttonClass: "btn-primary btn-sm",
+						label: "Tạo Ví",
+						command: function(){
+							var self = this;
+							var path = self.collectionName+'model/';
+							self.getApp().getRouter().navigate(path);
+						}
+					},
 					
 				]
 			},
