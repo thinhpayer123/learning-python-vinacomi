@@ -63,6 +63,12 @@ def create_wallet_user(request):
         if response is not None:
             content = response.content.decode('utf-8')
             json_data = ujson.loads(content)
+            membercard = MemberCard()
+            membercard.wallet_id = json_data['wallet_id']
+
+            db.session.add(membercard)
+            db.session.commit()
             
+
         
     return json({"r":"r"})
