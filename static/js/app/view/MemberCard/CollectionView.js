@@ -90,8 +90,31 @@ define(function (require) {
 						label: "Tạo Ví",
 						command: function(){
 							var self = this;
-							var path = self.collectionName+'model/';
-							self.getApp().getRouter().navigate(path);
+							
+							var url = self.getApp().serviceURL + '/api/v1/create_wallet_user';
+							$.ajax({
+								// type: 'GET',
+								url: url,
+
+								dataType: "json",
+								success: function (data) {
+									// console.log(data)
+									var link  = data.link;
+									// console.log(link)
+									// console.log(data);
+									var dialogView = new ModelDialogView({
+										viewData: {
+											link: link
+										}
+											
+									});
+									dialogView.dialog();
+								},
+								error: function (XMLHttpRequest, textStatus, errorThrown) {
+									console.log("Before navigate login");
+								
+								}
+							});
 						}
 					},
 					

@@ -1,5 +1,5 @@
 from application.extensions import apimanager
-from application.models.model import  QRUser,  User, WalletUser , MemberCard
+from application.models.model import    User, WalletUser , MemberCard
 from application.extensions import auth
 from application.database import db
 from gatco.exceptions import ServerError
@@ -128,7 +128,7 @@ async def genqr(request):
             birthday = info_user['birthday']
             # user_name = info_user['']
             membercard_id = company_id + random.choice('122esadasdaqfdada')+str(student_id)
-            wallet_id = '123456'
+            # wallet_id = '123456'
             status = 1
 
             img = qrcode.make(str(student_id) + '-' + student_name + '-' + str(birthday))
@@ -142,7 +142,7 @@ async def genqr(request):
             memcard.user_no = student_id
             memcard.user_name = student_name
             memcard.membercard_id = membercard_id
-            memcard.wallet_id = wallet_id
+            # memcard.wallet_id = wallet_id
             memcard.status = status
 
             db.session.add(memcard)

@@ -248,11 +248,11 @@ class Transaction(CommonModel):
 #     gender = db.Column(String(10))
 
 
-class QRUser(CommonModel):
-    __tablename__ = 'qruser'
-    id = db.Column(Integer, primary_key=True)
-    nameqr = db.Column(String(255), nullable=False)
-    saveDirectory = db.Column(String(255), nullable=False)
+# class QRUser(CommonModel):
+#     __tablename__ = 'qruser'
+#     id = db.Column(Integer, primary_key=True)
+#     nameqr = db.Column(String(255), nullable=False)
+#     saveDirectory = db.Column(String(255), nullable=False)
 
 
 class QRworker(CommonModel):
