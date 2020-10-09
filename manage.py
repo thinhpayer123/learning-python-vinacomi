@@ -69,7 +69,7 @@ def add_company(name="KMA"):
 @manager.command
 def run():
     """ Starts server on port 8000. """
-    run_app(host="icanteen.vn", port=8090)
+    run_app(host="0.0.0.0", port=8090)
 
 @manager.command
 def genqr(from_date=None, to_date=None, id=None):
