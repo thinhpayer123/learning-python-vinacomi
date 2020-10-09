@@ -140,4 +140,4 @@ def create_wallet_user(request):
             pass
 
         
-    return json({"notify":"notify"})
+    return json({"notify":"Get data success.Please reload page."})

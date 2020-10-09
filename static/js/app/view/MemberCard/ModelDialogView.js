@@ -29,6 +29,7 @@ define(function (require) {
             var self = this;
             self.$el.find("#link").html(self.viewData.link);
             self.$el.find("#link").attr("href",self.viewData.link)
+            self.$el.findd("#notify").html(self.viewData1.notify)
             
         },
         

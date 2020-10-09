@@ -90,7 +90,6 @@ define(function (require) {
 						label: "Tạo Ví",
 						command: function(){
 							var self = this;
-							
 							var url = self.getApp().serviceURL + '/api/v1/create_wallet_user';
 							$.ajax({
 								// type: 'GET',
@@ -99,12 +98,12 @@ define(function (require) {
 								dataType: "json",
 								success: function (data) {
 									// console.log(data)
-									var link  = data.link;
+									var notify  = data.notify;
 									// console.log(link)
 									// console.log(data);
 									var dialogView = new ModelDialogView({
-										viewData: {
-											link: link
+										viewData1: {
+											notify: notify
 										}
 											
 									});
