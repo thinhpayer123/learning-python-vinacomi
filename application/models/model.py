@@ -95,7 +95,7 @@ class Application(CommonModel):
 
 class Brand(CommonModel):
     __tablename__ = 'brand'
-    id = db.Column(String(), primary_key=True)
+    id = db.Column(String(), primary_key=True,default=default_uuid)
     brand_id = db.Column(String(), index=True, nullable=False,unique=True)
     company_id = db.Column(String(), index=True, nullable=False)
     brand_logo_url = db.Column(String())
@@ -213,7 +213,7 @@ class WalletUser(CommonModel):
     company_no = db.Column(String(15), nullable=True)
     user_no = db.Column(String(), nullable=True) # student_id 
     extra_data = db.Column(JSONB())
-
+ 
 
 #Bangr luu cac tai khoan chi nhanh cua cong ty
 class WalletCompany(CommonModel):

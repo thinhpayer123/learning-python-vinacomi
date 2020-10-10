@@ -6,29 +6,30 @@ define(function (require) {
     
     var template 			= require('text!app/view/Brand/tpl/model.html'),
 		schema 				= require('json!schema/BrandSchema.json');
-	var companyview = require('app/view/Company/SelectView');
+	var CompanyView = require('app/view/Company/SelectView');
 	var Model = Gonrin.Model.extend({
 		defaults: Gonrin.getDefaultModel(schema),
 		computeds: {
-			khachhang: {
-				deps: ["", "name"],
-				get: function( company_no, name ) {
+			company: {
+				deps: ["company_id", "company_name"],
+				get: function( company_id, company_name ) {
 					return {
-						"id": company_no,
-						"ten": name,
+						"id": company_id,
+						"name": company_name,
 						};
 				},
 				set: function( obj ) {
-					return {company_no: obj.id, name: obj.ten};
+					return {company_id: obj.id, company_name: obj.name};
 				}
 			},
 		},
-		urlRoot : "/api/v1/company"
+		urlRoot : "/api/v1/brand"
 	});
 	
     return Gonrin.ModelView.extend({
     	template : template,
-    	modelSchema	: schema,
+		modelSchema	: schema,
+		modelClass: Model,
     	urlPrefix: "/api/v1/",
     	collectionName: "brand",
     	tools : [
@@ -96,13 +97,23 @@ define(function (require) {
 			uiControl:{
 				fields:[
 					{
-						field:"comapny",
+						field:"company",
 						uicontrol:"ref",
-						textField: "ten",
-						dataSource: companyview
+						textField: "name",
+						dataSource: CompanyView
 					},
 				]
 			},
+			// uiControl:{
+			// 	fields:[
+			// 		{
+			// 			field:"comapny",
+			// 			uicontrol:"ref",
+			// 			textField: "name",
+			// 			dataSource: companyview
+			// 		},
+			// 	]
+			// },
     	render:function(){
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");

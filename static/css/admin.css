@@ -21,6 +21,10 @@
 
     /* margin-top: 30px !important; */
 }
+.modal-dialog {
+    max-width: 1000px !important;
+    margin: 1.75rem auto;
+}
 .box-header {
     /* margin-bottom: 53px !important; */
     /* border-bottom: 1px solid #ddd !important; */
@@ -1522,11 +1526,12 @@
  }
  
  .input-group .input-group-addon {
-     border-radius: 0;
-     border-color: #d2d6de;
-     background-color: #fff;
- }
- 
+	background-color: #c8c8c8;
+	padding: 10px;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	border: 1px solid #9696c1;
+}
  .btn-group-vertical .btn.btn-flat:first-of-type,
  .btn-group-vertical .btn.btn-flat:last-of-type {
      border-radius: 0;
