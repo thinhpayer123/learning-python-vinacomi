@@ -120,7 +120,7 @@ async def genqr(request):
             membercard_id = company_id + random.choice('122esadasdaqfdada')+str(student_id)
             status = 1
 
-            img = qrcode.make(str(student_id) + '-' + student_name + '-' + str(birthday))
+            img = qrcode.make(membercard_id)
 
             name_img =  company_id + '-' +  str(student_id) + '-' +  student_name + '.png'
             link_img = fsroot + 'qrcode/' + name_img
