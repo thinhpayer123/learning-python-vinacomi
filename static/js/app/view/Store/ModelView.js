@@ -5,7 +5,9 @@ define(function (require) {
         Gonrin				= require('gonrin');
     
     var template 			= require('text!app/view/Store/tpl/model.html'),
-    	schema 				= require('json!schema/StoreSchema.json');
+		schema 				= require('json!schema/StoreSchema.json');
+		var company_id   = require('app/view/Company/SelectView');
+		
     
     return Gonrin.ModelView.extend({
     	template : template,
@@ -33,7 +35,7 @@ define(function (require) {
 		    	    	name: "save",
 		    	    	type: "button",
 		    	    	buttonClass: "btn-success btn-sm",
-		    	    	label: "Lưu quốc gia",
+		    	    	label: "Lưu Thông Tin",
 		    	    	command: function(){
 		    	    		var self = this;
 		    	    		
@@ -73,7 +75,8 @@ define(function (require) {
 		    	    	}
 		    	    },
     	    	],
-    	    }],
+			}],
+
     	render:function(){
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");

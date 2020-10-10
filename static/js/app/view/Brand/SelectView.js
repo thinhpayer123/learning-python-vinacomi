@@ -6,7 +6,6 @@ define(function (require) {
     
     var template 			= require('text!app/view/Brand/tpl/collection.html'),
     	schema 				= require('json!schema/BrandSchema.json');
-
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
@@ -42,7 +41,9 @@ define(function (require) {
 	    	    	field: "id",label:"ID",
 				 },
 				 { 
-	    	    	field: "company_id",label:"Mã Đơn Vị",
+					field: "company_id",label:"Mã Đơn Vị"
+					,
+
 				 },
 				 { 
 	    	    	field: "brand_id",label:"Mã Thương Hiệu",

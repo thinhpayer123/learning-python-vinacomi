@@ -36,25 +36,9 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-	    	    //  { field: "ma", label: "Mã", width:150},
-				 //  { field: "ten", label: "Tên", width:250 },
-				 { 
-	    	    	field: "id",label:"ID", width:100
-				 },
-				 { 
-	    	    	field: "company_type",label:"Kiểu Đơn Vị ",width:100
-				 },
+
 				 { 
 	    	    	field: "company_no",label:"Mã Đơn Vị",width:100
-				 },
-				 { 
-	    	    	field: "name",label:"Tên Đơn Vị ",width:200
-				 },
-				 { 
-	    	    	field: "phone_number",label:"Số Điện Thoại",width:150
-				 },	    	     
-				 { 
-	    	    	field: "active",label:"active",width:50
 				 }
 		    ],
 		    onRowClick: function(event){

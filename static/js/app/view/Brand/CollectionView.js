@@ -35,9 +35,9 @@ define(function (require) {
 		],
     	uiControl:{
     		fields: [
-	    	     { 
-	    	    	field: "id",label:"ID",
-				 },
+	    	    //  { 
+	    	    // 	field: "id",label:"ID",
+				//  },
 				 { 
 	    	    	field: "company_id",label:"Mã Đơn Vị",
 				 },
