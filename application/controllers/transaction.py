@@ -4,6 +4,8 @@ from application.extensions import auth
 from gatco.exceptions import ServerError
 import json
 from application.server import app
+import ujson
+
 
 def auth_func(request=None, **kw):
     #uid = auth.current_user(request)
