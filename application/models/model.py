@@ -32,7 +32,9 @@ class Company(CommonModel):
     description = db.Column(String())
     phone_number = db.Column(String(63))
     email = db.Column(String())
+    point_name = db.Column(String())
     extra_data = db.Column(JSONB())
+
     active = db.Column(Boolean(), default=True)
 
 

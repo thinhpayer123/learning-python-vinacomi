@@ -18,6 +18,126 @@ apimanager.create_api(collection_name='transaction', model=Transaction,
     )
 
 
+
+@app.route('/icanteen/api/v1/foodbook_callback', methods=['POST'])
+async def foodbook_callback(request):
+    # {
+    #     "event_id": 3,
+    #     "event": "charge_history",
+    #     "timestamp": "1601885358085",
+    #     "charge_history": {
+    #         "pos_parent":"FOODBOOK",
+    #         "pos_id":296,
+    #         "payment_method":"HEOVANGSCAN",
+    #         "amount":10000.0,
+    #         "user_code":"12354AIOURALIRURJALDKJF9807",
+    #         "tran_id":"123154353"
+    #     }
+    # }
+
+    param = request.json
+    event = param.get("event")
+    event_id = param.get("event_id")
+
+    if event == "charge_history":
+        charge_history = param.get("charge_history")
+
+        from_wallet_id = None
+        brand_id = charge_history.get("pos_parent")
+        membercard_id = charge_history.get("user_code")
+        tran_id = charge_history.get("tran_id")
+        main_value = charge_history.get("amount")
+        if main_value > 0:
+            main_value = int(main_value)
+        sub_value = 0
+        value = main_value + sub_value
+
+        store_id = charge_history.get("pos_id")
+        if store_id is not None:
+            store  = Store.query.filter(Store.store_id == str(store_id)).first()
+            if store is not None:
+                company_id = store.company_id
+                to_wallet_id = store.wallet_id
+            
+            if company_id is not None:
+                company = Company.query.filter(Company.id == company_id).first()
+                point_name = company.point_name if company is not None else None
+
+        if membercard_id is not None:
+            card = MemberCard.query.filter(MemberCard.membercard_id == membercard_id).first()
+            if card is not None:
+                from_wallet_id = card.wallet_id
+            
+
+        if point_name is not None:
+            url = app.config.get("WALLET_API_URL") + "/wallet/api/v1/privilege_send_point_transaction"
+            app_id = app.config.get("HEOVANG_APP_ID")
+            app_secret = app.config.get("HEOVANG_APP_SECRET")
+            data = {
+                "from": from_wallet_id,
+                "point_name": point_name,
+                "company_id": company_id,
+                "app_id" : app_id,
+                "value": main_value + sub_value,
+                "data": ujson.dumps({
+                    "from": from_wallet_id,
+                    "to": to_wallet_id,
+                    "main_value": main_value,
+                    "sub_value": sub_value,
+                    "value": main_value + sub_value,
+                    "point_name": point_name,
+                    "tran_id": tran_id
+                })
+            }
+
+            headers = {
+                "Content-Type": "application/json",
+            }
+            async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
+                async with session.post(url, json=data) as response:
+                    if response.status == 200:
+                        resp = await response.json()
+                        transaction_hash = resp.get("transaction_hash")
+                        resp_data = {
+                            "charge_history": {
+                                "pos_parent": brand_id,
+                                "pos_id": store_id,
+                                "user_code": membercard_id,
+                                "state": "SUCCESS",
+                                "response_message": "Thành công",
+                                "tran_id": tran_id,
+                                "tran_id_of_parner": transaction_hash,
+                                "paid_amount": value,
+                                "paid_discount": 0
+                            }
+                        }
+
+                        return json(resp)
+    elif event == "sale_manager":
+        data = await foodbook_callback_sale_manager(request)
+        return json(data)
+    
+
+    # resp = {
+    #     "charge_history": {
+    #         "pos_parent": "FOODBOOK",
+    #         "pos_id": 296,
+    #         "user_code": "12354AIOURALIRURJALDKJF9807",
+    #         "state": "SUCCESS",
+    #         "response_message": "Thành công",
+    #         "tran_id": "FOODBOOK1235",
+    #         "tran_id_of_parner": "28983497",
+    #         "paid_amount": 35000,
+    #         "paid_discount": 0
+    #     }
+    # }
+    return json({"error_code": "UNKNOWN_ERROR"}, status=520)
+
+async def foodbook_callback_sale_manager(request):
+
+
+
+
 @app.route('/wallet/api/v1/membercard_send_transaction', methods=['POST'])
 async def partner_send_point_transaction(request):
     # {
