@@ -72,7 +72,7 @@ async def foodbook_callback(request):
             
 
         if point_name is not None:
-            url = app.config.get("WALLET_API_URL") + "/wallet/api/v1/privilege_send_point_transaction"
+            url = app.config.get("HEOVANG_WALLET_API_URL") + "/wallet/api/v1/privilege_send_point_transaction"
             app_id = app.config.get("HEOVANG_APP_ID")
             app_secret = app.config.get("HEOVANG_APP_SECRET")
             data = {
