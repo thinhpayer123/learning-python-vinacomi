@@ -103,6 +103,8 @@ class Brand(CommonModel):
     phone_number = db.Column(String())
     extra_data = db.Column(JSONB())
     active = db.Column(Boolean(), default=True)
+    company_name = db.Column(String())
+    name = db.Column(String())
 
 class Store(CommonModel):
     __tablename__ = 'store'

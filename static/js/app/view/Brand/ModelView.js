@@ -7,6 +7,25 @@ define(function (require) {
     var template 			= require('text!app/view/Brand/tpl/model.html'),
 		schema 				= require('json!schema/BrandSchema.json');
 	var companyview = require('app/view/Company/SelectView');
+	var Model = Gonrin.Model.extend({
+		defaults: Gonrin.getDefaultModel(schema),
+		computeds: {
+			khachhang: {
+				deps: ["", "name"],
+				get: function( company_no, name ) {
+					return {
+						"id": company_no,
+						"ten": name,
+						};
+				},
+				set: function( obj ) {
+					return {company_no: obj.id, name: obj.ten};
+				}
+			},
+		},
+		urlRoot : "/api/v1/company"
+	});
+	
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
