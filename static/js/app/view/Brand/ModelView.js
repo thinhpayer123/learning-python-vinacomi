@@ -5,7 +5,8 @@ define(function (require) {
         Gonrin				= require('gonrin');
     
     var template 			= require('text!app/view/Brand/tpl/model.html'),
-    	schema 				= require('json!schema/BrandSchema.json');
+		schema 				= require('json!schema/BrandSchema.json');
+	var companyview = require('app/view/Company/SelectView');
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
@@ -72,7 +73,17 @@ define(function (require) {
 		    	    	}
 		    	    },
     	    	],
-    	    }],
+			}],
+			uiControl:{
+				fields:[
+					{
+						field:"comapny",
+						uicontrol:"ref",
+						textField: "ten",
+						dataSource: companyview
+					},
+				]
+			},
     	render:function(){
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");
