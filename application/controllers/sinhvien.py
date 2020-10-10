@@ -105,30 +105,19 @@ async def genqr(request):
     url = config.FILE_SERVICE_URL
     qr = config.QR_ARCHIVE
     ret = None
-    # userWallets =[]
-    # print(id)
+
     if request.method == 'GET':
         path = request.args.get('')
         
         userWallets = db.session.query(WalletUser).all()
         for user in userWallets:
-            # format_data = ujson.loads
             info_user = user.extra_data
-            # print(info_user)
-            # print(type(info_user))
-            # current_user_id = auth.current_user(request)
-            # user_info =  db.session.query(User).filter(User.id == current_user_id).first()
-            # company_id = user_info.company_id
-
-            # user_info = ujson.dumps(info_user)
             student_id = info_user['student_id']
 
             company_id = info_user['company_id']
             student_name = info_user['student_name']
             birthday = info_user['birthday']
-            # user_name = info_user['']
             membercard_id = company_id + random.choice('122esadasdaqfdada')+str(student_id)
-            # wallet_id = '123456'
             status = 1
 
             img = qrcode.make(str(student_id) + '-' + student_name + '-' + str(birthday))
@@ -142,17 +131,12 @@ async def genqr(request):
             memcard.user_no = student_id
             memcard.user_name = student_name
             memcard.membercard_id = membercard_id
-            # memcard.wallet_id = wallet_id
             memcard.status = status
 
             db.session.add(memcard)
             db.session.commit()
 
         shutil.make_archive(fsroot, 'zip', fsroot, 'qrcode/')
-            # returna = None
-            # returna = {
-            #     "link": url
-            # }
     return json({
         "link": url
     })

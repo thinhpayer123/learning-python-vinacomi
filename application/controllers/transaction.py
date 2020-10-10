@@ -134,6 +134,7 @@ async def foodbook_callback(request):
     return json({"error_code": "UNKNOWN_ERROR"}, status=520)
 
 async def foodbook_callback_sale_manager(request):
+    pass
 
 
 
