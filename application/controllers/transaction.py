@@ -55,6 +55,23 @@ async def foodbook_callback(request):
         value = main_value + sub_value
 
         store_id = charge_history.get("pos_id")
+
+
+
+        resp_data = {
+                            "charge_history": {
+                                "pos_parent": brand_id,
+                                "pos_id": store_id,
+                                "user_code": membercard_id,
+                                "state": "SUCCESS",
+                                "response_message": "Thành công",
+                                "tran_id": tran_id,
+                                "tran_id_of_parner": transaction_hash,
+                                "paid_amount": value,
+                                "paid_discount": 0
+                            }
+        return json(resp_data)
+
         if store_id is not None:
             store  = Store.query.filter(Store.store_id == str(store_id)).first()
             if store is not None:
