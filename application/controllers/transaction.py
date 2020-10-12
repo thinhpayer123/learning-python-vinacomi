@@ -2,7 +2,9 @@ from application.extensions import apimanager
 from application.models.model import User, Company, Brand, Store, Role, MemberCard, WalletUser, Transaction
 from application.extensions import auth
 from gatco.exceptions import ServerError
-import json
+# import json
+from gatco.response import json
+
 from application.server import app
 import ujson
 import random
