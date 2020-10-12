@@ -145,6 +145,8 @@ class Store(CommonModel):
     wallet_method = db.Column(String()) #by_company, by_store
     extra_data = db.Column(JSONB())
     active = db.Column(Boolean(), default=True)
+    company_name = db.Column(String())
+    
 
 
 # class Item(CommonModel):
