@@ -76,6 +76,19 @@ define(function (require) {
 		    	    },
     	    	],
 			}],
+			uiControl: {
+				fields: [{
+						field: "active",
+						uicontrol: "combobox",
+						textField: "text",
+						valueField: "value",
+						cssClass: "form-control",
+						dataSource: [
+							{ "value": 1, "text": "Active" },
+							{ "value": 0, "text": "Deactive" },
+						]
+					},
+				]},
 
     	render:function(){
     		var self = this;
