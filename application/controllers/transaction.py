@@ -70,6 +70,7 @@ async def foodbook_callback(request):
                                 "paid_amount": value,
                                 "paid_discount": 0
                             }
+        }
         return json(resp_data)
 
         if store_id is not None:
