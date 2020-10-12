@@ -24,15 +24,15 @@ define(function (require) {
 					}
 				},
 				brand: {
-					deps: ["brand_id", "brand_name"],
-					get: function( brand_id, brand_name ) {
+					deps: ["brand_id"],
+					get: function( brand_id ) {
 						return {
-							"id": brand_id,
-							"name": brand_name,
+							"brand_id": brand_id,
+							// "name": brand_name,
 							};
 					},
 					set: function( obj ) {
-						return {brand_id: obj.id, brand_name: obj.name};
+						return {brand_id: obj.brand_id};
 					}
 				},
 			},
@@ -135,8 +135,8 @@ define(function (require) {
 						valueField: "value",
 						cssClass: "form-control",
 						dataSource: [
-							{ "value": 1, "text": "Active" },
-							{ "value": 0, "text": "Deactive" },
+							{ "value": true, "text": "True" },
+							{ "value": false, "text": "False" },
 						]
 					},
 
@@ -149,7 +149,7 @@ define(function (require) {
 							{
 								field:"brand",
 								uicontrol:"ref",
-								textField: "id",
+								textField: "brand_id",
 								dataSource: BrandView
 							},
 						]

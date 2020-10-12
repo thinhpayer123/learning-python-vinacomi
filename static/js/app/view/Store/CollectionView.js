@@ -65,8 +65,8 @@ define(function (require) {
                     valueField: "value",
                     cssClass: "form-control",
                     dataSource: [
-                        { "value": 1, "text": "Active" },
-                        { "value": 0, "text": "Deactive" },
+                        { "value": true, "text": "True" },
+                        { "value": false, "text": "False" },
                     ]
                 },
 				 

@@ -1,17 +1,4 @@
 {
-    "created_at": {
-        "type": "datetime"
-    },
-    "updated_at": {
-        "type": "datetime"
-    },
-    "deleted": {
-        "type": "boolean",
-        "default": false
-    },
-    "deleted_at": {
-        "type": "datetime"
-    },
     "id": {
         "type": "string",
         "primary": true
@@ -31,78 +18,21 @@
     "store_name": {
         "type": "string"
     },
-    "open_time": {
-        "type": "string"
-    },
+    
     "phone_number": {
         "type": "string"
     },
-    "estimate_price": {
-        "type": "number"
-    },
-    "estimate_price_max": {
-        "type": "number"
-    },
-    "wifi_password": {
-        "type": "string"
-    },
-    "is_car_parking": {
-        "type": "number"
-    },
-    "is_visa": {
-        "type": "number"
-    },
-    "is_sticky": {
-        "type": "number"
-    },
-    "store_longitude": {
-        "type": "number"
-    },
-    "store_latitude": {
-        "type": "number"
-    },
-    "store_radius_detail": {
-        "type": "number"
-    },
-    "store_master_id": {
-        "type": "string"
-    },
-    "district_id": {
-        "type": "string"
-    },
-    "city_id": {
-        "type": "string"
-    },
-    "city_name": {
-        "type": "string"
-    },
-    "store_address": {
-        "type": "string"
-    },
+    
+
+    
     "image_path": {
         "type": "string"
     },
-    "image_path_thumb": {
-        "type": "string"
-    },
-    "workstation_id": {
-        "type": "string"
-    },
+    
     "wallet_id": {
         "type": "string"
     },
-    "wallet_fullname": {
-        "type": "string"
-    },
-    "wallet_phone": {
-        "type": "string"
-    },
-    "wallet_method": {
-        "type": "string"
-    },
-    "extra_data": {
-        "type": "json"
-    },
+   
     "active": {
         "type": "boolean",
         "default": true

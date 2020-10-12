@@ -108,10 +108,12 @@ class Brand(CommonModel):
 
 class Store(CommonModel):
     __tablename__ = 'store'
-    id = db.Column(String(), primary_key=True)
+    id = db.Column(String(), primary_key=True,default=default_uuid)
     store_id = db.Column(String(), index=True, nullable=False)
     brand_id = db.Column(String(), index=True, nullable=False)
     company_id = db.Column(String(), index=True, nullable=False)
+    active = db.Column(Boolean(), default=True)
+    company_name = db.Column(String())
     store_name = db.Column(String())
     open_time = db.Column(String())
     phone_number = db.Column(String())
@@ -144,9 +146,8 @@ class Store(CommonModel):
 
     wallet_method = db.Column(String()) #by_company, by_store
     extra_data = db.Column(JSONB())
-    active = db.Column(Boolean(), default=True)
-    company_name = db.Column(String())
-    
+
+
 
 
 # class Item(CommonModel):
