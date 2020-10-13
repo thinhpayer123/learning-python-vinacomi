@@ -14,6 +14,7 @@ class Config(object):
     FS_ROOT = "static/upload/"
     IMAGE_SERVICE_URL = "http://icanteen.vn:8090/static/upload/"
     FILE_SERVICE_URL = "http://icanteen.vn/static/upload.zip"
+    # FILE_SERVICE_URL = "http://icanteen.vn/static/"
     QR_SERVICE_URL = "http://icanteen.vn/"
     QR_ARCHIVE = "static/"
 

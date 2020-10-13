@@ -10,4 +10,5 @@ define({
         "CLOSE": "Đóng",
         "NO_RECORDS_FOUND":"Chưa có dữ liệu"
     }
+
 });

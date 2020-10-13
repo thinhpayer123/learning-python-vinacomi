@@ -71,7 +71,7 @@ define(function (require) {
 				  { field: "company_type", label: "kiểu công ty", width:200 },
 				  { field: "company_no", label: "Mã Đơn Vị" },
 
-				  { field: "user_id", label: "ID người dùng" },
+				//   { field: "user_id", label: "ID người dùng" },
 				  { field: "user_no", label: "Mã Người Dùng" },
 
 				  { field: "wallet_id", label: "ID ví tiền" },

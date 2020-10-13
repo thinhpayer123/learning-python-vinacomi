@@ -141,6 +141,3 @@ async def genqr(request):
     return json({
         "link": url
     })
-
-
-

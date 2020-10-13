@@ -11,27 +11,6 @@ from application.models.model import User, Role
 async def user_test(request):
     return text("user_test api")
 
-# @app.route("/user/login", methods=["POST", "GET"])
-# async def user_login(request):
-#     param = request.json
-#     user_name = param.get("user_name")
-#     password = param.get("password")
-#     print(user_name, password)
-#     if (user_name is not None) and (password is not None):
-#         user = db.session.query(User).filter(User.user_name == user_name).first()
-#         if (user is not None) and auth.verify_password(password, user.password, user.salt):
-#             auth.login_user(request, user)
-#             return json({"id": user.id, "user_name": user.user_name, "full_name": user.full_name})
-#         return json({"error_code":"LOGIN_FAILED","error_message":"user does not exist or incorrect password"}, status=520)
-#
-#     else:
-#         return json({"error_code": "PARAM_ERROR", "error_message": "param error"}, status=520)
-#     return text("user_login api")
-#
-# @app.route("/user/logout", methods=["GET"])
-# async def user_logout(request):
-#     auth.logout_user(request)
-#     return json({})
 
 @app.route("/user/login", methods=["POST", "GET"])
 async def user_login(request):
