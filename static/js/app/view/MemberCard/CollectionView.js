@@ -7,8 +7,8 @@ define(function (require) {
     var template 			= require('text!app/view/MemberCard/tpl/collection.html');
 	var	schema 				= require('json!schema/MemberCardSchema.json');
 	var ModelDialogView = require('app/view/MemberCard/ModelDialogView');
-	// var TemplateHelper = require('text!app/common/TemplateHelper');
-    // var CustomFilterView = require('text!app/common/CustomFilterView');
+
+
     
     return Gonrin.CollectionView.extend({
     	template : template,
@@ -28,7 +28,7 @@ define(function (require) {
 						label: "Tạo mới",
 						command: function(){
 							var self = this;
-							var path = self.collectionName+'model/';
+							var path = self.collectionName+'/model';
 							self.getApp().getRouter().navigate(path);
 						}
 					},

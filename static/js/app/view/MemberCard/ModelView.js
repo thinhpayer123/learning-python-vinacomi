@@ -5,10 +5,35 @@ define(function (require) {
         Gonrin				= require('gonrin');
     
     var template 			= require('text!app/view/MemberCard/tpl/model.html'),
-    	schema 				= require('json!schema/MemberCardSchema.json');
+		schema 				= require('json!schema/MemberCardSchema.json');
+		var CompanyView = require('app/view/Company/SelectView');
+
+		// var TemplateHelper = require('text!app/common/TemplateHelper');
+		// var CustomFilterView = require('text!app/common/CustomFilterView');
+		var Model = Gonrin.Model.extend({
+			defaults: Gonrin.getDefaultModel(schema),
+			computeds: {
+				company: {
+					deps: ["company_id"],
+					get: function( company_id ) {
+						return {
+							"id": company_id,
+							// "name": company_name,
+							};
+					},
+					set: function( obj ) {
+						return {company_id: obj.id};
+					}
+				},
+	
+			},
+			urlRoot : "/api/v1/membercard"
+		});
     
     return Gonrin.ModelView.extend({
-    	template : template,
+		template : template,
+		modelClass: Model,
+
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
     	collectionName: "membercard",
@@ -73,7 +98,28 @@ define(function (require) {
 		    	    	}
 		    	    },
     	    	],
-    	    }],
+			}],
+			uiControl: {
+				fields: [{
+						field: "status",
+						uicontrol: "combobox",
+						textField: "text",
+						valueField: "value",
+						cssClass: "form-control",
+						dataSource: [
+							{ "value": 1, "text": "Active" },
+							{ "value": 0, "text": "Deactive" },
+						]
+					},
+
+							{
+								field:"company",
+								uicontrol:"ref",
+								textField: "id",
+								dataSource: CompanyView
+							},
+						]
+					},
     	render:function(){
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");
