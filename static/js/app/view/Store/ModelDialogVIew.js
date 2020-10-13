@@ -3,7 +3,7 @@ define(function (require) {
     var $ = require('jquery'),
         _ = require('underscore'),
         Gonrin = require('gonrin');
-    var template = require('text!./tpl/dialog.html');
+    var template = require('text!./tpl/Dialog.html');
     
     return Gonrin.DialogView.extend({
         template: template,
@@ -27,9 +27,7 @@ define(function (require) {
             }],
         render: function () {
             var self = this;
-            // self.$el.find("#link").html(self.viewData.link);
-            self.$el.find("#link").attr("href",self.viewData.link);
-            self.$el.find("#notify").html(self.viewData1.notify);
+            self.$el.find("#notify").html(self.viewData.notify);
             
         },
         

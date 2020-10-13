@@ -5,7 +5,10 @@ define(function (require) {
         Gonrin				= require('gonrin');
     
     var template 			= require('text!app/view/Store/tpl/collection.html');
-    var	schema 				= require('json!schema/StoreSchema.json');
+	var	schema 				= require('json!schema/StoreSchema.json');
+	var ModelDialogView = require('app/view/Store/ModelDialogVIew');
+
+	
     
     return Gonrin.CollectionView.extend({
     	template : template,
@@ -32,6 +35,48 @@ define(function (require) {
 					
 				]
 			},
+			{
+				name: "default",
+				type: "group",
+				groupClass: "toolbar-group",
+				buttons: [
+					{
+						name: "Tạo Wallet ID",
+						type: "button",
+						buttonClass: "btn-primary btn-sm",
+						label: "Đồng Bộ Store",
+						command: function(){
+							var self = this;
+							var url = self.getApp().serviceURL + '/api/v1/sync_store';
+							$.ajax({
+								type: 'GET',
+								url: url,
+
+								dataType: "json",
+								success: function (data) {
+									// console.log(data)
+									var notify  = data.notify;
+									// console.log(link)
+									// console.log(data);
+									var dialogView = new ModelDialogView({
+										viewData: {
+											notify: notify
+										}
+											
+									});
+									dialogView.dialog();
+								},
+								error: function (XMLHttpRequest, textStatus, errorThrown) {
+									console.log("Before navigate login");
+								
+								}
+							});
+						}
+					},
+					
+				]
+			},
+			
 		],
     	uiControl:{
     		fields: [
@@ -59,15 +104,9 @@ define(function (require) {
 	    	    	field: "image_path",label:"Ảnh Đại Diện ",
 				 },
 				 {
-                    field: "active",
-                    uicontrol: "combobox",
-                    textField: "Trạng",
-                    valueField: "value",
-                    cssClass: "form-control",
-                    dataSource: [
-                        { "value": true, "text": "True" },
-                        { "value": false, "text": "False" },
-                    ]
+					field: "active",
+					label: "Trạng Thái",
+                    
                 },
 				 
 				//   { field: "ten", label: "Tên", width:250 },

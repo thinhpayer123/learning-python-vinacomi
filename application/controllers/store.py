@@ -18,7 +18,7 @@ def auth_func(request=None, **kw):
     pass
 
 
-@app.route('/api/v1/sync_store', methods=['GET','POST'])
+@app.route('/api/v1/sync_store', methods=['GET'])
 def sync_store(request):
     url_sent = "https://api.foodbook.vn/ipos/ws/xpartner/pos"
     headers = {'access_token': 'UYP3HCA3B2367D13TN2605D9DV3OMGQO','pos_parent': 'MAYASCHOOL'}
@@ -71,14 +71,17 @@ def sync_store(request):
 #   "Email": ""
 # }
     if response.status_code ==200:
+
         receive = response.json()
         data_int = receive.get("data")[0]
+        print(data_int)
         # print(type(data_int))
         # store_id = data_int["id"]
         a = str(data_int["Id"])
+        print(a)
         checkitem = db.session.query(Store.brand_id==a).first()
         print(checkitem)
-        if checkitem is not None:
+        if checkitem is  None:
             store = Store()
             store.store_id = str(data_int["Id"])
             store.brand_id = data_int["Pos_Name"]
