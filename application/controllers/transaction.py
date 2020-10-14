@@ -102,6 +102,7 @@ async def foodbook_callback(request):
             app_secret = app.config.get("HEOVANG_APP_SECRET")
             data = {
                 "from": from_wallet_id,
+                "to": to_wallet_id,
                 "point_name": point_name,
                 "company_id": company_id,
                 "app_id" : app_id,
