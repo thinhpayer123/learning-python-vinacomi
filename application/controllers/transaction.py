@@ -116,6 +116,8 @@ async def foodbook_callback(request):
             headers = {
                 "Content-Type": "application/json",
             }
+
+            print("param data", param)
             async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
                 async with session.post(url, json=data) as response:
                     if response.status == 200:
