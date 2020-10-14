@@ -49,12 +49,13 @@ define(function (require) {
 				 },
 				 { 
 	    	    	field: "phone_number",label:"Số Điện Thoại",
-				 },	    	     
+				 },
+	    	     { field: "point_name", label: "Point Name"},
+
 				 { 
 	    	    	field: "active",label:"active",
 				 },
 
-	    	    //  { field: "ma", label: "Mã"},
 				//   { field: "ten", label: "Tên", width:250 },
 				//   { field: "gia", label: "Giá" },
 		     ],
