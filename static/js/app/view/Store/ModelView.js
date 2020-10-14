@@ -15,7 +15,7 @@ define(function (require) {
 					deps: ["company_id", "company_name"],
 					get: function( company_id, company_name ) {
 						return {
-							"id": company_id,
+							"company_id": company_id,
 							"name": company_name,
 							};
 					},
@@ -143,7 +143,7 @@ define(function (require) {
 							{
 								field:"company",
 								uicontrol:"ref",
-								textField: "id",
+								textField: "company_id",
 								dataSource: CompanyView
 							},
 							{
