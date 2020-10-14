@@ -13,7 +13,8 @@ define(function (require) {
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
-    	urlPrefix: "/api/v1/",
+		urlPrefix: "/api/v1/",
+		// appointmentTime: null,
 		collectionName: "membercard",
 		tools: [
 			{
@@ -153,11 +154,12 @@ define(function (require) {
 				//   { field: "ten", label: "Tên", width:250 },
 				//   { field: "gia", label: "Giá" },
 			 ],
+
 		     onRowClick: function(event){
-		    	// if(event.rowId){
-		        // 		var path = this.collectionName + '/model?id='+ event.rowId;
-		        // 		this.getApp().getRouter().navigate(path);
-				// }
+		    	if(event.rowId){
+		        		var path = this.collectionName + '/model?id='+ event.rowId;
+		        		this.getApp().getRouter().navigate(path);
+				}
 				// var self = this;
                 // if (event.rowId) {
                 //     var view = new ModelDialogView({
@@ -183,9 +185,20 @@ define(function (require) {
 			// 	loader.show();
 			// },
 	    render:function(){
-	    	 this.applyBindings();
+			 this.applyBindings();
+			 this.datetimepicker();
 	    	 return this;
-    	},
+		},
+		datetimepicker: function() {
+			var self = this;
+			$('#datetimepicker1').datetimepicker({
+				"format": "YYYY-MM-DD"
+			});
+			$('#datetimepicker1').on('change.gonrin', (event) => {
+				console.log("event: ", event.value);
+				self.appointmentTime = event.value;
+			});
+		},
     });
 
 });

@@ -18,7 +18,7 @@ def auth_func(request=None, **kw):
     pass
 
 
-@app.route('/api/v1/sync_store', methods=['GET'])
+@app.route('/api/v1/sync_store', methods=['GET','POST'])
 def sync_store(request):
     url_sent = "https://api.foodbook.vn/ipos/ws/xpartner/pos"
     headers = {'access_token': 'UYP3HCA3B2367D13TN2605D9DV3OMGQO','pos_parent': 'MAYASCHOOL'}
@@ -71,17 +71,14 @@ def sync_store(request):
 #   "Email": ""
 # }
     if response.status_code ==200:
-
         receive = response.json()
         data_int = receive.get("data")[0]
-        print(data_int)
         # print(type(data_int))
         # store_id = data_int["id"]
         a = str(data_int["Id"])
-        print(a)
         checkitem = db.session.query(Store.brand_id==a).first()
         print(checkitem)
-        if checkitem is  None:
+        if checkitem is not None:
             store = Store()
             store.store_id = str(data_int["Id"])
             store.brand_id = data_int["Pos_Name"]
@@ -114,35 +111,12 @@ def sync_store(request):
             # store.extra_data = data_int("")
             db.session.add(store)
             db.session.commit()
-        return json({"notify": "success synce"}, status=200)
+        return json({"notify": "SUCCESS_SYNC"}, status=200)
     else:
         return json({"error_code": "UNKNOWN_ERROR"}, status=520)
 
 
-# {
-# 	"data": [
-# 		{
-# 			"Id": 195,
-# 			"Description": "Đến với nhà hàng Foodbook để thưởng thức những món chay hấp dẫn cả về trình bày lẫn khẩu vị, hài hòa sẽ khiến quý khách không chỉ hài lòng về vị giác mà cả về thị giác",
-# 			"Open_Time": "8:30 - 22:30",
-# 			"Estimate_Price": 50000,
-# 			"Estimate_Price_Max": 250000,
-# 			"Wifi_Password": "public2015",
-# 			"Pos_Name": "Nhà hàng Đất Xanh - Hà Nội",
-# 			"Pos_Longitude": 105.8055089,
-# 			"Pos_Latitude": 21.0460882,
-# 			"Pos_Parent": "FOODBOOK",
-# 			"Pos_Address": "Hoang Quoc Viet, Ha Noi",
-# 			"Image_Path": "https://image.foodbook.vn/images/fb/pos/2016-11-17-15_57_23_17015964675-d66151df44-o.jpg",
-# 			"Image_Path_Thumb": "https://image.foodbook.vn/fb/pos/2018-05-16-13_48_29_z990249119126-14689812d4695bb2f88647c93afceb59.jpg",
-# 			"More_Info": "",
-# 			"Is_Order_Online": 1,
-# 			"Website_Url": "http://foodbook.vn",
-# 			"Workstation_Id": 1,
-# 			"Active": 1
-# 		}
-# 	]
-# }
+
 
 
 

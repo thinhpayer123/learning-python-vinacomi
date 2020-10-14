@@ -34,8 +34,6 @@ async def file_load(request):
     path = request.args.get("path", None)
     ret = None
 
-    # url_qr = config.QR_SERVICE_URL
-    # url = config.FILE_SERVICE_URL
     fsroot = config.FS_ROOT
 
     if request.method == 'POST':
@@ -57,40 +55,29 @@ async def file_load(request):
             link_local = fsroot + subPath + extname
             print(link_local)
             data = pd.read_excel(link_local)
-            # print(data)
-            # df = pd.DataFrame(data, columns=['student_school_year', 'student_class', 'student_id', 'student_name', 'birthday', 'gender','email'])
             df = pd.DataFrame(data, columns=['company_id', 'student_id', 'student_name', 'birthday', 'gender','email'])
-
-            # print('122112'+df)
-            # company_id =  request.args.get("company_id")
-            # company_id = 'TEST'
-            # print(company_id)
-            # result = []
             a =df.get(["company_id", "student_id",'student_name','birthday','gender',]) 
             result = a.to_json(orient='records')
             print(result)
             print('---------------------------------------------')
             result_ujson = ujson.loads(result)
             print(result_ujson)
-            # item_result = []
-            # current_user_id = auth.current_user(request)
-            # user_info =  db.session.query(User).filter(User.id == current_user_id).first()
-            # company_id = user_info.company_id
-            # print(user_info.company_id)
+            print(type(result_ujson))
             for item in result_ujson: 
-
-                user_no = item.get("student_id",{})
-                company_id = item.get("company_id",{})
-                print(user_no)
-                extra_data = result
-                print('------------------'+extra_data)
-                extra_data = item
-                user_wallets = WalletUser()
-                user_wallets.user_no = user_no
-                user_wallets.company_id = company_id
-                user_wallets.extra_data = extra_data
-                db.session.add(user_wallets)
-                db.session.commit()
+                user_no = item.get("student_id")
+                company_id = item.get("company_id")
+                checkexist=db.session.query(WalletUser).filter(WalletUser.user_no == str(user_no)).first()
+                print(checkexist)
+                if checkexist is None:
+                    extra_data = result
+                    # print('------------------'+extra_data)
+                    extra_data = item
+                    user_wallets = WalletUser()
+                    user_wallets.user_no = user_no
+                    user_wallets.company_id = company_id
+                    user_wallets.extra_data = extra_data
+                    db.session.add(user_wallets)
+                    db.session.commit()
 
 
             ret = {
@@ -119,7 +106,7 @@ async def genqr(request):
             birthday = info_user['birthday']
             membercard_id = company_id + ''.join(random.choice(string.ascii_letters) for i in range(2))+str(student_id)
             print(membercard_id)
-            status = 1
+            # status = 1
 
             img = qrcode.make(membercard_id)
 
@@ -132,7 +119,7 @@ async def genqr(request):
             memcard.user_no = student_id
             memcard.user_name = student_name
             memcard.membercard_id = membercard_id
-            memcard.status = status
+            # memcard.status = status
 
             db.session.add(memcard)
             db.session.commit()

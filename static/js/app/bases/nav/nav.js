@@ -136,7 +136,7 @@ define(function (require) {
 							"text":"Quản Lý User Người Dùng",
 							// "icon":"fa fa-child",
 							"type":"view",
-							"route":"userwallet/collection"
+							"route":"wallet_user/collection"
 						},				
 						{
 							"text":"Quản Lý Thẻ Người Dùng",

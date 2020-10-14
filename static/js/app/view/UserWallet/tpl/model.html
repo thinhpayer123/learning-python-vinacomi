@@ -1,222 +1,67 @@
-<div block-bind="toolbar"></div>
-<div block-bind="content">
-	<!-- <div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>ID</label></div>
-		<div class="col-md-3">
-			<input type="text" class="form-control" data-bind="value:id" readonly/>
-		</div>
-	</div> -->
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Mã Đơn Vị </label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:company_id" class="form-control"/>
-		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>kiểu công ty</label></div>
-	</div> -->
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Mã Đơn Vị </label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:company_id" class="form-control"/>
-		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>kiểu công ty</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:company_type"/>
-		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-<<<<<<< HEAD
-			<div class="col-md-2 text-right"><label>ID người dùng</label></div>
-			<div class="col-md-3">
-				<input type="text" data-bind="value:user_id"/>
+
+<section class="content">
+	<div class="col-lg-12">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+				<h3 class="box-title">danh sách Tài Khoản Người Dùng</h3>
+				<div class="box-tools">
+					<div block-bind="toolbar"></div>
+				</div>
 			</div>
-	</div>
+			<!-- /.box-header -->
+			<div class="box-body table-responsive">
+				<div block-bind="content" class="row row-role" style="margin-right: 0px; margin-left: 0px;">
+					<div class="col-lg-6 base-content">
+						<!-- <div class="form-group">
+							<label>ID</label>
+							<input type="text" data-bind="value:id" class="form-control inputbox">
+						</div> -->
+						<!-- <div class="form-group">
+							<label>Kiểu Đơn Vị</label>
+							<input type="text" data-bind="value:company_type" class="form-control inputbox">
+						</div> -->
+						<div class="form-group">
+							<label>Mã Đơn Vị</label>
+							<input type="text" data-bind="value:company_id" class="form-control inputbox">
+						</div>
+						<div class="form-group">
+							<label>Mã Người Dùng</label>
+							<input type="text" data-bind="value:user_no" class="form-control inputbox">
+						</div>
+
+					</div>
+					<div class="col-lg-6 base-content">
+
+						<div class="form-group">
+							<label>Mã Ví </label>
+							<input type="text" data-bind="value:wallet_id" class="form-control inputbox">
+						</div>
+						<div class="form-group">
+							<label>Quan Hệ</label>
+							<input type="text" data-bind="value:relationship" class="form-control inputbox">
+						</div>
 
 
 
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>ID ví tiền</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:wallet_id" class="form-control"/>
-		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Quan hệ</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:relationship" class="form-control"/>
-		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Hóa đơn công ty</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:company_no" class="form-control"/>
-		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Hóa đơn người dùng</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:user_no" class="form-control"/>
-		</div>
-	</div>
-
-
-	<!-- <div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>extra_data</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:extra_data" class="form-control"/>
-		</div>
-	</div> -->
-
-=======	</div> -->
-<div class="row text-center" style="margin-bottom:10px">
-<<<<<<< HEAD
-	<div class="col-md-2 text-right"><label>ID công ty</label></div>
-=======
-	<div class="col-md-2 text-right"><label>Mã Đơn Vị </label></div>
->>>>>>> 07f6e8832b42d3ca8513c373df1a80e44ac99421
-	<div class="col-md-3">
-		<input type="text" data-bind="value:company_id" class="form-control"/>
-	</div>
-</div>
-<div class="row text-center" style="margin-bottom:10px">
-<<<<<<< HEAD
-	<div class="col-md-2 text-right"><label>kiểu công ty</label></div>
-=======
-	<div class="col-md-2 text-right"><label>Kiểu Đơn Vị</label></div>
->>>>>>> 07f6e8832b42d3ca8513c373df1a80e44ac99421
-	<div class="col-md-3">
-		<input type="text" data-bind="value:company_type"/>
-	</div>
-</div>
-<div class="row text-center" style="margin-bottom:10px">
-<<<<<<< HEAD
-		<div class="col-md-2 text-right"><label>ID người dùng</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:user_id"/>
-		</div>
-</div>
+					</div>
 
 
 
-<div class="row text-center" style="margin-bottom:10px">
-	<div class="col-md-2 text-right"><label>ID ví tiền</label></div>
-	<div class="col-md-3">
-		<input type="text" data-bind="value:wallet_id" class="form-control"/>
-	</div>
-</div>
-<div class="row text-center" style="margin-bottom:10px">
-	<div class="col-md-2 text-right"><label>Quan hệ</label></div>
-	<div class="col-md-3">
-		<input type="text" data-bind="value:relationship" class="form-control"/>
-	</div>
-</div>
-<div class="row text-center" style="margin-bottom:10px">
-	<div class="col-md-2 text-right"><label>Hóa đơn công ty</label></div>
-	<div class="col-md-3">
-		<input type="text" data-bind="value:company_no" class="form-control"/>
-	</div>
-</div>
-<div class="row text-center" style="margin-bottom:10px">
-	<div class="col-md-2 text-right"><label>Hóa đơn người dùng</label></div>
-	<div class="col-md-3">
-		<input type="text" data-bind="value:user_no" class="form-control"/>
-	</div>
-</div>
 
 
-<!-- <div class="row text-center" style="margin-bottom:10px">
-	<div class="col-md-2 text-right"><label>extra_data</label></div>
-	<div class="col-md-3">
-		<input type="text" data-bind="value:extra_data" class="form-control"/>
-	</div>
-</div> -->
+					</div>
+					
+					<div class="form-group col-lg-12">
+						<label>Thông Tin Chi Tiết </label>
+						<textarea type="text" data-bind="value:extra_data" class="form-control inputbox"></textarea>
+					</div>
 
-=======		<div class="col-md-3">
-			<input type="text" data-bind="value:company_type"/>
-		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-<<<<<<< HEAD
-			<div class="col-md-2 text-right"><label>ID người dùng</label></div>
-			<div class="col-md-3">
-				<input type="text" data-bind="value:user_id"/>
+				</div>
 			</div>
+			<hr>
+		</div>
+		<!-- /.box-body -->
 	</div>
+	<!-- /.box -->
+</section>
 
-
-
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>ID ví tiền</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:wallet_id" class="form-control"/>
-		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Quan hệ</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:relationship" class="form-control"/>
-		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Hóa đơn công ty</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:company_no" class="form-control"/>
-		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Hóa đơn người dùng</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:user_no" class="form-control"/>
-		</div>
-	</div>
-
-
-	<!-- <div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>extra_data</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:extra_data" class="form-control"/>
-		</div>
-	</div> -->
-
-=======
-			<div class="col-md-2 text-right"><label>Số Đơn Vị</label></div>
-			<div class="col-md-3">
-				<input type="text" data-bind="value:company_no"/>
-			</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Mã Người Dùng</label></div>
-		<div class="col-md-3">
-			<input type="text" class="form-control" data-bind="value:user_id" readonly/>
-		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Số Người Dùng</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:user_no" class="form-control"/>
-		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Mã Ví</label></div>
-		<div class="col-md-3">
-			<input type="text" data-bind="value:wallet_id"/>
-		</div>
-	</div>
-	<div class="row text-center" style="margin-bottom:10px">
-			<div class="col-md-2 text-right"><label>Vai Trò</label></div>
-			<div class="col-md-3">
-				<input type="text" data-bind="value:relationship"/>
-			</div>
-	</div>
-		<div class="row text-center" style="margin-bottom:10px">
-		<div class="col-md-2 text-right"><label>Thông Tin Chi Tiết</label></div>
-		<div class="col-md-3">
-			<input type="text" class="form-control" data-bind="value:extra_data" readonly/>
-		</div>
-	</div>
->>>>>>> 07f6e8832b42d3ca8513c373df1a80e44ac99421
-
-</div>

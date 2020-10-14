@@ -26,13 +26,13 @@ define(function (require) {
 						command: function() {
 
 							
-							var self = this
-							self.$el.find("#form-import").show()
+							var self = this;
+							self.$el.find("#form-import").show();
 							var url = self.getApp().serviceURL + '/api/v1/file/upload';
-							var input = document.querySelector('input[type="file"]')
+							var input = document.querySelector('input[type="file"]');
 
-							var data = new FormData()
-							data.append('file', input.files[0])
+							var data = new FormData();
+							data.append('file', input.files[0]);
 							// data.append('user', 'hubot')
 							
 							fetch('/api/v1/file/upload', {

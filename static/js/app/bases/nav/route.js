@@ -27,7 +27,7 @@ define(function (require) {
 		{
 			"collectionName": "membercard", 
 			"route": "membercard/collection(/:param)",
-			"$ref": "app/view/MemberCard/CollectionView",
+			"$ref": "app/view/membercard/CollectionView",
 		},
 		{
 			"collectionName": "membercard",
@@ -75,13 +75,13 @@ define(function (require) {
 			"$ref": "app/view/User/ModelView",
 		},
 		{
-			"collectionName": "userwallet", 
-			"route": "userwallet/collection(/:param)",
+			"collectionName": "wallet_user", 
+			"route": "wallet_user/collection(/:param)",
 			"$ref": "app/view/UserWallet/CollectionView",
 		},
 		{
-			"collectionName": "userwallet",
-			"route": "userwallet/model(/:param)",
+			"collectionName": "wallet_user",
+			"route": "wallet_user/model(/:param)",
 			"$ref": "app/view/UserWallet/ModelView",
 		},
 
