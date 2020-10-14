@@ -49,6 +49,7 @@ async def foodbook_callback(request):
         charge_history = param.get("charge_history")
 
         from_wallet_id = None
+        point_name = None
         brand_id = charge_history.get("pos_parent")
         membercard_id = charge_history.get("user_code")
         tran_id = charge_history.get("tran_id")
@@ -60,23 +61,21 @@ async def foodbook_callback(request):
 
         store_id = charge_history.get("pos_id")
 
-
-
-        resp_data = {
-                            "charge_history": {
-                                "pos_parent": brand_id,
-                                "pos_id": store_id,
-                                "user_code": membercard_id,
-                                "state": "SUCCESS",
-                                "response_message": "Thành công",
-                                "tran_id": tran_id,
-                                "tran_id_of_parner":''.join(random.choice(string.ascii_letters) for i in range(16)) , # transaction_hash,
-                                "paid_amount": value,
-                                "paid_discount": 0
-                            }
-        }
-        print(resp_data)
-        return json(resp_data)
+        # resp_data = {
+        #                     "charge_history": {
+        #                         "pos_parent": brand_id,
+        #                         "pos_id": store_id,
+        #                         "user_code": membercard_id,
+        #                         "state": "SUCCESS",
+        #                         "response_message": "Thành công",
+        #                         "tran_id": tran_id,
+        #                         "tran_id_of_parner":''.join(random.choice(string.ascii_letters) for i in range(16)) , # transaction_hash,
+        #                         "paid_amount": value,
+        #                         "paid_discount": 0
+        #                     }
+        # }
+        # print(resp_data)
+        # return json(resp_data)
 
         if store_id is not None:
             store  = Store.query.filter(Store.store_id == str(store_id)).first()
@@ -93,7 +92,7 @@ async def foodbook_callback(request):
             if card is not None:
                 from_wallet_id = card.wallet_id
             
-
+        print(point_name, store_id, membercard_id)
         if point_name is not None:
             url = app.config.get("HEOVANG_WALLET_API_URL") + "/wallet/api/v1/privilege_send_point_transaction"
             app_id = app.config.get("HEOVANG_APP_ID")
@@ -118,11 +117,17 @@ async def foodbook_callback(request):
             headers = {
                 "Content-Type": "application/json",
             }
+
+            print("param data", param)
             async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
                 async with session.post(url, json=data) as response:
                     if response.status == 200:
                         resp = await response.json()
                         transaction_hash = resp.get("transaction_hash")
+
+                        #luu lai don vao bang transaction 
+                        print("transaction_hash", transaction_hash)
+
                         resp_data = {
                             "charge_history": {
                                 "pos_parent": brand_id,
