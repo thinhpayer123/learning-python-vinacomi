@@ -49,6 +49,7 @@ async def foodbook_callback(request):
         charge_history = param.get("charge_history")
 
         from_wallet_id = None
+        point_name = None
         brand_id = charge_history.get("pos_parent")
         membercard_id = charge_history.get("user_code")
         tran_id = charge_history.get("tran_id")
@@ -91,7 +92,7 @@ async def foodbook_callback(request):
             if card is not None:
                 from_wallet_id = card.wallet_id
             
-
+        print(point_name, store_id, membercard_id)
         if point_name is not None:
             url = app.config.get("HEOVANG_WALLET_API_URL") + "/wallet/api/v1/privilege_send_point_transaction"
             app_id = app.config.get("HEOVANG_APP_ID")
