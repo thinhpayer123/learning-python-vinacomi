@@ -27,7 +27,7 @@ define(function (require) {
 		{
 			"collectionName": "membercard", 
 			"route": "membercard/collection(/:param)",
-			"$ref": "app/view/membercard/CollectionView",
+			"$ref": "app/view/MemberCard/CollectionView",
 		},
 		{
 			"collectionName": "membercard",
