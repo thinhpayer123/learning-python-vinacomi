@@ -14,7 +14,7 @@ define(function (require) {
     	template : template,
     	modelSchema	: schema,
 		urlPrefix: "/api/v1/",
-		// appointmentTime: null,
+		appointmentTime: null,
 		collectionName: "membercard",
 		tools: [
 			{
@@ -148,9 +148,9 @@ define(function (require) {
 				 { 
 	    	    	field: "status",label:"Trạng Thái",
 				 },
-				 { 
+				//  { 
 	    	    	// field: "extra_data",label:"Thông Tin Chi Tiết ",
-	    	     },
+	    	    //  },
 				//   { field: "ten", label: "Tên", width:250 },
 				//   { field: "gia", label: "Giá" },
 			 ],
@@ -176,7 +176,7 @@ define(function (require) {
                 // }
 				
 		    	
-			},
+			}
 			// onRendered: function() {
             //     loader.hide();
 			// },
