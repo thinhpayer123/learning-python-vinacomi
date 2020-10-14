@@ -107,7 +107,7 @@ async def foodbook_callback(request):
                 "company_id": company_id,
                 "app_id" : app_id,
                 "value": main_value + sub_value,
-                "data": ujson.dumps({
+                "data": {
                     "from": from_wallet_id,
                     "to": to_wallet_id,
                     "main_value": main_value,
@@ -115,7 +115,7 @@ async def foodbook_callback(request):
                     "value": main_value + sub_value,
                     "point_name": point_name,
                     "tran_id": tran_id
-                })
+                }
             }
 
             headers = {
