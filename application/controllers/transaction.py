@@ -124,6 +124,7 @@ async def foodbook_callback(request):
             print("param data", param)
             async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
                 async with session.post(url, json=data) as response:
+                    print(response.status, response.text())
                     if response.status == 200:
                         resp = await response.json()
                         transaction_hash = resp.get("transaction_hash")
