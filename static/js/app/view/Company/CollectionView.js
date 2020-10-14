@@ -42,7 +42,7 @@ define(function (require) {
 	    	    	field: "company_type",label:"Loai",
 				 },
 				 { 
-	    	    	field: "company_no",label:"Mã Đơn Vị",
+	    	    	field: "company_id",label:"Mã Đơn Vị",
 				 },
 				 { 
 	    	    	field: "name",label:"Tên Đơn Vị ",
