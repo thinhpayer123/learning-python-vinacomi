@@ -108,15 +108,22 @@ async def foodbook_callback(request):
                 "app_id" : app_id,
                 "value": main_value + sub_value,
                 "data": {
+                    "standard": "HEOVANG",
+                    "type": "payment",
                     "from": from_wallet_id,
+                    "sender": from_wallet_id,
                     "to": to_wallet_id,
+                    "brand_id": brand_id,
+                    "store_id": store_id,
                     "main_value": main_value,
                     "sub_value": sub_value,
                     "value": main_value + sub_value,
                     "point_name": point_name,
-                    "tran_id": tran_id
+                    "tran_id": tran_id,
+                    "message": "Thanh toán đơn hàng",
                 }
             }
+
 
             headers = {
                 "Content-Type": "application/json",
