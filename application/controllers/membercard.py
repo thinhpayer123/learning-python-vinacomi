@@ -93,7 +93,8 @@ def create_wallet_user(request):
             # membercard = MemberCard()
             userno = data_receiver['user_id']
             walletid = data_receiver['wallet_id']
-            admin = MemberCard.query.filter_by(user_no = userno).update(dict(wallet_id = walletid))
+            MemberCard.query.filter_by(user_no = userno).update(dict(wallet_id = walletid))
+            WalletUser.query.filter_by(user_no = userno).update(dict(wallet_id = walletid))
 
             # db.session.add(membercard)
             db.session.commit()

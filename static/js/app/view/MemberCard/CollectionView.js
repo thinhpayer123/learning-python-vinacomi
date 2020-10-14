@@ -149,7 +149,7 @@ define(function (require) {
 	    	    	field: "status",label:"Trạng Thái",
 				 },
 				 { 
-	    	    	field: "extra_data",label:"Thông Tin Chi Tiết ",
+	    	    	// field: "extra_data",label:"Thông Tin Chi Tiết ",
 	    	     },
 				//   { field: "ten", label: "Tên", width:250 },
 				//   { field: "gia", label: "Giá" },

@@ -56,7 +56,7 @@ define(function (require) {
 
 
 	    	     { field: "phone_number", label: "Số ĐIện Thoại"},
-				  { field: "extra_data", label: "Thông Tin Chi Tiết", width:250 },
+				//   { field: "extra_data", label: "Thông Tin Chi Tiết", width:250 },
 				//   { field: "gia", label: "Giá" },
 		     ],
 		     onRowClick: function(event){
