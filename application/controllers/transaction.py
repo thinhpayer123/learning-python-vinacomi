@@ -60,23 +60,21 @@ async def foodbook_callback(request):
 
         store_id = charge_history.get("pos_id")
 
-
-
-        resp_data = {
-                            "charge_history": {
-                                "pos_parent": brand_id,
-                                "pos_id": store_id,
-                                "user_code": membercard_id,
-                                "state": "SUCCESS",
-                                "response_message": "Thành công",
-                                "tran_id": tran_id,
-                                "tran_id_of_parner":''.join(random.choice(string.ascii_letters) for i in range(16)) , # transaction_hash,
-                                "paid_amount": value,
-                                "paid_discount": 0
-                            }
-        }
-        print(resp_data)
-        return json(resp_data)
+        # resp_data = {
+        #                     "charge_history": {
+        #                         "pos_parent": brand_id,
+        #                         "pos_id": store_id,
+        #                         "user_code": membercard_id,
+        #                         "state": "SUCCESS",
+        #                         "response_message": "Thành công",
+        #                         "tran_id": tran_id,
+        #                         "tran_id_of_parner":''.join(random.choice(string.ascii_letters) for i in range(16)) , # transaction_hash,
+        #                         "paid_amount": value,
+        #                         "paid_discount": 0
+        #                     }
+        # }
+        # print(resp_data)
+        # return json(resp_data)
 
         if store_id is not None:
             store  = Store.query.filter(Store.store_id == str(store_id)).first()
@@ -123,6 +121,10 @@ async def foodbook_callback(request):
                     if response.status == 200:
                         resp = await response.json()
                         transaction_hash = resp.get("transaction_hash")
+
+                        #luu lai don vao bang transaction 
+                        print("transaction_hash", transaction_hash)
+
                         resp_data = {
                             "charge_history": {
                                 "pos_parent": brand_id,
