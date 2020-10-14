@@ -20,7 +20,7 @@ define(function (require) {
 							};
 					},
 					set: function( obj ) {
-						return {company_id: obj.id, company_name: obj.name};
+						return {company_id: obj.company_id, company_name: obj.name};
 					}
 				},
 				brand: {

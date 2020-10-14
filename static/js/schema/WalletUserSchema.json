@@ -16,34 +16,30 @@
         "type": "string",
         "primary": true
     },
-    "company_type": {
+    "company_id": {
         "type": "string",
         "required": true
     },
-    "company_id": {
+    "company_type": {
         "type": "string"
     },
-    "name": {
+    "user_id": {
         "type": "string"
     },
-    "description": {
+    "wallet_id": {
         "type": "string"
     },
-    "phone_number": {
+    "relationship": {
+        "type": "string"
+    },
+    "company_no": {
         "type": "string",
-        "length": 63
+        "length": 15
     },
-    "email": {
-        "type": "string"
-    },
-    "point_name": {
+    "user_no": {
         "type": "string"
     },
     "extra_data": {
         "type": "json"
-    },
-    "active": {
-        "type": "boolean",
-        "default": true
     }
 }

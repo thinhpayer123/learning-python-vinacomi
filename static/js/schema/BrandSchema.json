@@ -39,5 +39,11 @@
     "active": {
         "type": "boolean",
         "default": true
+    },
+    "company_name": {
+        "type": "string"
+    },
+    "name": {
+        "type": "string"
     }
 }

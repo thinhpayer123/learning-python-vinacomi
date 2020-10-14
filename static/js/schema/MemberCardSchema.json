@@ -25,8 +25,7 @@
         "required": true
     },
     "wallet_id": {
-        "type": "string",
-        "required": true
+        "type": "string"
     },
     "start_date": {
         "type": ""
@@ -40,5 +39,17 @@
     "status": {
         "type": "number",
         "default": 1
+    },
+    "save_dir": {
+        "type": "string"
+    },
+    "user_no": {
+        "type": "string",
+        "length": 63
+    },
+    "user_name": {
+        "type": "string",
+        "required": true,
+        "length": 255
     }
 }

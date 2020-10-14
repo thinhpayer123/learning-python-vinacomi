@@ -48,10 +48,6 @@
         "type": "boolean",
         "default": true
     },
-    "company_id": {
-        "type": "string",
-        "required": true
-    },
     "extra_data": {
         "type": "json"
     },

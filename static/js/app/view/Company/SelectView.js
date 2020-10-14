@@ -45,7 +45,7 @@ define(function (require) {
 	    	    	field: "company_type",label:"Kiểu Đơn Vị ",width:100
 				 },
 				 { 
-	    	    	field: "company_no",label:"Mã Đơn Vị",width:100
+	    	    	field: "company_id",label:"Mã Đơn Vị",width:100
 				 },
 				 { 
 	    	    	field: "name",label:"Tên Đơn Vị ",width:200

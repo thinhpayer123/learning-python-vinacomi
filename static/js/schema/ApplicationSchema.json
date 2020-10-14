@@ -16,17 +16,25 @@
         "type": "string",
         "primary": true
     },
-    "company_type": {
+    "wallet_require_pass": {
+        "type": "boolean",
+        "default": true
+    },
+    "ios_release_version": {
         "type": "string",
-        "required": true
+        "length": 63
     },
-    "company_id": {
+    "ios_link_update": {
         "type": "string"
     },
-    "name": {
+    "android_release_version": {
+        "type": "string",
+        "length": 63
+    },
+    "android_link_update": {
         "type": "string"
     },
-    "description": {
+    "message_update": {
         "type": "string"
     },
     "phone_number": {
@@ -34,13 +42,25 @@
         "length": 63
     },
     "email": {
+        "type": "string",
+        "length": 63
+    },
+    "sms_api_key": {
         "type": "string"
     },
-    "point_name": {
+    "sms_secret_key": {
         "type": "string"
     },
-    "extra_data": {
-        "type": "json"
+    "sms_brand_name": {
+        "type": "string",
+        "length": 63
+    },
+    "sms_text": {
+        "type": "string"
+    },
+    "sms_partner": {
+        "type": "string",
+        "length": 63
     },
     "active": {
         "type": "boolean",
