@@ -25,9 +25,9 @@ roles_users = db.Table('roles_users',
 
 class Company(CommonModel):
     __tablename__ = 'company'
-    id = db.Column(String(), primary_key=True)
+    id = db.Column(String(), primary_key=True,default=default_uuid)
     company_type = db.Column(String(), nullable=False)
-    company_no = db.Column(String())
+    company_id = db.Column(String())
     name = db.Column(String())
     description = db.Column(String())
     phone_number = db.Column(String(63))
