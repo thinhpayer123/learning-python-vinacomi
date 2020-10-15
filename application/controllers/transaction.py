@@ -158,9 +158,7 @@ async def foodbook_callback(request):
                         # print(resp_data_json + type(resp_data_json))
                         #luu lai don vao bang transaction 
                         charge_historys = resp_data.get("charge_history")
-
-                        print("charge_history"+charge_history)
-                        
+                        print(charge_history)
                         transaction_save = Transaction()
                         transaction_save.company_id = charge_historys.get("pos_parent")
                         transaction_save.tran_id = charge_historys.get("tran_id")
