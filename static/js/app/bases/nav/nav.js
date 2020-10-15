@@ -90,29 +90,36 @@ define(function (require) {
 			"type": "category",
 			"entries": [
 				{
-					"text":"Đơn Vị",
+				"text":"Quản Trị Đơn Vị",
 					// "icon":"fa fa-child",
-					"type":"view",
-					"route":"company/collection"
-				},
-				{
-					"text":"Thương Hiệu",
-					// "icon":"fa fa-child",
-					"type":"view",
-					"href":"brand/collection"
-				},
+					"type":"category",
+					"route":"",
+					"entries":[{
+						"text":"Đơn Vị",
+						// "icon":"fa fa-child",
+						"type":"view",
+						"route":"company/collection"
+					},
+					{
+						"text":"Thương Hiệu",
+						// "icon":"fa fa-child",
+						"type":"view",
+						"href":"brand/collection"
+					},
 
-				{
-					"text":"Vai Trò",
-					// "icon":"fa fa-child",
-					"type":"view",
-					"route":"role/collection"
-				},
-				{
-					"text":"Store",
-					// "icon":"fa fa-child",
-					"type":"view",
-					"route":"store/collection"
+					{
+						"text":"Vai Trò",
+						// "icon":"fa fa-child",
+						"type":"view",
+						"route":"role/collection"
+					},
+					{
+						"text":"Store",
+						// "icon":"fa fa-child",
+						"type":"view",
+						"route":"store/collection"
+					}
+				]
 				},
 				{
 				"text":"Giao Dịch & Đơn Hàng",
