@@ -238,7 +238,197 @@ class Transaction(CommonModel):
     id = db.Column(String, primary_key=True, default=default_uuid)
     company_id = db.Column(String(), index=True, nullable=False)
 
+    # created_at = db.Column(BigInteger(), index=True)
+    validated_at = db.Column(BigInteger(), index=True)
+    tran_id = db.Column(String(), index=True)
+    transaction_hash = db.Column(String(), index=True)
+    to_wallet_id =  db.Column(String(), index=True)
+    from_wallet_id =  db.Column(String(), index=True)
+    transaction_type =  db.Column(String(), index=True) #payment, transfer
+    
+    main_value = db.Column(BigInteger())
+    sub_value = db.Column(BigInteger())
+    value = db.Column(BigInteger())
+    
     extra_data = db.Column(JSONB())
+
+
+class Order(CommonModel):
+    __tablename__ = 'order'
+    pass
+
+# {
+#   "_id": "IPOSECOSYSTEM_IPOSECOSYSTEM_DL_1A000",
+#   "_rev": "1-6e76d2525e21ec070222a0a3188d0c38",
+#   "coupon_amount": 0,
+#   "contact_phone_number": "+84398170149",
+#   "brand_id": "IPOSECOSYSTEM",
+#   "membership_id": "84398170149",
+#   "membership_type": "PLA",
+#   "membership_name": "Hoàng Oanh",
+#   "amount": 95150,
+#   "membership_wallet_id": "AA00009262",
+#   "list_promotion": [
+#     {
+#       "amount": 9100,
+#       "id": "ship_fee_IPOSECOSYSTEM_7RGYLKES3YA",
+#       "name": "Hỗ trợ phí ship",
+#       "type": "discount"
+#     }
+#   ],
+#   "order_type": "DELI",
+#   "contact_fullname": "Hoàng Oanh",
+#   "total_amount": 112050.00000000001,
+#   "delivery_info": {
+#     "address": "33 Thái Hà, Trung Liệt, Đống Đa, Hà Nội, Việt Nam",
+#     "lng": 105.8218917,
+#     "lat": 21.0109945,
+#     "distance": 0.85,
+#     "ship_fee": 26000,
+#     "partner_name": "AHAMOVE_PREPAID",
+#     "order_code": "DL_2A598ZB",
+#     "ahamove_code": "RG9RR7",
+#     "ahamove_link": "https://cloud.ahamove.com/share-order/RG9RR7/842473006336?info=false",
+#     "driver_id": "84989099281",
+#     "driver_name": "Trần Như Trường",
+#     "driver_plate": "",
+#     "partner_ship_fee": 26000,
+#     "status": "COMPLETED",
+#     "note": "; Đơn hàng DL_2A598ZB. Tài xế đi vào cửa hàng IPOSECOSYSTEM Coffee nói AhaMove đến lấy đồ đi giao."
+#   },
+#   "store_id": "10613",
+#   "payment_info": [
+#     {
+#       "amount": 112050,
+#       "currency": "VNĐ",
+#       "image_url": "https://heovang.ss-hn-1.vccloud.vn:443/images/merchant-profile/1575273105178-Icon-App-60x603x.png",
+#       "name": "SKYBANK",
+#       "payment_method_type": "HEOVANG_WALLET",
+#       "method_id": "SKYBANK",
+#       "transaction_hash": "0x36054c1335822878b034fd9becfe310dbc68a7f754a5bd8a7e84c8adbfb2140b"
+#     }
+#   ],
+#   "is_estimate": 0,
+#   "discount_extra_amount": 9100,
+#   "items": [
+#     {
+#       "quantity": 1,
+#       "discount": 0.45,
+#       "amount": 30250.000000000004,
+#       "item_name": "BƯỞI NHA ĐAM",
+#       "foc": 1,
+#       "is_submit": false,
+#       "image_url": "https://heovang.ss-hn-1.vccloud.vn:443/images/merchant-profile/1566273786384-BUOI_NHA_AM_-_F.jpg",
+#       "item_id": "BND",
+#       "price": 55000,
+#       "row_state": 1,
+#       "item_type_id": "NTCT",
+#       "is_eat_with": 0
+#     },
+#     {
+#       "quantity": 1,
+#       "discount": 0.45,
+#       "amount": 32450.000000000004,
+#       "item_name": "SINH TỐ BƠ",
+#       "foc": 1,
+#       "is_submit": false,
+#       "image_url": "https://heovang.ss-hn-1.vccloud.vn:443/images/merchant-profile/1566274674840-SINH_TO_BO_-_F.jpg",
+#       "item_id": "STB",
+#       "price": 59000,
+#       "row_state": 1,
+#       "item_type_id": "STTCT",
+#       "is_eat_with": 0
+#     },
+#     {
+#       "quantity": 1,
+#       "discount": 0.45,
+#       "amount": 32450.000000000004,
+#       "item_name": "SINH TỐ BƠ & MÃNG CẦU",
+#       "foc": 1,
+#       "is_submit": false,
+#       "image_url": "https://heovang.ss-hn-1.vccloud.vn:443/images/merchant-profile/1565769745071-Sinh_to_bo_mang_cau.jpg",
+#       "item_id": "STBMC",
+#       "price": 59000,
+#       "row_state": 1,
+#       "item_type_id": "STTCT",
+#       "is_eat_with": 0
+#     }
+#   ],
+#   "membership_phone_number": "+84398170149",
+#   "discount_extra": 0.1,
+#   "company_id": "IPOSECOSYSTEM",
+#   "app_id": "e00cb617-d001-4607-8ba1-2f74de80a8d1",
+#   "created_at": 1581644203,
+#   "updated_at": 1581645227,
+#   "coupon_code": "",
+#   "send_order_to": 1,
+#   "doc_type": "delivery_order",
+#   "foodbook_code": "DL_2A598ZB",
+#   "id": "DL_2A598ZB",
+#   "status": "COMPLETED",
+#   "history_state_order": [
+#     {
+#       "created_at": 1581644204,
+#       "status": "WAIT_PAYMENT",
+#       "note": ""
+#     },
+#     {
+#       "created_at": 1581644212,
+#       "status": "PAYMENT",
+#       "note": ""
+#     },
+#     {
+#       "created_at": 1581644213,
+#       "status": "WAIT_CONFIRM",
+#       "note": "Tên người nhận: Hoàng Oanh, Số điện thoại người nhận: +84398170149, Note: ",
+#       "time": "2020-02-14 08:36:53"
+#     },
+#     {
+#       "created_at": 1581644236,
+#       "status": "CONFIRMED",
+#       "note": "dbabd8c12aa17772",
+#       "time": "2020-02-14 08:37:16"
+#     },
+#     {
+#       "created_at": 1581644335,
+#       "status": "ASSIGNING",
+#       "note": "; Đơn hàng DL_2A598ZB. Tài xế đi vào cửa hàng IPOSECOSYSTEM Coffee nói AhaMove đến lấy đồ đi giao.",
+#       "time": "2020-02-14 08:38:55"
+#     },
+#     {
+#       "created_at": 1581644353,
+#       "status": "ACCEPTED",
+#       "note": "; Đơn hàng DL_2A598ZB. Tài xế đi vào cửa hàng IPOSECOSYSTEM Coffee nói AhaMove đến lấy đồ đi giao.",
+#       "time": "2020-02-14 08:39:13"
+#     },
+#     {
+#       "created_at": 1581644963,
+#       "status": "IN PROCESS",
+#       "note": "; Đơn hàng DL_2A598ZB. Tài xế đi vào cửa hàng IPOSECOSYSTEM Coffee nói AhaMove đến lấy đồ đi giao.",
+#       "time": "2020-02-14 08:49:23"
+#     },
+#     {
+#       "created_at": 1581645227,
+#       "status": "COMPLETED",
+#       "note": "; Đơn hàng DL_2A598ZB. Tài xế đi vào cửa hàng IPOSECOSYSTEM Coffee nói AhaMove đến lấy đồ đi giao.",
+#       "time": "2020-02-14 08:53:47"
+#     }
+#   ],
+#   "ship_fee": 26000,
+#   "delivery_partner_info": {
+#     "partner_name": "AHAMOVE_PREPAID",
+#     "order_code": "DL_2A598ZB",
+#     "ahamove_code": "RG9RR7",
+#     "ahamove_link": "https://cloud.ahamove.com/share-order/RG9RR7/842473006336?info=false",
+#     "driver_id": "84989099281",
+#     "driver_name": "Trần Như Trường",
+#     "driver_plate": "",
+#     "partner_ship_fee": 26000,
+#     "distance": 0.85,
+#     "status": "COMPLETED",
+#     "note": "; Đơn hàng DL_2A598ZB. Tài xế đi vào cửa hàng IPOSECOSYSTEM Coffee nói AhaMove đến lấy đồ đi giao."
+#   }
+# }
 
 
 
