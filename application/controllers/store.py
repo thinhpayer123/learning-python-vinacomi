@@ -77,9 +77,9 @@ def sync_store(request):
         # print(type(data_int))
         # store_id = data_int["id"]
         a = str(data_int["Id"])
-        checkitem = db.session.query(Store.brand_id==a).first()
+        checkitem = db.session.query(Store).filter(Store.brand_id==a).first()
         print(checkitem)
-        if checkitem is not None:
+        if checkitem is None:
             store = Store()
             store.store_id = str(data_int["Id"])
             store.brand_id = data_int["Pos_Name"]
