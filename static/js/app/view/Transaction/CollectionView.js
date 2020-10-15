@@ -40,10 +40,15 @@ define(function (require) {
 	    	    //  },
 				 { field: "company_id", label: "Mã Đơn Vị"},
 	    	     { field: "username", label: "Tên Người Dùng"},
-	    	     { field: "membercard_id", label: "Mã Người Dùng"},
+				 { field: "tran_id", label: "Mã Người Dùng"},
+				 { field: "value", label: "Mã Người Dùng"},
+	    	     { field: "status", label: "Mã Người Dùng"},
+	    	    //  { field: "membercard_id", label: "Mã Người Dùng"},
+
 				 
-	    	     { field: "tran_id", label: "Mã Giao Dịch"},
-				  { field: "status", label: "Trạng Thái ", width:250 },
+	    	    //  { field: "tran_id", label: "Mã Giao Dịch"},
+				//   { field: "status", label: "Trạng Thái ", width:250 },
+
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

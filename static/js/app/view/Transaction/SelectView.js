@@ -36,11 +36,11 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-				{ 
-	    	    	field: "id",label:"ID",
-	    	     },
-	    	     { field: "company_id", label: "Mã Đơn Vị"},
-				  { field: "extra_data", label: "Thông Tin Chi Tiết ", width:250 },
+				{ field: "company_id", label: "Mã Đơn Vị"},
+				{ field: "username", label: "Tên Người Dùng"},
+				{ field: "tran_id", label: "Mã Người Dùng"},
+				{ field: "value", label: "Mã Người Dùng"},
+				{ field: "status", label: "Mã Người Dùng"},
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;
