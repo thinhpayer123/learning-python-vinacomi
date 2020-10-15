@@ -43,7 +43,17 @@ define(function (require) {
 			"collectionName": "role",
 			"route": "role/model(/:param)",
 			"$ref": "app/view/Role/ModelView",
-		},		
+		},
+		{
+			"collectionName": "order", 
+			"route": "order/collection(/:param)",
+			"$ref": "app/view/Order/CollectionView",
+		},
+		{
+			"collectionName": "order",
+			"route": "order/model(/:param)",
+			"$ref": "app/view/Order/ModelView",
+		},			
 		{
 			"collectionName": "store", 
 			"route": "store/collection(/:param)",
