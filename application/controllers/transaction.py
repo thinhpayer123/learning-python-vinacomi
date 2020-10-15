@@ -4,6 +4,8 @@ from application.models.model import User, Company, Brand, Store, Role, MemberCa
 from application.extensions import auth
 from gatco.exceptions import ServerError
 # import json
+from application.database import db
+
 from gatco.response import json
 
 from application.server import app
@@ -137,7 +139,6 @@ async def foodbook_callback(request):
                         resp = await response.json()
                         transaction_hash = resp.get("transaction_hash")
 
-                        #luu lai don vao bang transaction 
                         print("transaction_hash", transaction_hash)
 
                         resp_data = {
@@ -153,6 +154,13 @@ async def foodbook_callback(request):
                                 "paid_discount": 0
                             }
                         }
+                        #luu lai don vao bang transaction 
+
+                        transaction_save = Transaction()
+                        transaction_save.company_id = brand_id
+                        transaction_save.extra_data = resp_data
+                        db.session.add(transaction_save)
+                        db.session.commit()
 
                         return json(resp)
     elif event == "sale_manager":
