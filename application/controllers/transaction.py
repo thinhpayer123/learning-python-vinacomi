@@ -167,9 +167,9 @@ async def foodbook_callback(request):
                         transaction_save.status = charge_historys.get("state")
                         user_no= db.session.query(MemberCard).filter(membercard_id == charge_historys.get("user_code")).first()
                         transaction_save.username = user_no.user_name
-                        # transaction_save.tran_id = 
-
-
+                        transaction_save.from_wallet_id = data.get("from")
+                        transaction_save.to_wallet_id = data.get("to")
+                        transaction_save.value = data.get("value")
                         transaction_save.extra_data = resp_data
                         db.session.add(transaction_save)
                         db.session.commit()

@@ -35,11 +35,15 @@ define(function (require) {
 		],
     	uiControl:{
     		fields: [
-	    	     { 
-	    	    	field: "id",label:"ID",
-	    	     },
-	    	     { field: "company_id", label: "Mã Đơn Vị"},
-				  { field: "extra_data", label: "Thông Tin Chi Tiết ", width:250 },
+	    	    //  { 
+	    	    // 	field: "id",label:"ID",
+	    	    //  },
+				 { field: "company_id", label: "Mã Đơn Vị"},
+	    	     { field: "username", label: "Tên Người Dùng"},
+	    	     { field: "membercard_id", label: "Mã Người Dùng"},
+				 
+	    	     { field: "tran_id", label: "Mã Giao Dịch"},
+				  { field: "status", label: "Trạng Thái ", width:250 },
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){
