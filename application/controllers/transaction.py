@@ -155,6 +155,7 @@ async def foodbook_callback(request):
                             }
                         }
                         resp_data_json = ujson.loads(resp_data)
+                        print(resp_data_json + type(resp_data_json))
                         #luu lai don vao bang transaction 
                         charge_historys = resp_data_json.get("charge_history")
                         print("charge_history"+charge_history)
