@@ -250,7 +250,7 @@ class Transaction(CommonModel):
     sub_value = db.Column(BigInteger()) # tiền trong tài khoản khuyến mãi 
     value = db.Column(BigInteger()) # tổng tiền trả 
     membercard_id =  db.Column(String(), index=True) #payment, transfer
-
+    username = db.Column(String())
     extra_data = db.Column(JSONB())
 
 
