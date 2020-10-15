@@ -109,7 +109,7 @@ define(function (require) {
                     
                 },
 				 
-				  { field: "wallet_id", label: "Mã Ví", width:250 },
+				//   { field: "wallet_id", label: "Mã Ví", width:250 },
 				//   { field: "gia", label: "Giá" },
 		     ],
 		     onRowClick: function(event){

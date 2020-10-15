@@ -104,7 +104,7 @@ async def genqr(request):
             company_id = info_user['company_id']
             student_name = info_user['student_name']
             birthday = info_user['birthday']
-            membercard_id = company_id + ''.join(random.choice(string.ascii_letters) for i in range(2))+str(student_id)
+            membercard_id = str(student_id)
             print(membercard_id)
             # status = 1
 
