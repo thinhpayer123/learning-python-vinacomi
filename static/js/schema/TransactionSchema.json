@@ -20,6 +20,42 @@
         "type": "string",
         "required": true
     },
+    "validated_at": {
+        "type": ""
+    },
+    "tran_id": {
+        "type": "string"
+    },
+    "transaction_hash": {
+        "type": "string"
+    },
+    "to_wallet_id": {
+        "type": "string"
+    },
+    "from_wallet_id": {
+        "type": "string"
+    },
+    "transaction_type": {
+        "type": "string"
+    },
+    "status": {
+        "type": "string"
+    },
+    "main_value": {
+        "type": ""
+    },
+    "sub_value": {
+        "type": ""
+    },
+    "value": {
+        "type": ""
+    },
+    "membercard_id": {
+        "type": "string"
+    },
+    "username": {
+        "type": "string"
+    },
     "extra_data": {
         "type": "json"
     }

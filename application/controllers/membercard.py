@@ -51,11 +51,11 @@ def create_wallet_user(request):
         dataSent['company_id'] = extra_userWallet['company_id']
         dataSent['user_fullname'] = extra_userWallet['student_name']
         dataSent['user_token'] = ''.join(random.choice(string.ascii_letters) for i in range(128))
-        dataSent['point_name'] = "HEOXU"
+        dataSent['point_name'] = "HVDEV" # lấy bên school
         print(ujson.dumps(dataSent))
 
         url_sent = "https://app.heovang.vn/merchant/api/v1/app_login"
-        headers = {'content-type': 'application/json','X-APP-KEY': 'TestCanteenApp'}
+        headers = {'content-type': 'application/json','X-APP-KEY': 'dnasjd19hdadbahsd1udb19ejjadbjasdb19edjabdhsb9qjjsfbhsfbowjfjseb'}
         response = requests.post(url_sent,data=ujson.dumps(dataSent), headers = headers)
         # response = {
 #     "_id": "wallet_point_HEOXU_AE00651265",
