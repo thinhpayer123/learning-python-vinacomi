@@ -50,7 +50,7 @@ define(function (require) {
 						name: "create",
 						type: "button",
 						buttonClass: "btn-success btn-sm",
-						label: "Tạo Ví",
+						label: "Tạo Đơn Hàng",
 						command: function(){
 							var self = this;
 							var path = self.collectionName + '/model';
