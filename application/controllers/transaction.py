@@ -161,6 +161,7 @@ async def foodbook_callback(request):
                         transaction_save.extra_data = resp_data
                         db.session.add(transaction_save)
                         db.session.commit()
+                        print("transac save successfully")
 
                         return json(resp)
     elif event == "sale_manager":
