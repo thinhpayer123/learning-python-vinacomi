@@ -190,7 +190,7 @@ def create_admin(password='123456'):
     """ Create default data. """
     company = Company.query.filter(Company.id == "ICANTEEN").first()
     if(company is None):
-        company = Company(id='ICANTEEN', name="iCanteen", company_no="ICT")
+        company = Company(id='ICANTEEN', name="iCanteen", company_id="ICT")
         company.company_type = "education"
         db.session.add(company)
         db.session.flush()
