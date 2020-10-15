@@ -155,9 +155,17 @@ async def foodbook_callback(request):
                             }
                         }
                         #luu lai don vao bang transaction 
-
+                        charge_historys = resp_data.get("charge_history")
+                        print("charge_history"+charge_history)
                         transaction_save = Transaction()
-                        transaction_save.company_id = brand_id
+                        transaction_save.company_id = charge_historys.get("pos_parent")
+                        transaction_save.tran_id = charge_historys.get("tran_id")
+                        transaction_save.transaction_hash = transaction_hash
+                        transaction_save.status = charge_historys.get("state")
+                        
+                        # transaction_save.tran_id = 
+
+
                         transaction_save.extra_data = resp_data
                         db.session.add(transaction_save)
                         db.session.commit()

@@ -239,23 +239,112 @@ class Transaction(CommonModel):
     company_id = db.Column(String(), index=True, nullable=False)
 
     # created_at = db.Column(BigInteger(), index=True)
-    validated_at = db.Column(BigInteger(), index=True)
+    validated_at = db.Column(BigInteger(), index=True) # trả về từ HEOVANG 
     tran_id = db.Column(String(), index=True)
     transaction_hash = db.Column(String(), index=True)
     to_wallet_id =  db.Column(String(), index=True)
     from_wallet_id =  db.Column(String(), index=True)
     transaction_type =  db.Column(String(), index=True) #payment, transfer
-    
-    main_value = db.Column(BigInteger())
-    sub_value = db.Column(BigInteger())
-    value = db.Column(BigInteger())
+    status = db.Column(String())
+    main_value = db.Column(BigInteger()) # tiền trong tài khoản chính 
+    sub_value = db.Column(BigInteger()) # tiền trong tài khoản khuyến mãi 
+    value = db.Column(BigInteger()) # tổng tiền trả 
     
     extra_data = db.Column(JSONB())
 
 
 class Order(CommonModel):
     __tablename__ = 'order'
-    pass
+    id = db.Column(String, primary_key=True, default=default_uuid)
+    membership_id = db.Column(String(),index=True)
+    membership_name = db.Column(String())
+    tran_id = db.Column(String(), index=True)
+    transaction_hash = db.Column(String(),index=True)
+    tran_date = db.Column(BigInteger())
+    tran_date_fmt = db.Column(String()) #trandate_format
+    total_amount = db.Column(String())# tổng tiền 
+
+    items = db.Column(JSONB())
+
+
+    # pass
+
+# {
+# 	"event_id": 11,                  //client switch theo biến này để xử lý logic code
+# 	"event": "sale_manager",            //tên event
+# 	"timestamp": "1509702721626",                        
+# 	"sale_manager": {                                
+# 		"pos_name": "Nhà Hàng Đất Xanh - Hoàng Quốc Việt",            //tên thương hiệu
+# 		"pos_type": "ipos_pc",                  
+# 		"channels": [                              
+# 			{
+# 				"channel": "voucher",
+# 				"source": "10000007"
+# 			},
+# 			{
+# 				"channel": "delivery",
+# 				"source": "10000006"
+# 			}
+# 		],
+# 		"pos_parent": "FOODBOOK",           //tên thương hiệu
+# 		"pos_id": 296,                      //id điểm bán hàng
+# 		"tran_id": "33902",                 //id giao dịch dưới máy POS. Unique: pos_parent + tran_id  
+# 		"tran_date": "2017-11-03 16:51:00",            
+# 		"created_at": "2017-11-03 16:52:01",            
+# 		"discount_extra": 0,                  //thông tin giảm giá của nhà hàng (%)
+# 		"discount_extra_amount": 0,           //thông tin giảm giá của nhà hàng tính ra tiền
+# 		"service_charge": 0,            //thông tin phí dịch vụ của hóa đơn (%)
+# 		"service_charge_amount": 0,     //thông tin phí dịch vụ tính ra tiền
+# 		"coupon_amount": 3600,          //số tiền giảm giá của bên thứ 3
+# 		"coupon_code": "FBDAT",         //mã voucher giảm giá
+# 		"ship_fee_amount": 0,           //phí vận chuyển
+# 		"discount_amount_on_item": 4000,  //thông tin giảm giá trên món ăn (của nhà hàng)          
+# 		"original_amount": 40000,         //Not include any discount. Before VAT, Addition Service...
+# 		"vat_amount": 0,                  //tiền VAT    
+# 		"bill_amount": 36000,             //NOT include discount = original_amount + ship_fee_amount + service_charge_amount + vat_amount
+# 		"total_amount": 32400,            ///amount of customer really pay. = (original_amount + ship_fee_amount + service_charge_amount + vat_amount) - (voucher_amount + item_discount_amount + discount_extra_amount)      
+# 		"membership_name": "DTTTTTTTTT1",                  
+# 		"membership_id": "84967142868",                        
+# 		"sale_note": "Từ FOODBOOK_CMS(2017-11-03 16:51:06):",      
+# 		"tran_no": "TA0014",                                    
+# 		"sale_type": "TA",                                    
+# 		"hour": 16,                                          
+# 		"pos_city": 129,                                          
+# 		"pos_district": 12904,                                    
+# 		"items": [                                          
+# 			{
+# 				"item_id": "SU04",
+# 				"item_name": "Thủy mộc Sơn cầm ",
+# 				"price": 20000,
+# 				"quantity": 1,
+# 				"amount": 18000,
+# 				"discount_amount": 2000
+# 			},
+# 			{
+# 				"item_id": "SU04",
+# 				"item_name": "Thủy mộc Sơn cầm ",
+# 				"price": 20000,
+# 				"quantity": 1,
+# 				"amount": 18000,
+# 				"discount_amount": 2000
+# 			}
+# 		],
+# 		"payment_info": [                                    
+# 			{
+# 				"tran_id": "FOODBOOK33902",            //mã đơn hàng In trên bill QR code
+# 				"method_id": "CASH",            
+# 				"name": "CASH",
+# 				"currency": "VND",
+# 				"amount": 32400,                  
+# 				"trace_no": ""                  //Id giao dịch thanh toán của bên thứ 3
+# 			}
+# 		],
+# 	}
+# }
+
+
+
+
 
 # {
 #   "_id": "IPOSECOSYSTEM_IPOSECOSYSTEM_DL_1A000",
@@ -267,36 +356,14 @@ class Order(CommonModel):
 #   "membership_type": "PLA",
 #   "membership_name": "Hoàng Oanh",
 #   "amount": 95150,
+
 #   "membership_wallet_id": "AA00009262",
-#   "list_promotion": [
-#     {
-#       "amount": 9100,
-#       "id": "ship_fee_IPOSECOSYSTEM_7RGYLKES3YA",
-#       "name": "Hỗ trợ phí ship",
-#       "type": "discount"
-#     }
-#   ],
-#   "order_type": "DELI",
+
 #   "contact_fullname": "Hoàng Oanh",
 #   "total_amount": 112050.00000000001,
-#   "delivery_info": {
-#     "address": "33 Thái Hà, Trung Liệt, Đống Đa, Hà Nội, Việt Nam",
-#     "lng": 105.8218917,
-#     "lat": 21.0109945,
-#     "distance": 0.85,
-#     "ship_fee": 26000,
-#     "partner_name": "AHAMOVE_PREPAID",
-#     "order_code": "DL_2A598ZB",
-#     "ahamove_code": "RG9RR7",
-#     "ahamove_link": "https://cloud.ahamove.com/share-order/RG9RR7/842473006336?info=false",
-#     "driver_id": "84989099281",
-#     "driver_name": "Trần Như Trường",
-#     "driver_plate": "",
-#     "partner_ship_fee": 26000,
-#     "status": "COMPLETED",
-#     "note": "; Đơn hàng DL_2A598ZB. Tài xế đi vào cửa hàng IPOSECOSYSTEM Coffee nói AhaMove đến lấy đồ đi giao."
-#   },
-#   "store_id": "10613",
+
+#   "store_id": "10613"
+# ,
 #   "payment_info": [
 #     {
 #       "amount": 112050,
@@ -308,8 +375,7 @@ class Order(CommonModel):
 #       "transaction_hash": "0x36054c1335822878b034fd9becfe310dbc68a7f754a5bd8a7e84c8adbfb2140b"
 #     }
 #   ],
-#   "is_estimate": 0,
-#   "discount_extra_amount": 9100,
+
 #   "items": [
 #     {
 #       "quantity": 1,
@@ -354,6 +420,8 @@ class Order(CommonModel):
 #       "is_eat_with": 0
 #     }
 #   ],
+
+
 #   "membership_phone_number": "+84398170149",
 #   "discount_extra": 0.1,
 #   "company_id": "IPOSECOSYSTEM",
