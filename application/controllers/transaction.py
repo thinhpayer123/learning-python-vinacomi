@@ -154,15 +154,16 @@ async def foodbook_callback(request):
                                 "paid_discount": 0
                             }
                         }
+                        resp_data_json = ujson.loads(resp_data)
                         #luu lai don vao bang transaction 
-                        charge_historys = resp_data.get("charge_history")
+                        charge_historys = resp_data_json.get("charge_history")
                         print("charge_history"+charge_history)
                         transaction_save = Transaction()
                         transaction_save.company_id = charge_historys.get("pos_parent")
                         transaction_save.tran_id = charge_historys.get("tran_id")
                         transaction_save.transaction_hash = transaction_hash
                         transaction_save.status = charge_historys.get("state")
-                        
+
                         # transaction_save.tran_id = 
 
 
