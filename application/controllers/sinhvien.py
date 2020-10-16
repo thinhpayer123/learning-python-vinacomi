@@ -99,6 +99,7 @@ async def genqr(request):
         userWallets = db.session.query(WalletUser).all()
         for user in userWallets:
             info_user = user.extra_data
+            wallet_id = user.wallet_id
             student_id = info_user['student_id']
 
             company_id = info_user['company_id']
@@ -107,14 +108,34 @@ async def genqr(request):
             membercard_id = str(student_id)
             print(membercard_id)
             # status = 1
-
             img = qrcode.make(membercard_id)
 
-            name_img =    student_name + str(student_id) + '-' +   '.png'
-            # draw.text((100, 100), name_img)
+            # name_img = str(wallet_id) + '-' +   '.png'
+            # link_img = './' + name_img
+            # img.save(link_img)
 
+            # sample text and font
+            font = ImageFont.truetype("/usr/share/fonts/truetype/DejaVuSans-Bold.ttf", 28, encoding="unic")
+            # get the line size
+            text_width, text_height = font.getsize(wallet_id)
+
+            # create a blank canvas with extra space between lines
+            canvas = Image.new('RGB', (img.size[0] + 10, text_height + 10), "white")
+
+            # draw the text onto the text canvas, and use black as the text color
+            draw = ImageDraw.Draw(canvas)
+            draw.text(((img.size[0] - text_width)/2,0), wallet_id, 'black', font)
+
+            dst = Image.new('RGB', (img.size[0], img.size[1] + canvas.height))
+            dst.paste(img, (0, 0))
+            dst.paste(canvas, (0, img.size[1]))
+
+            name_img =    student_name + str(student_id) + '-' +   '.png'
             link_img = fsroot + 'qrcode/' + name_img
-            img.save(link_img)
+            
+            dst.save(link_img, "PNG")
+
+
             # image.save('greeting_card.png')
             memcard = MemberCard()
             memcard.save_dir =  link_img
