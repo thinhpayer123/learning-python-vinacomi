@@ -66,20 +66,20 @@ async def foodbook_callback(request):
 
         store_id = charge_history.get("pos_id")
 
-        # resp_data = {
-        #                     "charge_history": {
-        #                         "pos_parent": brand_id,
-        #                         "pos_id": store_id,
-        #                         "user_code": membercard_id,
-        #                         "state": "SUCCESS",
-        #                         "response_message": "Thành công",
-        #                         "tran_id": tran_id,
-        #                         "tran_id_of_parner":''.join(random.choice(string.ascii_letters) for i in range(16)) , # transaction_hash,
-        #                         "paid_amount": value,
-        #                         "paid_discount": 0
-        #                     }
-        # }
-        # print(resp_data)
+        resp_data = {
+                            "charge_history": {
+                                "pos_parent": brand_id,
+                                "pos_id": store_id,
+                                "user_code": membercard_id,
+                                "state": "SUCCESS",
+                                "response_message": "Thành công",
+                                "tran_id": tran_id,
+                                "tran_id_of_parner":''.join(random.choice(string.ascii_letters) for i in range(16)) , # transaction_hash,
+                                "paid_amount": value,
+                                "paid_discount": 0
+                            }
+        }
+        print(resp_data)
         # return json(resp_data)
 
         if store_id is not None:
