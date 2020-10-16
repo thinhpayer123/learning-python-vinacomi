@@ -86,7 +86,7 @@ async def file_load(request):
 
             }
     return json(ret)
-@app.route('/api/v1/Genqr', methods=['GET' , 'POST'])
+@app.route('/api/v1/genqr', methods=['GET' , 'POST'])
 async def genqr(request):
     fsroot = config.FS_ROOT
     url = config.FILE_SERVICE_URL
@@ -110,9 +110,12 @@ async def genqr(request):
 
             img = qrcode.make(membercard_id)
 
-            name_img =  company_id + '-' +  str(student_id) + '-' +  student_name + '.png'
+            name_img =    student_name + str(student_id) + '-' +   '.png'
+            # draw.text((100, 100), name_img)
+
             link_img = fsroot + 'qrcode/' + name_img
             img.save(link_img)
+            # image.save('greeting_card.png')
             memcard = MemberCard()
             memcard.save_dir =  link_img
             memcard.company_id = company_id
