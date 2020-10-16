@@ -17,6 +17,7 @@ config = Config()
 import pandas as pd
 import xlrd
 import qrcode
+from PIL import Image,ImageDraw,ImageFont
 import shutil
 import asyncio
 import datetime
