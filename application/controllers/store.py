@@ -22,7 +22,7 @@ def auth_func(request=None, **kw):
 def sync_store(request):
 
     url_sent = "https://api.foodbook.vn/ipos/ws/xpartner/pos"
-    headers = {'access_token': 'UYP3HCA3B2367D13TN2605D9DV3OMGQO','pos_parent': 'MAYASCHOOL'}
+    headers = {'access_token': 'UYP3HCA3B2367D13TN2605D9DV3OMGQO','pos_parent': 'BRAND-YHXD'}
     response = requests.get(url_sent, headers)
     print(response)
 # {
