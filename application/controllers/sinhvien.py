@@ -138,16 +138,18 @@ async def genqr(request):
 
 
             # image.save('greeting_card.png')
-            memcard = MemberCard()
-            memcard.save_dir =  link_img
-            memcard.company_id = company_id
-            memcard.user_no = student_id
-            memcard.user_name = student_name
-            memcard.membercard_id = membercard_id
+            checkexist_member = db.session.query(MemberCard).filter(MemberCard.membercard_id == membercard_id).first()
+            if checkmembercard is None:
+                memcard = MemberCard()
+                memcard.save_dir =  link_img
+                memcard.company_id = company_id
+                memcard.user_no = student_id
+                memcard.user_name = student_name
+                memcard.membercard_id = membercard_id
             # memcard.status = status
 
-            db.session.add(memcard)
-            db.session.commit()
+                db.session.add(memcard)
+                db.session.commit()
 
         shutil.make_archive(fsroot, 'zip', fsroot, 'qrcode/')
     return json({
