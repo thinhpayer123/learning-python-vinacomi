@@ -105,11 +105,14 @@ async def genqr(request):
 
             company_id = info_user['company_id']
             student_name = info_user['student_name']
-            birthday = info_user['birthday']
+            # birthday = info_user['birthday']
             membercard_id = str(student_id)
-            print(membercard_id)
             checkexist_member = db.session.query(MemberCard).filter(MemberCard.membercard_id == membercard_id).first()
+
             if checkexist_member is None:
+                print(membercard_id)
+                print(student_name)
+                print(type(student_name))
             # status = 1
                 img = qrcode.make(membercard_id)
 
