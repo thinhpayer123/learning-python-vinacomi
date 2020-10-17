@@ -139,7 +139,7 @@ async def genqr(request):
 
             # image.save('greeting_card.png')
             checkexist_member = db.session.query(MemberCard).filter(MemberCard.membercard_id == membercard_id).first()
-            if checkmembercard is None:
+            if checkexist_member is None:
                 memcard = MemberCard()
                 memcard.save_dir =  link_img
                 memcard.company_id = company_id
