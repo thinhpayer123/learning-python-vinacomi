@@ -136,7 +136,7 @@ async def genqr(request):
                 dst.paste(img, (0, 0))
                 dst.paste(canvas, (0, img.size[1]))
 
-                name_img =    student_name + str(student_id) + '-' +   '.png'
+                name_img =    str(student_name) + '-'+ str(student_id)  +   '.png'
                 link_img = fsroot + 'qrcode/' + name_img
                 
                 dst.save(link_img, "PNG")
