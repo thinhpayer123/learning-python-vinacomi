@@ -1,6 +1,6 @@
 import aiohttp
 from application.extensions import apimanager
-from application.models.model import User, Company, Brand, Store, Role, MemberCard, WalletUser, Transaction
+from application.models.model import User, Company, Brand, Store, Role, MemberCard, WalletUser, Transaction, Order
 from application.extensions import auth
 from gatco.exceptions import ServerError
 # import json
@@ -237,20 +237,32 @@ async def foodbook_callback(request):
     return json({"error_code": "UNKNOWN_ERROR"}, status=520)
 
 async def foodbook_callback_sale_manager(request):
-    # param = request.json   
-    # event = param.get("event")
-    # event_id = param.get("event_id")
-    # if event == "sale_manager":
-    #     sale_manager = param.get("sale_manager")
-    #     pos_parent = sale_manager.get("pos_parent")
-    #     post_id = sale_manager.get("pos_id")
-    #     tran_id = sale_manager.get("tran_id")
-    #     tran_date = sale_manager.get("tran_date")
-    #     total_amount = sale_manager.get("total_amount")
-    #     items = sale_manager.get("items")
-    #     membership_id = sale_manager.get("membership_id")
-    #     membership_name = sale_manager.get("membership_name")
-    #     payment_info = sale_manager.get("payment_info")
+    param = request.json   
+    event = param.get("event")
+    event_id = param.get("event_id")
+    if event == "sale_manager":
+        sale_manager = param.get("sale_manager")
+        # pos_parent = sale_manager.get("pos_parent")
+        # post_id = sale_manager.get("pos_id")
+        tran_id = sale_manager.get("tran_id")
+        tran_date = sale_manager.get("tran_date")
+        total_amount = sale_manager.get("total_amount")
+        items = sale_manager.get("items")
+        membership_id = sale_manager.get("membership_id")
+        membership_name = sale_manager.get("membership_name")
+        payment_info = sale_manager.get("payment_info")
+        order = Order()
+        order.membership_id = membership_id
+        order.membership_name = membership_name
+        order.transaction_hash = tran_id
+        order.tran_date = tran_date
+        order.total_amount = total_amount
+        order.payment_info = payment_info
+        order.items = items
+        db.session.add(order)
+        db.session.commit()
+    return json({"notify":"save to order"})
+        
 
 
 
