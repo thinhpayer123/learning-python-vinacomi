@@ -169,7 +169,7 @@ async def foodbook_callback(request):
             # print("transac save successfully")
 
             # return json(resp_data)
-
+            print(data)
             print("param data", param)
             async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
                 async with session.post(url, json=data) as response:
@@ -177,7 +177,7 @@ async def foodbook_callback(request):
                     if response.status == 200:
                         resp = await response.json()
                         transaction_hash = resp.get("transaction_hash")
-                        transaction_hash = ''.join(random.choice(string.ascii_letters) for i in range(16))
+                        # transaction_hash = ''.join(random.choice(string.ascii_letters) for i in range(16))
 
                         print("transaction_hash", transaction_hash)
 
