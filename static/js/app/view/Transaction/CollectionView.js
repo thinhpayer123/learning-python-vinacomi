@@ -38,9 +38,10 @@ define(function (require) {
 	    	    //  { 
 	    	    // 	field: "id",label:"ID",
 	    	    //  },
-				 { field: "company_id", label: "Mã Đơn Vị"},
+				//  { field: "company_id", label: "Mã Đơn Vị"},
 	    	     { field: "username", label: "Tên Người Dùng"},
 				 { field: "tran_id", label: "Mã Giao Dịch"},
+				 { field: "transaction_hash", label: "Mã Thanh Toán"},
 				 { field: "value", label: "Giá Trị"},
 	    	     { field: "status", label: "Trạng Thái"},
 	    	    //  { field: "membercard_id", label: "Mã Người Dùng"},

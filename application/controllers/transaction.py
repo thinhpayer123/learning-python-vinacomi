@@ -74,7 +74,7 @@ async def foodbook_callback(request):
                                 "state": "SUCCESS",
                                 "response_message": "Thành công",
                                 "tran_id": tran_id,
-                                "tran_id_of_parner":''.join(random.choice(string.ascii_letters) for i in range(16)) , # transaction_hash,
+                                "tran_id_of_parner":  transaction_hash,
                                 "paid_amount": value,
                                 "paid_discount": 0
                             }
