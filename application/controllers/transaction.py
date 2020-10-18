@@ -130,92 +130,92 @@ async def foodbook_callback(request):
             headers = {
                 "Content-Type": "application/json",
             }
-            transaction_hash = ''.join(random.choice(string.ascii_letters) for i in range(16))
+            # transaction_hash = ''.join(random.choice(string.ascii_letters) for i in range(16))
 
-            print("transaction_hash", transaction_hash)
+            # print("transaction_hash", transaction_hash)
 
-            resp_data = {
-                "charge_history": {
-                    "pos_parent": brand_id,
-                    "pos_id": store_id,
-                    "user_code": membercard_id,
-                    "state": "SUCCESS",
-                    "response_message": "Thành công",
-                    "tran_id": tran_id,
-                    "tran_id_of_parner": transaction_hash,
-                    "paid_amount": value,
-                    "paid_discount": 0
-                }
-            }
-                        # resp_data_json = ujson.loads(resp_data)
-                        # print(resp_data_json + type(resp_data_json))
-                        #luu lai don vao bang transaction 
-            charge_historys = resp_data.get("charge_history")
-            print(charge_history)
-            transaction_save = Transaction()
-            transaction_save.company_id = charge_historys.get("pos_parent")
-            transaction_save.tran_id = charge_historys.get("tran_id")
-            transaction_save.transaction_hash = transaction_hash
-            transaction_save.membercard_id = charge_historys.get("user_code")
-            transaction_save.status = charge_historys.get("state")
-            user_no= db.session.query(MemberCard).filter(membercard_id == charge_historys.get("user_code")).first()
-            transaction_save.username = user_no.user_name
-            transaction_save.from_wallet_id = data.get("from")
-            transaction_save.to_wallet_id = data.get("to")
-            transaction_save.value = data.get("value")
-            transaction_save.extra_data = resp_data
-            db.session.add(transaction_save)
-            db.session.commit()
-            print("transac save successfully")
-
-            return json(resp_data)
-
-            # print("param data", param)
-            # async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
-            #     async with session.post(url, json=data) as response:
-            #         print(response.status, await response.text())
-            #         if response.status == 200:
-            #             resp = await response.json()
-            #             transaction_hash = resp.get("transaction_hash")
-            #             transaction_hash = ''.join(random.choice(string.ascii_letters) for i in range(16))
-
-            #             print("transaction_hash", transaction_hash)
-
-            #             resp_data = {
-            #                 "charge_history": {
-            #                     "pos_parent": brand_id,
-            #                     "pos_id": store_id,
-            #                     "user_code": membercard_id,
-            #                     "state": "SUCCESS",
-            #                     "response_message": "Thành công",
-            #                     "tran_id": tran_id,
-            #                     "tran_id_of_parner": transaction_hash,
-            #                     "paid_amount": value,
-            #                     "paid_discount": 0
-            #                 }
-            #             }
+            # resp_data = {
+            #     "charge_history": {
+            #         "pos_parent": brand_id,
+            #         "pos_id": store_id,
+            #         "user_code": membercard_id,
+            #         "state": "SUCCESS",
+            #         "response_message": "Thành công",
+            #         "tran_id": tran_id,
+            #         "tran_id_of_parner": transaction_hash,
+            #         "paid_amount": value,
+            #         "paid_discount": 0
+            #     }
+            # }
             #             # resp_data_json = ujson.loads(resp_data)
             #             # print(resp_data_json + type(resp_data_json))
             #             #luu lai don vao bang transaction 
-            #             charge_historys = resp_data.get("charge_history")
-            #             print(charge_history)
-            #             transaction_save = Transaction()
-            #             transaction_save.company_id = charge_historys.get("pos_parent")
-            #             transaction_save.tran_id = charge_historys.get("tran_id")
-            #             transaction_save.transaction_hash = transaction_hash
-            #             transaction_save.membercard_id = charge_historys.get("user_code")
-            #             transaction_save.status = charge_historys.get("state")
-            #             user_no= db.session.query(MemberCard).filter(membercard_id == charge_historys.get("user_code")).first()
-            #             transaction_save.username = user_no.user_name
-            #             transaction_save.from_wallet_id = data.get("from")
-            #             transaction_save.to_wallet_id = data.get("to")
-            #             transaction_save.value = data.get("value")
-            #             transaction_save.extra_data = resp_data
-            #             db.session.add(transaction_save)
-            #             db.session.commit()
-            #             print("transac save successfully")
+            # charge_historys = resp_data.get("charge_history")
+            # print(charge_history)
+            # transaction_save = Transaction()
+            # transaction_save.company_id = charge_historys.get("pos_parent")
+            # transaction_save.tran_id = charge_historys.get("tran_id")
+            # transaction_save.transaction_hash = transaction_hash
+            # transaction_save.membercard_id = charge_historys.get("user_code")
+            # transaction_save.status = charge_historys.get("state")
+            # user_no= db.session.query(MemberCard).filter(membercard_id == charge_historys.get("user_code")).first()
+            # transaction_save.username = user_no.user_name
+            # transaction_save.from_wallet_id = data.get("from")
+            # transaction_save.to_wallet_id = data.get("to")
+            # transaction_save.value = data.get("value")
+            # transaction_save.extra_data = resp_data
+            # db.session.add(transaction_save)
+            # db.session.commit()
+            # print("transac save successfully")
 
-            #             return json(resp)
+            # return json(resp_data)
+
+            print("param data", param)
+            async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
+                async with session.post(url, json=data) as response:
+                    print(response.status, await response.text())
+                    if response.status == 200:
+                        resp = await response.json()
+                        transaction_hash = resp.get("transaction_hash")
+                        transaction_hash = ''.join(random.choice(string.ascii_letters) for i in range(16))
+
+                        print("transaction_hash", transaction_hash)
+
+                        resp_data = {
+                            "charge_history": {
+                                "pos_parent": brand_id,
+                                "pos_id": store_id,
+                                "user_code": membercard_id,
+                                "state": "SUCCESS",
+                                "response_message": "Thành công",
+                                "tran_id": tran_id,
+                                "tran_id_of_parner": transaction_hash,
+                                "paid_amount": value,
+                                "paid_discount": 0
+                            }
+                        }
+                        # resp_data_json = ujson.loads(resp_data)
+                        # print(resp_data_json + type(resp_data_json))
+                        #luu lai don vao bang transaction 
+                        charge_historys = resp_data.get("charge_history")
+                        print(charge_history)
+                        transaction_save = Transaction()
+                        transaction_save.company_id = charge_historys.get("pos_parent")
+                        transaction_save.tran_id = charge_historys.get("tran_id")
+                        transaction_save.transaction_hash = transaction_hash
+                        transaction_save.membercard_id = charge_historys.get("user_code")
+                        transaction_save.status = charge_historys.get("state")
+                        user_no= db.session.query(MemberCard).filter(membercard_id == charge_historys.get("user_code")).first()
+                        transaction_save.username = user_no.user_name
+                        transaction_save.from_wallet_id = data.get("from")
+                        transaction_save.to_wallet_id = data.get("to")
+                        transaction_save.value = data.get("value")
+                        transaction_save.extra_data = resp_data
+                        db.session.add(transaction_save)
+                        db.session.commit()
+                        print("transac save successfully")
+
+                        return json(resp)
     elif event == "sale_manager":
         data = await foodbook_callback_sale_manager(request)
         return json(data)

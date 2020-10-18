@@ -46,9 +46,9 @@ def create_wallet_user(request):
     for item in userWallet:
         extra_userWallet =  item.extra_data
         dataSent = {}
-        checkexist_wallet = db.session.query(WalletUser).filter(WalletUser.user_id ==str(extra_userWallet['student_id'])).first()
-        wallet_id = checkexist_wallet.wallet_id
-        if wallet_id is None:
+        checkexist_wallet = db.session.query(WalletUser).filter(WalletUser.wallet_id).first()
+        # wallet_ids = checkexist_wallet.wallet_id 
+        if checkexist_wallet is None:
                 
             dataSent['user_id'] = str(extra_userWallet['student_id'])
             dataSent['company_id'] = extra_userWallet['company_id']
