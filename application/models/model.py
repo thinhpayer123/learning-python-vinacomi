@@ -266,7 +266,7 @@ class Order(CommonModel):
     total_amount = db.Column(String())# tổng tiền 
 
     items = db.Column(JSONB())
-
+    payment_info = db.Column(JSONB())
 
     # pass
 

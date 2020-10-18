@@ -46,17 +46,21 @@ def create_wallet_user(request):
     for item in userWallet:
         extra_userWallet =  item.extra_data
         dataSent = {}
+        checkexist_wallet = db.session.query(WalletUser).filter(WalletUser.user_id ==str(extra_userWallet['student_id'])).first()
+        wallet_id = checkexist_wallet.wallet_id
+        if wallet_id is None:
+                
+            dataSent['user_id'] = str(extra_userWallet['student_id'])
+            dataSent['company_id'] = extra_userWallet['company_id']
+            dataSent['user_fullname'] = extra_userWallet['student_name']
+            dataSent['user_token'] = ''.join(random.choice(string.ascii_letters) for i in range(128))
+            company_point = db.session.query(Company).filter(Company.company_id == extra_userWallet['company_id']).first()
+            dataSent['point_name'] = company_point.point_name
+            print(ujson.dumps(dataSent))
 
-        dataSent['user_id'] = str(extra_userWallet['student_id'])
-        dataSent['company_id'] = extra_userWallet['company_id']
-        dataSent['user_fullname'] = extra_userWallet['student_name']
-        dataSent['user_token'] = ''.join(random.choice(string.ascii_letters) for i in range(128))
-        dataSent['point_name'] = "HVDEV" # lấy bên school
-        print(ujson.dumps(dataSent))
-
-        url_sent = "https://app.heovang.vn/merchant/api/v1/app_login"
-        headers = {'content-type': 'application/json','X-APP-KEY': 'dnasjd19hdadbahsd1udb19ejjadbjasdb19edjabdhsb9qjjsfbhsfbowjfjseb'}
-        response = requests.post(url_sent,data=ujson.dumps(dataSent), headers = headers)
+            url_sent = "https://app.heovang.vn/merchant/api/v1/app_login"
+            headers = {'content-type': 'application/json','X-APP-KEY': 'dnasjd19hdadbahsd1udb19ejjadbjasdb19edjabdhsb9qjjsfbhsfbowjfjseb'}
+            response = requests.post(url_sent,data=ujson.dumps(dataSent), headers = headers)
         # response = {
 #     "_id": "wallet_point_HEOXU_AE00651265",
 #     "wallet_id": "AE00651265",
@@ -88,19 +92,19 @@ def create_wallet_user(request):
 #     ]
 # }
 
-        if response.status_code == 200 :
-            data_receiver = response.json()
-            # membercard = MemberCard()
-            userno = data_receiver['user_id']
-            walletid = data_receiver['wallet_id']
-            MemberCard.query.filter_by(user_no = userno).update(dict(wallet_id = walletid))
-            WalletUser.query.filter_by(user_no = userno).update(dict(wallet_id = walletid))
+            if response.status_code == 200 :
+                data_receiver = response.json()
+                # membercard = MemberCard()
+                userno = data_receiver['user_id']
+                walletid = data_receiver['wallet_id']
+                MemberCard.query.filter_by(user_no = userno).update(dict(wallet_id = walletid))
+                WalletUser.query.filter_by(user_no = userno).update(dict(wallet_id = walletid))
 
-            # db.session.add(membercard)
-            db.session.commit()
-        else:
-            # response.text()
-            pass
+                # db.session.add(membercard)
+                db.session.commit()
+            else:
+                # response.text()
+                pass
 
         
     return json({"notify":"Get data success.Please reload page."})

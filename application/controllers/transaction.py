@@ -237,6 +237,93 @@ async def foodbook_callback(request):
     return json({"error_code": "UNKNOWN_ERROR"}, status=520)
 
 async def foodbook_callback_sale_manager(request):
+    # param = request.json   
+    # event = param.get("event")
+    # event_id = param.get("event_id")
+    # if event == "sale_manager":
+    #     sale_manager = param.get("sale_manager")
+    #     pos_parent = sale_manager.get("pos_parent")
+    #     post_id = sale_manager.get("pos_id")
+    #     tran_id = sale_manager.get("tran_id")
+    #     tran_date = sale_manager.get("tran_date")
+    #     total_amount = sale_manager.get("total_amount")
+    #     items = sale_manager.get("items")
+    #     membership_id = sale_manager.get("membership_id")
+    #     membership_name = sale_manager.get("membership_name")
+    #     payment_info = sale_manager.get("payment_info")
+
+
+
+
+#     {
+# 	"event_id": 11,                  //client switch theo biến này để xử lý logic code
+# 	"event": "sale_manager",            //tên event
+# 	"timestamp": "1509702721626",                        
+# 	"sale_manager": {                                
+# 		"pos_name": "Nhà Hàng Đất Xanh - Hoàng Quốc Việt",            //tên thương hiệu
+# 		"pos_type": "ipos_pc",                  
+# 		"channels": [                              
+# 			{
+# 				"channel": "voucher",
+# 				"source": "10000007"
+# 			},
+# 			{
+# 				"channel": "delivery",
+# 				"source": "10000006"
+# 			}
+# 		],
+# 		"pos_parent": "FOODBOOK",           //tên thương hiệu
+# 		"pos_id": 296,                      //id điểm bán hàng
+# 		"tran_id": "33902",                 //id giao dịch dưới máy POS. Unique: pos_parent + tran_id  
+# 		"tran_date": "2017-11-03 16:51:00",            
+# 		"bill_amount": 36000,             //NOT include discount = original_amount + ship_fee_amount + service_charge_amount + vat_amount
+# 		"total_amount": 32400,            ///amount of customer really pay. = (original_amount + ship_fee_amount + service_charge_amount + vat_amount) - (voucher_amount + item_discount_amount + discount_extra_amount)      
+# 		"membership_name": "DTTTTTTTTT1",                  
+# 		"membership_id": "84967142868",                        
+# 		"sale_note": "Từ FOODBOOK_CMS(2017-11-03 16:51:06):",      
+# 		"tran_no": "TA0014",                                    
+# 		"sale_type": "TA",                                    
+# 		"hour": 16,                                          
+# 		"pos_city": 129,                                          
+# 		"pos_district": 12904,                                    
+# 		"items": [                                          
+# 			{
+# 				"item_id": "SU04",
+# 				"item_name": "Thủy mộc Sơn cầm ",
+# 				"price": 20000,
+# 				"quantity": 1,
+# 				"amount": 18000,
+# 				"discount_amount": 2000
+# 			},
+# 			{
+# 				"item_id": "SU04",
+# 				"item_name": "Thủy mộc Sơn cầm ",
+# 				"price": 20000,
+# 				"quantity": 1,
+# 				"amount": 18000,
+# 				"discount_amount": 2000
+# 			}
+# 		],
+# 		"payment_info": [                                    
+# 			{
+# 				"tran_id": "FOODBOOK33902",            //mã đơn hàng In trên bill QR code
+# 				"method_id": "CASH",            
+# 				"name": "CASH",
+# 				"currency": "VND",
+# 				"amount": 32400,                  
+# 				"trace_no": ""                  //Id giao dịch thanh toán của bên thứ 3
+# 			}
+# 		],
+# 		"delivery_info": {                              
+# 			"order_code": "15XK",                  //Mã đơn hàng vận chuyển (=foodbook_code lúc create order)
+# 			"address": "106 hqv",                  //Địa chỉ giao hàng
+# 			"lng": 0,                              //geo point
+# 			"lat": 0                              
+# 		}
+# 	}
+# }
+    
+
     pass
 
 
