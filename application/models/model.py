@@ -216,6 +216,7 @@ class WalletUser(CommonModel):
     company_no = db.Column(String(15), nullable=True)
     user_no = db.Column(String(), nullable=True) # student_id 
     extra_data = db.Column(JSONB())
+    email = db.Column(String())
  
 
 #Bangr luu cac tai khoan chi nhanh cua cong ty

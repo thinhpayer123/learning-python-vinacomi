@@ -17,7 +17,7 @@ class Config(object):
     # FILE_SERVICE_URL = "http://icanteen.vn/static/"
     QR_SERVICE_URL = "http://icanteen.vn/"
     QR_ARCHIVE = "static/"
-
+    API_SEND_MAIL = "http://0.0.0.0:8090"
     HEOVANG_WALLET_API_URL = 'https://app.heovang.vn'
     HEOVANG_APP_ID = '2fb7a27f-ccda-4855-be02-9dd31bb6acf6'
     HEOVANG_APP_SECRET = 'ipostest123456abcA'
