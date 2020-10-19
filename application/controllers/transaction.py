@@ -80,7 +80,7 @@ async def foodbook_callback(request):
                             }
         }
         print(resp_data)
-        return json(resp_data)
+        # return json(resp_data)
 
         if store_id is not None:
             store  = Store.query.filter(Store.store_id == str(store_id)).first()
