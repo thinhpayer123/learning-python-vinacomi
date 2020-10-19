@@ -10,7 +10,7 @@ MarkupSafe
 mimeparse
 python-dateutil
 PyYAML
-sanic==19.3.1
+# sanic==19.3.1
 jinja2
 git+https://github.com/gonrin/gatco.git
 git+https://github.com/gonrin/gatco_auth.git
@@ -30,3 +30,33 @@ xlrd
 qrcode
 pillow
 requests
+aiofiles
+httptools
+import-string
+manage.py
+    python-dateutil
+    sanic
+    sanic_cors
+    git+https://github.com/gonrin/gatco.git
+    git+https://github.com/gonrin/gatco_auth.git
+    git+https://github.com/gonrin/gatco_jinja2.git
+    git+https://github.com/gonrin/gatco_sqlalchemy.git
+    git+https://github.com/gonrin/gatco_restapi.git
+    git+https://github.com/gonrin/gatco_acl.git
+    six
+    SQLAlchemy
+    ujson
+    websockets
+    passlib
+    psycopg2-binary
+    requests
+    aiohttp
+    aiosmtplib
+    apscheduler
+    redis
+    motor
+    # barcode dependences
+    python-barcode
+    pillow
+    # international phone detect
+    phonenumbers

@@ -9,6 +9,7 @@ import random
 import string
 import aiofiles
 import time
+import re
 from gatco.response import json
 from application.server import app
 from application.config import Config
@@ -57,25 +58,45 @@ async def file_load(request):
             print(link_local)
             data = pd.read_excel(link_local)
             df = pd.DataFrame(data, columns=['company_id', 'student_id', 'student_name', 'birthday', 'gender','email'])
-            a =df.get(["company_id", "student_id",'student_name','birthday','gender',]) 
+            a =df.get(["company_id", "student_id",'student_name','birthday','gender','email']) 
             result = a.to_json(orient='records')
-            print(result)
+            print(df)
             print('---------------------------------------------')
             result_ujson = ujson.loads(result)
             print(result_ujson)
             print(type(result_ujson))
             for item in result_ujson: 
-                user_no = item.get("student_id")
+                user_no1 = item.get("student_id")
+                print(user_no1)
+                print(type(user_no1))
+                user = int(user_no1)
+                b = str(user_no1)
+                print(b)
+                # userno = int(user_no)
+                # print(userno)
+                # print(type(userno))
+                # userno = str(user_no)
+                # print(userno)
+                # print(type(userno))
+                # userno = int(user_no)
+                # finaluser_no = str(user_no)
+                # print(finaluser_no)
+                # re.split(r'[`.]', user_no)
                 company_id = item.get("company_id")
-                checkexist=db.session.query(WalletUser).filter(WalletUser.user_no == str(user_no)).first()
+                checkexist=db.session.query(WalletUser).filter(WalletUser.user_no  == b).first()
                 print(checkexist)
                 if checkexist is None:
+                    # a = int(user_no1)
+                    # b = str(a)
+                    # c,d = a.split('.')
+                    print(a)
                     extra_data = result
-                    # print('------------------'+extra_data)
+                    print('------------------'+extra_data)
                     extra_data = item
                     user_wallets = WalletUser()
-                    user_wallets.user_no = user_no
+                    user_wallets.user_no = b
                     user_wallets.company_id = company_id
+                    user_wallets.email = item.get("email")
                     user_wallets.extra_data = extra_data
                     db.session.add(user_wallets)
                     db.session.commit()
@@ -123,14 +144,14 @@ async def genqr(request):
                 # sample text and font
                 font = ImageFont.truetype("/usr/share/fonts/truetype/DejaVuSans-Bold.ttf", 28, encoding="unic")
                 # get the line size
-                text_width, text_height = font.getsize(wallet_id)
+                text_width, text_height = font.getsize(str(wallet_id))
 
                 # create a blank canvas with extra space between lines
                 canvas = Image.new('RGB', (img.size[0] + 10, text_height + 10), "white")
 
                 # draw the text onto the text canvas, and use black as the text color
                 draw = ImageDraw.Draw(canvas)
-                draw.text(((img.size[0] - text_width)/2,0), wallet_id, 'black', font)
+                draw.text(((img.size[0] - text_width)/2,0), str(wallet_id), 'black', font)
 
                 dst = Image.new('RGB', (img.size[0], img.size[1] + canvas.height))
                 dst.paste(img, (0, 0))

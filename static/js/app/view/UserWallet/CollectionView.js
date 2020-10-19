@@ -46,19 +46,6 @@ define(function (require) {
 						}
 						,
 					},
-					// {
-					// 	name: "create",
-					// 	type: "button",
-					// 	buttonClass: "btn-success btn-sm",
-					// 	label: "Tạo Ví",
-					// 	command: function(){
-					// 		var self = this;
-					// 		var path = self.collectionName + '/model';
-					// 		self.getApp().getRouter().navigate(path);
-					// 	}
-						
-					// }
-					
 				]
 			},
 		],
