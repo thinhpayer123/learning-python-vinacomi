@@ -132,7 +132,7 @@ async def foodbook_callback(request):
             }
             transaction_hash = ''.join(random.choice(string.ascii_letters) for i in range(16))
 
-            print("transaction_hash", transaction_hash)
+            print("transaction_hash paid Only", transaction_hash)
 
             resp_data = {
                 "charge_history": {
