@@ -261,7 +261,7 @@ async def foodbook_callback_sale_manager(request):
         order.items = items
         db.session.add(order)
         db.session.commit()
-        membership_id = "12345"
+        # membership_id = "12345"
         checkmail = db.session.query(WalletUser).filter(WalletUser.user_no == membership_id).first()
         print(checkmail)
         # checkmail = None
