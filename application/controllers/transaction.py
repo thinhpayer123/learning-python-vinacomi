@@ -69,7 +69,21 @@ async def foodbook_callback(request):
 
         check_tran = redisdb.get("tran_check:" + tran_id)
         if check_tran is not None:
-            return json({"error_code": "transaction is exist"}, status=520)
+            return json({
+                "charge_history": {
+                    "pos_parent": brand_id,
+                    "pos_id": store_id,
+                    "user_code": membercard_id,
+                    "state": "ERROR",
+                    "response_message": "Giao dịch " + str(tran_id) + " đã tồn tại",
+                    "tran_id": tran_id,
+                    "tran_id_of_parner": None,
+                    "paid_amount": value,
+                    "paid_discount": 0
+                }
+            }, status=520)
+
+
         else:
             p = redisdb.pipeline()
             p.set("tran_check:" + tran_id, "")
@@ -92,12 +106,13 @@ async def foodbook_callback(request):
         # }
         # print(resp_data)
         # return json(resp_data)
-
+        store_name = ""
         if store_id is not None:
             store  = Store.query.filter(Store.store_id == str(store_id)).first()
             if store is not None:
                 company_id = store.company_id
                 to_wallet_id = store.wallet_id
+                store_name = store.store_name
             
             if company_id is not None:
                 company = Company.query.filter(Company.company_id == company_id).first()
@@ -127,13 +142,13 @@ async def foodbook_callback(request):
                     "sender": from_wallet_id,
                     "to": to_wallet_id,
                     "brand_id": brand_id,
-                    "store_id": store_id,
+                    "store_id": str(store_id),
                     "main_value": main_value,
                     "sub_value": sub_value,
                     "value": main_value + sub_value,
                     "point_name": point_name,
                     "tran_id": tran_id,
-                    "message": "Thanh toán đơn hàng",
+                    "message": "Thanh toán đơn hàng " + str(tran_id) + " tại địa điểm " + str(store_name),
                 }
             }
 
