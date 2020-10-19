@@ -74,13 +74,13 @@ async def foodbook_callback(request):
                                 "state": "SUCCESS",
                                 "response_message": "Thành công",
                                 "tran_id": tran_id,
-                                "tran_id_of_parner":  transaction_hash,
+                                "tran_id_of_parner":  ''.join(random.choice(string.ascii_letters) for i in range(16)),
                                 "paid_amount": value,
                                 "paid_discount": 0
                             }
         }
         print(resp_data)
-        # return json(resp_data)
+        return json(resp_data)
 
         if store_id is not None:
             store  = Store.query.filter(Store.store_id == str(store_id)).first()
@@ -176,8 +176,8 @@ async def foodbook_callback(request):
                     print(response.status, await response.text())
                     if response.status == 200:
                         resp = await response.json()
-                        transaction_hash = resp.get("transaction_hash")
-                        # transaction_hash = ''.join(random.choice(string.ascii_letters) for i in range(16))
+                        # transaction_hash = resp.get("transaction_hash")
+                        transaction_hash = ''.join(random.choice(string.ascii_letters) for i in range(16))
 
                         print("transaction_hash", transaction_hash)
 

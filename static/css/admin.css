@@ -3175,7 +3175,11 @@ margin-right: 8px !important;
  .table-bordered>tbody>tr>td,
  .table-bordered>tfoot>tr>td {
      border: 1px solid #f4f4f4;
+     word-wrap: anywhere;
  }
+ #view36grid_th_transaction_hash {
+    width: 300px;
+}
  
  .table-bordered>thead>tr>th,
  .table-bordered>thead>tr>td {
