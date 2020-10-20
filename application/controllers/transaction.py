@@ -30,28 +30,11 @@ apimanager.create_api(collection_name='transaction', model=Transaction,
 
 @app.route('/icanteen/api/v1/foodbook_callback', methods=['POST'])
 async def foodbook_callback(request):
-    # {
-    #     "event_id": 3,
-    #     "event": "charge_history",
-    #     "timestamp": "1601885358085",
-    #     "charge_history": {
-    #         "pos_parent":"FOODBOOK",
-    #         "pos_id":296,
-    #         "payment_method":"HEOVANGSCAN",
-    #         "amount":10000.0,
-    #         "user_code":"12354AIOURALIRURJALDKJF9807",
-    #         "tran_id":"123154353"
-    #     }
-    # }
-
     param = request.json
     event = param.get("event")
     event_id = param.get("event_id")
-
-
     if event == "charge_history":
         charge_history = param.get("charge_history")
-
         from_wallet_id = None
         point_name = None
         company_id = None
@@ -63,10 +46,7 @@ async def foodbook_callback(request):
             main_value = int(main_value)
         sub_value = 0
         value = main_value + sub_value
-
         store_id = charge_history.get("pos_id")
-
-
         check_tran = redisdb.get("tran_check:" + tran_id)
 
         if check_tran is not None:
@@ -126,126 +106,162 @@ async def foodbook_callback(request):
             
         print(point_name, company_id, store_id, membercard_id)
         if point_name is not None:
-            url = app.config.get("HEOVANG_WALLET_API_URL") + "/wallet/api/v1/privilege_send_point_transaction"
-            app_id = app.config.get("HEOVANG_APP_ID")
-            app_secret = app.config.get("HEOVANG_APP_SECRET")
-            data = {
-                "from": from_wallet_id,
-                "to": to_wallet_id,
-                "point_name": point_name,
-                "company_id": company_id,
-                "app_id" : app_id,
-                "value": main_value + sub_value,
-                "data": {
-                    "standard": "HEOVANG",
-                    "type": "payment",
-                    "from": from_wallet_id,
-                    "sender": from_wallet_id,
-                    "to": to_wallet_id,
-                    "brand_id": brand_id,
-                    "store_id": str(store_id),
-                    "main_value": main_value,
-                    "sub_value": sub_value,
-                    "value": main_value + sub_value,
-                    "point_name": point_name,
-                    "tran_id": tran_id,
-                    "message": "Thanh toán đơn hàng " + str(tran_id) + " tại địa điểm " + str(store_name),
-                }
-            }
+            url = app.config.get("HEOVANG_WALLET_API_URL") + "/wallet/api/v1/get_point_balance_by_uid"
+            # url = "app.config.get("HEOVANG_WALLET_API_URL")" + "/wallet/api/v1/get_point_balance_by_uid"
+
+            # app_id = app.config.get("HEOVANG_APP_ID")
+            # app_secret = app.config.get("HEOVANG_APP_SECRET")
+            # data = {
+            #     "from": from_wallet_id,
+            #     "to": to_wallet_id,
+            #     "point_name": point_name,
+            #     "company_id": company_id,
+            #     "app_id" : app_id,
+            #     "value": main_value + sub_value,
+            #     "data": {
+            #         "standard": "HEOVANG",
+            #         "type": "payment",
+            #         "from": from_wallet_id,
+            #         "sender": from_wallet_id,
+            #         "to": to_wallet_id,
+            #         "brand_id": brand_id,
+            #         "store_id": str(store_id),
+            #         "main_value": main_value,
+            #         "sub_value": sub_value,
+            #         "value": main_value + sub_value,
+            #         "point_name": point_name,
+            #         "tran_id": tran_id,
+            #         "message": "Thanh toán đơn hàng " + str(tran_id) + " tại địa điểm " + str(store_name),
+            #     }
+            # }
 
 
-            headers = {
-                "Content-Type": "application/json",
-            }
-            transaction_hash = ''.join(random.choice(string.ascii_letters) for i in range(16))
+            # headers = {
+            #     "Content-Type": "application/json",
+            # }
+            # transaction_hash = ''.join(random.choice(string.ascii_letters) for i in range(16))
 
-            print("transaction_hash paid Only", transaction_hash)
+            # print("transaction_hash paid Only", transaction_hash)
 
-            resp_data = {
-                "charge_history": {
-                    "pos_parent": brand_id,
-                    "pos_id": store_id,
-                    "user_code": membercard_id,
-                    "state": "SUCCESS",
-                    "response_message": "Thành công",
-                    "tran_id": tran_id,
-                    "tran_id_of_parner": transaction_hash,
-                    "paid_amount": value,
-                    "paid_discount": 0
-                }
-            }
-                        # resp_data_json = ujson.loads(resp_data)
-                        # print(resp_data_json + type(resp_data_json))
-                        #luu lai don vao bang transaction 
-            charge_historys = resp_data.get("charge_history")
-            print(charge_history)
-            transaction_save = Transaction()
-            transaction_save.company_id = charge_historys.get("pos_parent")
-            transaction_save.tran_id = charge_historys.get("tran_id")
-            transaction_save.transaction_hash = transaction_hash
-            transaction_save.membercard_id = charge_historys.get("user_code")
-            transaction_save.status = charge_historys.get("state")
-            user_no= db.session.query(MemberCard).filter(membercard_id == charge_historys.get("user_code")).first()
-            transaction_save.username = user_no.user_name
-            transaction_save.from_wallet_id = data.get("from")
-            transaction_save.to_wallet_id = data.get("to")
-            transaction_save.value = data.get("value")
-            transaction_save.extra_data = resp_data
-            db.session.add(transaction_save)
-            db.session.commit()
-            print("transac save successfully")
-
-            return json(resp_data)
-
-
-            # print(data)
-            # print("param data", param)
-            # async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
-            #     async with session.post(url, json=data) as response:
-            #         print(response.status, await response.text())
-            #         if response.status == 200:
-            #             resp = await response.json()
-            #             transaction_hash = resp.get("transaction_hash")
-            #             # transaction_hash = ''.join(random.choice(string.ascii_letters) for i in range(16))
-
-            #             print("transaction_hash", transaction_hash)
-
-            #             resp_data = {
-            #                 "charge_history": {
-            #                     "pos_parent": brand_id,
-            #                     "pos_id": store_id,
-            #                     "user_code": membercard_id,
-            #                     "state": "SUCCESS",
-            #                     "response_message": "Thành công",
-            #                     "tran_id": tran_id,
-            #                     "tran_id_of_parner": transaction_hash,
-            #                     "paid_amount": value,
-            #                     "paid_discount": 0
-            #                 }
-            #             }
+            # resp_data = {
+            #     "charge_history": {
+            #         "pos_parent": brand_id,
+            #         "pos_id": store_id,
+            #         "user_code": membercard_id,
+            #         "state": "SUCCESS",
+            #         "response_message": "Thành công",
+            #         "tran_id": tran_id,
+            #         "tran_id_of_parner": transaction_hash,
+            #         "paid_amount": value,
+            #         "paid_discount": 0
+            #     }
+            # }
             #             # resp_data_json = ujson.loads(resp_data)
             #             # print(resp_data_json + type(resp_data_json))
             #             #luu lai don vao bang transaction 
-            #             charge_historys = resp_data.get("charge_history")
-            #             print(charge_history)
-            #             transaction_save = Transaction()
-            #             transaction_save.company_id = charge_historys.get("pos_parent")
-            #             transaction_save.tran_id = charge_historys.get("tran_id")
-            #             transaction_save.transaction_hash = transaction_hash
-            #             transaction_save.membercard_id = charge_historys.get("user_code")
-            #             transaction_save.status = charge_historys.get("state")
-            #             user_no= db.session.query(MemberCard).filter(membercard_id == charge_historys.get("user_code")).first()
-            #             transaction_save.username = user_no.user_name
-            #             transaction_save.from_wallet_id = data.get("from")
-            #             transaction_save.to_wallet_id = data.get("to")
-            #             transaction_save.value = data.get("value")
-            #             transaction_save.extra_data = resp_data
-            #             db.session.add(transaction_save)
-            #             db.session.commit()
-            #             print("transac save successfully")
+            # charge_historys = resp_data.get("charge_history")
+            # print(charge_history)
+            # transaction_save = Transaction()
+            # transaction_save.company_id = charge_historys.get("pos_parent")
+            # transaction_save.tran_id = charge_historys.get("tran_id")
+            # transaction_save.transaction_hash = transaction_hash
+            # transaction_save.membercard_id = charge_historys.get("user_code")
+            # transaction_save.status = charge_historys.get("state")
+            # user_no= db.session.query(MemberCard).filter(membercard_id == charge_historys.get("user_code")).first()
+            # transaction_save.username = user_no.user_name
+            # transaction_save.from_wallet_id = data.get("from")
+            # transaction_save.to_wallet_id = data.get("to")
+            # transaction_save.value = data.get("value")
+            # transaction_save.extra_data = resp_data
+            # db.session.add(transaction_save)
+            # db.session.commit()
+            # print("transac save successfully")
 
-            #             return json(resp_data)
-            #         else:
+            # return json(resp_data)
+            x_wallet_user_token = ''.join(random.choice(string.ascii_letters) for i in range(16))
+            headers = {
+                "Content-Type": "application/ecmascript",
+                "X-WALLET-USER-TOKEN": x_wallet_user_token
+
+            }
+            data  = {
+                "point_name": point_name,
+                "wallet_id": from_wallet_id
+            }
+
+            print(data)
+            print("param data", param)
+            async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
+                async with session.post(url, json=data) as response:
+                    print(response.status, await response.text())
+                    if response.status == 200:
+                        resp = await response.json()
+                        #                         {
+                        #     "main": 500725000,
+                        #     "sub": 0,
+                        #     "value": 500725000,
+                        #     "main_value": 500725000,
+                        #     "sub_value": 0
+                        # }
+                        check_value =  resp.get("main")
+                        print(check_value)
+
+                        # transaction_hash = resp.get("transaction_hash")
+                        transaction_hash = ''.join(random.choice(string.ascii_letters) for i in range(16))
+
+                        print("transaction_hash", transaction_hash)
+                        if check_value >= value:
+                            resp_data = {
+                                "charge_history": {
+                                    "pos_parent": brand_id,
+                                    "pos_id": store_id,
+                                    "user_code": membercard_id,
+                                    "state": "SUCCESS",
+                                    "response_message": "Thành công",
+                                    "tran_id": tran_id,
+                                    "tran_id_of_parner": transaction_hash,
+                                    "paid_amount": value,
+                                    "paid_discount": 0
+                                }
+                            }
+                            # resp_data_json = ujson.loads(resp_data)
+                            # print(resp_data_json + type(resp_data_json))
+                            #luu lai don vao bang transaction 
+                            charge_historys = resp_data.get("charge_history")
+                            print(charge_history)
+                            transaction_save = Transaction()
+                            transaction_save.company_id = charge_historys.get("pos_parent")
+                            transaction_save.tran_id = charge_historys.get("tran_id")
+                            transaction_save.transaction_hash = transaction_hash
+                            transaction_save.membercard_id = charge_historys.get("user_code")
+                            transaction_save.status = charge_historys.get("state")
+                            user_no= db.session.query(MemberCard).filter(membercard_id == charge_historys.get("user_code")).first()
+                            transaction_save.username = user_no.user_name
+                            transaction_save.from_wallet_id = data.get("from")
+                            transaction_save.to_wallet_id = data.get("to")
+                            transaction_save.value = data.get("value")
+                            transaction_save.status_worker = "PENDING"
+                            transaction_save.extra_data = resp_data
+                            db.session.add(transaction_save)
+                            db.session.commit()
+                            print("transac save successfully")
+
+                            return json(resp_data)
+                        else:
+                            return json({
+                                "charge_history": {
+                                    "pos_parent": brand_id,
+                                    "pos_id": store_id,
+                                    "user_code": membercard_id,
+                                    "state": "FALSE",
+                                    "response_message": "giao dịch không thành công do tài khoản không đủ ",
+                                    "tran_id": tran_id,
+                                    "tran_id_of_parner": transaction_hash,
+                                    "paid_amount": value,
+                                    "paid_discount": 0
+                                }
+
+                            })
                         
 
     elif event == "sale_manager":

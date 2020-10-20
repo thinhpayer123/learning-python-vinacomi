@@ -253,6 +253,7 @@ class Transaction(CommonModel):
     membercard_id =  db.Column(String(), index=True) #payment, transfer
     username = db.Column(String())
     extra_data = db.Column(JSONB())
+    status_worker = db.Column(String(),index=True)
 
 
 class Order(CommonModel):

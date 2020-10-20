@@ -11,7 +11,8 @@ sys.path.insert(0, dirname(abspath(__file__)))
 import sqlalchemy
 from sqlalchemy.inspection import inspect
 import json
-
+import traceback
+import asyncio
 from manager import Manager
 from datetime import datetime, timedelta
 from application import run_app
@@ -97,6 +98,26 @@ def genqr(from_date=None, to_date=None, id=None):
     from application.worker_dir.genqr import do_work
     do_work(from_time=from_time, to_time=to_time, id= id)
     print("test_logs", from_date, to_date, id)
+
+@manager.command
+def send_transaction_to_heovang():
+    init_app()
+    from application.worker_dir.send_transaction_to_heovang import send_transaction
+    
+    loop = asyncio.get_event_loop()
+    try:
+        loop.run_until_complete(
+            asyncio.gather(
+                send_transaction(),
+                ))
+    except Exception:
+        exept_txt = traceback.format_exc()
+        print("exept_txt", exept_txt)
+    finally:
+        loop.close()
+
+
+
 
 @manager.command
 def generate_schema(path = "static/js/schema", exclude = None, prettyprint = True):
