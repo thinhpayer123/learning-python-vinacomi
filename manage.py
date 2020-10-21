@@ -116,9 +116,6 @@ def send_transaction_to_heovang():
     finally:
         loop.close()
 
-
-
-
 @manager.command
 def generate_schema(path = "static/js/schema", exclude = None, prettyprint = True):
     """ Generate javascript schema"""

@@ -25,7 +25,6 @@ from datetime import datetime, timedelta
 
 
 
-
 async def send_transaction():
     url = app.config.get("HEOVANG_WALLET_API_URL") + "/wallet/api/v1/privilege_send_point_transaction"
     app_id = app.config.get("HEOVANG_APP_ID")
@@ -42,6 +41,7 @@ async def send_transaction():
         if brand_id is not None:
             store = db.session.query(Store).filter(Store.company_id == company_id).first()
             store_id = store.get("store_id")
+            store_name = store.get("store_name")
         tran_id = checkdata.get("tran_id")
         membercard_id = checkdata.get("membercard_id")
         from_wallet_id = checkdata.get("from_wallet_id")
@@ -71,7 +71,7 @@ async def send_transaction():
                 "value": main_value + sub_value,
                 "point_name": point_name,
                 "tran_id": tran_id,
-                "message": "Thanh toán đơn hàng " + str(tran_id) + " tại địa điểm " + str(store_name),
+                "message": "Thanh toán đơn hàng " + str(tran_id) + " tại địa điểm " + str(store_name)
             }
         }
 
@@ -113,42 +113,27 @@ async def send_transaction():
                     #luu lai don vao bang transaction 
                     charge_historys = resp_data.get("charge_history")
                     print(charge_historys)
-                    db.session.query(Transaction).with_for_update(nowait=True, of=User)
+                    # db.session.query(Transaction).with_for_update(nowait=True, of=User)
 
                     update_trans = db.session.query(Transaction).filter(Transaction.transaction_hash == transaction_hash ).with_for_update().one()
                     # this row is now locked
 
                     update_trans.transaction_hash = transaction_hash_update
                     update_trans.status_worker = "DONE"
-                    session.add(update_trans)
-                    session.commit()
-
-
-                    # transaction_save.company_id = charge_historys.get("pos_parent")
-                    # transaction_save.tran_id = charge_historys.get("tran_id")
-                    # transaction_save.transaction_hash = transaction_hash
-                    # transaction_save.membercard_id = charge_historys.get("user_code")
-                    # transaction_save.status = charge_historys.get("state")
-                    # user_no= db.session.query(MemberCard).filter(membercard_id == charge_historys.get("user_code")).first()
-                    # transaction_save.username = user_no.user_name
-                    # transaction_save.from_wallet_id = data.get("from")
-                    # transaction_save.to_wallet_id = data.get("to")
-                    # transaction_save.value = data.get("value")
-                    # transaction_save.extra_data = resp_data
-                    # db.session.add(transaction_save)
-                    # db.session.commit()
+                    db.session.add(update_trans)
+                    db.session.commit()
                     print("transac save successfully")
 
                     return json(resp_data)
                     # else:
                         
 
-def init_schedulers(app):
-    @task(timedelta(seconds=100000000000))
-    async def notify(app):
-        print("notify init_schedulers")
-        try:
-            send_transaction()
-        except Exception:
-            exept_txt = traceback.format_exc()
-            print("exept_txt", exept_txt)
+# def init_schedulers(app):
+#     @task(timedelta(seconds=100000000000))
+#     async def notify(app):
+#         print("notify init_schedulers")
+#         try:
+#             send_transaction()
+#         except Exception:
+#             exept_txt = traceback.format_exc()
+#             print("exept_txt", exept_txt)
