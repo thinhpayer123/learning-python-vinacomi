@@ -52,7 +52,7 @@ async def send_transaction():
         # app_id = 
         main_value = checkdata.main_value
         sub_value = 0 
-        value = main_value+ sub_value
+        value = int(main_value) + sub_value
         # point_name = point_name
         data = {
             "from": from_wallet_id,
@@ -60,7 +60,7 @@ async def send_transaction():
             "point_name": point_name,
             "company_id": company_id,
             "app_id" : app_id,
-            "value": main_value + sub_value,
+            "value": int(main_value) + sub_value,
             "data": {
                 "standard": "HEOVANG",
                 "type": "payment",
@@ -71,7 +71,7 @@ async def send_transaction():
                 "store_id": str(store_id),
                 "main_value": main_value,
                 "sub_value": sub_value,
-                "value": main_value + sub_value,
+                "value": int(main_value) + sub_value,
                 "point_name": point_name,
                 "tran_id": tran_id,
                 "message": "Thanh toán đơn hàng " + str(tran_id) + " tại địa điểm "
