@@ -30,25 +30,14 @@ async def send_transaction():
         if company_id is not None:
                 company = Company.query.filter(Company.company_id == company_id).first()
                 point_name = company.point_name if company is not None else None
-        print(company_id)
-        print(point_name)
-        # if company_id is not None:
-        #     brand = db.session.query(Brand).filter(Brand.company_id== company_id).first()
-        #     brand_id = brand.brand_id
-        # if brand_id is not None:
-        # store = db.session.query(Store).filter(Store.brand_id == brand_id).first()
-        #     store_id = store.store_id
-        # store_name = store.store_name
+        
         tran_id = transaction.tran_id
         membercard_id = transaction.membercard_id
         from_wallet_id = transaction.from_wallet_id
         to_wallet_id   = transaction.to_wallet_id
-        # app_id = 
         main_value = transaction.main_value
-        # print("==========="+type(main_value))
         sub_value = 0
         value = main_value + sub_value
-        # point_name = point_name
         data = {
             "from": from_wallet_id,
             "to": to_wallet_id,
@@ -99,35 +88,12 @@ async def send_transaction():
                                                         "paid_amount": value,
                                                         "paid_discount": 0
                                                         })
-
-                        # transaction_hash = ''.join(random.choice(string.ascii_letters) for i in range(16))
-
-                        
-
-                        # resp_data_json = ujson.loads(resp_data)
-                        # print(resp_data_json + type(resp_data_json))
-                        #luu lai don vao bang transaction 
-                        # charge_historys = resp_data.get("charge_history")
-                        # print(charge_historys)
-                        # db.session.query(Transaction).with_for_update(nowait=True, of=User)
-
-                        # update_trans = db.session.query(Transaction).filter(Transaction.transaction_hash == icanteen_transaction_hash ).first()
-                        # this row is now locked
-
-                        # db.session.add(update_trans)
-                        
-                    # else:
+                    else:
+                        print("ihub_transaction_hash is None ")    
+                else:
+                    print("response ihub status: ", response.status)
 
     db.session.commit()
-    print("transaction save successfully")
-    return  list_change_transaction;
+    print("transaction save successfully",list_change_transaction)
 
-# def init_schedulers(app):
-#     @task(timedelta(seconds=100000000000))
-#     async def notify(app):
-#         print("notify init_schedulers")
-#         try:
-#             send_transaction()
-#         except Exception:
-#             exept_txt = traceback.format_exc()
-#             print("exept_txt", exept_txt)
+    return  list_change_transaction;
