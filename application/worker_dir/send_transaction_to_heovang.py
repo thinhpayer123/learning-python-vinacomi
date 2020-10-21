@@ -17,7 +17,7 @@ import traceback
 from datetime import datetime, timedelta
 
 
-def send_transaction():
+async def send_transaction():
     url = app.config.get("HEOVANG_WALLET_API_URL") + "/wallet/api/v1/privilege_send_point_transaction"
     app_id = app.config.get("HEOVANG_APP_ID")
     # app_secret = app.config.get("HEOVANG_APP_SECRET")
