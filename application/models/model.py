@@ -248,6 +248,7 @@ class Transaction(CommonModel):
     from_wallet_id =  db.Column(String(), index=True)
     transaction_type =  db.Column(String(), index=True) #payment, transfer
     status = db.Column(String())
+    trans_hash_icanteen = db.Column(String())
     main_value = db.Column(BigInteger()) # tiền trong tài khoản chính 
     sub_value = db.Column(BigInteger()) # tiền trong tài khoản khuyến mãi 
     value = db.Column(BigInteger()) # tổng tiền trả 

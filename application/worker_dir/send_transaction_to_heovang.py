@@ -75,6 +75,7 @@ async def send_transaction():
                     ihub_transaction_hash = resp.get("transaction_hash")
                     if ihub_transaction_hash is not None:
                         # icanteen_transaction_hash = transaction.transaction_hash
+                        transaction.trans_hash_icanteen = transaction.transaction_hash
                         transaction.transaction_hash = ihub_transaction_hash
                         transaction.status_worker = "DONE"
                         list_change_transaction.append({ "icanteen_transaction_hash": transaction.transaction_hash,
