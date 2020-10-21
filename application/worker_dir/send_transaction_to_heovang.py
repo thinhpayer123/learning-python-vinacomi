@@ -3,7 +3,7 @@ from application.extensions import apimanager
 from application.models.model import User, Company, Brand, Store, Role, MemberCard, WalletUser, Transaction, Order
 from application.extensions import auth
 from gatco.exceptions import ServerError
-from application.extensions import scheduler
+# from application.extensions import scheduler
 # import json
 from application.database import db, redisdb
 from sanic_scheduler import task
