@@ -33,14 +33,15 @@ async def send_transaction():
     print(checkdata)
     if checkdata is not None:
         company_id = checkdata.company_id
+        brand_id = checkdata.brand_id
         if company_id is not None:
                 company = Company.query.filter(Company.company_id == company_id).first()
                 point_name = company.point_name if company is not None else None
-        if company_id is not None:
-            brand = db.session.query(Brand).filter(Brand.company_id== company_id).first()
-            brand_id = brand.brand_id
+        # if company_id is not None:
+        #     brand = db.session.query(Brand).filter(Brand.company_id== company_id).first()
+        #     brand_id = brand.brand_id
         if brand_id is not None:
-            store = db.session.query(Store).filter(Store.company_id == company_id).first()
+            store = db.session.query(Store).filter(Store.brand_id == brand_id).first()
             store_id = store.store_id
             store_name = store.store_name
         tran_id = checkdata.tran_id
