@@ -104,17 +104,20 @@ def send_transaction_to_heovang():
     init_app()
     from application.worker_dir.send_transaction_to_heovang import send_transaction
     
-    loop = asyncio.get_event_loop()
-    try:
-        loop.run_until_complete(
-            asyncio.gather(
-                send_transaction(),
-                ))
-    except Exception:
-        exept_txt = traceback.format_exc()
-        print("exept_txt", exept_txt)
-    finally:
-        loop.close()
+    log_worker_proxess_transaction = send_transaction()
+    print("log_worker_proxess_transaction", log_worker_proxess_transaction)
+
+    # loop = asyncio.get_event_loop()
+    # try:
+    #     loop.run_until_complete(
+    #         asyncio.gather(
+    #             ,
+    #             ))
+    # except Exception:
+    #     exept_txt = traceback.format_exc()
+    #     print("exept_txt", exept_txt)
+    # finally:
+    #     loop.close()
 
 @manager.command
 def generate_schema(path = "static/js/schema", exclude = None, prettyprint = True):
