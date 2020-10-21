@@ -107,77 +107,6 @@ async def foodbook_callback(request):
         print(point_name, company_id, store_id, membercard_id)
         if point_name is not None:
             url = app.config.get("HEOVANG_WALLET_API_URL") + "/wallet/api/v1/get_point_balance_by_uid"
-            # url = "app.config.get("HEOVANG_WALLET_API_URL")" + "/wallet/api/v1/get_point_balance_by_uid"
-
-            # app_id = app.config.get("HEOVANG_APP_ID")
-            # app_secret = app.config.get("HEOVANG_APP_SECRET")
-            # data = {
-            #     "from": from_wallet_id,
-            #     "to": to_wallet_id,
-            #     "point_name": point_name,
-            #     "company_id": company_id,
-            #     "app_id" : app_id,
-            #     "value": main_value + sub_value,
-            #     "data": {
-            #         "standard": "HEOVANG",
-            #         "type": "payment",
-            #         "from": from_wallet_id,
-            #         "sender": from_wallet_id,
-            #         "to": to_wallet_id,
-            #         "brand_id": brand_id,
-            #         "store_id": str(store_id),
-            #         "main_value": main_value,
-            #         "sub_value": sub_value,
-            #         "value": main_value + sub_value,
-            #         "point_name": point_name,
-            #         "tran_id": tran_id,
-            #         "message": "Thanh toán đơn hàng " + str(tran_id) + " tại địa điểm " + str(store_name),
-            #     }
-            # }
-
-
-            # headers = {
-            #     "Content-Type": "application/json",
-            # }
-            # transaction_hash = ''.join(random.choice(string.ascii_letters) for i in range(16))
-
-            # print("transaction_hash paid Only", transaction_hash)
-
-            # resp_data = {
-            #     "charge_history": {
-            #         "pos_parent": brand_id,
-            #         "pos_id": store_id,
-            #         "user_code": membercard_id,
-            #         "state": "SUCCESS",
-            #         "response_message": "Thành công",
-            #         "tran_id": tran_id,
-            #         "tran_id_of_parner": transaction_hash,
-            #         "paid_amount": value,
-            #         "paid_discount": 0
-            #     }
-            # }
-            #             # resp_data_json = ujson.loads(resp_data)
-            #             # print(resp_data_json + type(resp_data_json))
-            #             #luu lai don vao bang transaction 
-            # charge_historys = resp_data.get("charge_history")
-            # print(charge_history)
-            # transaction_save = Transaction()
-            # transaction_save.company_id = charge_historys.get("pos_parent")
-            # transaction_save.tran_id = charge_historys.get("tran_id")
-            # transaction_save.transaction_hash = transaction_hash
-            # transaction_save.membercard_id = charge_historys.get("user_code")
-            # transaction_save.status = charge_historys.get("state")
-            # user_no= db.session.query(MemberCard).filter(membercard_id == charge_historys.get("user_code")).first()
-            # transaction_save.username = user_no.user_name
-            # transaction_save.from_wallet_id = data.get("from")
-            # transaction_save.to_wallet_id = data.get("to")
-            # transaction_save.value = data.get("value")
-            # transaction_save.extra_data = resp_data
-            # db.session.add(transaction_save)
-            # db.session.commit()
-            # print("transac save successfully")
-
-            # return json(resp_data)
             x_wallet_user_token = ''.join(random.choice(string.ascii_letters) for i in range(16))
             headers = {
                 "Content-Type": "application/ecmascript",
@@ -238,9 +167,9 @@ async def foodbook_callback(request):
                             transaction_save.status = charge_historys.get("state")
                             user_no= db.session.query(MemberCard).filter(membercard_id == charge_historys.get("user_code")).first()
                             transaction_save.username = user_no.user_name
-                            transaction_save.from_wallet_id = data.get("from")
-                            transaction_save.to_wallet_id = data.get("to")
-                            transaction_save.value = data.get("value")
+                            transaction_save.from_wallet_id = from_wallet_id
+                            transaction_save.to_wallet_id = to_wallet_id
+                            transaction_save.value = value
                             transaction_save.status_worker = "PENDING"
                             transaction_save.extra_data = resp_data
                             db.session.add(transaction_save)
