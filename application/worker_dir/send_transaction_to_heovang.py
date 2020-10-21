@@ -50,7 +50,7 @@ async def send_transaction():
         from_wallet_id = checkdata.from_wallet_id
         to_wallet_id   = checkdata.to_wallet_id
         # app_id = 
-        main_value = checkdata.main_values
+        main_value = checkdata.main_value
         sub_value = 0 
         value = main_value+ sub_value
         # point_name = point_name
