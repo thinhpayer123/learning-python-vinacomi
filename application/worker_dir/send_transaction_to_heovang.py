@@ -32,23 +32,23 @@ async def send_transaction():
     checkdata = db.session.query(Transaction).filter(Transaction.status_worker == "PENDING").first()
     print(checkdata)
     if checkdata is not None:
-        company_id = checkdata.get("company_id")
+        company_id = checkdata.company_id
         if company_id is not None:
                 company = Company.query.filter(Company.company_id == company_id).first()
                 point_name = company.point_name if company is not None else None
         if company_id is not None:
             brand = db.session.query(Brand).filter(Brand.company_id== company_id).first()
-            brand_id = brand.get("brand_id")
+            brand_id = brand.brand_id
         if brand_id is not None:
             store = db.session.query(Store).filter(Store.company_id == company_id).first()
-            store_id = store.get("store_id")
-            store_name = store.get("store_name")
-        tran_id = checkdata.get("tran_id")
-        membercard_id = checkdata.get("membercard_id")
-        from_wallet_id = checkdata.get("from_wallet_id")
-        to_wallet_id   = checkdata.get("to_wallet_id")
+            store_id = store.store_id
+            store_name = store.store_name
+        tran_id = checkdata.tran_id
+        membercard_id = checkdata.membercard_id
+        from_wallet_id = checkdata.from_wallet_id
+        to_wallet_id   = checkdata.to_wallet_id
         # app_id = 
-        main_value = checkdata.get("main_value")
+        main_value = checkdata.main_values
         sub_value = 0 
         value = main_value+ sub_value
         # point_name = point_name
