@@ -239,6 +239,7 @@ class Transaction(CommonModel):
     id = db.Column(String, primary_key=True, default=default_uuid)
     company_id = db.Column(String(), index=True, nullable=False)
     brand_id = db.Column(String(), index=True)
+    store_id = db.Column(String(),index=True)
     # created_at = db.Column(BigInteger(), index=True)
     validated_at = db.Column(BigInteger(), index=True) # trả về từ HEOVANG 
     tran_id = db.Column(String(), index=True)

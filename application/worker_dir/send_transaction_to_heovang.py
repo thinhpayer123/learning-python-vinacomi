@@ -34,16 +34,17 @@ async def send_transaction():
     if checkdata is not None:
         company_id = checkdata.company_id
         brand_id = checkdata.brand_id
+        store_id = checkdata.store_id
         if company_id is not None:
                 company = Company.query.filter(Company.company_id == company_id).first()
                 point_name = company.point_name if company is not None else None
         # if company_id is not None:
         #     brand = db.session.query(Brand).filter(Brand.company_id== company_id).first()
         #     brand_id = brand.brand_id
-        if brand_id is not None:
-            store = db.session.query(Store).filter(Store.brand_id == brand_id).first()
-            store_id = store.store_id
-            store_name = store.store_name
+        # if brand_id is not None:
+        # store = db.session.query(Store).filter(Store.brand_id == brand_id).first()
+        #     store_id = store.store_id
+        # store_name = store.store_name
         tran_id = checkdata.tran_id
         membercard_id = checkdata.membercard_id
         from_wallet_id = checkdata.from_wallet_id
@@ -73,7 +74,7 @@ async def send_transaction():
                 "value": main_value + sub_value,
                 "point_name": point_name,
                 "tran_id": tran_id,
-                "message": "Thanh toán đơn hàng " + str(tran_id) + " tại địa điểm " + str(store_name)
+                "message": "Thanh toán đơn hàng " + str(tran_id) + " tại địa điểm "
             }
         }
 
