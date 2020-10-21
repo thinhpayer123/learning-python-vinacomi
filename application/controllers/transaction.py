@@ -171,6 +171,9 @@ async def foodbook_callback(request):
                             transaction_save.from_wallet_id = from_wallet_id
                             transaction_save.to_wallet_id = to_wallet_id
                             transaction_save.value = value
+                            transaction_save.main_value = main_value
+                            transaction_save.sub_value = sub_value 
+                            
                             transaction_save.status_worker = "PENDING"
                             transaction_save.extra_data = resp_data
                             db.session.add(transaction_save)
