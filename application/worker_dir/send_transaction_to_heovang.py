@@ -53,8 +53,8 @@ async def send_transaction():
         main_value = checkdata.main_value
         # print("==========="+type(main_value))
         sub_value = 0
-        # value = main_value
-        # point_name = point_name
+        value = main_value + sub_value
+        point_name = point_name
         data = {
             "from": from_wallet_id,
             "to": to_wallet_id,
@@ -72,7 +72,7 @@ async def send_transaction():
                 "store_id": str(store_id),
                 "main_value": main_value,
                 "sub_value": sub_value,
-                "value": main_value,
+                "value": value,
                 "point_name": point_name,
                 "tran_id": tran_id,
                 "message": "Thanh toán đơn hàng " + str(tran_id) + " tại địa điểm "
