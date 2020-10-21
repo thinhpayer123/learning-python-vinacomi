@@ -38,6 +38,7 @@ async def send_transaction():
         if company_id is not None:
                 company = Company.query.filter(Company.company_id == company_id).first()
                 point_name = company.point_name if company is not None else None
+        print(point_name)
         # if company_id is not None:
         #     brand = db.session.query(Brand).filter(Brand.company_id== company_id).first()
         #     brand_id = brand.brand_id
@@ -54,7 +55,7 @@ async def send_transaction():
         # print("==========="+type(main_value))
         sub_value = 0
         value = main_value + sub_value
-        point_name = point_name
+        # point_name = point_name
         data = {
             "from": from_wallet_id,
             "to": to_wallet_id,
