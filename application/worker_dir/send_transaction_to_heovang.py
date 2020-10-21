@@ -61,7 +61,7 @@ async def send_transaction():
             "point_name": point_name,
             "company_id": company_id,
             "app_id" : app_id,
-            "value": int(main_value) + sub_value,
+            "value": main_value,
             "data": {
                 "standard": "HEOVANG",
                 "type": "payment",
