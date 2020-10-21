@@ -30,6 +30,7 @@ async def send_transaction():
     app_id = app.config.get("HEOVANG_APP_ID")
     app_secret = app.config.get("HEOVANG_APP_SECRET")
     checkdata = db.session.query(Transaction).filter(Transaction.status_worker == "PENDING").first()
+    print(checkdata)
     if checkdata is not None:
         company_id = checkdata.get("company_id")
         if company_id is not None:
