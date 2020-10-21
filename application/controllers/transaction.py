@@ -232,6 +232,7 @@ async def foodbook_callback(request):
                             transaction_save = Transaction()
                             transaction_save.company_id = charge_historys.get("pos_parent")
                             transaction_save.tran_id = charge_historys.get("tran_id")
+                            transaction_save.brand_id = brand_id
                             transaction_save.transaction_hash = transaction_hash
                             transaction_save.membercard_id = charge_historys.get("user_code")
                             transaction_save.status = charge_historys.get("state")
