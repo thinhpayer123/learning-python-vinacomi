@@ -38,6 +38,7 @@ async def send_transaction():
         if company_id is not None:
                 company = Company.query.filter(Company.company_id == company_id).first()
                 point_name = company.point_name if company is not None else None
+        print(company_id)
         print(point_name)
         # if company_id is not None:
         #     brand = db.session.query(Brand).filter(Brand.company_id== company_id).first()
