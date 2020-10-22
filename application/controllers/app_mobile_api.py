@@ -92,7 +92,7 @@ def add_subcribe(request):
         wallet  = db.session.query(WalletUser).filter(WalletUser.wallet_id == wallet_id).first()
         if wallet is not None: 
             print(uid)
-            wallet.relationship = str(uid)
+            wallet.relationship = uid.decode("utf-8")
             db.session.commit()
             return json({
                 "message":"Đã thêm ví thành công vào tài khoản"
