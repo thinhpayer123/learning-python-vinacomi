@@ -83,7 +83,7 @@ async def add_membercard(request):
 def add_subcribe(request):
     if request.method == 'POST':
         params = request.json
-        token = request.get("token", None)
+        token = request.headers.get("token")
         wallet_id = params.get("wallet_id")
         print(token)
         uid = redisdb.get("sessions:"+str(token))
