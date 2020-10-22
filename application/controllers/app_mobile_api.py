@@ -25,6 +25,7 @@ import ujson
 import hashlib
 import requests
 import aiohttp
+import redis 
 # import async
 
 
@@ -84,7 +85,7 @@ def add_subcribe(request):
         params = request.json
         token = request.args.get('token', None)
         wallet_id = params.get("wallet_id")
-        uid = redisdb.get("sessions:"+str(token))
+        uid = r.get("sessions:"+str(token))
         print(uid, type(uid))
         # user_subcribe = db.session.query(User).filter(User.id == uid).first()
         wallet  = db.session.query(WalletUser).filter(WalletUser.wallet_id == wallet_id).first()
