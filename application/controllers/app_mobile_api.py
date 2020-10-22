@@ -80,10 +80,10 @@ async def add_membercard(request):
         
         
 @app.route("/api/v1/add_subcribe", methods =['POST'])
-def add_subcribe(request,token):
+def add_subcribe(request):
     if request.method == 'POST':
         params = request.json
-        # token = request.args.get('token', None)
+        token = request.args.get("token", None)
         wallet_id = params.get("wallet_id")
         print(token)
         uid = redisdb.get("sessions:"+str(token))
