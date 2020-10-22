@@ -89,6 +89,7 @@ def add_subcribe(request):
         # user_subcribe = db.session.query(User).filter(User.id == uid).first()
         wallet  = db.session.query(WalletUser).filter(WalletUser.wallet_id == wallet_id).first()
         if wallet is not None: 
+            print(uid)
             wallet.relationship = str(uid)
             db.session.commit()
             return json({
