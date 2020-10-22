@@ -3,7 +3,8 @@ from application.server import app
 from application.database import db
 from application.extensions import auth
 from application.extensions import apimanager
-
+import string
+import random
 
 from application.models.model import User, Role
 
@@ -18,11 +19,13 @@ async def user_login(request):
     user_name = param.get("user_name")
     password = param.get("password")
     print(user_name, password)
+    # token = ''
     if (user_name is not None) and (password is not None):
         user = db.session.query(User).filter(User.user_name == user_name).first()
         if (user is not None) and auth.verify_password(password, user.password, user.salt):
+            token = ''.join(random.choice(string.ascii_letters) for i in range(63))
             auth.login_user(request, user)
-            return json({"id": user.id, "user_name": user.user_name})
+            return json({"id": user.id, "user_name": user.user_name,"token": token})
         return json({"error_code":"LOGIN_FAILED","error_message":"user does not exist or incorrect password"}, status=520)
 
     else:

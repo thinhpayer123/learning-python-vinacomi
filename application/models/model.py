@@ -172,6 +172,7 @@ class User(CommonModel):
     full_name = db.Column(String(255), nullable=True)
     email = db.Column(String(255), index=True)
     password = db.Column(String(255), nullable=False,default=123456)
+    # token = db.Column(String(63))
     salt = db.Column(String(255), nullable=False)
 
     # Permission Based Attributes.

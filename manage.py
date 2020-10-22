@@ -117,6 +117,24 @@ def send_transaction_to_heovang():
         print("exept_txt", exept_txt)
     finally:
         loop.close()
+@manager.command
+def fix_username_transaction():
+    init_app()
+    from application.worker_dir.fix_username_trans import fix_username_trans
+    
+    
+
+    loop = asyncio.get_event_loop()
+    try:
+        loop.run_until_complete(
+            asyncio.gather(
+                fix_username_trans(),
+                ))
+    except Exception:
+        exept_txt = traceback.format_exc()
+        print("exept_txt", exept_txt)
+    finally:
+        loop.close()
 
 @manager.command
 def generate_schema(path = "static/js/schema", exclude = None, prettyprint = True):

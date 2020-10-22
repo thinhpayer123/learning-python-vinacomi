@@ -6,7 +6,7 @@ from gatco.exceptions import ServerError
 # from application.extensions import scheduler
 # import json
 from application.database import db, redisdb
-from sanic_scheduler import task
+# from sanic_scheduler import task
 from gatco.response import json
 import sqlalchemy
 from application.server import app
