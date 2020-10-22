@@ -85,10 +85,11 @@ def add_subcribe(request):
         token = request.args.get('token', None)
         wallet_id = params.get("wallet_id")
         uid = redisdb.get("sessions:"+token)
+        
         # user_subcribe = db.session.query(User).filter(User.id == uid).first()
         wallet  = db.session.query(WalletUser).filter(WalletUser.wallet_id == wallet_id).first()
         if wallet is not None: 
-            wallet.relationship = uid
+            wallet.relationship = str(uid)
             db.session.commit()
             return json({
                 "message":"Đã thêm ví thành công vào tài khoản"
