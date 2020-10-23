@@ -92,6 +92,8 @@ def add_subcribe(request):
         wallet  = db.session.query(WalletUser).filter(WalletUser.wallet_id == wallet_id).first()
         if wallet is not None: 
             print(uid)
+            uuid = uid.decode("utf-8")
+            print(uuid)
             wallet.relationship = uid.decode("utf-8")
             db.session.commit()
             return json({
