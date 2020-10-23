@@ -118,7 +118,7 @@ async def list_wallet_subcriber(request):
                 point_name = company.point_name if company is not None else None
 
             wallet_id = listwallet.wallet_id
-            checkwalletname = db.session.query(MemberCard.wallet_id == wallet_id).first()
+            checkwalletname = db.session.query(MemberCard).filter(MemberCard.wallet_id == wallet_id).first()
             wallet_name = checkwalletname.user_name  
             url = app.config.get("HEOVANG_WALLET_API_URL") + "/wallet/api/v1/get_point_balance_by_uid"
             x_wallet_user_token = ''.join(random.choice(string.ascii_letters) for i in range(16))
