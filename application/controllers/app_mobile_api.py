@@ -140,7 +140,7 @@ async def list_wallet_subcriber(request):
                     "wallet_name": wallet_name,
                     "point": value
             }
-        listcard.append(datasent)
+            listcard.append(datasent)
         return json({
                 "list_card_subcriber": listcard
         }, status=200)
