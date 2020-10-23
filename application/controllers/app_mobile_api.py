@@ -175,11 +175,11 @@ def transaction_history(request):
                         "total_amount": payment,
                         "transaction_id": tran_id
                     }    
-                list_order.append(data)    
-                datasent = {
-                    "data": list_order,
-                    "wallet_id": wallet_id
-                }
+                    list_order.append(data)    
+                    datasent = {
+                        "data": list_order,
+                        "wallet_id": wallet_id
+                    }
                 return json({"data":datasent})
             else:
                 return ({"ERROR_MESSAGE":"KHÔNG TÌM THẤY GIAO DỊCH"})
