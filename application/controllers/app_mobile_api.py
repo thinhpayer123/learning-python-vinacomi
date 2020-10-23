@@ -184,7 +184,7 @@ def transaction_history(request):
             else:
                 return ({"ERROR_MESSAGE":"KHÔNG TÌM THẤY GIAO DỊCH"})
         else:
-            orders_by_times = db.session.query(Order).filter(Order.wallet_id == wallet_id).filter(Order.tran_date).all()
+            orders_by_times = db.session.query(Order).filter(Order.wallet_id == wallet_id).filter(Order.tran_date == datecheck).all()
             if orders_by_times is not None:
                 for orders_by_time in orders_by_times:
                     wallet = orders_by_time.wallet_id 
@@ -212,7 +212,7 @@ def transaction_history(request):
 @app.route('/api/v1/details_transaction', methods=['POST'])
 async def get_all_item_by_day(request):
     if request.method == 'POST':
-        params = request.json
+        params = request.json()
         transaction_id = params.get("transaction_id")
         trandate = params.get("trans_id")
         brand_id = "BRAND-YHXD"
