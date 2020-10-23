@@ -198,11 +198,8 @@ def transaction_history(request):
                         "transaction_id": tran_id
                     }    
                     list_order.append(data)
-                datasent = {
-                        "data": list_order,
-                        "wallet_id": wallet_id
-                    }
-                return json({"data":datasent})
+
+                return json({"data":list_order})
             else:
                 return json({"MESSAGE":"Không có giao dịch thời gian này."})
     return json({"ERROR_MESSAGE":"UNKNOWN_ERROR"},status=520)
