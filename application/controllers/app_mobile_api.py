@@ -141,9 +141,9 @@ async def list_wallet_subcriber(request):
                     "point": value
             }
             listcard.append(datasent)
-        return json({
+            return json({
                 "list_card_subcriber": listcard
-        }, status=200)
+            }, status=200)
 
 
 @app.route("/api/v1/transaction_history", methods=['POST', 'GET'])
