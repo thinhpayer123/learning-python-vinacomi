@@ -109,6 +109,7 @@ async def list_wallet_subcriber(request):
         listcard= []
         for listwallet in listwallets:
             company_id = listwallet.company_id
+            print(listwallet)
             if company_id is not None:
                 company = db.session.query(Company).filter(Company.company_id == company_id).first()
                 name_company = company.name
