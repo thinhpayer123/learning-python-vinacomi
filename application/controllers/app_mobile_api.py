@@ -149,7 +149,7 @@ async def list_wallet_subcriber(request):
             }, status=200)
 
 
-@app.route("/api/v1/transaction_history", methods=['POST', 'GET'])
+@app.route("/api/v1/transaction_history", methods=['POST'])
 def transaction_history(request):
     if request.method == 'POST':
     #    data = {
