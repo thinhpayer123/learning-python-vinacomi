@@ -5,12 +5,13 @@ from application.extensions import auth
 from gatco.exceptions import ServerError
 # import json
 from application.database import db, redisdb
-
+import hashlib
 from gatco.response import json
 
 from application.server import app
 import ujson
 import random
+import time, datetime
 import string
 
 
@@ -198,9 +199,9 @@ async def foodbook_callback(request):
         #     })
         
 
-    elif event == "sale_manager":
-        data = await foodbook_callback_sale_manager(request)
-        return json(data)
+    # elif event == "sale_manager":
+    #     data = await foodbook_callback_sale_manager(request)
+    #     return json(data)
     
 
     # resp = {
@@ -217,63 +218,38 @@ async def foodbook_callback(request):
     #     }
     # }
     return json({"error_code": "UNKNOWN_ERROR"}, status=520)
-# @app.route("/api/v1/test", methods=['POST'])
-async def foodbook_callback_sale_manager(request):
-    param = request.json   
-    event = param.get("event")
-    event_id = param.get("event_id")
-    if event_id == "sale_manager":
-        sale_manager = param.get("sale_manager")
-        # pos_parent = sale_manager.get("pos_parent")
-        # post_id = sale_manager.get("pos_id")
-        tran_id = sale_manager.get("tran_id")
-        tran_date = sale_manager.get("tran_date")
-        total_amount = sale_manager.get("total_amount")
-        items = sale_manager.get("items")
-        membership_id = sale_manager.get("membership_id")
-        membership_name = sale_manager.get("membership_name")
-        payment_info = sale_manager.get("payment_info")
-        order = Order()
-        order.membership_id = membership_id
-        order.membership_name = membership_name
-        order.transaction_hash = tran_id
-        order.tran_date = tran_date
-        order.total_amount = total_amount
-        order.payment_info = payment_info
-        order.items = items
-        db.session.add(order)
-        db.session.commit()
-        # membership_id = "12345"
-        checkmail = db.session.query(WalletUser).filter(WalletUser.user_no == membership_id).first()
-        print(checkmail)
-        # checkmail = None
-        if checkmail is not None:
-            mailsend = checkmail.email
-            # mailsend = "anhntc.89@gmail.com"
-            # items = "xin chao"
-            # sending email to owner
-            # to = 
-            item= {
-                "test":"test",
-                "to": mailsend,
-                # "message": "",
-                "body_html": items,
-                "subject": "MAYASCHOOL SENDING NOTIFY"
-                }
-            # https://service.upgo.vn/api/email/send
-            url = app.config.get("API_SEND_MAIL") + "/api/email/send"
 
-            headers = {
-                "Content-Type": "application/json",
-            }
-            async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
-                async with session.post(url, json=item) as response:
-                    if response.status == 200:
-                        resp = await response.json()
-                        return json(resp)
+# @app.route('/api/v1/get_transaction', methods=['GET'])
+# async def get_all_item_by_day(request):
+#     if request.method == 'GET':
+#         brand_id = "BRAND-YHXD"
+#         trandate = int(datetime.datetime.strptime(time.strftime('%m/%d/%Y'), '%m/%d/%Y').strftime("%s"))
+#         print(brand_id,trandate)
+#         url = app.config.get("GET_SALE_MANAGER") + "/api/v1/partners/get-sales"
+#         private_key = app.config.get("ACCESS_PRIVATE_KEY_SALE_MANAGER_ITEM")
+#         access_token = app.config.get("ACCESS_TOKEN_SALE_MANAGER_ITEM")
+#         key = access_token + private_key 
+#         secret_key  = hashlib.md5(key.encode())
+#         secret_key_sent=  secret_key.hexdigest()
 
 
-        return json({"notify":"save to order"})
+#         headers = {
+#             "access-token": access_token,
+#             "secret-key": secret_key_sent
+#         }
+#         param = {
+#             # "sale_id": sale_id,
+#             "brand-id": brand_id ,
+#             "tran-date": trandate
+#         }
+#         async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
+#             async with session.get(url, params=param) as response:
+#                 print(response.status, await response.text())
+#                 if response.status == 200:
+#                     resp = response.json()
+#                     print(resp)
+#             return  json({"notify":"success"})
+
 
 @app.route('/wallet/api/v1/membercard_send_transaction', methods=['POST'])
 async def partner_send_point_transaction(request):

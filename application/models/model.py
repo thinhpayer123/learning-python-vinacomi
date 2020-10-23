@@ -269,262 +269,86 @@ class Order(CommonModel):
     tran_date = db.Column(BigInteger())
     tran_date_fmt = db.Column(String()) #trandate_format
     total_amount = db.Column(String())# tổng tiền 
-
+    wallet_id = db.Column(String(),index = True)
     items = db.Column(JSONB())
     payment_info = db.Column(JSONB())
-
-    # pass
-
-# {
-# 	"event_id": 11,                  //client switch theo biến này để xử lý logic code
-# 	"event": "sale_manager",            //tên event
-# 	"timestamp": "1509702721626",                        
-# 	"sale_manager": {                                
-# 		"pos_name": "Nhà Hàng Đất Xanh - Hoàng Quốc Việt",            //tên thương hiệu
-# 		"pos_type": "ipos_pc",                  
-# 		"channels": [                              
-# 			{
-# 				"channel": "voucher",
-# 				"source": "10000007"
-# 			},
-# 			{
-# 				"channel": "delivery",
-# 				"source": "10000006"
-# 			}
-# 		],
-# 		"pos_parent": "FOODBOOK",           //tên thương hiệu
-# 		"pos_id": 296,                      //id điểm bán hàng
-# 		"tran_id": "33902",                 //id giao dịch dưới máy POS. Unique: pos_parent + tran_id  
-# 		"tran_date": "2017-11-03 16:51:00",            
-# 		"created_at": "2017-11-03 16:52:01",            
-# 		"discount_extra": 0,                  //thông tin giảm giá của nhà hàng (%)
-# 		"discount_extra_amount": 0,           //thông tin giảm giá của nhà hàng tính ra tiền
-# 		"service_charge": 0,            //thông tin phí dịch vụ của hóa đơn (%)
-# 		"service_charge_amount": 0,     //thông tin phí dịch vụ tính ra tiền
-# 		"coupon_amount": 3600,          //số tiền giảm giá của bên thứ 3
-# 		"coupon_code": "FBDAT",         //mã voucher giảm giá
-# 		"ship_fee_amount": 0,           //phí vận chuyển
-# 		"discount_amount_on_item": 4000,  //thông tin giảm giá trên món ăn (của nhà hàng)          
-# 		"original_amount": 40000,         //Not include any discount. Before VAT, Addition Service...
-# 		"vat_amount": 0,                  //tiền VAT    
-# 		"bill_amount": 36000,             //NOT include discount = original_amount + ship_fee_amount + service_charge_amount + vat_amount
-# 		"total_amount": 32400,            ///amount of customer really pay. = (original_amount + ship_fee_amount + service_charge_amount + vat_amount) - (voucher_amount + item_discount_amount + discount_extra_amount)      
-# 		"membership_name": "DTTTTTTTTT1",                  
-# 		"membership_id": "84967142868",                        
-# 		"sale_note": "Từ FOODBOOK_CMS(2017-11-03 16:51:06):",      
-# 		"tran_no": "TA0014",                                    
-# 		"sale_type": "TA",                                    
-# 		"hour": 16,                                          
-# 		"pos_city": 129,                                          
-# 		"pos_district": 12904,                                    
-# 		"items": [                                          
-# 			{
-# 				"item_id": "SU04",
-# 				"item_name": "Thủy mộc Sơn cầm ",
-# 				"price": 20000,
-# 				"quantity": 1,
-# 				"amount": 18000,
-# 				"discount_amount": 2000
-# 			},
-# 			{
-# 				"item_id": "SU04",
-# 				"item_name": "Thủy mộc Sơn cầm ",
-# 				"price": 20000,
-# 				"quantity": 1,
-# 				"amount": 18000,
-# 				"discount_amount": 2000
-# 			}
-# 		],
-# 		"payment_info": [                                    
-# 			{
-# 				"tran_id": "FOODBOOK33902",            //mã đơn hàng In trên bill QR code
-# 				"method_id": "CASH",            
-# 				"name": "CASH",
-# 				"currency": "VND",
-# 				"amount": 32400,                  
-# 				"trace_no": ""                  //Id giao dịch thanh toán của bên thứ 3
-# 			}
-# 		],
-# 	}
-# }
-
-
-
-
-
-# {
-#   "_id": "IPOSECOSYSTEM_IPOSECOSYSTEM_DL_1A000",
-#   "_rev": "1-6e76d2525e21ec070222a0a3188d0c38",
-#   "coupon_amount": 0,
-#   "contact_phone_number": "+84398170149",
-#   "brand_id": "IPOSECOSYSTEM",
-#   "membership_id": "84398170149",
-#   "membership_type": "PLA",
-#   "membership_name": "Hoàng Oanh",
-#   "amount": 95150,
-
-#   "membership_wallet_id": "AA00009262",
-
-#   "contact_fullname": "Hoàng Oanh",
-#   "total_amount": 112050.00000000001,
-
-#   "store_id": "10613"
-# ,
-#   "payment_info": [
-#     {
-#       "amount": 112050,
-#       "currency": "VNĐ",
-#       "image_url": "https://heovang.ss-hn-1.vccloud.vn:443/images/merchant-profile/1575273105178-Icon-App-60x603x.png",
-#       "name": "SKYBANK",
-#       "payment_method_type": "HEOVANG_WALLET",
-#       "method_id": "SKYBANK",
-#       "transaction_hash": "0x36054c1335822878b034fd9becfe310dbc68a7f754a5bd8a7e84c8adbfb2140b"
-#     }
-#   ],
-
-#   "items": [
-#     {
-#       "quantity": 1,
-#       "discount": 0.45,
-#       "amount": 30250.000000000004,
-#       "item_name": "BƯỞI NHA ĐAM",
-#       "foc": 1,
-#       "is_submit": false,
-#       "image_url": "https://heovang.ss-hn-1.vccloud.vn:443/images/merchant-profile/1566273786384-BUOI_NHA_AM_-_F.jpg",
-#       "item_id": "BND",
-#       "price": 55000,
-#       "row_state": 1,
-#       "item_type_id": "NTCT",
-#       "is_eat_with": 0
-#     },
-#     {
-#       "quantity": 1,
-#       "discount": 0.45,
-#       "amount": 32450.000000000004,
-#       "item_name": "SINH TỐ BƠ",
-#       "foc": 1,
-#       "is_submit": false,
-#       "image_url": "https://heovang.ss-hn-1.vccloud.vn:443/images/merchant-profile/1566274674840-SINH_TO_BO_-_F.jpg",
-#       "item_id": "STB",
-#       "price": 59000,
-#       "row_state": 1,
-#       "item_type_id": "STTCT",
-#       "is_eat_with": 0
-#     },
-#     {
-#       "quantity": 1,
-#       "discount": 0.45,
-#       "amount": 32450.000000000004,
-#       "item_name": "SINH TỐ BƠ & MÃNG CẦU",
-#       "foc": 1,
-#       "is_submit": false,
-#       "image_url": "https://heovang.ss-hn-1.vccloud.vn:443/images/merchant-profile/1565769745071-Sinh_to_bo_mang_cau.jpg",
-#       "item_id": "STBMC",
-#       "price": 59000,
-#       "row_state": 1,
-#       "item_type_id": "STTCT",
-#       "is_eat_with": 0
-#     }
-#   ],
-
-
-#   "membership_phone_number": "+84398170149",
-#   "discount_extra": 0.1,
-#   "company_id": "IPOSECOSYSTEM",
-#   "app_id": "e00cb617-d001-4607-8ba1-2f74de80a8d1",
-#   "created_at": 1581644203,
-#   "updated_at": 1581645227,
-#   "coupon_code": "",
-#   "send_order_to": 1,
-#   "doc_type": "delivery_order",
-#   "foodbook_code": "DL_2A598ZB",
-#   "id": "DL_2A598ZB",
-#   "status": "COMPLETED",
-#   "history_state_order": [
-#     {
-#       "created_at": 1581644204,
-#       "status": "WAIT_PAYMENT",
-#       "note": ""
-#     },
-#     {
-#       "created_at": 1581644212,
-#       "status": "PAYMENT",
-#       "note": ""
-#     },
-#     {
-#       "created_at": 1581644213,
-#       "status": "WAIT_CONFIRM",
-#       "note": "Tên người nhận: Hoàng Oanh, Số điện thoại người nhận: +84398170149, Note: ",
-#       "time": "2020-02-14 08:36:53"
-#     },
-#     {
-#       "created_at": 1581644236,
-#       "status": "CONFIRMED",
-#       "note": "dbabd8c12aa17772",
-#       "time": "2020-02-14 08:37:16"
-#     },
-#     {
-#       "created_at": 1581644335,
-#       "status": "ASSIGNING",
-#       "note": "; Đơn hàng DL_2A598ZB. Tài xế đi vào cửa hàng IPOSECOSYSTEM Coffee nói AhaMove đến lấy đồ đi giao.",
-#       "time": "2020-02-14 08:38:55"
-#     },
-#     {
-#       "created_at": 1581644353,
-#       "status": "ACCEPTED",
-#       "note": "; Đơn hàng DL_2A598ZB. Tài xế đi vào cửa hàng IPOSECOSYSTEM Coffee nói AhaMove đến lấy đồ đi giao.",
-#       "time": "2020-02-14 08:39:13"
-#     },
-#     {
-#       "created_at": 1581644963,
-#       "status": "IN PROCESS",
-#       "note": "; Đơn hàng DL_2A598ZB. Tài xế đi vào cửa hàng IPOSECOSYSTEM Coffee nói AhaMove đến lấy đồ đi giao.",
-#       "time": "2020-02-14 08:49:23"
-#     },
-#     {
-#       "created_at": 1581645227,
-#       "status": "COMPLETED",
-#       "note": "; Đơn hàng DL_2A598ZB. Tài xế đi vào cửa hàng IPOSECOSYSTEM Coffee nói AhaMove đến lấy đồ đi giao.",
-#       "time": "2020-02-14 08:53:47"
-#     }
-#   ],
-#   "ship_fee": 26000,
-#   "delivery_partner_info": {
-#     "partner_name": "AHAMOVE_PREPAID",
-#     "order_code": "DL_2A598ZB",
-#     "ahamove_code": "RG9RR7",
-#     "ahamove_link": "https://cloud.ahamove.com/share-order/RG9RR7/842473006336?info=false",
-#     "driver_id": "84989099281",
-#     "driver_name": "Trần Như Trường",
-#     "driver_plate": "",
-#     "partner_ship_fee": 26000,
-#     "distance": 0.85,
-#     "status": "COMPLETED",
-#     "note": "; Đơn hàng DL_2A598ZB. Tài xế đi vào cửa hàng IPOSECOSYSTEM Coffee nói AhaMove đến lấy đồ đi giao."
-#   }
-# }
-
-
-
-
-
-# class Student(CommonModel):
-#     __tablename__ = 'student'
-#     id = db.Column(Integer, primary_key=True)
-#     student_school_year = db.Column(String(30), nullable=False)
-#     student_class = db.Column(String(30), nullable=False)
-#     student_id = db.Column(String(20), nullable=False)
-#     student_name = db.Column(String(255), nullable=False)
-#     birthday = db.Column(String(20))
-#     gender = db.Column(String(10))
-
-
-# class QRUser(CommonModel):
-#     __tablename__ = 'qruser'
-#     id = db.Column(Integer, primary_key=True)
-#     nameqr = db.Column(String(255), nullable=False)
-#     saveDirectory = db.Column(String(255), nullable=False)
-
+# "sale_detail": [  // items 
+#       {
+#         "fix": 0,
+#         "tax": 0,
+#         "note": "",
+#         "is_fc": 0,
+#         "amount": 36000,
+#         "is_kit": 1,
+#         "is_set": 0,
+#         "number": 4,
+#         "ots_ta": 0,
+#         "is_gift": 0,
+#         "item_id": "ITEM-MWDE",
+#         "payment": 0,
+#         "printed": 0,
+#         "sale_id": "RMYZ8ZKV8YMZ4VR6KH68J2P",
+#         "tran_id": "TA",
+#         "unit_id": "MON",
+#         "user_id": "Nguyễn Đức Trường",
+#         "discount": 0.1,
+#         "end_date": 1603213200,
+#         "hour_end": 10,
+#         "quantity": 4,
+#         "shift_id": "21194332090HKPUWKP8Z1",
+#         "price_org": 10000,
+#         "sale_date": 1603213200,
+#         "cost_price": 0,
+#         "hour_start": 10,
+#         "is_invoice": 1,
+#         "is_service": 0,
+#         "list_order": 0,
+#         "minute_end": 25,
+#         "package_id": "",
+#         "price_sale": 10000,
+#         "description": "Bánh mì 1",
+#         "is_eat_with": 0,
+#         "amount_point": 0,
+#         "minute_start": 25,
+#         "payment_type": "COD",
+#         "pr_key_order": 0,
+#         "promotion_id": "PROMOTION-V2ZN",
+#         "source_fb_id": "0",
+#         "stop_service": 0,
+#         "printed_label": 0,
+#         "is_print_label": 0,
+#         "parent_item_id": "",
+#         "promotion_name": "PROMOTION-V2ZN",
+#         "sale_detail_id": null,
+#         "temp_calculate": 0,
+#         "item_id_mapping": "",
+#         "quantity_at_temp": 0,
+#         "distribute_discount_extra2": 0
+#       }
+#     ],
+# "sale_payment_method": [ //payment_info
+#       {
+#         "amount": 39600,
+#         "sale_id": "RMYZ8ZKV8YMZ4VR6KH68J2P",
+#         "user_id": "Nguyễn Đức Trường",
+#         "shift_id": "21194332090HKPUWKP8Z1",
+#         "trace_no": "RMYZ8ZKV8YMZ4VR6KH68J2P",
+#         "tran_date": 1603213200,
+#         "tran_hour": 10,
+#         "list_order": 0,
+#         "amount_orig": 39600,
+#         "tran_minute": 25,
+#         "source_fb_id": "0",
+#         "exchange_rate": 1,
+#         "amount_orig_get": 39600,
+#         "currency_type_id": "VND",
+#         "payment_method_id": "COD",
+#         "amount_orig_return": 0,
+#         "exchange_rate_return": 1,
+#         "sale_payment_method_id": null,
+#         "currency_type_id_return": "VND"
+#       }
+#     ],
 
 class QRworker(CommonModel):
     __tablename__ = 'qrworker'
