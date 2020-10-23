@@ -101,7 +101,7 @@ def add_subcribe(request):
             return({"error_massage":"Thêm ví thất bại"})
 
 @app.route("/api/v1/list_wallet_subcriber", methods=['GET'])
-def list_wallet_subcriber(request):
+async def list_wallet_subcriber(request):
     if request.method == 'GET':
         token = request.headers.get("token")
         uid = redisdb.get("sessions:"+str(token))
