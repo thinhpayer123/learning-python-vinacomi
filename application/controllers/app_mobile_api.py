@@ -176,7 +176,7 @@ def transaction_history(request):
                         "transaction_id": tran_id
                     }    
                     list_order.append(data)    
-                    datasent = {
+                datasent = {
                         "data": list_order,
                         "wallet_id": wallet_id
                     }
