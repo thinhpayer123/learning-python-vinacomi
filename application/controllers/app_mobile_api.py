@@ -180,7 +180,7 @@ def transaction_history(request):
                     "data": list_order,
                     "wallet_id": wallet_id
                 }
-                return json(datasent)
+                return json({"data":datasent})
             else:
                 return ({"ERROR_MESSAGE":"KHÔNG TÌM THẤY GIAO DỊCH"})
         else:
@@ -202,7 +202,7 @@ def transaction_history(request):
                         "data": list_order,
                         "wallet_id": wallet_id
                     }
-                return json(datasent)
+                return json({"data":datasent})
             else:
                 return json({"MESSAGE":"Không có giao dịch thời gian này."})
     return json({"ERROR_MESSAGE":"UNKNOWN_ERROR"},status=520)
