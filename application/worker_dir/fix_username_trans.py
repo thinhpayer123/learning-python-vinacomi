@@ -23,7 +23,8 @@ async def fix_username_trans():
         for transaction in transactions:
             wallet_id = transaction.from_wallet_id
             name_userfix = db.session.query(MemberCard).filter(MemberCard.wallet_id == wallet_id).first()
-            transaction.username = name_userfix.user_name
+            if name_userfix is not None:
+                transaction.username = name_userfix.user_name
             
         db.session.commit()
     return(listwallet_id)
