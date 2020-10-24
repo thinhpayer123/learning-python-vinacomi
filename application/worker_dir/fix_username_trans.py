@@ -17,7 +17,7 @@ import traceback
 from datetime import datetime, timedelta
 async def fix_username_trans():
     transactions = db.session.query(Transaction).all()
-    # listwallet_id =[]
+    listwallet_id =[]
     
     if transactions is not None:
         for transaction in transactions:
@@ -26,3 +26,4 @@ async def fix_username_trans():
             transaction.username = name_userfix.user_name
             
         db.session.commit()
+    return(listwallet_id)
