@@ -25,6 +25,7 @@ async def fix_username_trans():
             name_userfix = db.session.query(MemberCard).filter(MemberCard.wallet_id == wallet_id).first()
             if name_userfix is not None:
                 transaction.username = name_userfix.user_name
+                transaction.status_worker = "PENDING"
             
         db.session.commit()
     return(listwallet_id)
