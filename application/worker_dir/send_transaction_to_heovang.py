@@ -143,7 +143,8 @@ async def check_transaction_exist(request):
                             list_trand_id.append(tran_id)
                             transaction.worker_status = "CONFLICT"
         db.session.commit()
-                        else: 
+                        else:
+                            pass
 
             # return json({"listran":list_trand_id})
 
