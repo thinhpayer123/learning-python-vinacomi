@@ -16,6 +16,7 @@ import string
 import traceback
 from datetime import datetime, timedelta
 import datetime, time
+import hashlib
 
 async def send_transaction():
     url = app.config.get("HEOVANG_WALLET_API_URL") + "/wallet/api/v1/privilege_send_point_transaction"
@@ -125,7 +126,7 @@ async def check_transaction_exist(request):
             }
             param = {
                 # "sale_id": sale_id,
-                "brand-id": brand_id ,
+                "brand-id": "BRAND-YHXD" ,
                 "tran-date": datesent,
                 "sale-id": tran_id
             }
