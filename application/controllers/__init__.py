@@ -18,6 +18,7 @@ def init_views(app):
     import application.controllers.order
     import application.worker_dir.sendmail
     import application.controllers.app_mobile_api
+    import application.worker_dir.send_transaction_to_heovang
 
     # import application.controllers.khachhang
     # import application.controllers.khachhang
