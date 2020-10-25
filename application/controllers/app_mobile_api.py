@@ -207,7 +207,7 @@ def transaction_history(request):
 
 
 @app.route('/api/v1/details_transaction', methods=['POST'])
-async def get_all_item_by_day(request):
+async def details_transaction(request):
     if request.method == 'POST':
         params = request.json
         transaction_id = params.get("transaction_id")
