@@ -107,7 +107,7 @@ async def check_transaction_exist(request):
         transactions = db.session.query(Transaction).all()
         for transaction in transactions:
             tran_id = transaction.tran_id
-            date = transaction.updated_at # datetime.datetime 
+            date = transaction.created_at # datetime.datetime 
             # print(date.tzinfo)
             print(date)
 
