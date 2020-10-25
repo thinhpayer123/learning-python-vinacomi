@@ -138,7 +138,7 @@ async def check_transaction_exist(request):
                         data = resp.get("data")
                         if data is None:
                             list_trand_id.append(tran_id)
-                        return json({"listran":list_trand_id})
+            return json({"listran":list_trand_id})
 
 
         return json({"listran":"list_trand_id"})
