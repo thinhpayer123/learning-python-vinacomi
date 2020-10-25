@@ -108,8 +108,9 @@ def check_transaction_exist(request):
             tran_id = transaction.tran_id
             date = transaction.updated_at
             list_trand_id.append(tran_id)
-            datecheck = date.strftime('%y-%m-%d')
-            print(tran_id,datecheck)
-            print(datecheck, type(datecheck))
+            datecheck = date.strftime('%m/%d/%y')
+            datesent = int(time.mktime(datetime.datetime.strptime(datecheck, "%m/%d/%y").timetuple()))
+            print(tran_id,datesent)
+            print(datesent, type(datesent))
 
         return json({"listran":list_trand_id})
