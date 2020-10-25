@@ -112,8 +112,8 @@ async def check_transaction_exist(request):
             print(date)
 
             datecheck = date.strftime('%m/%d/%y')
-            datesent = int(time.mktime(datetime.datetime.strptime(datecheck, "%m/%d/%y").timetuple())) -25200
-            print(tran_id,datesent)
+            datesent = int(time.mktime(datetime.datetime.strptime(datecheck, "%m/%d/%y").timetuple()))
+            print(datecheck,datesent)
             print(datesent, type(datesent))
             url = app.config.get("GET_SALE_MANAGER") + "/api/v1/partners/get-sales"
             private_key = app.config.get("ACCESS_PRIVATE_KEY_SALE_MANAGER_ITEM")
