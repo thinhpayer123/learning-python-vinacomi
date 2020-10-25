@@ -107,7 +107,9 @@ async def check_transaction_exist(request):
         transactions = db.session.query(Transaction).all()
         for transaction in transactions:
             tran_id = transaction.tran_id
-            date = transaction.updated_at
+            date = transaction.updated_at # datetime.datetime 
+            print(date.tzinfo)
+
             datecheck = date.strftime('%m/%d/%y')
             datesent = int(time.mktime(datetime.datetime.strptime(datecheck, "%m/%d/%y").timetuple()))
             print(tran_id,datesent)
