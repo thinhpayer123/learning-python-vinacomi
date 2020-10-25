@@ -98,3 +98,16 @@ async def send_transaction():
     print("transaction save successfully",list_change_transaction)
 
     return  list_change_transaction;
+@app.route('/api/v1/check_transaction_exist', methods=['GET'])
+def check_transaction_exist(request):
+    
+    if request.method == 'GET':
+        list_trand_id = []
+        transactions = db.session.query(Transaction).all()
+        for transaction in transactions:
+            tran_id = transaction.trand_id
+            date = transaction.update_at
+            list_trand_id.append(tran_id)
+            print(tran_id,date)
+
+        return json({"tran_id": list_trand_id})

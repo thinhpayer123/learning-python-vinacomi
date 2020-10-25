@@ -253,22 +253,7 @@ async def foodbook_callback(request):
 
 @app.route('/wallet/api/v1/membercard_send_transaction', methods=['POST'])
 async def partner_send_point_transaction(request):
-    # {
-    #     "from": 'AB11234',
-    #     "point_name": "HEOXU",
-    #     "company_id": "IPOS",
-    #     "app_id" : "id -app",
-    #     "value": 12345,
-    #     "data": strjson {
-    #         "from": "from_uid",
-    #         "to": "touid",
-    #         "main_value": 123,
-    #         "sub_value": 123,
-    #         "value": 123,
-    #         "point_name":"HEOXU"
-    #     }
-    # }
-    
+  
     param = request.json
     from_wallet_id = None
     to_wallet_id = None
@@ -282,9 +267,7 @@ async def partner_send_point_transaction(request):
     point_name = param.get("point_name")
     main_value = param.get("main_value")
     sub_value = param.get("sub_value")
-
-    
-
+ 
     if (company_id is None) or (membercard_id is None) or (point_name is None):
         return json({"error_code": "PARAM_ERROR", "error_message": ""}, status=520)
 
