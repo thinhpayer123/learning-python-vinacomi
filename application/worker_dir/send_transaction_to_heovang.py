@@ -105,7 +105,7 @@ def check_transaction_exist(request):
         list_trand_id = []
         transactions = db.session.query(Transaction).all()
         for transaction in transactions:
-            tran_id = transaction.trand_id
+            tran_id = transaction.tran_id
             date = transaction.update_at
             list_trand_id.append(tran_id)
             print(tran_id,date)
