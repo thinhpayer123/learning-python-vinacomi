@@ -99,7 +99,7 @@ async def send_transaction():
 
     return  list_change_transaction;
 @app.route('/api/v1/check_transaction_exist', methods=['GET'])
-def check_transaction_exist(request):
+async def check_transaction_exist(request):
     
     if request.method == 'GET':
         list_trand_id = []
@@ -107,10 +107,37 @@ def check_transaction_exist(request):
         for transaction in transactions:
             tran_id = transaction.tran_id
             date = transaction.updated_at
-            list_trand_id.append(tran_id)
             datecheck = date.strftime('%m/%d/%y')
             datesent = int(time.mktime(datetime.datetime.strptime(datecheck, "%m/%d/%y").timetuple()))
-            print(tran_id,datesent)
-            print(datesent, type(datesent))
+            # print(tran_id,datesent)
+            # print(datesent, type(datesent))
+            url = app.config.get("GET_SALE_MANAGER") + "/api/v1/partners/get-sales"
+            private_key = app.config.get("ACCESS_PRIVATE_KEY_SALE_MANAGER_ITEM")
+            access_token = app.config.get("ACCESS_TOKEN_SALE_MANAGER_ITEM")
+            key = access_token + private_key 
+            secret_key  = hashlib.md5(key.encode())
+            secret_key_sent=  secret_key.hexdigest()
 
-        return json({"listran":list_trand_id})
+
+            headers = {
+                "access-token": access_token,
+                "secret-key": secret_key_sent
+            }
+            param = {
+                # "sale_id": sale_id,
+                "brand-id": brand_id ,
+                "tran-date": datesent,
+                "sale-id": tran_id
+            }
+            async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
+                async with session.get(url, params=param) as response:
+                    print(response.status, await response.text())
+                    if response.status == 200:
+                        resp = response.json()
+                        data = resp.get("data")
+                        if data is not None:
+                            list_trand_id.append(tran_id)
+                        return json({"listran":list_trand_id})
+
+
+        return json({"listran":"list_trand_id"})
