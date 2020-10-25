@@ -134,7 +134,7 @@ async def check_transaction_exist(request):
                 async with session.get(url, params=param) as response:
                     print(response.status, await response.text())
                     if response.status == 200:
-                        resp = response.json()
+                        resp = await response.json()
                         data = resp.get("data")
                         if data is not None:
                             list_trand_id.append(tran_id)
