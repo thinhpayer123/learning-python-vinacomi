@@ -109,5 +109,6 @@ def check_transaction_exist(request):
             date = transaction.updated_at
             list_trand_id.append(tran_id)
             print(tran_id,date)
+            print(date, type(date))
 
         return json({"listran":list_trand_id})
