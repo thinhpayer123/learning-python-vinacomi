@@ -108,7 +108,8 @@ async def check_transaction_exist(request):
         for transaction in transactions:
             tran_id = transaction.tran_id
             date = transaction.updated_at # datetime.datetime 
-            print(date.tzinfo)
+            # print(date.tzinfo)
+            print(date)
 
             datecheck = date.strftime('%m/%d/%y')
             datesent = int(time.mktime(datetime.datetime.strptime(datecheck, "%m/%d/%y").timetuple())) -25200
