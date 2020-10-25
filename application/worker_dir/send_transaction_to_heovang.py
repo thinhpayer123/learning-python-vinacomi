@@ -144,7 +144,8 @@ async def check_transaction_exist(request):
                             transaction.status_worker = "DONT_EXIST"
         
                         else:
-                            pass
+                            transaction.status_worker = "PENDING"
+                            # pass
         db.session.commit()
             # return json({"listran":list_trand_id})
 
