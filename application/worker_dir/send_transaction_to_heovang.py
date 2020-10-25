@@ -141,7 +141,7 @@ async def check_transaction_exist(request):
                         data = resp.get("data")
                         if data is None:
                             list_trand_id.append(tran_id)
-                            transaction.status_worker = "CONFLICT"
+                            transaction.status_worker = "DONT_EXIST"
         
                         else:
                             pass
