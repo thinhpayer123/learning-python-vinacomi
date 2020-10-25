@@ -15,7 +15,7 @@ import random
 import string
 import traceback
 from datetime import datetime, timedelta
-
+import datetime
 
 async def send_transaction():
     url = app.config.get("HEOVANG_WALLET_API_URL") + "/wallet/api/v1/privilege_send_point_transaction"
@@ -108,7 +108,8 @@ def check_transaction_exist(request):
             tran_id = transaction.tran_id
             date = transaction.updated_at
             list_trand_id.append(tran_id)
-            print(tran_id,date)
-            print(date, type(date))
+            datecheck = date.strftime('%y-%m-%d')
+            print(tran_id,datecheck)
+            print(datecheck, type(datecheck))
 
         return json({"listran":list_trand_id})
