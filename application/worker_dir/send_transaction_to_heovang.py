@@ -110,4 +110,4 @@ def check_transaction_exist(request):
             list_trand_id.append(tran_id)
             print(tran_id,date)
 
-        return list_trand_id
+        return json({"listran":list_trand_id})
