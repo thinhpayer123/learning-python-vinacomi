@@ -213,6 +213,7 @@ async def details_transaction(request):
         params = request.json
         transaction_id = params.get("transaction_id")
         # trandate = params.get("trans_id")
+        print(transaction_id)
         if transaction_id is not None: 
             orders = db.session.query(Order).filter(Order.tran_id == transaction_id).first()
             if orders is not None: 
