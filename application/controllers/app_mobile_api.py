@@ -207,8 +207,8 @@ def transaction_history(request):
 
 
 
-@app.route('/api/v1/details_transaction', methods=['POST'])
-async def details_transaction(request):
+@app.route('/api/v1/details_order', methods=['POST'])
+async def details_order(request):
     if request.method == 'POST':
         params = request.json
         transaction_id = params.get("transaction_id")
