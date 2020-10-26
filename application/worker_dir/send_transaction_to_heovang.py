@@ -155,6 +155,7 @@ async def check_transaction_exist(request):
                                 order.membership_id = transaction.membercard_id
                                 order.membership_name = transaction.username
                                 order.tran_date = datesent
+                                order.tran_id = tran_id
                                 # order.tran_date_fmt = datesent
                                 order.wallet_id = transaction.from_wallet_id
                                 order.items = data.get("sale_detail")
