@@ -219,6 +219,7 @@ async def details_transaction(request):
                 listitem = orders.items
                 print(listitem)
                 return json({"abc":"abc"})
+        return json({"abc":"abc"})
 
 
         # brand_id = "BRAND-YHXD"
