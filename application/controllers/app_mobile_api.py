@@ -112,6 +112,7 @@ async def list_wallet_subcriber(request):
     if request.method == 'GET':
         token = request.headers.get("token")
         uid = redisdb.get("sessions:"+str(token))
+        print(uid)
         listwallets  = db.session.query(WalletUser).filter(WalletUser.relationship == uid.decode("utf-8")).all()
         listcard= []
         for listwallet in listwallets:
@@ -149,7 +150,7 @@ async def list_wallet_subcriber(request):
                     "point": value
             }
             listcard.append(datasent)
-            return json({
+        return json({
                 "list_card_subcriber": listcard
             }, status=200)
 
