@@ -219,7 +219,7 @@ async def details_order(request):
             print(order)
             if order is not None: 
                 listitem = order.items
-                for item is listitem:
+                for item in listitem:
                     print(item)
 
                 print(listitem)
