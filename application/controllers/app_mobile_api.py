@@ -160,6 +160,7 @@ def transaction_history(request):
         params = request.json
         datecheck = params.get("date")
         wallet_id = params.get("wallet_id")
+        print(datecheck,wallet_id)
         if datecheck is None:
             if wallet_id is not None: 
                 orders = db.session.query(Order).filter(Order.wallet_id == wallet_id).all()
