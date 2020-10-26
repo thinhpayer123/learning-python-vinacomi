@@ -218,7 +218,7 @@ async def details_transaction(request):
             if orders is not None: 
                 listitem = orders.items
                 print(listitem)
-                return json({"abc":"abc"})
+            return json({"abc":"abc"})
         return json({"abc":"abc"})
 
 
