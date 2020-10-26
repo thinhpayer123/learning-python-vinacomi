@@ -215,11 +215,11 @@ async def details_transaction(request):
         # trandate = params.get("trans_id")
         print(transaction_id)
         if transaction_id is not None: 
-            orders = db.session.query(Order).filter(Order.tran_id == transaction_id).first()
-            if orders is not None: 
-                listitem = orders.items
+            order = db.session.query(Order).filter(Order.tran_id == transaction_id).first()
+            if order is not None: 
+                listitem = order.items
                 print(listitem)
-            return json({"abc":"abc"})
+                return json({"abc":"abc"})
         return json({"bce":"abc"})
 
 
