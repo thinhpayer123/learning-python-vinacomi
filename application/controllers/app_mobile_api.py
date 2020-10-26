@@ -229,40 +229,11 @@ async def details_order(request):
                         "time"   : item.get("sale_date")
                     }
                     list_item_order.append(data)
-                print(list_item_order)
+                # print(list_item_order)
                 return json({"detail_order": list_item_order})
         return json({"ERROR_MESSAGE":"UNKNOWN_ERROR"},status=520)
 
 
-        # brand_id = "BRAND-YHXD"
-        # # trandate = int(datetime.datetime.strptime(time.strftime('%m/%d/%Y'), '%m/%d/%Y').strftime("%s"))
-        # print(brand_id,trandate)
-        # url = app.config.get("GET_SALE_MANAGER") + "/api/v1/partners/get-sales"
-        # private_key = app.config.get("ACCESS_PRIVATE_KEY_SALE_MANAGER_ITEM")
-        # access_token = app.config.get("ACCESS_TOKEN_SALE_MANAGER_ITEM")
-        # key = access_token + private_key 
-        # secret_key  = hashlib.md5(key.encode())
-        # secret_key_sent=  secret_key.hexdigest()
-
-
-        # headers = {
-        #     "access-token": access_token,
-        #     "secret-key": secret_key_sent
-        # }
-        # param = {
-        #     # "sale_id": sale_id,
-        #     "brand-id": brand_id ,
-        #     "tran-date": trandate,
-        #     "sale-id": transaction_id
-        # }
-        # async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
-        #     async with session.get(url, params=param) as response:
-        #         print(response.status, await response.text())
-        #         if response.status == 200:
-        #             resp = response.json()
-
-        #             print(resp)
-        #     return  json({"notify":"success"})
 # "sale_detail": [
 #       {
 #         "fix": 0,
