@@ -217,15 +217,21 @@ async def details_order(request):
         if transaction_id is not None: 
             order = db.session.query(Order).filter(Order.tran_id == transaction_id).first()
             print(order)
+            list_item_order = []
             if order is not None: 
                 listitem = order.items
                 for item in listitem:
-                    amount = item.get("amount")
-                    print(amount)
-
+                    # amount = item.get("amount")
+                    data = {
+                        "Ten_mon": item.get("description"),
+                        "soluong": item.get("quantify"),
+                        "don_gia": item.get("amount"),
+                        "time"   : item.get("sale_date")
+                    }
+                    list_item_order.append(data)
                 print(listitem)
-                return json({"abc":"abc"})
-        return json({"bce":"abc"})
+                return json({"detail_order": list_item_order})
+        return json({"ERROR_MESSAGE":"UNKNOWN_ERROR"},status=520)
 
 
         # brand_id = "BRAND-YHXD"
