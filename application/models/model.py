@@ -260,7 +260,7 @@ class Transaction(CommonModel):
 
 
 class Order(CommonModel):
-    __tablename__ = 'order'
+    __tablename__ = 'orders'
     id = db.Column(String, primary_key=True, default=default_uuid)
     membership_id = db.Column(String(),index=True)
     membership_name = db.Column(String())
