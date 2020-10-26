@@ -272,6 +272,7 @@ class Order(CommonModel):
     wallet_id = db.Column(String(),index = True)
     items = db.Column(JSONB())
     payment_info = db.Column(JSONB())
+    status = db.Column(String())
 
 
 class QRworker(CommonModel):

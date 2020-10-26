@@ -91,6 +91,7 @@ async def send_transaction():
                                                         "paid_amount": value,
                                                         "paid_discount": 0
                                                         })
+                        
                     else:
                         print("ihub_transaction_hash is None ")    
                 else:
@@ -150,6 +151,19 @@ async def check_transaction_exist(request):
             
                             else:
                                 transaction.status_worker = "PENDING"
+                                order = Order()
+                                order.membership_id = transaction.membercard_id
+                                order.membership_name = transaction.username
+                                order.tran_date = transaction.created_at
+                                order.tran_date_fmt = datesent
+                                order.wallet_id = transaction.wallet_id
+                                order.items = data.get("sale_detail")
+                                order.total_amount = transaction.value
+                                order.status = "IN_PROCESS"
+                                order.payment_info = data.get("sale_payment_method")
+                                db.session.add(order)
+
+
             else:
                 transaction.status_worker = "CHECKING"
                             # pass
@@ -158,3 +172,5 @@ async def check_transaction_exist(request):
 
 
         return json({"listran":list_tran_check})
+
+async def add_to_order():
