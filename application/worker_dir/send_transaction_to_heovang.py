@@ -75,6 +75,7 @@ async def send_transaction():
                     resp = await response.json()
                     ihub_transaction_hash = resp.get("transaction_hash")
                     if ihub_transaction_hash is not None:
+
                         # icanteen_transaction_hash = transaction.transaction_hash
                         transaction.trans_hash_icanteen = transaction.transaction_hash
                         transaction.transaction_hash = ihub_transaction_hash
@@ -99,55 +100,61 @@ async def send_transaction():
     print("transaction save successfully",list_change_transaction)
 
     return  list_change_transaction;
+
+
 @app.route('/api/v1/check_transaction_exist', methods=['GET'])
 async def check_transaction_exist(request):
     
     if request.method == 'GET':
-        list_trand_id = []
+        list_tran_check = []
         transactions = db.session.query(Transaction).all()
         for transaction in transactions:
             tran_id = transaction.tran_id
             date = transaction.created_at # datetime.datetime 
             # print(date.tzinfo)
-            print(date)
+            trans_hash = transaction.transaction_hash
+            if len(trans_hash) <20: 
+                print(date)
 
-            datecheck = date.strftime('%m/%d/%y')
-            datesent = int(time.mktime(datetime.datetime.strptime(datecheck, "%m/%d/%y").timetuple()))
-            print(datecheck,datesent)
-            print(datesent, type(datesent))
-            url = app.config.get("GET_SALE_MANAGER") + "/api/v1/partners/get-sales"
-            private_key = app.config.get("ACCESS_PRIVATE_KEY_SALE_MANAGER_ITEM")
-            access_token = app.config.get("ACCESS_TOKEN_SALE_MANAGER_ITEM")
-            key = access_token + private_key 
-            secret_key  = hashlib.md5(key.encode())
-            secret_key_sent=  secret_key.hexdigest()
+                datecheck = date.strftime('%m/%d/%y')
+                datesent = int(time.mktime(datetime.datetime.strptime(datecheck, "%m/%d/%y").timetuple()))
+                print(datecheck,datesent)
+                print(datesent, type(datesent))
+                url = app.config.get("GET_SALE_MANAGER") + "/api/v1/partners/get-sales"
+                private_key = app.config.get("ACCESS_PRIVATE_KEY_SALE_MANAGER_ITEM")
+                access_token = app.config.get("ACCESS_TOKEN_SALE_MANAGER_ITEM")
+                key = access_token + private_key 
+                secret_key  = hashlib.md5(key.encode())
+                secret_key_sent=  secret_key.hexdigest()
 
 
-            headers = {
-                "access-token": access_token,
-                "secret-key": secret_key_sent
-            }
-            param = {
-                # "sale_id": sale_id,
-                "brand-id": "BRAND-YHXD" ,
-                "tran-date": datesent,
-                "sale-id": tran_id
-            }
-            async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
-                async with session.get(url, params=param) as response:
-                    print(response.status, await response.text())
-                    if response.status == 200:
-                        resp = await response.json()
-                        data = resp.get("data")
-                        if data is None:
-                            list_trand_id.append(tran_id)
-                            transaction.status_worker = "DONT_EXIST"
-        
-                        else:
-                            transaction.status_worker = "PENDING"
+                headers = {
+                    "access-token": access_token,
+                    "secret-key": secret_key_sent
+                }
+                param = {
+                    # "sale_id": sale_id,
+                    "brand-id": "BRAND-YHXD" ,
+                    "tran-date": datesent,
+                    "sale-id": tran_id
+                }
+                async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
+                    async with session.get(url, params=param) as response:
+                        print(response.status, await response.text())
+                        if response.status == 200:
+                            resp = await response.json()
+                            data = resp.get("data")
+                            if data is None:
+                                list_tran_check.append(tran_id)
+                                transaction.status_worker = "DONT_EXIST"
+            
+                            else:
+                                transaction.status_worker = "PENDING"
+            else:
+                transaction.status_worker = "CHECKING"
                             # pass
         db.session.commit()
             # return json({"listran":list_trand_id})
 
 
-        return json({"listran":list_trand_id})
+        return json({"listran":list_tran_check})

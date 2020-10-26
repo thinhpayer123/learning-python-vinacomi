@@ -239,7 +239,7 @@ async def details_transaction(request):
                 if response.status == 200:
                     resp = response.json()
                     #################################
-                    #           Chưa Xong           # 
+                    #           Debugging           # 
                     #################################   
                     print(resp)
             return  json({"notify":"success"})
