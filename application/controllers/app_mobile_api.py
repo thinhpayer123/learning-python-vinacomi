@@ -216,6 +216,7 @@ async def details_transaction(request):
         print(transaction_id)
         if transaction_id is not None: 
             order = db.session.query(Order).filter(Order.tran_id == transaction_id).first()
+            print(order)
             if order is not None: 
                 listitem = order.items
                 print(listitem)
