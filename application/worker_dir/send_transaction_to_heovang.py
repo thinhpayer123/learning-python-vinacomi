@@ -156,7 +156,7 @@ async def check_transaction_exist(request):
                                 order.membership_name = transaction.username
                                 order.tran_date = transaction.created_at
                                 order.tran_date_fmt = datesent
-                                order.wallet_id = transaction.wallet_id
+                                order.wallet_id = transaction.from_wallet_id
                                 order.items = data.get("sale_detail")
                                 order.total_amount = transaction.value
                                 order.status = "IN_PROCESS"
