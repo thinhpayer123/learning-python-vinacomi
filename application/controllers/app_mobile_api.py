@@ -49,6 +49,7 @@ async def add_membercard(request):
                 company = db.session.query(Company).filter(Company.company_id == company_id).first()
                 name_company = company.name
                 point_name = company.point_name if company is not None else None
+            print(name_company)
             url = app.config.get("HEOVANG_WALLET_API_URL") + "/wallet/api/v1/get_point_balance_by_uid"
             x_wallet_user_token = ''.join(random.choice(string.ascii_letters) for i in range(16))
             headers = {
