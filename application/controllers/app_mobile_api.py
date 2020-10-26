@@ -221,6 +221,7 @@ async def details_order(request):
                 listitem = order.items
                 for item in listitem:
                     print(item)
+                    print(type(item))
 
                 print(listitem)
                 return json({"abc":"abc"})
