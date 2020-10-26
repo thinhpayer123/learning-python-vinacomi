@@ -212,36 +212,44 @@ async def details_transaction(request):
     if request.method == 'POST':
         params = request.json
         transaction_id = params.get("transaction_id")
-        trandate = params.get("trans_id")
-        brand_id = "BRAND-YHXD"
-        # trandate = int(datetime.datetime.strptime(time.strftime('%m/%d/%Y'), '%m/%d/%Y').strftime("%s"))
-        print(brand_id,trandate)
-        url = app.config.get("GET_SALE_MANAGER") + "/api/v1/partners/get-sales"
-        private_key = app.config.get("ACCESS_PRIVATE_KEY_SALE_MANAGER_ITEM")
-        access_token = app.config.get("ACCESS_TOKEN_SALE_MANAGER_ITEM")
-        key = access_token + private_key 
-        secret_key  = hashlib.md5(key.encode())
-        secret_key_sent=  secret_key.hexdigest()
+        # trandate = params.get("trans_id")
+        if transaction_id is not None: 
+            orders = db.session.query(Order).filter(Order.tran_id == transaction_id).first()
+            if orders is not None: 
+                listitem = orders.items
+                print(listitem)
+                return json({"abc":"abc"})
 
 
-        headers = {
-            "access-token": access_token,
-            "secret-key": secret_key_sent
-        }
-        param = {
-            # "sale_id": sale_id,
-            "brand-id": brand_id ,
-            "tran-date": trandate,
-            "sale-id": transaction_id
-        }
-        async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
-            async with session.get(url, params=param) as response:
-                print(response.status, await response.text())
-                if response.status == 200:
-                    resp = response.json()
+        # brand_id = "BRAND-YHXD"
+        # # trandate = int(datetime.datetime.strptime(time.strftime('%m/%d/%Y'), '%m/%d/%Y').strftime("%s"))
+        # print(brand_id,trandate)
+        # url = app.config.get("GET_SALE_MANAGER") + "/api/v1/partners/get-sales"
+        # private_key = app.config.get("ACCESS_PRIVATE_KEY_SALE_MANAGER_ITEM")
+        # access_token = app.config.get("ACCESS_TOKEN_SALE_MANAGER_ITEM")
+        # key = access_token + private_key 
+        # secret_key  = hashlib.md5(key.encode())
+        # secret_key_sent=  secret_key.hexdigest()
 
-                    print(resp)
-            return  json({"notify":"success"})
+
+        # headers = {
+        #     "access-token": access_token,
+        #     "secret-key": secret_key_sent
+        # }
+        # param = {
+        #     # "sale_id": sale_id,
+        #     "brand-id": brand_id ,
+        #     "tran-date": trandate,
+        #     "sale-id": transaction_id
+        # }
+        # async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
+        #     async with session.get(url, params=param) as response:
+        #         print(response.status, await response.text())
+        #         if response.status == 200:
+        #             resp = response.json()
+
+        #             print(resp)
+        #     return  json({"notify":"success"})
 # "sale_detail": [
 #       {
 #         "fix": 0,
