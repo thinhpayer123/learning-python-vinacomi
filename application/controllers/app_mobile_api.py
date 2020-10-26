@@ -224,8 +224,8 @@ async def details_order(request):
                     # amount = item.get("amount")
                     data = {
                         "Ten_mon": item.get("description"),
-                        "soluong": item.get("quantify"),
-                        "don_gia": item.get("amount"),
+                        "soluong": int(item.get("quantity")),
+                        "don_gia": int(item.get("amount")),
                         "time"   : item.get("sale_date")
                     }
                     list_item_order.append(data)
