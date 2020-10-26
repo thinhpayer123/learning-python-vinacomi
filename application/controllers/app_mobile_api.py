@@ -219,6 +219,9 @@ async def details_order(request):
             print(order)
             if order is not None: 
                 listitem = order.items
+                for item is listitem:
+                    print(item)
+
                 print(listitem)
                 return json({"abc":"abc"})
         return json({"bce":"abc"})
