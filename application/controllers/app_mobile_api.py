@@ -229,7 +229,7 @@ async def details_order(request):
                         "time"   : item.get("sale_date")
                     }
                     list_item_order.append(data)
-                print(listitem)
+                print(list_item_order)
                 return json({"detail_order": list_item_order})
         return json({"ERROR_MESSAGE":"UNKNOWN_ERROR"},status=520)
 
