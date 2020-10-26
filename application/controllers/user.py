@@ -18,7 +18,7 @@ def generate_user_token(uid, expire_time=86400):
     redisdb.set(session_key, str(uid), ex=expire_time)
     return token
 
-@app.route("/user/login", methods=["POST", "GET"])
+@app.route("/user/login", methods=["POST"])
 async def user_login(request):
     param = request.json
     user_name = param.get("user_name")
