@@ -220,8 +220,8 @@ async def details_order(request):
             if order is not None: 
                 listitem = order.items
                 for item in listitem:
-                    print(item)
-                    print(type(item))
+                    amount = item.get("amount")
+                    print(amount)
 
                 print(listitem)
                 return json({"abc":"abc"})
