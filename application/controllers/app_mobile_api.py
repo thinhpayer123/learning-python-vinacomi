@@ -167,7 +167,7 @@ def transaction_history(request):
     #     }
         list_order = []
         params = request.json
-        start_date = params.get("date_start")-86400
+        start_date = int(params.get("date_start"))-86400
         end_date = params.get("date_end")
 
         wallet_id = params.get("wallet_id")
