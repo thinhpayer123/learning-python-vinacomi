@@ -167,10 +167,12 @@ def transaction_history(request):
     #     }
         list_order = []
         params = request.json
-        datecheck = params.get("date")
+        start_date = params.get("date_start")-86400
+        end_date = params.get("date_end")
+
         wallet_id = params.get("wallet_id")
-        print(datecheck,wallet_id)
-        if datecheck is None:
+        print(end_date,wallet_id)
+        if end_date is None:
             if wallet_id is not None: 
                 orders = db.session.query(Order).filter(Order.wallet_id == wallet_id).all()
                 for order in orders:
@@ -193,8 +195,8 @@ def transaction_history(request):
                 return json({"page":10,"data":datasent,"total_pages":1,"num_results":4}, status=200)
             else:
                 return json({"ERROR_MESSAGE":"KHÔNG TÌM THẤY GIAO DỊCH"}, status=520)
-        else:
-            orders_by_times = db.session.query(Order).filter(Order.wallet_id == wallet_id).filter(Order.tran_date == datecheck).all()
+        elif end_date is not None:
+            orders_by_times = db.session.query(Order).filter(Order.wallet_id == wallet_id).filter(Order.tran_date > start_date).filter(Order.tran_date <= end_date).all()
             if orders_by_times is not None:
                 for orders_by_time in orders_by_times:
                     wallet = orders_by_time.wallet_id 
