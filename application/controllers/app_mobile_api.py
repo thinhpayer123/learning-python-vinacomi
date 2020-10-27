@@ -151,9 +151,11 @@ async def list_wallet_subcriber(request):
                     "point": value
             }
             listcard.append(datasent)
-        return json({
-                "list_card_subcriber": listcard
-            }, status=200)
+        return json({"page":10,
+                "list_card_subcriber": listcard,
+                "total_pages":1,
+                "num_results":4
+                }, status=200)
 
 
 @app.route("/api/v1/transaction_history", methods=['POST'])
@@ -188,9 +190,9 @@ def transaction_history(request):
                         "data": list_order,
                         "wallet_id": wallet_id
                     }
-                return json({"data":datasent})
+                return json({"page":10,"data":datasent,"total_pages":1,"num_results":4}, status=200)
             else:
-                return ({"ERROR_MESSAGE":"KHÔNG TÌM THẤY GIAO DỊCH"})
+                return json({"ERROR_MESSAGE":"KHÔNG TÌM THẤY GIAO DỊCH"}, status=520)
         else:
             orders_by_times = db.session.query(Order).filter(Order.wallet_id == wallet_id).filter(Order.tran_date == datecheck).all()
             if orders_by_times is not None:
@@ -207,7 +209,7 @@ def transaction_history(request):
                     }    
                     list_order.append(data)
 
-                return json({"data":list_order})
+                return json({ "page":10,"data":list_order,"total_pages":1,"num_results":4}, status=200)
             else:
                 return json({"MESSAGE":"Không có giao dịch thời gian này."})
     return json({"ERROR_MESSAGE":"UNKNOWN_ERROR"},status=520)

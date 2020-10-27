@@ -315,3 +315,78 @@ async def partner_send_point_transaction(request):
                 resp = await response.json()
                 return json(resp)
     return json({},status=520)
+
+
+@app.route('/api/v1/check_transaction_exist', methods=['GET'])
+async def check_transaction_exist(request):
+    
+    if request.method == 'GET':
+        list_tran_check = []
+        transactions = db.session.query(Transaction).all()
+        for transaction in transactions:
+            tran_id = transaction.tran_id
+            date = transaction.created_at # datetime.datetime 
+            # print(date.tzinfo)
+            trans_hash = transaction.transaction_hash
+            if len(trans_hash) <20: 
+                print(date)
+
+                datecheck = date.strftime('%m/%d/%y')
+                datesent = int(time.mktime(datetime.datetime.strptime(datecheck, "%m/%d/%y").timetuple())) - 25200
+                print(datecheck,datesent)
+                print(datesent, type(datesent))
+                url = app.config.get("GET_SALE_MANAGER") + "/api/v1/partners/get-sales"
+                private_key = app.config.get("ACCESS_PRIVATE_KEY_SALE_MANAGER_ITEM")
+                access_token = app.config.get("ACCESS_TOKEN_SALE_MANAGER_ITEM")
+                key = access_token + private_key 
+                secret_key  = hashlib.md5(key.encode())
+                secret_key_sent=  secret_key.hexdigest()
+
+
+                headers = {
+                    "access-token": access_token,
+                    "secret-key": secret_key_sent
+                }
+                param = {
+                    # "sale_id": sale_id,
+                    "brand-id": "BRAND-YHXD" ,
+                    "tran-date": datesent,
+                    "sale-id": tran_id
+                }
+                async with aiohttp.ClientSession(headers=headers, json_serialize=ujson.dumps) as session:
+                    async with session.get(url, params=param) as response:
+                        print(response.status, await response.text())
+                        if response.status == 200:
+                            resp = await response.json()
+                            data = resp.get("data")
+                            if data is None:
+                                list_tran_check.append(tran_id)
+                                transaction.status_worker = "DONT_EXIST"
+            
+                            else:
+                                transaction.status_worker = "PENDING"
+                                order = Order()
+                                order.membership_id = transaction.membercard_id
+                                order.membership_name = transaction.username
+                                order.tran_date = datesent
+                                order.tran_id = tran_id
+                                # order.tran_date_fmt = datesent
+                                order.wallet_id = transaction.from_wallet_id
+                                order.items = data.get("sale_detail")
+                                order.total_amount = transaction.value
+                                order.status = "IN_PROCESS"
+                                order.payment_info = data.get("sale_payment_method")
+                                db.session.add(order)
+
+
+            else:
+                transaction.status_worker = "CHECKING"
+                            # pass
+        db.session.commit()
+            # return json({"listran":list_trand_id})
+
+
+        return json({"listran":list_tran_check})
+
+async def add_to_order():
+    pass
