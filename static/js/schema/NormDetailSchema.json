@@ -1,0 +1,77 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "norm_id": {
+        "type": "string"
+    },
+    "norm_no": {
+        "type": "string",
+        "length": 255
+    },
+    "type": {
+        "type": "number"
+    },
+    "item_id": {
+        "type": "string"
+    },
+    "item_no": {
+        "type": "string",
+        "length": 40
+    },
+    "item_name": {
+        "type": "string",
+        "length": 150
+    },
+    "unit_id": {
+        "type": "string"
+    },
+    "unit_no": {
+        "type": "string"
+    },
+    "unit_name": {
+        "type": "string"
+    },
+    "machine_id": {
+        "type": "string"
+    },
+    "machine_no": {
+        "type": "string",
+        "length": 40
+    },
+    "machine_name": {
+        "type": "string",
+        "length": 150
+    },
+    "note": {
+        "type": "string"
+    },
+    "from_time": {
+        "type": ""
+    },
+    "to_time": {
+        "type": ""
+    },
+    "priority": {
+        "type": "number",
+        "default": 10
+    },
+    "active": {
+        "type": "number",
+        "default": 1
+    }
+}

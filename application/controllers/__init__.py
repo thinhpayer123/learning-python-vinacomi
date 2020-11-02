@@ -4,21 +4,22 @@ from application.extensions import jinja
 
 def init_views(app):
     import application.controllers.user
-    # import application.controllers.quocgia
-    # import application.controllers.tinhthanh
 
-    import application.controllers.transaction
     import application.controllers.user_wallet
-    import application.controllers.membercard
-    import application.controllers.store
-    import application.controllers.brand
-    import application.controllers.company
-    import application.controllers.sinhvien
+
     import application.controllers.role
-    import application.controllers.order
-    import application.worker_dir.sendmail
-    import application.controllers.app_mobile_api
-    import application.worker_dir.send_transaction_to_heovang
+
+
+ 
+    import application.controllers.normdetail
+    import application.controllers.norm
+    import application.controllers.itemcategory
+    import application.controllers.normdetailquantity
+    import application.controllers.unit
+    import application.controllers.item
+    import application.controllers.itemcategoryrelation
+
+
 
     # import application.controllers.khachhang
     # import application.controllers.khachhang

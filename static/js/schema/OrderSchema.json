@@ -37,7 +37,16 @@
     "total_amount": {
         "type": "string"
     },
+    "wallet_id": {
+        "type": "string"
+    },
     "items": {
         "type": "json"
+    },
+    "payment_info": {
+        "type": "json"
+    },
+    "status": {
+        "type": "string"
     }
 }

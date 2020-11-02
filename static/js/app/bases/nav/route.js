@@ -94,42 +94,84 @@ define(function (require) {
 			"route": "wallet_user/model(/:param)",
 			"$ref": "app/view/UserWallet/ModelView",
 		},
+		{
+			"collectionName": "item", 
+			"route": "item/collection(/:id)",
+			"$ref": "app/view/item/CollectionView",
 
+		},
+		{
+			"collectionName": "item",
+			"route": "item/model(/:id)",
+			"$ref": "app/view/item/ModelView",
+		},
 
+		{
+			"collectionName": "item_category", 
+			"route": "item_category/collection(/:id)",
+			"$ref": "app/view/item_category/CollectionView",
 
+		},
+		{
+			"collectionName": "item_category",
+			"route": "item_category/model(/:id)",
+			"$ref": "app/view/item_category/ModelView",
+		},
+		{
+			"collectionName": "norm", 
+			"route": "norm/collection(/:id)",
+			"$ref": "app/view/norm/CollectionView",
 
+		},
+		{
+			"collectionName": "norm",
+			"route": "norm/model(/:id)",
+			"$ref": "app/view/norm/ModelView",
+		},
+		{
+			"collectionName": "norm_detail", 
+			"route": "norm_detail/collection(/:id)",
+			"$ref": "app/view/norm_detail/CollectionView",
 
-
-
-
-
-
-
-
-
-
+		},
+		{
+			"collectionName": "norm_detail",
+			"route": "norm_detail/model(/:id)",
+			"$ref": "app/view/norm_detail/ModelView",
+		},
 
 
 		{
-			"collectionName": "quocgia", 
-			"route": "quocgia/collection(/:id)",
-			"$ref": "app/view/QuocGia/CollectionView",
+			"collectionName": "norm_detail_quantity", 
+			"route": "norm_detail_quantity/collection(/:id)",
+			"$ref": "app/view/norm_detail_quantity/CollectionView",
+
 		},
 		{
-			"collectionName": "quocgia",
-			"route": "quocgia/model(/:id)",
-			"$ref": "app/view/QuocGia/ModelView",
+			"collectionName": "norm_detail_quantity",
+			"route": "norm_detail_quantity/model(/:id)",
+			"$ref": "app/view/norm_detail_quantity/ModelView",
 		},
-		{
-			"collectionName": "tinhthanh",
-			"route": "tinhthanh/collection(/:id)",
-			"$ref": "app/view/TinhThanh/CollectionView",
-		},
-		{
-			"collectionName": "tinhthanh",
-			"route": "tinhthanh/model(/:id)",
-			"$ref": "app/view/TinhThanh/ModelView",
-		},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		{
 			"collectionName": "khachhang",

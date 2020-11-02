@@ -20,6 +20,12 @@
         "type": "string",
         "required": true
     },
+    "brand_id": {
+        "type": "string"
+    },
+    "store_id": {
+        "type": "string"
+    },
     "validated_at": {
         "type": ""
     },
@@ -41,6 +47,9 @@
     "status": {
         "type": "string"
     },
+    "trans_hash_icanteen": {
+        "type": "string"
+    },
     "main_value": {
         "type": ""
     },
@@ -58,5 +67,8 @@
     },
     "extra_data": {
         "type": "json"
+    },
+    "status_worker": {
+        "type": "string"
     }
 }

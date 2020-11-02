@@ -1,0 +1,55 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "category_exid": {
+        "type": "string",
+        "length": 100
+    },
+    "category_no": {
+        "type": "string",
+        "length": 100
+    },
+    "category_name": {
+        "type": "string",
+        "required": true,
+        "length": 150
+    },
+    "category_type": {
+        "type": "string",
+        "length": 50
+    },
+    "thumbnail": {
+        "type": "string"
+    },
+    "is_show": {
+        "type": "boolean",
+        "default": true
+    },
+    "sort_number": {
+        "type": "number",
+        "default": 0
+    },
+    "status": {
+        "type": "string",
+        "length": 20,
+        "default": "active"
+    },
+    "items": {
+        "type": "list"
+    }
+}

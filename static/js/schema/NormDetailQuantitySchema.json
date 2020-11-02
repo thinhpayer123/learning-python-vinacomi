@@ -1,0 +1,47 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "norm_id": {
+        "type": "string"
+    },
+    "norm_no": {
+        "type": "string",
+        "length": 255
+    },
+    "norm_detail_id": {
+        "type": "string"
+    },
+    "type": {
+        "type": "number"
+    },
+    "quantity": {
+        "type": "number"
+    },
+    "previous_quantity": {
+        "type": "number"
+    },
+    "product_id": {
+        "type": "string"
+    },
+    "product_no": {
+        "type": "string"
+    },
+    "product_name": {
+        "type": "string"
+    }
+}

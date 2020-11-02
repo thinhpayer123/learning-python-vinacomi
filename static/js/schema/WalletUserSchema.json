@@ -41,5 +41,8 @@
     },
     "extra_data": {
         "type": "json"
+    },
+    "email": {
+        "type": "string"
     }
 }

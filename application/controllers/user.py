@@ -9,8 +9,9 @@ import random
 import redis 
 import uuid 
 import binascii
+from application.models.model import User, Role, WalletUser,Company
 
-from application.models.model import User, Role
+# from application.models.model import User, Role
 
 def generate_user_token(uid, expire_time=86400):
     token = binascii.hexlify(uuid.uuid4().bytes).decode()

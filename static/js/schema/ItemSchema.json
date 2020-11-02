@@ -1,0 +1,109 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "item_exid": {
+        "type": "string",
+        "length": 100
+    },
+    "item_no": {
+        "type": "string",
+        "required": true,
+        "length": 40
+    },
+    "item_name": {
+        "type": "string",
+        "required": true,
+        "length": 150
+    },
+    "item_ascii_name": {
+        "type": "string",
+        "length": 150
+    },
+    "item_type": {
+        "type": "string",
+        "length": 100
+    },
+    "item_class": {
+        "type": "string",
+        "length": 100
+    },
+    "thumbnail": {
+        "type": "string"
+    },
+    "images": {
+        "type": "json"
+    },
+    "brief_desc": {
+        "type": "string"
+    },
+    "description": {
+        "type": "string"
+    },
+    "manufacturer": {
+        "type": "string",
+        "length": 200
+    },
+    "qty_per_unit": {
+        "type": "number"
+    },
+    "weight": {
+        "type": "number"
+    },
+    "pack_size": {
+        "type": "number"
+    },
+    "unit_id": {
+        "type": "string",
+        "length": 200
+    },
+    "unit_name": {
+        "type": "string",
+        "length": 200
+    },
+    "tax_class": {
+        "type": "string",
+        "length": 200
+    },
+    "is_product": {
+        "type": "boolean"
+    },
+    "is_raw_material": {
+        "type": "boolean"
+    },
+    "is_material": {
+        "type": "boolean"
+    },
+    "is_service": {
+        "type": "boolean"
+    },
+    "is_machine": {
+        "type": "boolean"
+    },
+    "active": {
+        "type": "boolean"
+    },
+    "extra_attributes": {
+        "type": "json"
+    },
+    "package_items": {
+        "type": "json"
+    },
+    "categories": {
+        "type": "list"
+    }
+}

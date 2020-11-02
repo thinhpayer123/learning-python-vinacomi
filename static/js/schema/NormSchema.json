@@ -1,0 +1,40 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "norm_no": {
+        "type": "string",
+        "length": 255
+    },
+    "from_time": {
+        "type": ""
+    },
+    "to_time": {
+        "type": ""
+    },
+    "priority": {
+        "type": "number",
+        "default": 10
+    },
+    "active": {
+        "type": "number",
+        "default": 1
+    },
+    "norm_details": {
+        "type": "list"
+    }
+}
