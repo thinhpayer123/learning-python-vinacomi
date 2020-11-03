@@ -36,23 +36,23 @@ define(function (require) {
     	uiControl:{
     		fields: [
 				 { 
-	    	    	field: "norm_id",label:"norm_no"
+	    	    	field: "norm_no",label:"norm_no"
 				 },
 				 { 
-	    	    	field: "type",label:"type"
+	    	    	field: "item_no",label:"item_no"
 				 },
 				 { 
-	    	    	field: "quantity",label:"quantity"
+	    	    	field: "item_name",label:"item_name"
 				 },
 				 { 
-	    	    	field: "previous_quantity",label:"previous_quantity"
+	    	    	field: "machine_name",label:"machine_name"
 				 },
 				 { 
-	    	    	field: "product_no",label:"product_no"
+	    	    	field: "note",label:"note"
 				 },	    	     
 				 { 
-	    	    	field: "product_name",label:"product_name"
-				 }
+	    	    	field: "unit_name",label:"unit_name"
+				 },
 
 				//   { field: "ten", label: "Tên", width:250 },
 				//   { field: "gia", label: "Giá" },

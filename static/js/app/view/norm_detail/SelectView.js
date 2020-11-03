@@ -39,30 +39,31 @@ define(function (require) {
 	    	    //  { field: "ma", label: "Mã", width:150},
 				 //  { field: "ten", label: "Tên", width:250 },
 				 { 
-	    	    	field: "norm_id",label:"norm_detail"
-				 },
-				 { 
 	    	    	field: "norm_no",label:"norm_no"
 				 },
 				 { 
-	    	    	field: "type",label:"type"
+	    	    	field: "item_no",label:"item_no"
 				 },
 				 { 
 	    	    	field: "item_name",label:"item_name"
 				 },
 				 { 
-	    	    	field: "unit_name",label:"unit_name"
+	    	    	field: "machine_name",label:"machine_name"
+				 },
+				 { 
+	    	    	field: "note",label:"note"
 				 },	    	     
-				 // { 
-	    // 	    	field: "product_name",label:"product_name"
-				 // }
+				 { 
+	    	    	field: "unit_name",label:"unit_name"
+				 },
                           
-
- // "norm_detail": norm_detail, 
             // "norm_no": norm_no, 
-            // "type": type, 
+            // "item_no": item_no, 
             // "item_name": item_name,
-            // "unit_name": unit_name
+            // "machine_name":machine_name, 
+            // "note": note,
+            // "unit_name": unit_name -->
+
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;

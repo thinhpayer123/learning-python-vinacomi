@@ -48,11 +48,12 @@ define(function (require) {
 	    	    	field: "priority",label:"Độ Ưu Tiên"
 				 },	   
 				 { 
-	    	    	field: "machine_name",label:"Tên Nhóm Vật Tư"
-				 },	   
-				 { 
-	    	    	field: "note",label:"Ghi Chú"
-				 },	   
+	    	    	field: "active",label:"Trạng Thái"
+				 },
+				 	   
+				 // { 
+	    // 	    	field: "note",label:"Ghi Chú"
+				 // },	   
 
 				//      machine_name = db.Column(String(150), nullable=True)
 

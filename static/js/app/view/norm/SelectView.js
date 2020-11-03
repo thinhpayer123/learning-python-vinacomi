@@ -53,6 +53,12 @@ define(function (require) {
 				 { 
 	    	    	field: "priority",label:"Độ Ưu Tiên"
 				 },
+                 { 
+                    field: "active",label:"Trạng Thái"
+                 },    
+                 // { 
+                 //    field: "note",label:"Ghi Chú"
+                 // }, 
 	    	     
 				 // { 
 	    // 	    	field: "active",label:"active"

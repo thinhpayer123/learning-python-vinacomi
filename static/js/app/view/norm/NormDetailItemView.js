@@ -5,6 +5,8 @@ define(function (require) {
   var Gonrin = require("gonrin");
   var template = require("text!app/view/norm/tpl/norm_detail.html"),
       normSchema = require("json!schema/NormDetailSchema.json");
+      // itemSchema = require('json!schema/ItemPriceSchema.json');
+
       // normdetailSchema = require("json!schema/NormSchema.json");
 
   // var normdetailSchema = require("json!schema/NormSchema.json");
@@ -15,8 +17,8 @@ define(function (require) {
 
     computeds: {
       DinhMuscChiTiet: {
-        deps: ["norm_no", "type", "item_name", "unit_name","machine_name","note"],
-        get: function(norm_no, type, item_name, unit_name,machine_name,note){
+        deps: ["norm_no", "item_no", "item_name", "unit_name","machine_name","note"],
+        get: function(norm_no, item_no, item_name, unit_name,machine_name,note){
           return {
             // "norm_detail": norm_detail, 
 
@@ -24,7 +26,7 @@ define(function (require) {
 
     // note = db.Column(Text()) -->
             "norm_no": norm_no, 
-            "type": type, 
+            "item_no": item_no, 
             "item_name": item_name,
             "machine_name":machine_name, 
             "note": note,
@@ -51,9 +53,8 @@ define(function (require) {
     modelClass: Model,
     urlPrefix: "/api/v1/",
     // collectionName: "norm_detail",
-    collectionName: "norm",   
+    collectionName: "norm_details",   
     foreignRemoteField: "id",
-    // foreignField: "norm_details_id",
     foreignField: "norm_id",
 
     uiControl: {
@@ -108,52 +109,68 @@ define(function (require) {
         },
       ]
     },
-    render: function () {
-      var self = this;
+    // render: function () {
+    //   var self = this;
 
-      self.applyBindings();
-      self.registerEvent();
-    },
-    registerEvent: function () {
-      var self = this;
+    //   self.applyBindings();
+    //   self.registerEvent();
+    // },
+    // registerEvent: function () {
+    //   var self = this;
  
-      self.$el.find(".soluong").removeAttr("readonly");
+    //   self.$el.find(".soluong").removeAttr("readonly");
 
-      self.$el.find("#itemRemove").bind("click", function(){
+    //   self.$el.find("#itemRemove").bind("click", function(){
+    //     self.remove(true);
+    //   });
+    //   },
+
+
+    render: function () {
+            var self = this;
+            if (!self.model.get("id")) {
+                self.model.set("id", gonrin.uuid());
+            }
+      this.applyBindings();
+      //console.log(JSON.stringify(self.model.attributes));
+            // self.calculateNetPrice();
+            // self.registerEvents();
+      self.$el.find("#itemRemove").unbind("click").bind("click", function () {
         self.remove(true);
       });
     },
+
     onItemChange: function(item){
-      var self = this;
-      self.model.set("item_id", item.id);
-      self.model.set("item_no", item.item_no);
-      self.model.set("item_name", item.item_name);
+        var self = this;
+        self.model.set("item_id", item.id);
+        self.model.set("item_no", item.item_no);
+        self.model.set("item_name", item.item_name);
 
             
-      self.model.set("unit_id", item.unit_id);
-      self.model.set("unit_no", item.unit_no);
-      self.model.set("unit_name", item.unit_name);
+        self.model.set("unit_id", item.unit_id);
+        self.model.set("unit_no", item.unit_no);
+        self.model.set("unit_name", item.unit_name);
     },
-    registerEvents: function () {
-            var self = this;
-    },
+      // registerEvents: function () {
+      //     var self = this;
+      // },
 
-    // calculateNetPrice: function () {
-    //   var self = this;
-    //   var list_price = self.model.get("list_price");
-    //   var quantity = self.model.get("quantity");
-    //   var discount_percent = self.model.get("discount_percent");
-    //   var discount_amount = self.model.get("discount_amount");
+    //   calculateNetPrice: function () {
+    //     var self = this;
+    //     var list_price = self.model.get("list_price");
+    //     var quantity = self.model.get("quantity");
+    //     var discount_percent = self.model.get("discount_percent");
+    //     var discount_amount = self.model.get("discount_amount");
 
-    //   var net_amount = (quantity || 0) * (list_price || 0);
-    //   if (!!discount_percent) {
-    //     net_amount = net_amount - (net_amount * discount_percent / 100);
+    //     var net_amount = (quantity || 0) * (list_price || 0);
+    //     if (!!discount_percent) {
+    //         net_amount = net_amount - (net_amount * discount_percent / 100);
     //   } else if (!!discount_amount) {
-    //     net_amount = net_amount - (net_amount > discount_amount ? discount_amount : net_amount);
+    //         net_amount = net_amount - (net_amount > discount_amount ? discount_amount : net_amount);
     //   }
     //   self.model.set("net_amount", net_amount);
+
     // }
-
   });
-});
 
+});

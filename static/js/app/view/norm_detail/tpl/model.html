@@ -15,15 +15,15 @@
 					<div class="col-lg-6 base-content">
 						<div class="form-group">
 							<label>Danh Mục Quy Cách</label>
-							<input type="text" data-bind="value:id" class="form-control inputbox">
+							<input type="text" data-bind="value:norm_no" class="form-control inputbox">
 						</div>
 						<div class="form-group">
 							<label>Đơn Vị</label>
-							<input type="text" data-bind="value:company_type" class="form-control inputbox">
+							<input type="text" data-bind="value:item_no" class="form-control inputbox">
 						</div>
 						<div class="form-group">
 							<label>Ghi Chú</label>
-							<input type="text" data-bind="value:company_id" class="form-control inputbox">
+							<input type="text" data-bind="value:item_name" class="form-control inputbox">
 						</div>
 		<!-- 				<div class="form-group">
 							<label>Tên Đơn Vị</label>
@@ -38,11 +38,11 @@
 					<div class="col-lg-6 base-content">
 						<div class="form-group">
 							<label>Định Mức Đang Áp</label>
-							<input type="text" data-bind="value:email" class="form-control inputbox">
+							<input type="text" data-bind="value:machine_name" class="form-control inputbox">
 						</div>
 						<div class="form-group">
 							<label>Định Mức theo Tấn Than </label>
-							<input type="text" data-bind="value:active" class="form-control inputbox">
+							<input type="text" data-bind="value:note" class="form-control inputbox">
 						</div>
 						<!-- <div class="form-group">
 							<label>Ứng dụng liên kết</label>
@@ -50,7 +50,7 @@
 						</div> -->
 						<div class="form-group">
 							<label>Định Mức Theo Mét Lò</label>
-							<input type="text" data-bind="value:point_name" class="form-control inputbox">
+							<input type="text" data-bind="value:unit_name" class="form-control inputbox">
 						</div> 
 			<!-- 			<div class="form-group">
 							<label>Ghi chú</label>
@@ -71,27 +71,22 @@
 	<!-- /.box -->
 </section>
 
-
 <!-- 
-
-    // norm_id = db.Column(UUID(as_uuid=True), db.ForeignKey('norm.id', ondelete='cascade'))
-    // norm_no = db.Column(String(255),nullable = True)
-
-    // type = db.Column(SmallInteger()) #0: Vat tu thuong xuyen sua chua , 1: bao duong sua chua: 3: 
-    
-    // item_id = db.Column(UUID(as_uuid=True), db.ForeignKey('item.id', ondelete='cascade'), index=True)
-    // # item_id = db.Column(UUID(as_uuid=True), index=True, db.ForeignKey('item.id'))
-
-    // item_no = db.Column(String(40), index=True, nullable=True)
-    // item_name = db.Column(String(150), nullable=True)
-
-    // unit_id = db.Column(UUID(as_uuid=True))
-    // unit_no = db.Column(String())
-    // unit_name = db.Column(String())
-
-    // machine_id = db.Column(UUID(as_uuid=True), db.ForeignKey('item.id', ondelete='cascade'), index=True)
-    // machine_no = db.Column(String(40), index=True, nullable=True)
-    // machine_name = db.Column(String(150), nullable=True)
-
-    // note = db.Column(Text())
- -->
+				 { 
+	    	    	field: "norm_no",label:"norm_no"
+				 },
+				 { 
+	    	    	field: "item_no",label:"item_no"
+				 },
+				 { 
+	    	    	field: "item_name",label:"item_name"
+				 },
+				 { 
+	    	    	field: "machine_name",label:"machine_name"
+				 },
+				 { 
+	    	    	field: "note",label:"note"
+				 },	    	     
+				 { 
+	    	    	field: "unit_name",label:"unit_name"
+				 }, -->

@@ -20,7 +20,9 @@
             <div class="form-group">
               <label for="">Tên định mức </label>
 <!--               <input id="organization" readonly class="form-control" data-bind="dict:norm_no" />
- -->          <input id="organization" readonly class="form-control" data-bind="value:norm_no" />
+ -->          
+              <input id="organization"  class="form-control" data-bind="value:norm_no" />
+
 
             </div>
           </div>
@@ -42,13 +44,30 @@
               <input type="text" data-bind="value:to_time" />
             </div>
           </div>
+
+
           <div class="card-body row">
             <div class="col-md-8 col-lg-6 col-sm-12 col-12">
               <div class="form-group">
                 <label for="">Độ ưu tiên</label>
-                <input readonly class="form-control" data-bind="value:priority" />
+                <input class="form-control" data-bind="value:priority" />
               </div>
             </div>
+
+       
+  <div class="col-lg-6 base-content">
+    <div class="form-group">
+      <label>Trạng Thái</label>
+      <input type="text" data-bind="value:active" class="form-control inputbox">
+    </div>
+  </div>
+
+<!--                 norm_no = db.Column(String(255),nullable = True)
+    from_time = db.Column(BigInteger(), index=True)
+    to_time = db.Column(BigInteger(), index=True)
+    priority = db.Column(Integer(), default=10)
+    active = db.Column(SmallInteger(), default=1) -->
+
 <!--             <div class="col-md-2 col-lg-2 col-sm-4 col-4">
               <div class="form-group">
                 <label for="day-create">Nguồn kinh phí</label>

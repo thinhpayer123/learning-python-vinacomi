@@ -7,7 +7,7 @@
     <input class="form-control-sm form-control text-center norm_no" quantity-import = "0" dinhmuc-bind = "value:norm_no " >
 </td>
 <td class="row-item">
-    <input class="form-control-sm form-control text-center type" dinhmuc-bind = "value:type" >
+    <input class="form-control-sm form-control text-center item_no" dinhmuc-bind = "value:item_no" >
 </td>
 <td class="row-item">
     <input class="form-control-sm form-control text-center item_name" quantity-import = "0" dinhmuc-bind = "value:item_name"  value="0">
@@ -23,9 +23,9 @@
 <td class="row-item"> 
     <input class="form-control-sm form-control text-center note" dinhmuc-bind= "value:note" >
 </td>
-<td class="row-item">
+<!-- <td class="row-item">
     <button title="Xem chi tiết NSX" class="btn  btn-sm btn-outline-secondary pr-0 pl-0 brands_info" style="width:100%;"><i class="fa fa-eye" aria-hidden="true" ></i></button>
-</td>
+</td> -->
 <td class="row-item" >
     <button type="button" class="btn btn-sm btn-danger" id="itemRemove" style="background-color:transparent; color:red">
         <span class="fa fa-times"></span>
@@ -33,17 +33,12 @@
 </td>
 
 
-<!--     item_no = db.Column(String(40), index=True, nullable=True)
-    item_name = db.Column(String(150), nullable=True)
-
-    unit_id = db.Column(UUID(as_uuid=True))
-    unit_no = db.Column(String())
-    unit_name = db.Column(String())
-
-    machine_id = db.Column(UUID(as_uuid=True), db.ForeignKey('item.id', ondelete='cascade'), index=True)
-    machine_no = db.Column(String(40), index=True, nullable=True)
-    machine_name = db.Column(String(150), nullable=True)
-
-    note = db.Column(Text()) -->
+<!-- 
+            "norm_no": norm_no, 
+            "item_no": item_no, 
+            "item_name": item_name,
+            "machine_name":machine_name, 
+            "note": note,
+            "unit_name": unit_name -->
 
     <!-- deps: ["norm_no", "type", "item_name", "unit_name"], -->
