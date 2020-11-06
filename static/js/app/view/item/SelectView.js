@@ -6,6 +6,7 @@ define(function (require) {
     
     var template 			= require('text!app/view/item/tpl/collection.html'),
     	schema 				= require('json!schema/ItemSchema.json');
+    var CategorySelectView = require("app/view/item_category/SelectView");
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
@@ -38,34 +39,40 @@ define(function (require) {
     		fields: [
 	    	    //  { field: "ma", label: "Mã", width:150},
 				 //  { field: "ten", label: "Tên", width:250 },
-	    	     { 
-	    	    	field: "item_exid",label:"Mã Vật Tư Tích Hợp",
+				 { 
+	    	    	field: "item_no",label:"Mã Vật Tư"
 				 },
 				 { 
-	    	    	field: "item_no",label:"Mã Vật Tư",
+	    	    	field: "item_name",label:"Tên Vật Tư"
 				 },
+				 // { 
+	    // 	    	field: "item_ascii_name",label:"Tên Đơn Vị"
+				 // },
 				 { 
-	    	    	field: "item_name",label:"Tên Vật Tư",
+	    	    	field: "item_type",label:"Loại Vật Tư"
 				 },
-				 { 
-	    	    	field: "item_ascii_name",label:"Tên Đơn Vị",
-				 },
-				 { 
-	    	    	field: "item_type",label:"Kiểu Đơn Vị",
-				 },
-	    	     { field: "item_class", label: "Lớp Đơn Vị"},
+
 
 				 { 
-	    	    	field: "brief_desc",label:"Mô Tả",
+	    	    	field: "brief_desc",label:"Mô Tả"
 				 },
 				 { 
-	    	    	field: "unit_name",label:"Tên Đơn Vị",
+	    	    	field: "unit_name",label:"Tên Đơn Vị Tính"
+				 },
+				 { 
+	    	    	field: "tax_class",label:"Thuế"
 				 },
 				 // { 
-	    // 	    	field: "tax_class",label:"Thuế",
+	    // 	    	field: "categories",label:"Nhóm Vật Tư"
 				 // },
+
+
+				 { 
+	    	    	field: "item_class",label:"Lớp Đơn Vị"
+				 },	   
+				 
 				 // { 
-	    // 	    	field: "is_machine",label:"Loại Máy",
+	    // 	    	field: "categories",label:"Nhóm Vật Tư",
 				 // },
 	    // 	     { field: "extra_attributes", label: "Thuộc Tính"},
 

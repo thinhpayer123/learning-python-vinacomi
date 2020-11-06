@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/Company/tpl/collection.html');
-    var	schema 				= require('json!schema/CompanySchema.json');
+    var template 			= require('text!app/view/unit/tpl/collection.html');
+    var	schema 				= require('json!schema/UnitSchema.json');
     
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-		collectionName: "company",
+		collectionName: "unit",
 		tools: [
 			{
 				name: "default",
@@ -35,29 +35,20 @@ define(function (require) {
 		],
     	uiControl:{
     		fields: [
-	    	     { 
-	    	    	field: "id",label:"ID",
-				 },
-				 { 
-	    	    	field: "company_type",label:"Loai",
-				 },
-				 { 
-	    	    	field: "company_id",label:"Mã Đơn Vị",
-				 },
-				 { 
-	    	    	field: "name",label:"Tên Đơn Vị ",
-				 },
-				 { 
-	    	    	field: "phone_number",label:"Số Điện Thoại",
-				 },
-	    	     { field: "point_name", label: "Point Name"},
 
 				 { 
-	    	    	field: "active",label:"active",
+	    	    	field: "unit_no",label:"Mã Đơn Vị Tính",
 				 },
+				 { 
+	    	    	field: "name",label:"Tên Đơn Vị Tính",
+				 },
+	    	     { field: "description", label: "Miêu Tả"},
 
-				//   { field: "ten", label: "Tên", width:250 },
-				//   { field: "gia", label: "Giá" },
+	
+
+    // name = db.Column(db.String, nullable=True)
+    // unit_no = db.Column(db.String(63), nullable=False)
+    // description = db.Column(db.String)
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

@@ -35,17 +35,20 @@ define(function (require) {
 		],
     	uiControl:{
     		fields: [
-				 { 
-	    	    	field: "norm_no",label:"norm_no"
+				{ 
+	    	    	field: "norm_no",label:"Kiểu Đơn Vị"
 				 },
 				 { 
-	    	    	field: "item_no",label:"item_no"
+	    	    	field: "item_no",label:"Loại Vật Tư"
 				 },
 				 { 
-	    	    	field: "item_name",label:"item_name"
+	    	    	field: "type",label:"Kiểu Định Mức"
 				 },
 				 { 
-	    	    	field: "machine_name",label:"machine_name"
+	    	    	field: "item_name",label:"Tên Vật Tư"
+				 },
+				 { 
+	    	    	field: "machine_name",label:"Tên Máy"
 				 },
 				 { 
 	    	    	field: "note",label:"note"
@@ -53,7 +56,6 @@ define(function (require) {
 				 { 
 	    	    	field: "unit_name",label:"unit_name"
 				 },
-
 				//   { field: "ten", label: "Tên", width:250 },
 				//   { field: "gia", label: "Giá" },
 		     ],

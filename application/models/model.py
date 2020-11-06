@@ -322,30 +322,45 @@ class ItemCategory(CommonModel):
     def __repr__(self):
         return '<ItemCategory: {}>'.format(self.category_name)
 
+
+class ItemClass(CommonModel):
+    _tablename_ = 'item_class'
+    item_class_id = db.Column(String(), nullable=False, index=True)
+    item_class_name = db.Column(String(), nullable=False, index=True)
+    # 0: Level 0, Level 1, Level 2
+    # type = db.Column(SmallInteger(), nullable=True, index=True)
+    active = db.Column(Boolean(), default=True)
+    extra_data = db.Column(JSONB())
+    description = db.Column(Text())
+    
+    parent_item_class = db.relationship("ItemClass")
+    parent_item_class_id = db.Column(UUID(as_uuid=True), db.ForeignKey("item_class.id"), index=True)
+ 
+
+
+
 class Item(CommonModel):
     __tablename__ = 'item'
     item_exid = db.Column(String(100), index=True) #id tich hop tu he thong khac
     item_no = db.Column(String(40), index=True, nullable=False)
     item_name = db.Column(String(150), nullable=False)
     item_ascii_name = db.Column(String(150))
-    item_type = db.Column(String(100))
+
+    item_class_name = db.Column(String(150))
+    item_class_id = db.Column(UUID(as_uuid=True), nullable=True)
+
     item_class = db.Column(String(100))
     thumbnail = db.Column(Text())
     images = db.Column(JSONB())
     brief_desc = db.Column(Text())
     description = db.Column(Text())
 
-    manufacturer = db.Column(String(200), nullable=True)
-    qty_per_unit = db.Column(FLOAT(11,2), nullable=True)
-    weight = db.Column(FLOAT(11,2), nullable=True)
-    pack_size = db.Column(Integer(), nullable=True)
     unit_id = db.Column(String(200))
     unit_name = db.Column(String(200))
 
     tax_class = db.Column(String(200))
-# true False doi 5 dong duoi default thành nullable
+    # true False doi 5 dong duoi default thành nullable
     is_product = db.Column(Boolean(), nullable=True)
-    is_raw_material = db.Column(Boolean(), nullable=True) # vat tu 
     is_material = db.Column(Boolean(), nullable=True)
     is_service = db.Column(Boolean(), nullable=True)
     is_machine = db.Column(Boolean(), nullable=True)
@@ -355,17 +370,49 @@ class Item(CommonModel):
     package_items = db.Column(JSONB())
 
     categories = db.relationship("ItemCategory", secondary='items_categories')
-    # tenant_id = db.Column(String(), nullable=False)
+   
+
+class NormItem(CommonModel):
+    __tablename__ = 'norm_item'
+    norm_item_exid = db.Column(String(100), index=True) #id tich hop tu he thong khac
+    norm_item_no = db.Column(String(40), index=True, nullable=False)
+    norm_item_name = db.Column(String(150), nullable=False)
+    norm_item_ascii_name = db.Column(String(150))
+    brief_desc = db.Column(Text())
+    description = db.Column(Text())
+
+class NormTemplate(CommonModel):
+    __tablename__ = 'norm_template' #dinh muc
+    norm_template_name =  db.Column(String(255),nullable = True)
+    norm_template_no = db.Column(String(255),nullable = True)
+    norm_items = db.Column(JSONB())
+
+class NormDocument(CommonModel):
+    __tablename__ = 'norm_document' #dinh muc
+    norm_document_name =  db.Column(String(255),nullable = True)
+    norm_document_no = db.Column(String(255),nullable = True)
+    from_time = db.Column(BigInteger(), index=True)
+    to_time = db.Column(BigInteger(), index=True)
+    year = db.Column(Integer(), index=True)
 
 class Norm(CommonModel):
     __tablename__ = 'norm' #dinh muc
+    norm_name =  db.Column(String(255),nullable = True)
     norm_no = db.Column(String(255),nullable = True)
+    norm_document_id = db.Column(UUID(as_uuid=True))
+    norm_document_no = db.Column(String(255),nullable = True)
+
+    norm_template_id = db.Column(UUID(as_uuid=True))
+    norm_template_no = db.Column(String(255),nullable = True)
     from_time = db.Column(BigInteger(), index=True)
     to_time = db.Column(BigInteger(), index=True)
+    year = db.Column(Integer(), index=True)
     priority = db.Column(Integer(), default=10)
     active = db.Column(SmallInteger(), default=1)
 
     norm_details = db.relationship("NormDetail")
+    norm_items = db.Column(JSONB())
+
     # chitiet = db.relationship("PhieuNhapVatTuChiTiet", order_by="PhieuNhapVatTuChiTiet.created_at",
     #                           cascade="all, delete-orphan")
     # tenant_id = db.Column(String(), nullable=False)
@@ -377,7 +424,7 @@ class NormDetail(CommonModel):
 
     type = db.Column(SmallInteger()) #0: Vat tu thuong xuyen sua chua , 1: bao duong sua chua: 3: 
     
-    item_id = db.Column(UUID(as_uuid=True), db.ForeignKey('item.id', ondelete='cascade'), index=True)
+    item_id = db.Column(UUID(as_uuid=True), index=True)
     # item_id = db.Column(UUID(as_uuid=True), index=True, db.ForeignKey('item.id'))
 
     item_no = db.Column(String(40), index=True, nullable=True)
@@ -387,7 +434,9 @@ class NormDetail(CommonModel):
     unit_no = db.Column(String())
     unit_name = db.Column(String())
 
-    machine_id = db.Column(UUID(as_uuid=True), db.ForeignKey('item.id', ondelete='cascade'), index=True)
+    # machine_id = db.Column(UUID(as_uuid=True), db.ForeignKey('item.id', ondelete='cascade'), index=True)
+    
+    machine_id = db.Column(UUID(as_uuid=True), index=True)
     machine_no = db.Column(String(40), index=True, nullable=True)
     machine_name = db.Column(String(150), nullable=True)
 
@@ -395,8 +444,10 @@ class NormDetail(CommonModel):
     # them
     from_time = db.Column(BigInteger(), index=True)
     to_time = db.Column(BigInteger(), index=True)
+    year = db.Column(Integer(), index=True)
     priority = db.Column(Integer(), default=10)
     active = db.Column(SmallInteger(), default=1)
+
 
 class NormDetailQuantity(CommonModel):
     __tablename__ = 'norm_detail_quantity' #dinh muc
@@ -404,13 +455,13 @@ class NormDetailQuantity(CommonModel):
     norm_no = db.Column(String(255),nullable = True)
 
     norm_detail_id = db.Column(UUID(as_uuid=True), db.ForeignKey('norm_detail.id', ondelete='cascade'))
-    type = db.Column(SmallInteger())
 
     quantity = db.Column(DECIMAL(25,8))
     previous_quantity = db.Column(DECIMAL(25,8))
-    product_id = db.Column(UUID(as_uuid=True), db.ForeignKey('item.id', ondelete='cascade'), index=True)
-    product_no = db.Column(String(), index=True, nullable=True)
-    product_name = db.Column(String(), nullable=True)
+    
+    norm_item_id = db.Column(UUID(as_uuid=True), index=True)
+    norm_item_no = db.Column(String(), index=True, nullable=True)
+    norm_item_name = db.Column(String(), nullable=True)
 
 
 

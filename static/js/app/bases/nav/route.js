@@ -203,6 +203,17 @@ define(function (require) {
 			"route": "hoadon/model(/:id)",
 			"$ref": "app/view/HoaDon/ModelView",
 		},
+		{
+			"collectionName": "unit",
+			"route": "unit/collection(/:id)",
+			"$ref": "app/view/unit/CollectionView",
+		},
+		{
+			"collectionName": "unit",
+			"route": "unit/model(/:id)",
+			"$ref": "app/view/unit/ModelView",
+		},
+
 	];
 
 });

@@ -39,24 +39,26 @@ define(function (require) {
 	    	    //  { field: "ma", label: "Mã", width:150},
 				 //  { field: "ten", label: "Tên", width:250 },
 				 { 
-	    	    	field: "norm_no",label:"norm_no"
+	    	    	field: "norm_no",label:"Kiểu Đơn Vị"
 				 },
 				 { 
-	    	    	field: "item_no",label:"item_no"
+	    	    	field: "item_no",label:"Loại Vật Tư"
 				 },
 				 { 
-	    	    	field: "item_name",label:"item_name"
+	    	    	field: "type",label:"Kiểu Định Mức"
 				 },
 				 { 
-	    	    	field: "machine_name",label:"machine_name"
+	    	    	field: "item_name",label:"Tên Vật Tư"
+				 },
+				 { 
+	    	    	field: "machine_name",label:"Tên Máy"
 				 },
 				 { 
 	    	    	field: "note",label:"note"
 				 },	    	     
 				 { 
 	    	    	field: "unit_name",label:"unit_name"
-				 },
-                          
+				 },      
             // "norm_no": norm_no, 
             // "item_no": item_no, 
             // "item_name": item_name,
