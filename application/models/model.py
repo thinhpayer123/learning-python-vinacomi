@@ -37,127 +37,6 @@ class Company(CommonModel):
 
     active = db.Column(Boolean(), default=True)
 
-
-# class Application(CommonModel):
-#     __tablename__ = 'application'
-#     id = db.Column(String(), primary_key=True,default=default_uuid)
-#     # company_id = db.Column(String(), index=True) 
-#     # app_id = db.Column(String(), index=True)
-#     # app_secret = db.Column(String())
-#     # name = db.Column(String())
-#     # app_url = db.Column(String())
-
-#     # foodbook_access_token = db.Column(String())
-#     # foodbook_partner_id = db.Column(String())
-#     # firebase_server_key = db.Column(String())
-
-#     wallet_require_pass = db.Column(Boolean(), default=True)
-
-#     ios_release_version = db.Column(String(63))
-#     ios_link_update = db.Column(String())
-#     android_release_version = db.Column(String(63))
-#     android_link_update = db.Column(String())
-#     message_update = db.Column(String())
-
-#     phone_number = db.Column(String(63))
-#     email = db.Column(String(63))
-
-#     sms_api_key = db.Column(String())
-#     sms_secret_key = db.Column(String())
-#     sms_brand_name = db.Column(String(63))
-#     sms_text = db.Column(String())
-#     sms_partner = db.Column(String(63))
-#     active = db.Column(Boolean(), default=True)
-
-    
-
-
-# #     "ios_release_version": "1.1.7",
-# #   "android_release_version": "15",
-# #   "message_update": "Phiên bản bạn đang sử dụng chưa phải là bản mới nhất trên chợ ứng dụng. Vui lòng cập nhật để tiếp tục?",
-# #   "phone_number": "+84972731210",
-# #   "email": "tech@soyagarden.com",
-# #   "ios_link_update": "https://apps.apple.com/app/apple-store/id1472964012",
-# #   "android_link_update": "https://play.google.com/store/apps/details?id=com.soyagarden.android",
-# #   "firebase_wb_api_key": "AIzaSyAC-8c5yj01lFTC0q2JoiLz6OCm76oe-II",
-# #   "phone_countrey_prefix": "84",
-# #   "phone_national_number": "972731210",
-# #   "user_id": "e26d5070015e5b8230e50eaea52e0687",
-# #   "user_fullname": "Lê Thị Lan",
-# #   "wallet_type": "user",
-# #   "sms_api_key": "..",
-# #   "sms_secret_key": "",
-# #   "sms_brand_name": "Soya Garden",
-# #   "sms_text": "Ma OTP cua quy khach la ****** (Soya Garden)",
-# #   "sms_partner": "VMG_V2"
-
-
-
-# class Brand(CommonModel):
-#     __tablename__ = 'brand'
-#     id = db.Column(String(), primary_key=True,default=default_uuid)
-#     brand_id = db.Column(String(), index=True, nullable=False,unique=True)
-#     company_id = db.Column(String(), index=True, nullable=False)
-#     brand_logo_url = db.Column(String())
-#     email = db.Column(String())
-#     phone_number = db.Column(String())
-#     extra_data = db.Column(JSONB())
-#     active = db.Column(Boolean(), default=True)
-#     company_name = db.Column(String())
-#     name = db.Column(String())
-
-# class Store(CommonModel):
-#     __tablename__ = 'store'
-#     id = db.Column(String(), primary_key=True,default=default_uuid)
-#     store_id = db.Column(String(), index=True, nullable=False)
-#     brand_id = db.Column(String(), index=True, nullable=False)
-#     company_id = db.Column(String(), index=True, nullable=False)
-#     active = db.Column(Boolean(), default=True)
-#     company_name = db.Column(String())
-#     store_name = db.Column(String())
-#     open_time = db.Column(String())
-#     phone_number = db.Column(String())
-#     estimate_price = db.Column(Integer())
-#     estimate_price_max = db.Column(Integer())
-#     wifi_password = db.Column(String())
-
-#     is_car_parking = db.Column(SmallInteger())
-#     is_visa = db.Column(SmallInteger())
-#     is_sticky = db.Column(SmallInteger())
-
-#     store_longitude = db.Column(Float())
-#     store_latitude = db.Column(Float())
-#     store_radius_detail = db.Column(Integer())
-
-#     store_master_id = db.Column(String())
-
-#     district_id = db.Column(String())
-#     city_id = db.Column(String())
-#     city_name = db.Column(String())
-#     store_address = db.Column(String())
-#     image_path = db.Column(String())
-#     image_path_thumb = db.Column(String())
-
-#     workstation_id = db.Column(String())
-
-#     wallet_id = db.Column(String())
-#     wallet_fullname = db.Column(String())
-#     wallet_phone = db.Column(String())
-
-#     wallet_method = db.Column(String()) #by_company, by_store
-#     extra_data = db.Column(JSONB())
-
-
-
-
-# class Item(CommonModel):
-#     __tablename__ = 'item'
-#     company_id = 
-
-# class ItemStore(CommonModel):
-#     __tablename__ = 'item'
-#     company_id = 
-
 class Role(CommonModel):
     __tablename__ = 'role'
     id = db.Column(String, primary_key=True, default=default_uuid)
@@ -374,7 +253,7 @@ class Item(CommonModel):
 
 class NormItem(CommonModel):
     __tablename__ = 'norm_item'
-    norm_item_exid = db.Column(String(100), index=True) #id tich hop tu he thong khac
+    norm_item_exid = db.Column(String(100), index=True) 
     norm_item_no = db.Column(String(40), index=True, nullable=False)
     norm_item_name = db.Column(String(150), nullable=False)
     norm_item_ascii_name = db.Column(String(150))
@@ -382,13 +261,14 @@ class NormItem(CommonModel):
     description = db.Column(Text())
 
 class NormTemplate(CommonModel):
-    __tablename__ = 'norm_template' #dinh muc
+    __tablename__ = 'norm_template' 
     norm_template_name =  db.Column(String(255),nullable = True)
     norm_template_no = db.Column(String(255),nullable = True)
     norm_items = db.Column(JSONB())
+    norm_details = db.Column(JSONB())
 
 class NormDocument(CommonModel):
-    __tablename__ = 'norm_document' #dinh muc
+    __tablename__ = 'norm_document' 
     norm_document_name =  db.Column(String(255),nullable = True)
     norm_document_no = db.Column(String(255),nullable = True)
     from_time = db.Column(BigInteger(), index=True)
@@ -416,7 +296,7 @@ class Norm(CommonModel):
     # chitiet = db.relationship("PhieuNhapVatTuChiTiet", order_by="PhieuNhapVatTuChiTiet.created_at",
     #                           cascade="all, delete-orphan")
     # tenant_id = db.Column(String(), nullable=False)
-
+    
 class NormDetail(CommonModel):
     __tablename__ = 'norm_detail' #dinh muc
     norm_id = db.Column(UUID(as_uuid=True), db.ForeignKey('norm.id', ondelete='cascade'))

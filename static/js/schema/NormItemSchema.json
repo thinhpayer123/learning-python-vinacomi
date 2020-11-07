@@ -16,29 +16,28 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "norm_id": {
-        "type": "string"
-    },
-    "norm_no": {
+    "norm_item_exid": {
         "type": "string",
-        "length": 255
-    },
-    "norm_detail_id": {
-        "type": "string"
-    },
-    "quantity": {
-        "type": "number"
-    },
-    "previous_quantity": {
-        "type": "number"
-    },
-    "norm_item_id": {
-        "type": "string"
+        "length": 100
     },
     "norm_item_no": {
-        "type": "string"
+        "type": "string",
+        "required": true,
+        "length": 40
     },
     "norm_item_name": {
+        "type": "string",
+        "required": true,
+        "length": 150
+    },
+    "norm_item_ascii_name": {
+        "type": "string",
+        "length": 150
+    },
+    "brief_desc": {
+        "type": "string"
+    },
+    "description": {
         "type": "string"
     }
 }

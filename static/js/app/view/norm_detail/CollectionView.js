@@ -36,10 +36,10 @@ define(function (require) {
     	uiControl:{
     		fields: [
 				{ 
-	    	    	field: "norm_no",label:"Kiểu Đơn Vị"
+	    	    	field: "norm_no",label:"Mã Định Mức"
 				 },
 				 { 
-	    	    	field: "item_no",label:"Loại Vật Tư"
+	    	    	field: "item_no",label:"Mã Vật Tư"
 				 },
 				 { 
 	    	    	field: "type",label:"Kiểu Định Mức"
@@ -51,10 +51,10 @@ define(function (require) {
 	    	    	field: "machine_name",label:"Tên Máy"
 				 },
 				 { 
-	    	    	field: "note",label:"note"
+	    	    	field: "note",label:"Ghi Chú"
 				 },	    	     
 				 { 
-	    	    	field: "unit_name",label:"unit_name"
+	    	    	field: "unit_name",label:"Tên Định Mức"
 				 },
 				//   { field: "ten", label: "Tên", width:250 },
 				//   { field: "gia", label: "Giá" },

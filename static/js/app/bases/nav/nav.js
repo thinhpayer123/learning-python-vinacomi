@@ -37,6 +37,13 @@ define(function (require) {
 						"collectionName":"item_category",
 					    "route":"item_category/collection"
 					},
+ 					{
+						"text":"Lớp Vật Tư Tiêu Hao",
+						// "icon":"fa fa-child",
+						"type":"view",
+						"collectionName":"item_class",
+					    "route":"item_class/collection"
+					},
 					{
 						"text":"Định Mức",
 						// "icon":"fa fa-child",
@@ -44,9 +51,28 @@ define(function (require) {
 						"collectionName":"norm",
 					    "route":"norm/collection"
 					},
+					{
+						"text":"Định Mức Template ",
+						// "icon":"fa fa-child",
+						"type":"view",
+						"collectionName":"norm_template",
+					    "route":"norm_template/collection"
+					},
 
-
-
+					{
+						"text":"Định Mức Quyết Định ",
+						// "icon":"fa fa-child",
+						"type":"view",
+						"collectionName":"norm_document",
+					    "route":"norm_document/collection"
+					},
+					{
+						"text":"Định Mức Template ",
+						// "icon":"fa fa-child",
+						"type":"view",
+						"collectionName":"norm_template",
+					    "route":"norm_template/collection"
+					},
 					{
 						"text":"Định Mức Chi Tiết",
 						// "icon":"fa fa-child",
@@ -69,15 +95,6 @@ define(function (require) {
 						"collectionName":"unit",
 					    "route":"unit/collection"
 					},
-
-
-
-					// {
-					// 	"text":"Store",
-					// 	// "icon":"fa fa-child",
-					// 	"type":"view",
-					// 	"route":"store/collection"
-					// }
 				]
 				},
 
@@ -99,12 +116,7 @@ define(function (require) {
 							"type":"view",
 							"route":"wallet_user/collection"
 						},				
-						// {
-						// 	"text":"Quản Lý Thẻ Người Dùng",
-						// 	// "icon":"fa fa-child",
-						// 	"type":"view",
-						// 	"route":"membercard/collection"
-						// },
+
 					]
 				},
 

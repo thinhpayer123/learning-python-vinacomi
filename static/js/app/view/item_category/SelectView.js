@@ -83,14 +83,3 @@ define(function (require) {
 
 });
 
-
-
-// <!--     // category_exid = db.Column(String(100), nullable=True, index=True)
-//     // category_no = db.Column(String(100), nullable=True)
-//     // category_name = db.Column(String(150), nullable=False)
-//     // category_type = db.Column(String(50))
-//     // thumbnail = db.Column(Text())
-//     // is_show = db.Column(Boolean(), default=True)
-//     // sort_number = db.Column(Integer(), default=0)
-//     // status = db.Column(String(20), default="active")
-//     // items = db.relationship("Item", secondary='items_categories', lazy='dynamic') -->

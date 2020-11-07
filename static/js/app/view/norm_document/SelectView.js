@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/norm_detail/tpl/collection.html'),
-    	schema 				= require('json!schema/NormDetailSchema.json');
+    var template 			= require('text!app/view/norm_document/tpl/collection.html'),
+    	schema 				= require('json!schema/NormDocumentSchema.json');
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "norm_detail",
+    	collectionName: "norm_document",
     	textField: "name",
     	valueField: "id",
     	tools : [
@@ -36,28 +36,29 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
+	    	    //  { field: "ma", label: "Mã", width:150},
+				 //  { field: "ten", label: "Tên", width:250 },
                 { 
-                    field: "norm_no",label:"Mã Định Mức"
+                    field: "norm_document_name",label:" Tên Định Mức Quyết Định"
                  },
                  { 
-                    field: "item_no",label:"Mã Vật Tư"
+                    field: "norm_document_no",label:"Mã Định Mức Quyết Định"
                  },
                  { 
-                    field: "type",label:"Kiểu Định Mức"
+                    field: "from_time",label:"Thời Gian Bắt Đầu"
                  },
                  { 
-                    field: "item_name",label:"Tên Vật Tư"
+                    field: "to_time",label:"Thời Gian Kết Thúc"
                  },
                  { 
-                    field: "machine_name",label:"Tên Máy"
-                 },
-                 { 
-                    field: "note",label:"Ghi Chú"
-                 },              
-                 { 
-                    field: "unit_name",label:"Tên Định Mức"
-                 },      
-
+                    field: "year",label:"Năm"
+                 },   
+            // "norm_no": norm_no, 
+            // "item_no": item_no, 
+            // "item_name": item_name,
+            // "machine_name":machine_name, 
+            // "note": note,
+            // "unit_name": unit_name -->
 
 		    ],
 		    onRowClick: function(event){

@@ -36,28 +36,32 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-                { 
-                    field: "norm_no",label:"Mã Định Mức"
+	    	    //  { field: "ma", label: "Mã", width:150},
+				 //  { field: "ten", label: "Tên", width:250 },
+                 { 
+                    field: "norm_item_exid",label:"norm_item_exid"
                  },
                  { 
-                    field: "item_no",label:"Mã Vật Tư"
+                    field: "norm_item_no",label:"Mã Định Mức Vật Tư"
                  },
                  { 
-                    field: "type",label:"Kiểu Định Mức"
+                    field: "norm_item_name",label:"Tên Định Mức Vật Tư"
                  },
                  { 
-                    field: "item_name",label:"Tên Vật Tư"
+                    field: "norm_item_ascii_name",label:"Tên Định Mức ascii"
                  },
                  { 
-                    field: "machine_name",label:"Tên Máy"
+                    field: "brief_desc",label:"Mô Tả Ngắn Gọn"
                  },
                  { 
-                    field: "note",label:"Ghi Chú"
-                 },              
-                 { 
-                    field: "unit_name",label:"Tên Định Mức"
-                 },      
-
+                    field: "description",label:"Miêu Tả"
+                 },    
+            // "norm_no": norm_no, 
+            // "item_no": item_no, 
+            // "item_name": item_name,
+            // "machine_name":machine_name, 
+            // "note": note,
+            // "unit_name": unit_name -->
 
 		    ],
 		    onRowClick: function(event){
@@ -77,24 +81,9 @@ define(function (require) {
 
 });
 
-
-    // norm_id = db.Column(UUID(as_uuid=True), db.ForeignKey('norm.id', ondelete='cascade'))
-    // norm_no = db.Column(String(255),nullable = True)
-
-    // type = db.Column(SmallInteger()) #0: Vat tu thuong xuyen sua chua , 1: bao duong sua chua: 3: 
-    
-    // item_id = db.Column(UUID(as_uuid=True), db.ForeignKey('item.id', ondelete='cascade'), index=True)
-    // # item_id = db.Column(UUID(as_uuid=True), index=True, db.ForeignKey('item.id'))
-
-    // item_no = db.Column(String(40), index=True, nullable=True)
-    // item_name = db.Column(String(150), nullable=True)
-
-    // unit_id = db.Column(UUID(as_uuid=True))
-    // unit_no = db.Column(String())
-    // unit_name = db.Column(String())
-
-    // machine_id = db.Column(UUID(as_uuid=True), db.ForeignKey('item.id', ondelete='cascade'), index=True)
-    // machine_no = db.Column(String(40), index=True, nullable=True)
-    // machine_name = db.Column(String(150), nullable=True)
-
-    // note = db.Column(Text())
+    // norm_item_exid = db.Column(String(100), index=True) 
+    // norm_item_no = db.Column(String(40), index=True, nullable=False)
+    // norm_item_name = db.Column(String(150), nullable=False)
+    // norm_item_ascii_name = db.Column(String(150))
+    // brief_desc = db.Column(Text())
+    // description = db.Column(Text())

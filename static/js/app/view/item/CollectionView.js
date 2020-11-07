@@ -48,9 +48,9 @@ define(function (require) {
 				 // { 
 	    // 	    	field: "item_ascii_name",label:"Tên Đơn Vị"
 				 // },
-				 { 
-	    	    	field: "item_type",label:"Loại Vật Tư"
-				 },
+				//  { 
+	    	    // 	field: "item_type",label:"Loại Vật Tư"
+				//  },
 
 
 				 { 

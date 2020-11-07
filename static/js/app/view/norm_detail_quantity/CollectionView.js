@@ -35,27 +35,23 @@ define(function (require) {
 		],
     	uiControl:{
     		fields: [
-				 { 
-	    	    	field: "norm_no",label:"norm_no"
-				 },
-				 { 
-	    	    	field: "type",label:"type"
-				 },
-				 { 
-	    	    	field: "quantity",label:"quantity"
-				 },
-				 { 
-	    	    	field: "previous_quantity",label:"previous_quantity"
-				 },
-				 { 
-	    	    	field: "product_no",label:"product_no"
-				 },	    	     
-				 { 
-	    	    	field: "product_name",label:"product_name"
-				 }
+                 { 
+                    field: "norm_no",label:"Mã Định Mức"
+                 },
 
-				//   { field: "ten", label: "Tên", width:250 },
-				//   { field: "gia", label: "Giá" },
+                 { 
+                    field: "quantity",label:"Định Lượng"
+                 },
+                 { 
+                    field: "previous_quantity",label:"Số Định Lượng"
+                 },
+                 { 
+                    field: "norm_item_no",label:"Mã Định Mức Vật Tư"
+                 },              
+                 { 
+                    field: "norm_item_name",label:"Tên Định Mức Vật Tư"
+                 }
+
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

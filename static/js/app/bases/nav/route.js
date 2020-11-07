@@ -153,11 +153,42 @@ define(function (require) {
 			"$ref": "app/view/norm_detail_quantity/ModelView",
 		},
 
+		{
+			"collectionName": "item_class", 
+			"route": "item_class/collection(/:id)",
+			"$ref": "app/view/item_class/CollectionView",
+
+		},
+		{
+			"collectionName": "item_class",
+			"route": "item_class/model(/:id)",
+			"$ref": "app/view/item_class/ModelView",
+		},
 
 
+		{
+			"collectionName": "norm_document", 
+			"route": "norm_document/collection(/:id)",
+			"$ref": "app/view/norm_document/CollectionView",
 
+		},
+		{
+			"collectionName": "norm_document",
+			"route": "norm_document/model(/:id)",
+			"$ref": "app/view/norm_document/ModelView",
+		},
 
+		{
+			"collectionName": "norm_template", 
+			"route": "norm_template/collection(/:id)",
+			"$ref": "app/view/norm_template/CollectionView",
 
+		},
+		{
+			"collectionName": "norm_template",
+			"route": "norm_template/model(/:id)",
+			"$ref": "app/view/norm_template/ModelView",
+		},
 
 
 

@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/norm_detail/tpl/collection.html'),
-    	schema 				= require('json!schema/NormDetailSchema.json');
+    var template 			= require('text!app/view/norm_template/tpl/collection.html'),
+    	schema 				= require('json!schema/NormTemplateSchema.json');
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "norm_detail",
+    	collectionName: "norm_template",
     	textField: "name",
     	valueField: "id",
     	tools : [
@@ -36,28 +36,24 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
+	    	    //  { field: "ma", label: "Mã", width:150},
+				 //  { field: "ten", label: "Tên", width:250 },
                 { 
-                    field: "norm_no",label:"Mã Định Mức"
+                    field: "norm_template_no",label:"Mã Định Mức"
                  },
                  { 
-                    field: "item_no",label:"Mã Vật Tư"
+                    field: "norm_template_name",label:"Tên Định Mức"
                  },
                  { 
-                    field: "type",label:"Kiểu Định Mức"
+                    field: "norm_items",label:"Định Mức Vật Tư"
                  },
-                 { 
-                    field: "item_name",label:"Tên Vật Tư"
-                 },
-                 { 
-                    field: "machine_name",label:"Tên Máy"
-                 },
-                 { 
-                    field: "note",label:"Ghi Chú"
-                 },              
-                 { 
-                    field: "unit_name",label:"Tên Định Mức"
-                 },      
-
+    
+            // "norm_no": norm_no, 
+            // "item_no": item_no, 
+            // "item_name": item_name,
+            // "machine_name":machine_name, 
+            // "note": note,
+            // "unit_name": unit_name -->
 
 		    ],
 		    onRowClick: function(event){

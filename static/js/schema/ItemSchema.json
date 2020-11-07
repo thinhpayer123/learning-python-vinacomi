@@ -34,9 +34,12 @@
         "type": "string",
         "length": 150
     },
-    "item_type": {
+    "item_class_name": {
         "type": "string",
-        "length": 100
+        "length": 150
+    },
+    "item_class_id": {
+        "type": "string"
     },
     "item_class": {
         "type": "string",
@@ -54,19 +57,6 @@
     "description": {
         "type": "string"
     },
-    "manufacturer": {
-        "type": "string",
-        "length": 200
-    },
-    "qty_per_unit": {
-        "type": "number"
-    },
-    "weight": {
-        "type": "number"
-    },
-    "pack_size": {
-        "type": "number"
-    },
     "unit_id": {
         "type": "string",
         "length": 200
@@ -80,9 +70,6 @@
         "length": 200
     },
     "is_product": {
-        "type": "boolean"
-    },
-    "is_raw_material": {
         "type": "boolean"
     },
     "is_material": {

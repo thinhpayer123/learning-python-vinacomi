@@ -66,6 +66,9 @@
     "to_time": {
         "type": ""
     },
+    "year": {
+        "type": "number"
+    },
     "priority": {
         "type": "number",
         "default": 10

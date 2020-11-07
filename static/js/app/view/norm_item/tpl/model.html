@@ -4,7 +4,7 @@
 	<div class="col-lg-12">
 		<div class="box box-primary">
 			<div class="box-header with-border">
-				<h3 class="box-title">Định Mức Chi Tiết</h3>
+				<h3 class="box-title">Định Mức Vật Tư Chi Tiết</h3>
 				<div class="box-tools">
 					<div block-bind="toolbar"></div>
 				</div>
@@ -14,43 +14,36 @@
 				<div block-bind="content" class="row" style="margin-right: 0px; margin-left: 0px;">
 					<div class="col-lg-6 base-content">
 						<div class="form-group">
-							<label>Mã Định Mức</label>
-							<input type="text" data-bind="value:norm_no" class="form-control inputbox">
+							<label>Danh Mục Quy Cách</label>
+							<input type="text" data-bind="value:norm_item_exid" class="form-control inputbox">
 						</div>
 						<div class="form-group">
-							<label>Mã Vật Tư</label>
-							<input type="text" data-bind="value:item_no" class="form-control inputbox">
+							<label>Mã Định Mức Vật Tư</label>
+							<input type="text" data-bind="value:norm_item_no" class="form-control inputbox">
 						</div>
 						<div class="form-group">
-							<label>Tên Vật Tư</label>
-							<input type="text" data-bind="value:item_name" class="form-control inputbox">
+							<label>Tên Định Mức Vật Tư</label>
+							<input type="text" data-bind="value:norm_item_name" class="form-control inputbox">
 						</div>
-		<!-- 				<div class="form-group">
-							<label>Tên Đơn Vị</label>
-							<input type="text" data-bind="value:name" class="form-control inputbox">
-						</div>
-						<div class="form-group">
-							<label>Số Điện Thoại</label>
-							<input type="text" data-bind="value:phone_number" class="form-control inputbox">
-						</div> -->
+
 
 					</div>
 					<div class="col-lg-6 base-content">
 						<div class="form-group">
-							<label>Tên Máy</label>
-							<input type="text" data-bind="value:machine_name" class="form-control inputbox">
+							<label>Tên Định Mức ascii</label>
+							<input type="text" data-bind="value:norm_item_ascii_name" class="form-control inputbox">
 						</div>
 						<div class="form-group">
-							<label>Ghi Chú</label>
-							<input type="text" data-bind="value:note" class="form-control inputbox">
+							<label>Mô Tả Ngắn Gọn</label>
+							<input type="text" data-bind="value:brief_desc" class="form-control inputbox">
 						</div>
 						<!-- <div class="form-group">
 							<label>Ứng dụng liên kết</label>
 							<input type="text" data-bind="list:list_connect_app" class="form-control inputbox">
 						</div> -->
 						<div class="form-group">
-							<label>Tên Định Mức</label>
-							<input type="text" data-bind="value:unit_name" class="form-control inputbox">
+							<label>Miêu Tả</label>
+							<input type="text" data-bind="value:description" class="form-control inputbox">
 						</div> 
 			<!-- 			<div class="form-group">
 							<label>Ghi chú</label>
@@ -70,23 +63,23 @@
 	</div>
 	<!-- /.box -->
 </section>
-
 <!-- 
 				 { 
-	    	    	field: "norm_no",label:"norm_no"
+	    	    	field: "norm_item_exid",label:"Kiểu Đơn Vị"
 				 },
 				 { 
-	    	    	field: "item_no",label:"item_no"
+	    	    	field: "norm_item_no",label:"Loại Vật Tư"
 				 },
 				 { 
-	    	    	field: "item_name",label:"item_name"
+	    	    	field: "norm_item_name",label:"Kiểu Định Mức"
 				 },
 				 { 
-	    	    	field: "machine_name",label:"machine_name"
+	    	    	field: "norm_item_ascii_name",label:"Tên Vật Tư"
 				 },
 				 { 
-	    	    	field: "note",label:"note"
+	    	    	field: "brief_desc",label:"Tên Máy"
+				 },
+				 { 
+	    	    	field: "description",label:"note"
 				 },	    	     
-				 { 
-	    	    	field: "unit_name",label:"unit_name"
-				 }, -->
+     -->

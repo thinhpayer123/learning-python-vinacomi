@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/norm/tpl/collection.html');
-    var	schema 				= require('json!schema/NormSchema.json');
+    var template 			= require('text!app/view/norm_document/tpl/collection.html');
+    var	schema 				= require('json!schema/NormDocumentSchema.json');
     
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-		collectionName: "norm",
+		collectionName: "norm_document",
 		tools: [
 			{
 				name: "default",
@@ -35,8 +35,11 @@ define(function (require) {
 		],
     	uiControl:{
     		fields: [
+				{ 
+	    	    	field: "norm_document_name",label:" Tên Định Mức Quyết Định"
+				 },
 				 { 
-	    	    	field: "norm_no",label:"Kiểu Đơn Vị "
+	    	    	field: "norm_document_no",label:"Mã Định Mức Quyết Định"
 				 },
 				 { 
 	    	    	field: "from_time",label:"Thời Gian Bắt Đầu"
@@ -45,25 +48,9 @@ define(function (require) {
 	    	    	field: "to_time",label:"Thời Gian Kết Thúc"
 				 },
 				 { 
-	    	    	field: "priority",label:"Độ Ưu Tiên"
-				 },	   
-				 { 
-	    	    	field: "active",label:"Trạng Thái"
+	    	    	field: "year",label:"Năm"
 				 },
 
-
-
-				 	   
-				 // { 
-	    // 	    	field: "note",label:"Ghi Chú"
-				 // },	   
-
-				//      machine_name = db.Column(String(150), nullable=True)
-
-    // note = db.Column(Text()) -->
-
-				//   { field: "ten", label: "Tên", width:250 },
-				//   { field: "gia", label: "Giá" },
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){
@@ -80,3 +67,5 @@ define(function (require) {
     });
 
 });
+
+

@@ -67,42 +67,7 @@ define(function (require) {
                     ],
                     value: false
                 },
-                {
-                    field: "is_raw_material",
-                    uicontrol: "checkbox",
-                    checkedField: "name",
-                    valueField: "value",
-                    cssClassField: "cssClass",
-                    dataSource: [
-                        { name: true, value: true, },
-                        { name: false, value: false },
-                    ],
-                    value: false
-                },
-                {
-                    field: "is_material",
-                    uicontrol: "checkbox",
-                    checkedField: "name",
-                    valueField: "value",
-                    cssClassField: "cssClass",
-                    dataSource: [
-                        { name: true, value: true, },
-                        { name: false, value: false },
-                    ],
-                    value: false
-                },
-                {
-                    field: "is_service",
-                    uicontrol: "checkbox",
-                    checkedField: "name",
-                    valueField: "value",
-                    cssClassField: "cssClass",
-                    dataSource: [
-                        { name: true, value: true, },
-                        { name: false, value: false },
-                    ],
-                    value: false
-                }, 
+
 
                 {
 					field: "unit_name",
@@ -209,7 +174,6 @@ define(function (require) {
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");
     		if(id){
-    			//progresbar quay quay
     			this.model.set('id',id);
         		this.model.fetch({
         			success: function(data){

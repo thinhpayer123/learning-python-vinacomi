@@ -37,47 +37,8 @@
 							<label>Loại Máy</label>
 							<input type="text" data-bind="value:is_machine" class="form-control inputbox">
 						</div> -->
-      <div class="row mt-4" >
-        <div class="col-lg-3 col-md-3 col-sm-5 col-12">
-          <span class="required" style="line-height: calc(1.5em + .75rem + 2px);">Máy:</span>
-        </div>
-        <div class="col-lg-9 col-md-9 col-sm-7 col-12">
-          <input class="form-control form-control-line" data-bind="value:is_machine" style="line-height: 34px;">
-        </div>
-	  </div>
-	  
-      <div class="row mt-4" >
-        <div class="col-lg-3 col-md-3 col-sm-5 col-12">
-          <span class="required" style="line-height: calc(1.5em + .75rem + 2px);">Sản Phẩm:</span>
-        </div>
-        <div class="col-lg-9 col-md-9 col-sm-7 col-12">
-          <input class="form-control form-control-line" data-bind="value:is_product" style="line-height: 34px;">
-        </div>
-      </div>
-      <div class="row mt-4" >
-        <div class="col-lg-3 col-md-3 col-sm-5 col-12">
-          <span class="required" style="line-height: calc(1.5em + .75rem + 2px);">Nguyên Liệu:</span>
-        </div>
-        <div class="col-lg-9 col-md-9 col-sm-7 col-12">
-          <input class="form-control form-control-line" data-bind="value:is_raw_material" style="line-height: 34px;">
-        </div>
-      </div>
-      <div class="row mt-4" >
-        <div class="col-lg-3 col-md-3 col-sm-5 col-12">
-          <span class="required" style="line-height: calc(1.5em + .75rem + 2px);">vật chất:</span>
-        </div>
-        <div class="col-lg-9 col-md-9 col-sm-7 col-12">
-          <input class="form-control form-control-line" data-bind="value:is_material" style="line-height: 34px;">
-        </div>
-      </div>
-      <div class="row mt-4" >
-        <div class="col-lg-3 col-md-3 col-sm-5 col-12">
-          <span class="required" style="line-height: calc(1.5em + .75rem + 2px);">Dịch Vụ:</span>
-        </div>
-        <div class="col-lg-9 col-md-9 col-sm-7 col-12">
-          <input class="form-control form-control-line" data-bind="value:is_service" style="line-height: 34px;">
-        </div>
-      </div>
+
+
 
 					</div>
 					<div class="col-lg-6 base-content">
@@ -89,10 +50,10 @@
 							<label>Mô Tả Ngắn Gọn</label>
 							<input type="text" data-bind="value:brief_desc" class="form-control inputbox">
 						</div>
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label>Loại Vật Tư</label>
 							<input type="text" data-bind="value:item_type" class="form-control inputbox">
-						</div>
+						</div> -->
 						<div class="form-group">
 							<label>Tên Đơn Vị Tính</label>
 							<input type="text" data-bind="value:unit_name" class="form-control inputbox">
@@ -103,7 +64,23 @@
 							<label>Tên Nhóm Vật Tư</label>
 							<input type="text" data-bind="list:categories" class="form-control inputbox">
 						</div>
-
+						<div class="row mt-4" >
+							<div class="col-lg-3 col-md-3 col-sm-5 col-12">
+							  <span class="required" style="line-height: calc(1.5em + .75rem + 6px);">Máy:</span>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-7 col-12">
+							  <input class="form-control form-control-line" data-bind="value:is_machine" style="line-height: 34px;">
+							</div>
+						  </div>
+						  
+						  <div class="row mt-4" >
+							<div class="col-lg-3 col-md-3 col-sm-5 col-12">
+							  <span class="required" style="line-height: calc(1.5em + .75rem + 6px);">Sản Phẩm:</span>
+							</div>
+							<div class="col-lg-9 col-md-9 col-sm-7 col-12">
+							  <input class="form-control form-control-line" data-bind="value:is_product" style="line-height: 34px;">
+							</div>
+						  </div>
 
 						</div>
 <!-- 						<div class="form-group col-lg-12">
@@ -125,34 +102,3 @@
 
 </section>
 
-
-
-  <!--   item_exid = db.Column(String(100), index=True) #id tich hop tu he thong khac
-    item_no = db.Column(String(40), index=True, nullable=False)
-    item_name = db.Column(String(150), nullable=False)
-    item_ascii_name = db.Column(String(150))
-    item_type = db.Column(String(100))
-    item_class = db.Column(String(100))
-    thumbnail = db.Column(Text())
-    images = db.Column(JSONB())
-    brief_desc = db.Column(Text())
-    description = db.Column(Text())
-
-    manufacturer = db.Column(String(200), nullable=True) ngươi chet tao 
-    qty_per_unit = db.Column(FLOAT(11,2), nullable=True)
-    weight = db.Column(FLOAT(11,2), nullable=True)  cân năhjng
-    pack_size = db.Column(Integer(), nullable=True)
-    unit_id = db.Column(String(200))
-    unit_name = db.Column(String(200))
-
-    tax_class = db.Column(String(200))
-# true False doi 5 dong duoi default thành nullable
-    is_product = db.Column(Boolean(), nullable=True)
-    is_raw_material = db.Column(Boolean(), nullable=True) # vat tu 
-    is_material = db.Column(Boolean(), nullable=True)
-    is_service = db.Column(Boolean(), nullable=True)
-    is_machine = db.Column(Boolean(), nullable=True)
-
-    active = db.Column(Boolean(), nullable=True)
-    extra_attributes = db.Column(JSONB())
-    package_items = db.Column(JSONB()) -->

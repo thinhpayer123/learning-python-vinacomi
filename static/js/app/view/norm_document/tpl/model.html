@@ -14,16 +14,16 @@
 				<div block-bind="content" class="row" style="margin-right: 0px; margin-left: 0px;">
 					<div class="col-lg-6 base-content">
 						<div class="form-group">
-							<label>Mã Định Mức</label>
-							<input type="text" data-bind="value:norm_no" class="form-control inputbox">
+							<label>Tên Định Mức Quyết Định</label>
+							<input type="text" data-bind="value:norm_document_name" class="form-control inputbox">
 						</div>
 						<div class="form-group">
-							<label>Mã Vật Tư</label>
-							<input type="text" data-bind="value:item_no" class="form-control inputbox">
+							<label>Mã Định Mức Quyết Định</label>
+							<input type="text" data-bind="value:norm_document_no" class="form-control inputbox">
 						</div>
 						<div class="form-group">
-							<label>Tên Vật Tư</label>
-							<input type="text" data-bind="value:item_name" class="form-control inputbox">
+							<label>Thời Gian Bắt Đầu</label>
+							<input type="text" data-bind="value:from_time" class="form-control inputbox">
 						</div>
 		<!-- 				<div class="form-group">
 							<label>Tên Đơn Vị</label>
@@ -37,25 +37,14 @@
 					</div>
 					<div class="col-lg-6 base-content">
 						<div class="form-group">
-							<label>Tên Máy</label>
-							<input type="text" data-bind="value:machine_name" class="form-control inputbox">
+							<label>Thời Gian Kết Thúc</label>
+							<input type="text" data-bind="value:to_time" class="form-control inputbox">
 						</div>
 						<div class="form-group">
-							<label>Ghi Chú</label>
-							<input type="text" data-bind="value:note" class="form-control inputbox">
+							<label>Năm</label>
+							<input type="text" data-bind="value:year" class="form-control inputbox">
 						</div>
-						<!-- <div class="form-group">
-							<label>Ứng dụng liên kết</label>
-							<input type="text" data-bind="list:list_connect_app" class="form-control inputbox">
-						</div> -->
-						<div class="form-group">
-							<label>Tên Định Mức</label>
-							<input type="text" data-bind="value:unit_name" class="form-control inputbox">
-						</div> 
-			<!-- 			<div class="form-group">
-							<label>Ghi chú</label>
-							<input type="text" data-bind="value:description" class="form-control inputbox">
-						</div> -->
+
 					</div>
 		<!-- 			<div class="form-group col-lg-12">
 						<label>Thông Tin Chi Tiết </label>
@@ -71,22 +60,18 @@
 	<!-- /.box -->
 </section>
 
-<!-- 
-				 { 
-	    	    	field: "norm_no",label:"norm_no"
+<!-- 				{ 
+	    	    	field: "norm_document_name",label:" Tên Định Mức Quyết Định"
 				 },
 				 { 
-	    	    	field: "item_no",label:"item_no"
+	    	    	field: "norm_document_no",label:"Mã Định Mức Quyết Định"
 				 },
 				 { 
-	    	    	field: "item_name",label:"item_name"
+	    	    	field: "from_time",label:"Thời Gian Bắt Đầu"
 				 },
 				 { 
-	    	    	field: "machine_name",label:"machine_name"
+	    	    	field: "to_time",label:"Thời Gian Kết Thúc"
 				 },
 				 { 
-	    	    	field: "note",label:"note"
-				 },	    	     
-				 { 
-	    	    	field: "unit_name",label:"unit_name"
+	    	    	field: "year",label:"Năm"
 				 }, -->

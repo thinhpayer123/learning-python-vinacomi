@@ -16,25 +16,11 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "norm_name": {
+    "norm_document_name": {
         "type": "string",
         "length": 255
-    },
-    "norm_no": {
-        "type": "string",
-        "length": 255
-    },
-    "norm_document_id": {
-        "type": "string"
     },
     "norm_document_no": {
-        "type": "string",
-        "length": 255
-    },
-    "norm_template_id": {
-        "type": "string"
-    },
-    "norm_template_no": {
         "type": "string",
         "length": 255
     },
@@ -46,19 +32,5 @@
     },
     "year": {
         "type": "number"
-    },
-    "priority": {
-        "type": "number",
-        "default": 10
-    },
-    "active": {
-        "type": "number",
-        "default": 1
-    },
-    "norm_items": {
-        "type": "json"
-    },
-    "norm_details": {
-        "type": "list"
     }
 }

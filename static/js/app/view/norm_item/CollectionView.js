@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/norm/tpl/collection.html');
-    var	schema 				= require('json!schema/NormSchema.json');
+    var template 			= require('text!app/view/norm_detail/tpl/collection.html');
+    var	schema 				= require('json!schema/NormDetailSchema.json');
     
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-		collectionName: "norm",
+		collectionName: "norm_detail",
 		tools: [
 			{
 				name: "default",
@@ -36,32 +36,24 @@ define(function (require) {
     	uiControl:{
     		fields: [
 				 { 
-	    	    	field: "norm_no",label:"Kiểu Đơn Vị "
+	    	    	field: "norm_item_exid",label:"norm_item_exid"
 				 },
 				 { 
-	    	    	field: "from_time",label:"Thời Gian Bắt Đầu"
+	    	    	field: "norm_item_no",label:"Mã Định Mức Vật Tư"
 				 },
 				 { 
-	    	    	field: "to_time",label:"Thời Gian Kết Thúc"
+	    	    	field: "norm_item_name",label:"Tên Định Mức Vật Tư"
 				 },
 				 { 
-	    	    	field: "priority",label:"Độ Ưu Tiên"
-				 },	   
-				 { 
-	    	    	field: "active",label:"Trạng Thái"
+	    	    	field: "norm_item_ascii_name",label:"Tên Định Mức ascii"
 				 },
-
-
-
-				 	   
-				 // { 
-	    // 	    	field: "note",label:"Ghi Chú"
-				 // },	   
-
-				//      machine_name = db.Column(String(150), nullable=True)
-
-    // note = db.Column(Text()) -->
-
+				 { 
+	    	    	field: "brief_desc",label:"Mô Tả Ngắn Gọn"
+				 },
+				 { 
+	    	    	field: "description",label:"Miêu Tả"
+				 },	    	     
+    
 				//   { field: "ten", label: "Tên", width:250 },
 				//   { field: "gia", label: "Giá" },
 		     ],

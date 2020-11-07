@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/norm_detail/tpl/collection.html'),
-    	schema 				= require('json!schema/NormDetailSchema.json');
+    var template 			= require('text!app/view/item_class/tpl/collection.html'),
+    	schema 				= require('json!schema/ItemClassSchema.json');
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "norm_detail",
+    	collectionName: "item_class",
     	textField: "name",
     	valueField: "id",
     	tools : [
@@ -36,28 +36,34 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-                { 
-                    field: "norm_no",label:"Mã Định Mức"
-                 },
-                 { 
-                    field: "item_no",label:"Mã Vật Tư"
-                 },
-                 { 
-                    field: "type",label:"Kiểu Định Mức"
-                 },
-                 { 
-                    field: "item_name",label:"Tên Vật Tư"
-                 },
-                 { 
-                    field: "machine_name",label:"Tên Máy"
-                 },
-                 { 
-                    field: "note",label:"Ghi Chú"
-                 },              
-                 { 
-                    field: "unit_name",label:"Tên Định Mức"
-                 },      
+	    	    //  { field: "ma", label: "Mã", width:150},
+				 //  { field: "ten", label: "Tên", width:250 },
+	    	     { 
+	    	    	field: "item_class_id",label:"Mã Lớp Đơn Vị",
+				 },
+				 { 
+	    	    	field: "item_class_name",label:"Tên Lớp Đơn Vị",
+				 },
+				 { 
+	    	    	field: "active",label:"Trạng Thái",
+				 },
+				 { 
+	    	    	field: "extra_data",label:"Dữ Liệu Bổ Xung",
+				 },
+				 // { 
+	    // 	    	field: "thumbnail",label:"Số Điện Thoại",
+				 // },
+	    	     // { field: "is_show", label: "Point Name"},
 
+				 { 
+	    	    	field: "description",label:"Miểu Tả",
+				 },   
+            // "norm_no": norm_no, 
+            // "item_no": item_no, 
+            // "item_name": item_name,
+            // "machine_name":machine_name, 
+            // "note": note,
+            // "unit_name": unit_name -->
 
 		    ],
 		    onRowClick: function(event){

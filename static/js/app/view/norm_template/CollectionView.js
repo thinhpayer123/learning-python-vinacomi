@@ -3,15 +3,16 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
-    
-    var template 			= require('text!app/view/norm/tpl/collection.html');
-    var	schema 				= require('json!schema/NormSchema.json');
-    
+
+
+    var template 			= require('text!app/view/norm_template/tpl/collection.html');
+    var	schema 				= require('json!schema/NormTemplateSchema.json');
+    var norm 				= require('app/view/norm/CollectionView');  
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-		collectionName: "norm",
+		collectionName: "norm_template",
 		tools: [
 			{
 				name: "default",
@@ -33,38 +34,18 @@ define(function (require) {
 				]
 			},
 		],
-    	uiControl:{
-    		fields: [
-				 { 
-	    	    	field: "norm_no",label:"Kiểu Đơn Vị "
-				 },
-				 { 
-	    	    	field: "from_time",label:"Thời Gian Bắt Đầu"
-				 },
-				 { 
-	    	    	field: "to_time",label:"Thời Gian Kết Thúc"
-				 },
-				 { 
-	    	    	field: "priority",label:"Độ Ưu Tiên"
-				 },	   
-				 { 
-	    	    	field: "active",label:"Trạng Thái"
-				 },
+
+		uiControl: {
+			orderBy: [{ field: "created_at", direction: "asc" }],
+			fields: [
+				{ field: "norm_template_name", label: "Tên template" },
+				{ field: "norm_template_no", label: "Mã template" },
+				{ field: "norm_no", label: "Mã Định Mức" },
+				{ field: "norm_name", label: "Tên Định Mức" },
 
 
+			],
 
-				 	   
-				 // { 
-	    // 	    	field: "note",label:"Ghi Chú"
-				 // },	   
-
-				//      machine_name = db.Column(String(150), nullable=True)
-
-    // note = db.Column(Text()) -->
-
-				//   { field: "ten", label: "Tên", width:250 },
-				//   { field: "gia", label: "Giá" },
-		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){
 		        		var path = this.collectionName + '/model?id='+ event.rowId;
@@ -80,3 +61,4 @@ define(function (require) {
     });
 
 });
+
