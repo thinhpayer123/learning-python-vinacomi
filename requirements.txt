@@ -36,7 +36,6 @@ import-string
 manage.py
 redis
 python-dateutil
-sanic
 sanic_cors
 git+https://github.com/gonrin/gatco.git
 git+https://github.com/gonrin/gatco_auth.git
