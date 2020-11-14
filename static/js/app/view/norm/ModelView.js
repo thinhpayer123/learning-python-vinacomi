@@ -3,10 +3,18 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
+    var schema 				= require('json!schema/NormSchema.json');
     
-    var template 			= require('text!app/view/norm/tpl/model.html'),
-    	schema 				= require('json!schema/NormSchema.json');
-    var NormDetailItemView = require('./NormDetailItemView');
+    // var template 			= require('text!app/view/norm/tpl/model.html');
+    // var NormDetailItemView = require('./NormDetailItemView');
+
+    var norm_template_map = {
+    	"vat_tu_may_cao": {
+    		"template": require('text!app/view/norm/tpl/model_vat_tu_may_cao.html'),
+    		"ItemView": require('./detailviews/NormDetailItemView_MayCao')
+    	}
+    	
+    }
 
     var cat_tpl = `
     	<tbody data-body-type="category" cat-id="{{id}}" >
@@ -19,7 +27,7 @@ define(function (require) {
     var select_item_tpl = '<option value="{{item_id}}">{{item_no}} - {{item_name}}</option>';
 
     return Gonrin.ModelView.extend({
-    	template : template,
+    	template : null,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
     	collectionName: "norm",
@@ -41,21 +49,21 @@ define(function (require) {
 				},
             
                 
-                {
-					field: "norm_details",
-					uicontrol: false,
-					itemView: NormDetailItemView,
-					tools: [
-						{
-							name: "create",
-							type: "button",
-							buttonClass: "btn btn-primary btn-sm",
-							label: "Thêm",
-							command: "create"
-						},
-					],
-					toolEl: "#add_row"
-                },
+     //            {
+					// field: "norm_details",
+					// uicontrol: false,
+					// itemView: NormDetailItemView,
+					// tools: [
+					// 	{
+					// 		name: "create",
+					// 		type: "button",
+					// 		buttonClass: "btn btn-primary btn-sm",
+					// 		label: "Thêm",
+					// 		command: "create"
+					// 	},
+					// ],
+					// toolEl: "#add_row"
+     //            },
 
 
 
@@ -160,10 +168,15 @@ define(function (require) {
 				success: function (data) {
 					
 					self.model.set(data);
-					self.renderCategorieSelectBox(data.categories);
-					self.renderCategories(data.categories);
-					self.renderDetails(data.norm_details);
-					self.registerEvents();
+					var template_no = self.model.get("norm_template_no");
+		    		var norm_template = norm_template_map[template_no];
+		    		if(norm_template){
+		    			self.$el.html(norm_template.template);
+						self.renderCategorieSelectBox(data.categories);
+						self.renderCategories(data.categories);
+						self.renderDetails(data.norm_details);
+						self.registerEvents();
+					}
 				},
 				error: function (XMLHttpRequest, textStatus, errorThrown) {
 					console.log("Eror get norm");
@@ -279,36 +292,45 @@ define(function (require) {
     	},
     	renderDetails: function(items){
     		var self = this; 
-    		$.each(items, function(idx, item){
-    			// var html = '<tr><td>' + item.item_name + '</td></tr>';
-    			var itemView = new NormDetailItemView();
+    		
+    		var template_no = self.model.get("norm_template_no");
+    		var norm_template = norm_template_map[template_no];
+    		if(norm_template){
+    			var ItemView = norm_template["ItemView"];
+    			$.each(items, function(idx, item){
+	    			// var html = '<tr><td>' + item.item_name + '</td></tr>';
+	    			var itemView = new ItemView();
 
-    			itemView.model.set(item);
-    			itemView.render();
-    			itemView.model.on("change", function(data){
-    				self.onDetailChange(data.toJSON());
-    			});
+	    			itemView.model.set(item);
+	    			itemView.render();
+	    			itemView.model.on("change", function(data){
+	    				self.onDetailChange(data.toJSON());
+	    			});
 
-    			self.onDetailChange(item);
+	    			self.onDetailChange(item);
 
-    			itemView.model.on("remove", function(evt){
-    				console.log("itemView remove",evt);
-    				self.onDetailRemove(evt);
-    			});
+	    			itemView.model.on("remove", function(evt){
+	    				console.log("itemView remove",evt);
+	    				self.onDetailRemove(evt);
+	    			});
 
-    			var cat_id = item.category_id;
-    			var cat_els = self.$el.find('tbody[data-body-type="category"]');
-    			
-    			for (var i=0; i < cat_els.length; i++){
-    				var $cat_el = $(cat_els[i])
-    				if ($cat_el.attr("cat-id") == cat_id){
-    					$cat_el.append(itemView.$el);
+	    			var cat_id = item.category_id;
+	    			var cat_els = self.$el.find('tbody[data-body-type="category"]');
+	    			
+	    			for (var i=0; i < cat_els.length; i++){
+	    				var $cat_el = $(cat_els[i])
+	    				if ($cat_el.attr("cat-id") == cat_id){
+	    					$cat_el.append(itemView.$el);
 
-    				}
-    			}
-    	
+	    				}
+	    			}
+	    	
 
-    		}); 
+	    		}); 
+    		}else{
+    			console.log("Khong tim thay itemView", template_no);
+    		}
+    		
     	},
     	onDetailChange: function(item){
     		var self = this;

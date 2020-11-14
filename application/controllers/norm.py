@@ -28,7 +28,7 @@ apimanager.create_api(collection_name='norm', model=Norm,
 async def get_norm(request):
 	data = {
 		"id": None,
-		# "norm_type_id": "vat_tu_may_cao",
+		"norm_template_no": "vat_tu_may_cao",
 		# "norm_type_name": "Vật tư máy cào",
 		"norm_fields": [
 			{
