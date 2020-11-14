@@ -37,14 +37,21 @@ define(function (require) {
     	uiControl:{
     		fields: [
                  { 
-                    field: "norm_number",label:"Quyết Định Số"
+                    field: "norm_document_no",label:"Quyết Định Số"
+                 }, 
+                 { 
+                    field: "norm_document_name",label:"Tên Quyết Định"
+                 },   
+                 { 
+                    field: "year",label:"Năm"
                  },         
                  { 
-                    field: "norm_name",label:"Tên Định Mức Vật Tư Máy Cào"
+                    field: "norm_name",label:"Tên Định Mức"
                  },
-                 { 
-                    field: "norm_no",label:"Mã Định Mức Vật Tư Máy Cào"
-                 },              
+
+                 // { 
+        //          field: "norm_no",label:"Mã Định Mức Vật Tư Máy Cào"
+                 // },               
                  // { 
         //          field: "from_time",label:"Thời Gian Lập"
                  // },
@@ -54,7 +61,7 @@ define(function (require) {
                  { 
                     field: "active",label:"Trạng Thái"
                  },
-		    ],
+             ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;
 	    		
