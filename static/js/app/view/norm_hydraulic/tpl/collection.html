@@ -1,0 +1,47 @@
+
+<!--     code cu -->
+    <section class="content">
+        <div class="col">
+            <div class="box box-primary">
+                <div class="box-header">
+                    <div class="justify-content-between align-items-center d-flex">
+                        <h3 class="box-title">Định Mức Giá Thủy Lực</h3>
+                        <div class="align-items-center d-flex">
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm" style="width: 200px;">
+                        <div class="btn-group" role="group" aria-label="...">
+<!--                             <button btn-name="create" id="item_create" class="btn btn-success btn-sm waves-effect waves-light float-left"><i class="fas fa-plus"></i> Tạo mới</button>
+                            <button btn-name="sync" id="item_sync" class="btn btn-warning btn-sm waves-effect waves-light float-left ml-2"><i class="fas fa-sync-alt"></i> Đồng bộ thủ công</button> -->
+                        
+                            
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Tiện ích
+                                </button>
+                                <ul class="dropdown-menu">
+                                <li><a href="javascript:void(null)" id="import_excel">Import Excel</a></li>
+                                <li><a href="javascript:void(null)" id="export_excel">Export Excel</a></li>
+                                <!-- <li><a href="#">Dropdown link</a></li> -->
+                                </ul>
+                            </div>
+                        </div>
+             
+                                </div>
+                            </div>
+                            <div block-bind="toolbar" class="margin-5" class="text-right"></div>
+                        </div>
+                    </div>
+                </div>
+        
+                <div class="box-body table-responsive no-padding" style="min-height:600px;">
+                    <div id="grid" data-bind='collection:$collection'></div>
+                </div>
+    
+            </div>
+   
+        </div>
+    </section>
+    
+<!--     het 
+
+

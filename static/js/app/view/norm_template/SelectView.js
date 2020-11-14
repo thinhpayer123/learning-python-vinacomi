@@ -36,24 +36,14 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-	    	    //  { field: "ma", label: "Mã", width:150},
-				 //  { field: "ten", label: "Tên", width:250 },
+
                 { 
                     field: "norm_template_no",label:"Mã Định Mức"
                  },
                  { 
                     field: "norm_template_name",label:"Tên Định Mức"
                  },
-                 { 
-                    field: "norm_items",label:"Định Mức Vật Tư"
-                 },
-    
-            // "norm_no": norm_no, 
-            // "item_no": item_no, 
-            // "item_name": item_name,
-            // "machine_name":machine_name, 
-            // "note": note,
-            // "unit_name": unit_name -->
+
 
 		    ],
 		    onRowClick: function(event){

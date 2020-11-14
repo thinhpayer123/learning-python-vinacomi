@@ -23,20 +23,6 @@ roles_users = db.Table('roles_users',
                        db.Column('role_id', String, db.ForeignKey('role.id', onupdate='cascade'), primary_key=True))
 
 
-class Company(CommonModel):
-    __tablename__ = 'company'
-    id = db.Column(String(), primary_key=True,default=default_uuid)
-    company_type = db.Column(String(), nullable=False)
-    company_id = db.Column(String())
-    name = db.Column(String())
-    description = db.Column(String())
-    phone_number = db.Column(String(63))
-    email = db.Column(String())
-    point_name = db.Column(String())
-    extra_data = db.Column(JSONB())
-
-    active = db.Column(Boolean(), default=True)
-
 class Role(CommonModel):
     __tablename__ = 'role'
     id = db.Column(String, primary_key=True, default=default_uuid)
@@ -67,104 +53,6 @@ class User(CommonModel):
         return '<User: {}>'.format(self.id)
 
 
-# class MemberCard(CommonModel):
-#     __tablename__ = 'membercard'
-#     id = db.Column(String, primary_key=True, default=default_uuid)
-#     company_id = db.Column(String(), index=True, nullable=False)
-#     membercard_id = db.Column(String(), index=True, nullable=False, unique=True)
-#     wallet_id = db.Column(String(), index=True, nullable=True)
-#     start_date = db.Column(BigInteger())
-#     expire_date = db.Column(BigInteger())
-#     extra_data = db.Column(JSONB())
-#     status = db.Column(SmallInteger(), default=1)  # 1: active, 0: deactive
-#     save_dir = db.Column(String())
-#     user_no = db.Column(String(63), nullable=True) # student_id 
-#     # user_name =db.Column(String(),index=True, nullable=False)
-#     user_name = db.Column(String(255), nullable=False, index=True)
-
-
-
-# luu tru cac user co wallet cua cong ty
-class WalletUser(CommonModel):
-    __tablename__ = 'wallet_user'
-    id = db.Column(String, primary_key=True, default=default_uuid)
-    company_id = db.Column(String(), index=True, nullable=False)
-    company_type = db.Column(String(), nullable=True)
-    user_id = db.Column(String(), index=True, nullable=True)
-    wallet_id = db.Column(String(), index=True, nullable=True)
-    relationship = db.Column(String(), nullable=True) #id owner / subcriber
-    company_no = db.Column(String(15), nullable=True)
-    user_no = db.Column(String(), nullable=True) # student_id 
-    extra_data = db.Column(JSONB())
-    email = db.Column(String())
- 
-
-#Bangr luu cac tai khoan chi nhanh cua cong ty
-class WalletCompany(CommonModel):
-    __tablename__ = 'wallet_company'
-    id = db.Column(String, primary_key=True, default=default_uuid)
-    company_id = db.Column(String(), index=True, nullable=False)
-    fullname = db.Column(String())
-    wallet_id = db.Column(String(), index=True, nullable=True)
-  
-    extra_data = db.Column(JSONB())
-    description = db.Column(String())
-    active = db.Column(Boolean(), default=True)
-    list_wallet_follow = db.Column(JSONB())
-    wallet_type = db.Column(String())
-
-
-class Transaction(CommonModel):
-    __tablename__ = 'transaction'
-    id = db.Column(String, primary_key=True, default=default_uuid)
-    company_id = db.Column(String(), index=True, nullable=False)
-    brand_id = db.Column(String(), index=True)
-    store_id = db.Column(String(),index=True)
-    # created_at = db.Column(BigInteger(), index=True)
-    validated_at = db.Column(BigInteger(), index=True) # trả về từ HEOVANG 
-    tran_id = db.Column(String(), index=True)
-    transaction_hash = db.Column(String(), index=True)
-    to_wallet_id =  db.Column(String(), index=True)
-    from_wallet_id =  db.Column(String(), index=True)
-    transaction_type =  db.Column(String(), index=True) #payment, transfer
-    status = db.Column(String())
-    trans_hash_icanteen = db.Column(String())
-    main_value = db.Column(BigInteger()) # tiền trong tài khoản chính 
-    sub_value = db.Column(BigInteger()) # tiền trong tài khoản khuyến mãi 
-    value = db.Column(BigInteger()) # tổng tiền trả 
-    membercard_id =  db.Column(String(), index=True) #payment, transfer
-    username = db.Column(String())
-    extra_data = db.Column(JSONB())
-    status_worker = db.Column(String(),index=True)
-
-
-class Order(CommonModel):
-    __tablename__ = 'orders'
-    id = db.Column(String, primary_key=True, default=default_uuid)
-    membership_id = db.Column(String(),index=True)
-    membership_name = db.Column(String())
-    tran_id = db.Column(String(), index=True)
-    transaction_hash = db.Column(String(),index=True)
-    tran_date = db.Column(BigInteger())
-    tran_date_fmt = db.Column(String()) #trandate_format
-    total_amount = db.Column(String())# tổng tiền 
-    wallet_id = db.Column(String(),index = True)
-    items = db.Column(JSONB())
-    payment_info = db.Column(JSONB())
-    status = db.Column(String())
-
-
-class QRworker(CommonModel):
-    __tablename__ = 'qrworker'
-    id = db.Column(Integer, primary_key=True)
-    uid = db.Column(String(30), nullable=False)
-    save_directory = db.Column(String(255), nullable=False)
-    status = db.Column(String(10))
-    namefile = db.Column(String(255))
-    dowload_url = db.Column(String(255))
-
-
-
 
 # code moi 
 
@@ -191,10 +79,13 @@ class ItemCategory(CommonModel):
     category_exid = db.Column(String(100), nullable=True, index=True)
     category_no = db.Column(String(100), nullable=True)
     category_name = db.Column(String(150), nullable=False)
-    category_type = db.Column(String(50))
+
+    description = db.Column(String(50))
+    norm_template_id = db.Column(UUID(as_uuid=True), db.ForeignKey("norm_template.id"), index=True)
+    norm_template = db.relationship("NormTemplate")
+
     thumbnail = db.Column(Text())
-    is_show = db.Column(Boolean(), default=True)
-    sort_number = db.Column(Integer(), default=0)
+    sort = db.Column(Integer(), default=100)
     status = db.Column(String(20), default="active")
     items = db.relationship("Item", secondary='items_categories', lazy='dynamic')
     # tenant_id = db.Column(String(), nullable=False)
@@ -202,18 +93,18 @@ class ItemCategory(CommonModel):
         return '<ItemCategory: {}>'.format(self.category_name)
 
 
-class ItemClass(CommonModel):
-    _tablename_ = 'item_class'
-    item_class_id = db.Column(String(), nullable=False, index=True)
-    item_class_name = db.Column(String(), nullable=False, index=True)
-    # 0: Level 0, Level 1, Level 2
-    # type = db.Column(SmallInteger(), nullable=True, index=True)
-    active = db.Column(Boolean(), default=True)
-    extra_data = db.Column(JSONB())
-    description = db.Column(Text())
+# class ItemClass(CommonModel):
+#     _tablename_ = 'item_class'
+#     item_class_id = db.Column(String(), nullable=False, index=True)
+#     item_class_name = db.Column(String(), nullable=False, index=True)
+#     # 0: Level 0, Level 1, Level 2
+#     # type = db.Column(SmallInteger(), nullable=True, index=True)
+#     active = db.Column(Boolean(), default=True)
+#     extra_data = db.Column(JSONB())
+#     description = db.Column(Text())
     
-    parent_item_class = db.relationship("ItemClass")
-    parent_item_class_id = db.Column(UUID(as_uuid=True), db.ForeignKey("item_class.id"), index=True)
+#     parent_item_class = db.relationship("ItemClass")
+#     parent_item_class_id = db.Column(UUID(as_uuid=True), db.ForeignKey("item_class.id"), index=True)
  
 
 
@@ -224,11 +115,9 @@ class Item(CommonModel):
     item_no = db.Column(String(40), index=True, nullable=False)
     item_name = db.Column(String(150), nullable=False)
     item_ascii_name = db.Column(String(150))
-
-    item_class_name = db.Column(String(150))
-    item_class_id = db.Column(UUID(as_uuid=True), nullable=True)
-
-    item_class = db.Column(String(100))
+    # item_class_name = db.Column(String(150))
+    # item_class_id = db.Column(UUID(as_uuid=True), nullable=True)
+    # item_class = db.Column(String(100))
     thumbnail = db.Column(Text())
     images = db.Column(JSONB())
     brief_desc = db.Column(Text())
@@ -236,13 +125,14 @@ class Item(CommonModel):
 
     unit_id = db.Column(String(200))
     unit_name = db.Column(String(200))
-
+    unit_no = db.Column(String())
     tax_class = db.Column(String(200))
     # true False doi 5 dong duoi default thành nullable
     is_product = db.Column(Boolean(), nullable=True)
     is_material = db.Column(Boolean(), nullable=True)
     is_service = db.Column(Boolean(), nullable=True)
-    is_machine = db.Column(Boolean(), nullable=True)
+    
+    sort = db.Column(Integer(), default=100)
 
     active = db.Column(Boolean(), nullable=True)
     extra_attributes = db.Column(JSONB())
@@ -251,20 +141,20 @@ class Item(CommonModel):
     categories = db.relationship("ItemCategory", secondary='items_categories')
    
 
-class NormItem(CommonModel):
-    __tablename__ = 'norm_item'
-    norm_item_exid = db.Column(String(100), index=True) 
-    norm_item_no = db.Column(String(40), index=True, nullable=False)
-    norm_item_name = db.Column(String(150), nullable=False)
-    norm_item_ascii_name = db.Column(String(150))
-    brief_desc = db.Column(Text())
-    description = db.Column(Text())
+# class NormItem(CommonModel):
+#     __tablename__ = 'norm_item'
+#     norm_item_exid = db.Column(String(100), index=True) 
+#     norm_item_no = db.Column(String(40), index=True, nullable=False)
+#     norm_item_name = db.Column(String(150), nullable=False)
+#     norm_item_ascii_name = db.Column(String(150))
+#     brief_desc = db.Column(Text())
+#     description = db.Column(Text())
 
 class NormTemplate(CommonModel):
     __tablename__ = 'norm_template' 
     norm_template_name =  db.Column(String(255),nullable = True)
     norm_template_no = db.Column(String(255),nullable = True)
-    norm_items = db.Column(JSONB())
+    norm_fields = db.Column(JSONB())
     norm_details = db.Column(JSONB())
 
 class NormDocument(CommonModel):
@@ -277,32 +167,31 @@ class NormDocument(CommonModel):
 
 class Norm(CommonModel):
     __tablename__ = 'norm' #dinh muc
+    
     norm_name =  db.Column(String(255),nullable = True)
-    norm_no = db.Column(String(255),nullable = True)
+
     norm_document_id = db.Column(UUID(as_uuid=True))
     norm_document_no = db.Column(String(255),nullable = True)
 
     norm_template_id = db.Column(UUID(as_uuid=True))
     norm_template_no = db.Column(String(255),nullable = True)
+    
     from_time = db.Column(BigInteger(), index=True)
     to_time = db.Column(BigInteger(), index=True)
     year = db.Column(Integer(), index=True)
-    priority = db.Column(Integer(), default=10)
+
+    priority = db.Column(Integer(), default=100)
     active = db.Column(SmallInteger(), default=1)
 
     norm_details = db.relationship("NormDetail")
-    norm_items = db.Column(JSONB())
-
-    # chitiet = db.relationship("PhieuNhapVatTuChiTiet", order_by="PhieuNhapVatTuChiTiet.created_at",
-    #                           cascade="all, delete-orphan")
-    # tenant_id = db.Column(String(), nullable=False)
+    norm_fields = db.Column(JSONB())
     
 class NormDetail(CommonModel):
     __tablename__ = 'norm_detail' #dinh muc
     norm_id = db.Column(UUID(as_uuid=True), db.ForeignKey('norm.id', ondelete='cascade'))
-    norm_no = db.Column(String(255),nullable = True)
+    # norm_no = db.Column(String(255),nullable = True)
 
-    type = db.Column(SmallInteger()) #0: Vat tu thuong xuyen sua chua , 1: bao duong sua chua: 3: 
+    # type = db.Column(SmallInteger()) #0: Vat tu thuong xuyen sua chua , 1: bao duong sua chua: 3: 
     
     item_id = db.Column(UUID(as_uuid=True), index=True)
     # item_id = db.Column(UUID(as_uuid=True), index=True, db.ForeignKey('item.id'))
@@ -316,39 +205,18 @@ class NormDetail(CommonModel):
 
     # machine_id = db.Column(UUID(as_uuid=True), db.ForeignKey('item.id', ondelete='cascade'), index=True)
     
-    machine_id = db.Column(UUID(as_uuid=True), index=True)
-    machine_no = db.Column(String(40), index=True, nullable=True)
-    machine_name = db.Column(String(150), nullable=True)
+    category_id = db.Column(UUID(as_uuid=True), index=True)
+    category_no = db.Column(String(40), index=True, nullable=True)
+    category_name = db.Column(String(150), nullable=True)
 
     note = db.Column(Text())
+
+    data = db.Column(JSONB())
+
+
     # them
-    from_time = db.Column(BigInteger(), index=True)
-    to_time = db.Column(BigInteger(), index=True)
-    year = db.Column(Integer(), index=True)
-    priority = db.Column(Integer(), default=10)
-    active = db.Column(SmallInteger(), default=1)
-
-
-class NormDetailQuantity(CommonModel):
-    __tablename__ = 'norm_detail_quantity' #dinh muc
-    norm_id = db.Column(UUID(as_uuid=True), db.ForeignKey('norm.id', ondelete='cascade'))
-    norm_no = db.Column(String(255),nullable = True)
-
-    norm_detail_id = db.Column(UUID(as_uuid=True), db.ForeignKey('norm_detail.id', ondelete='cascade'))
-
-    quantity = db.Column(DECIMAL(25,8))
-    previous_quantity = db.Column(DECIMAL(25,8))
-    
-    norm_item_id = db.Column(UUID(as_uuid=True), index=True)
-    norm_item_no = db.Column(String(), index=True, nullable=True)
-    norm_item_name = db.Column(String(), nullable=True)
-
-
-
-
-
-
-
-
-
-
+    # from_time = db.Column(BigInteger(), index=True)
+    # to_time = db.Column(BigInteger(), index=True)
+    # year = db.Column(Integer(), index=True)
+    # priority = db.Column(Integer(), default=10)
+    # active = db.Column(SmallInteger(), default=1)

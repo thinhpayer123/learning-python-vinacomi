@@ -3,7 +3,8 @@ define(function (require) {
     var $                   = require('jquery'),
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
-    
+    var NormDetailItemView = require('./norm');
+
     var template 			= require('text!app/view/norm_template/tpl/model.html'),
     	schema 				= require('json!schema/NormTemplateSchema.json');
     
@@ -74,6 +75,27 @@ define(function (require) {
 		    	    },
     	    	],
     	    }],
+
+    	uiControl: {
+            fields: [
+                
+                {
+					field: "norm_items",
+					uicontrol: false,
+					itemView: NormDetailItemView,
+					tools: [
+						{
+							name: "create",
+							type: "button",
+							buttonClass: "btn btn-primary btn-sm",
+							label: "Thêm",
+							command: "create"
+						},
+					],
+					toolEl: "#add_row"
+                },
+            ]
+        },
     	render:function(){
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");

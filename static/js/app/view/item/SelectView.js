@@ -37,17 +37,12 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-	    	    //  { field: "ma", label: "Mã", width:150},
-				 //  { field: "ten", label: "Tên", width:250 },
 				 { 
 	    	    	field: "item_no",label:"Mã Vật Tư"
 				 },
 				 { 
 	    	    	field: "item_name",label:"Tên Vật Tư"
 				 },
-
-
-
 				 { 
 	    	    	field: "brief_desc",label:"Mô Tả"
 				 },
@@ -56,17 +51,7 @@ define(function (require) {
 				 },
 				 { 
 	    	    	field: "tax_class",label:"Thuế"
-				 },
-				 // { 
-	    // 	    	field: "categories",label:"Nhóm Vật Tư"
-				 // },
-
-
-				 { 
-	    	    	field: "item_class",label:"Lớp Đơn Vị"
-				 },	   
-
-				 
+				 },				 
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;

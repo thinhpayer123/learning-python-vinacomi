@@ -34,17 +34,6 @@
         "type": "string",
         "length": 150
     },
-    "item_class_name": {
-        "type": "string",
-        "length": 150
-    },
-    "item_class_id": {
-        "type": "string"
-    },
-    "item_class": {
-        "type": "string",
-        "length": 100
-    },
     "thumbnail": {
         "type": "string"
     },
@@ -65,6 +54,9 @@
         "type": "string",
         "length": 200
     },
+    "unit_no": {
+        "type": "string"
+    },
     "tax_class": {
         "type": "string",
         "length": 200
@@ -78,8 +70,9 @@
     "is_service": {
         "type": "boolean"
     },
-    "is_machine": {
-        "type": "boolean"
+    "sort": {
+        "type": "number",
+        "default": 100
     },
     "active": {
         "type": "boolean"

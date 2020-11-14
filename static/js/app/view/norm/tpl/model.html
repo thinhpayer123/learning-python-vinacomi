@@ -8,103 +8,79 @@
         <div class="card-header  border-bottom">
           <div class="row">
             <div class="col-md-7">
-              <h6 class="m-0 pt-2">Thông tin Định Mức</h6>
+              <h3 class="m-0 pt-2">Thông tin Định Mức Cho Vật Tư Máy Cào</h3>
             </div>
-            <div class="col-md-5 text-right">
+            <div class="col-md-5 text-right">              
               <div block-bind="toolbar"></div>
             </div>
           </div>
         </div>
         <div class="card-body row">
-          <div class="col-md-8 col-lg-6 col-sm-12 col-12">
+          <div class="col-md-6 col-lg-6 col-sm-12 col-6">
             <div class="form-group">
-              <label for="">Tên định mức </label>
-<!--               <input id="organization" readonly class="form-control" data-bind="dict:norm_no" />
- -->          
-              <input id="organization"  class="form-control" data-bind="value:norm_no" />
-
-
+              <label for="">Số quyết định </label>
+              <input class="form-control" data-bind="value:norm_document_no" />
             </div>
-          </div>
-<!--           <div class="col-md-2 col-lg-2 col-sm-4 col-4">
+          </div> 
+          <div class="col-md-3 col-lg-3 col-sm-12 col-3">
             <div class="form-group">
-              <label for="day-create">Thời gian tạo</label>
-              <input id="grid_search_date" type="text" data-bind="value:ngaynhap" />
-            </div>
-          </div> -->
-          <div class="col-md-2 col-lg-2 col-sm-4 col-4">
-            <div class="form-group">
-              <label for="day-create">Thời gian bắt đầu</label>
-              <input type="text" data-bind="value:from_time" />
-            </div>
-          </div>
-          <div class="col-md-2 col-lg-2 col-sm-4 col-4">
-            <div class="form-group">
-              <label for="day-create">Thời gian kết thúc</label>
-              <input type="text" data-bind="value:to_time" />
+              <label for="">Năm ban hành</label>
+              <input class="form-control" data-bind="value:year" />
             </div>
           </div>
 
-
-          <div class="card-body row">
-            <div class="col-md-8 col-lg-6 col-sm-12 col-12">
-              <div class="form-group">
-                <label for="">Độ ưu tiên</label>
-                <input class="form-control" data-bind="value:priority" />
-              </div>
+          <div class="col-md-3 col-lg-3 col-sm-12 col-3">
+            <div class="form-group">
+              <label for="">Trạng thái</label>
+              <input class="form-control" data-bind="value:active" />
             </div>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col-1 text-center"> <button id="add_item" class="btn btn-sm btn-success">Thêm</div>
+          <div class="col-3" >
+            <select class="form-control" id="select_cat">
+              <!-- <option value="cat_id_1">Vật tư máy cào SGB620/40</option>
+              <option value="cat_id_2">Vật tư máy cào C14</option> -->
+            </select>
+          </div>
+          <div class="col-3" >
+            <select class="form-control" id="select_item">
+              <!-- <option value="cat_id_1">Vật tư máy cào SGB620/40</option>
+              <option value="cat_id_2">Vật tư máy cào C14</option> -->
+            </select>
+          </div>
+          <div class="col-5" >
+            <span id="add_item_error_message" style="display: none">(*) Vật tư đã tồn tại trong bảng định mức</span>
+          </div>
+        </div>
 
-       
-  <div class="col-lg-6 base-content">
-    <div class="form-group">
-      <label>Trạng Thái</label>
-      <input type="text" data-bind="value:active" class="form-control inputbox">
-    </div>
-  </div>
-
-<!--                 norm_no = db.Column(String(255),nullable = True)
-    from_time = db.Column(BigInteger(), index=True)
-    to_time = db.Column(BigInteger(), index=True)
-    priority = db.Column(Integer(), default=10)
-    active = db.Column(SmallInteger(), default=1) -->
-
-<!--             <div class="col-md-2 col-lg-2 col-sm-4 col-4">
-              <div class="form-group">
-                <label for="day-create">Nguồn kinh phí</label>
-                <input id="source-price" data-bind="value:nguonkinhphi" />
-              </div>
-            </div> -->
+        <div class="card-body row">
             <div class="col-12 out-click">
               <div class="d-flex justify-content-around align-items-center w-100">
-                <div  id="add_row"></div>
-                <table class="table table-striped">
+                
+                <table class="table table-striped" id="norm_data">
                   <thead>
                     <tr>
-                      <th scope="col" class="text-center" style="width:10%">Định Mức</th>
-                      <th scope="col" class="text-center" style="width:25%">Kiểu</th>
-                      <th scope="col" class="text-center" style="width:10%">Tên Vật Tư </th>
-                      <th scope="col" class="text-center" style="width:10%">Đơn vị tính</th>
-                      <th scope="col" class="text-center" style="width:20%">Tên Nhóm Vật Tư</th>
-                      <th scope="col" class="text-center" style="width:25%">Ghi Chú</th>
-                      <th scope="col" style="width:3%"></th>
-                      <th scope="col" style="width:3%"></th>
-                    </tr>
+                      <th scope="col" class="text-center" style="width:100px"></th>
+                      <th scope="col" class="text-center" style="width:300px">Danh Mục Quy Cách</th>
+                      <th scope="col" class="text-center" >Đơn Vị Tinh</th>
+         
+                      <th scope="col" class="text-center" >Định Mức Đang ÁP</th>
+                      <th scope="col" class="text-center" >Định Mức Mới/1000T</th>
+                      <th scope="col" class="text-center" >Định Mức Mới/100m</th>
+                      <th  scope="col" class="text-center">Ghi Chú</th>
+                      <th scope="col"></th>
+                    </tr>     
                   </thead>
-                  <tbody id="" data-bind="list:norm_details"></tbody>
                 </table>
               </div>
-              <div class="col-md-6 justify-content-around">
-                <div id="search-item"></div>
-              </div>
+             
             </div>
           </div>
+
         </div>
       </div>
     </div>
   </div>
-
-
-<!--       // norm_no = db.Column(String(255),nullable = True)
-    // from_time = db.Column(BigInteger(), index=True)
-    // to_time = db.Column(BigInteger(), index=True)
-    // priority = db.Column(Integer(), default=10) -->

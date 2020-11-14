@@ -36,35 +36,18 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-	    	    //  { field: "ma", label: "Mã", width:150},
-				 //  { field: "ten", label: "Tên", width:250 },
-	    	     { 
-	    	    	field: "category_exid",label:"ID",
+				 { 
+	    	    	field: "category_no",label:"Danh Mục",
 				 },
 				 { 
-	    	    	field: "category_no",label:"Loai",
+	    	    	field: "category_name",label:"Tên Nhóm Vật Tư",
 				 },
 				 { 
-	    	    	field: "category_name",label:"Mã Đơn Vị",
+	    	    	field: "category_type",label:"Phân Loại Nhóm Vật Tư",
 				 },
 				 { 
-	    	    	field: "category_type",label:"Tên Đơn Vị ",
+	    	    	field: "sort_number",label:"Sắp Xếp Số",
 				 },
-				 // { 
-	    // 	    	field: "thumbnail",label:"Số Điện Thoại",
-				 // },
-	    	     // { field: "is_show", label: "Point Name"},
-
-				 { 
-	    	    	field: "sort_number",label:"active",
-				 },
-
-	    	     { field: "status", label: "Point Name"},
-
-				 // { 
-	    // 	    	field: "note",label:"active",
-				 // },
-
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;

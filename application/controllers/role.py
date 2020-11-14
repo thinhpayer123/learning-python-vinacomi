@@ -1,5 +1,5 @@
 from application.extensions import apimanager
-from application.models.model import User,  Role,  WalletUser,Company
+from application.models.model import User,  Role
 from application.extensions import auth
 from gatco.exceptions import ServerError
 def auth_func(request=None, **kw):

@@ -7,26 +7,6 @@ define(function (require) {
     var template 			= require('text!app/view/item/tpl/model.html'),
     	schema 				= require('json!schema/ItemSchema.json');
     var CategorySelectView = require("app/view/item_category/SelectView");
-
-
-	// var Model = Gonrin.Model.extend({
-	// 	defaults: Gonrin.getDefaultModel(schema),
-	// 	computeds: {
-	// 		category: {
-	// 			deps: ["category_no", "category_name"],
-	// 			get: function (category_no, category_name) {
-	// 				return {
-	// 					"category_no": category_no,
-	// 					"category_name": category_name,
-	// 				};
-	// 			},
-	// 			set: function (obj) {
-	// 				return { category_no: obj.category_no, category_name: obj.category_name };
-	// 			}
-	// 		},
-	// 	},
-	// 	urlRoot: "/api/v1/item"
-	// });
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
@@ -67,14 +47,10 @@ define(function (require) {
                     ],
                     value: false
                 },
-
-
                 {
 					field: "unit_name",
 					uicontrol: "typeahead",
 					source: function(query, process) {
-                        // var url = gonrinApp().serviceURL + '/api/v1/unit';
-                        // var url = gonrinApp().serviceURL + '/api/v1/unit?results_per_page=1000000';
                         var url = "/api/v1/unit";
 
                         $.ajax({
@@ -93,15 +69,10 @@ define(function (require) {
                     },
                     afterSelect: function (obj) {
                         var self = this;
-                        console.log(self, self.onUnitChange);
                         self.onUnitChange(obj);
                     }
 
-				},
-
-
-
-
+				},        
                 ]
             },
     	tools : [

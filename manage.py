@@ -19,7 +19,7 @@ from application import run_app
 from application.database import db
 
 from application.extensions import auth
-from application.models.model import User, Role, Company
+from application.models.model import User, Role
 # from application.
 
 def generator_salt():
@@ -51,20 +51,6 @@ def add_user():
         user1.roles.append(role1)
         db.session.add(user1)
     db.session.commit()
-@manager.command
-def add_company(name="KMA"):
-    init_app()
-    company = db.session.query(Company).filter(Company.name == name).first()
-    print(name)
-    if company is None:
-        cpny = Company(name=name,description='truong '+ name,company_type='education',company_no=name+'1',email='trunganhact@gmail.com',active= True)
-        print(cpny)
-        db.session.add(cpny)
-        db.session.commit()
-
-
-
-
 
 
 @manager.command
@@ -72,69 +58,6 @@ def run():
     """ Starts server on port 8000. """
     run_app(host="0.0.0.0", port=7001)
 
-@manager.command
-def genqr(from_date=None, to_date=None, id=None):
-    init_app()
-
-    from_time = None
-    to_time = None
-
-    if from_date is None:
-        from_date = (datetime.now() + timedelta(days=-1)).strftime("%Y-%m-%d")
-        # from_date = datetime.strptime(from_date, "%Y-%m-%d")
-    if to_date is None:
-        to_date = datetime.now().strftime("%Y-%m-%d")
-        # to_date = datetime.strptime(to_date, "%Y-%m-%d")
-
-    if (from_date is not None) and (to_date is not None):
-        from_date = datetime.strptime(from_date, "%Y-%m-%d")
-        from_time = datetime.timestamp(from_date)
-
-        to_date = datetime.strptime(to_date, "%Y-%m-%d")
-        to_time = datetime.timestamp(to_date)
-
-        print("timestamp =", from_time, to_time)
-
-    from application.worker_dir.genqr import do_work
-    do_work(from_time=from_time, to_time=to_time, id= id)
-    print("test_logs", from_date, to_date, id)
-
-@manager.command
-def send_transaction_to_heovang():
-    init_app()
-    from application.worker_dir.send_transaction_to_heovang import send_transaction
-    
-    
-
-    loop = asyncio.get_event_loop()
-    try:
-        loop.run_until_complete(
-            asyncio.gather(
-                send_transaction(),
-                ))
-    except Exception:
-        exept_txt = traceback.format_exc()
-        print("exept_txt", exept_txt)
-    finally:
-        loop.close()
-@manager.command
-def fix_username_transaction():
-    init_app()
-    from application.worker_dir.fix_username_trans import fix_username_trans
-    
-    
-
-    loop = asyncio.get_event_loop()
-    try:
-        loop.run_until_complete(
-            asyncio.gather(
-                fix_username_trans(),
-                ))
-    except Exception:
-        exept_txt = traceback.format_exc()
-        print("exept_txt", exept_txt)
-    finally:
-        loop.close()
 
 @manager.command
 def generate_schema(path = "static/js/schema", exclude = None, prettyprint = True):
@@ -226,12 +149,7 @@ def update_admin(password='123456'):
 @manager.command
 def create_admin(password='123456'):
     """ Create default data. """
-    company = Company.query.filter(Company.id == "ICANTEEN").first()
-    if(company is None):
-        company = Company(id='ICANTEEN', name="iCanteen", company_id="ICT")
-        company.company_type = "education"
-        db.session.add(company)
-        db.session.flush()
+   
 
     role_admin = Role.query.filter(Role.name == "admin").first()
     if(role_admin is None):
@@ -245,14 +163,7 @@ def create_admin(password='123456'):
         db.session.add(role_user)
         db.session.flush() 
 
-    company = Company()
-
-    company.id = "1"
-    company.company_type = "TEST"
-    company.name = "GonStack"
-
-    db.session.add(company)
-    db.session.flush()
+    
 
     user = User.query.filter(User.user_name == "admin").first()
     if user is None:
@@ -266,7 +177,7 @@ def create_admin(password='123456'):
         #create user
         user = User(user_name='admin', full_name="Admin User", email="admin@gonrin.com",\
             password=user_password, salt=user_salt)
-        user.company_id = company.id
+    
         
         db.session.add(user)
  

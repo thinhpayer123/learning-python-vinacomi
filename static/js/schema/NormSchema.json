@@ -20,10 +20,6 @@
         "type": "string",
         "length": 255
     },
-    "norm_no": {
-        "type": "string",
-        "length": 255
-    },
     "norm_document_id": {
         "type": "string"
     },
@@ -49,13 +45,13 @@
     },
     "priority": {
         "type": "number",
-        "default": 10
+        "default": 100
     },
     "active": {
         "type": "number",
         "default": 1
     },
-    "norm_items": {
+    "norm_fields": {
         "type": "json"
     },
     "norm_details": {

@@ -19,13 +19,6 @@
     "norm_id": {
         "type": "string"
     },
-    "norm_no": {
-        "type": "string",
-        "length": 255
-    },
-    "type": {
-        "type": "number"
-    },
     "item_id": {
         "type": "string"
     },
@@ -46,35 +39,21 @@
     "unit_name": {
         "type": "string"
     },
-    "machine_id": {
+    "category_id": {
         "type": "string"
     },
-    "machine_no": {
+    "category_no": {
         "type": "string",
         "length": 40
     },
-    "machine_name": {
+    "category_name": {
         "type": "string",
         "length": 150
     },
     "note": {
         "type": "string"
     },
-    "from_time": {
-        "type": ""
-    },
-    "to_time": {
-        "type": ""
-    },
-    "year": {
-        "type": "number"
-    },
-    "priority": {
-        "type": "number",
-        "default": 10
-    },
-    "active": {
-        "type": "number",
-        "default": 1
+    "data": {
+        "type": "json"
     }
 }

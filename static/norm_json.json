@@ -1,0 +1,48 @@
+{
+	"id": "uuid1",
+	"norm_type_id": "vat_tu_may_cao",
+	"norm_type_name": "Vật tư máy cào",
+	"norm_details": [
+		{
+			"item_id": "123",
+			"item_no": "234",
+			"item_name": "Dầu EP140",
+			"unit_id": "unit_123",
+			"unit_no": "unit_1234",
+			"unit_name": "Kg",
+			"category_id": "cat_id_1",
+			"category_no": "",
+			"category_name": "",
+			"data": {
+				"dinhmuc_cu_1000T": 0.527,
+				"dinhmuc_moi_1000T": 0.422,
+				"dinhmuc_moi_100ML_S96": 12.95
+			},
+			"note": "Ghi chu 1"
+		},
+		{
+			"item_id": "125",
+			"item_no": "235",
+			"item_name": "Bìa rơm",
+			"unit_id": "unit_125",
+			"unit_no": "unit_1235",
+			"unit_name": "Tờ",
+			"category_id": "cat_id_1",
+			"category_no": "",
+			"category_name": "",
+			"data": {
+				"dinhmuc_cu_1000T": 0.02,
+				"dinhmuc_moi_1000T": 0.16,
+				"dinhmuc_moi_100ML_S96": 1.43
+			},
+			"note": "Ghi chu 2"
+		}
+	],
+	"categories":[
+		{
+			"id": "cat_id_1",
+			"category_name": "Vật tư máy cào SGB620/40",
+			"sort": 100
+		}
+	]
+}

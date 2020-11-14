@@ -36,34 +36,23 @@ define(function (require) {
     	uiControl:{
     		fields: [
 				 { 
-	    	    	field: "norm_no",label:"Kiểu Đơn Vị "
+	    	    	field: "norm_number",label:"Quyết Định Số"
+				 },   		
+				 { 
+	    	    	field: "norm_name",label:"Tên Định Mức Vật Tư Máy Cào"
 				 },
 				 { 
-	    	    	field: "from_time",label:"Thời Gian Bắt Đầu"
-				 },
-				 { 
-	    	    	field: "to_time",label:"Thời Gian Kết Thúc"
-				 },
+	    	    	field: "norm_no",label:"Mã Định Mức Vật Tư Máy Cào"
+				 },				 
+				 // { 
+	    // 	    	field: "from_time",label:"Thời Gian Lập"
+				 // },
 				 { 
 	    	    	field: "priority",label:"Độ Ưu Tiên"
 				 },	   
 				 { 
 	    	    	field: "active",label:"Trạng Thái"
 				 },
-
-
-
-				 	   
-				 // { 
-	    // 	    	field: "note",label:"Ghi Chú"
-				 // },	   
-
-				//      machine_name = db.Column(String(150), nullable=True)
-
-    // note = db.Column(Text()) -->
-
-				//   { field: "ten", label: "Tên", width:250 },
-				//   { field: "gia", label: "Giá" },
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

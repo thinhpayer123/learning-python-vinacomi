@@ -36,33 +36,24 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-	    	    //  { field: "ma", label: "Mã", width:150},
-				 //  { field: "ten", label: "Tên", width:250 },
-				 // { 
-	    // 	    	field: "id",label:"ID"
-				 // },
-				 { 
-	    	    	field: "norm_no",label:"Kiểu Đơn Vị "
-				 },
-				 { 
-	    	    	field: "from_time",label:"Thời Gian Bắt Đầu"
-				 },
-				 { 
-	    	    	field: "to_time",label:"Thời Gian Kết Thúc"
-				 },
-				 { 
-	    	    	field: "priority",label:"Độ Ưu Tiên"
-				 },
+                 { 
+                    field: "norm_number",label:"Quyết Định Số"
+                 },         
+                 { 
+                    field: "norm_name",label:"Tên Định Mức Vật Tư Máy Cào"
+                 },
+                 { 
+                    field: "norm_no",label:"Mã Định Mức Vật Tư Máy Cào"
+                 },              
+                 // { 
+        //          field: "from_time",label:"Thời Gian Lập"
+                 // },
+                 { 
+                    field: "priority",label:"Độ Ưu Tiên"
+                 },    
                  { 
                     field: "active",label:"Trạng Thái"
-                 },    
-                 // { 
-                 //    field: "note",label:"Ghi Chú"
-                 // }, 
-	    	     
-				 // { 
-	    // 	    	field: "active",label:"active"
-				 // }
+                 },
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;

@@ -190,11 +190,76 @@ define(function (require) {
 			"$ref": "app/view/norm_template/ModelView",
 		},
 
+		{
+			"collectionName": "norm_decision", 
+			"route": "norm_decision/collection(/:id)",
+			"$ref": "app/view/norm_decision/CollectionView",
 
+		},
+		{
+			"collectionName": "norm_decision",
+			"route": "norm_decision/model(/:id)",
+			"$ref": "app/view/norm_decision/ModelView",
+		},
 
+		{
+			"collectionName": "norm", 
+			"route": "norm_well/collection(/:id)",
+			"$ref": "app/view/norm_well/CollectionView",
 
+		},
+		{
+			"collectionName": "norm",
+			"route": "norm_well/model(/:id)",
+			"$ref": "app/view/norm_well/ModelView",
+		},
+		{
+			"collectionName": "norm", 
+			"route": "norm_conveyor_belt/collection(/:id)",
+			"$ref": "app/view/norm_conveyor_belt/CollectionView",
 
+		},
+		{
+			"collectionName": "norm",
+			"route": "norm_conveyor_belt/model(/:id)",
+			"$ref": "app/view/norm_conveyor_belt/ModelView",
+		},
+		{
+			"collectionName": "norm", 
+			"route": "norm_hydraulic/collection(/:id)",
+			"$ref": "app/view/norm_hydraulic/CollectionView",
 
+		},
+		{
+			"collectionName": "norm",
+			"route": "norm_hydraulic/model(/:id)",
+			"$ref": "app/view/norm_hydraulic/ModelView",
+		},
+
+		{
+			"collectionName": "norm", 
+			"route": "norm_supplies/collection(/:id)",
+			"$ref": "app/view/norm_supplies/CollectionView",
+
+		},
+		{
+			"collectionName": "norm",
+			"route": "norm_supplies/model(/:id)",
+			"$ref": "app/view/norm_supplies/ModelView",
+		},
+		{
+			"collectionName": "norm", 
+			"route": "norm_maintenance_repair/collection(/:id)",
+			"$ref": "app/view/norm_maintenance_repair/CollectionView",
+
+		},
+		{
+			"collectionName": "norm",
+			"route": "norm_maintenance_repair/model(/:id)",
+			"$ref": "app/view/norm_maintenance_repair/ModelView",
+		},
+
+					
 
 
 

@@ -24,7 +24,10 @@
         "type": "string",
         "length": 255
     },
-    "norm_items": {
+    "norm_fields": {
+        "type": "json"
+    },
+    "norm_details": {
         "type": "json"
     }
 }

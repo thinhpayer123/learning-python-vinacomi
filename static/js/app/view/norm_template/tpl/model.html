@@ -21,28 +21,31 @@
 							<label>Tên Định Mức</label>
 							<input type="text" data-bind="value:norm_template_name" class="form-control inputbox">
 						</div>
-						<div class="form-group">
-							<label>Định Mức Vật Tư</label>
-							<input type="text" data-bind="value:norm_items" class="form-control inputbox">
-						</div>
-
 					</div>
 
 				</div>
 			</div>
 			<hr>
 		</div>
-		<!-- /.box-body -->
+            <div class="col-12 out-click">
+              <div class="d-flex justify-content-around align-items-center w-100">
+                <div  id="add_row"></div>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col" class="text-center" style="width:40%">Mã Định Mức Vật Tư</th>
+                      <th scope="col" class="text-center" style="width:50%">Tên Định Mức Vật Tư</th>
+                      <th scope="col" class="text-center" style="width:10%">Lable</th>
+                      <th scope="col" style="width:3%"></th>
+                      <th scope="col" style="width:3%"></th>
+                    </tr>
+                  </thead>
+                  <tbody id="" data-bind="list:norm_items"></tbody>
+                </table>
+              </div>
+              <div class="col-md-6 justify-content-around">
+                <div id="search-item"></div>
+              </div>
+            </div>
 	</div>
-	<!-- /.box -->
 </section>
-<!-- 
-				{ 
-	    	    	field: "norm_template_no",label:"Mã Định Mức"
-				 },
-				 { 
-	    	    	field: "norm_template_name",label:"Tên Định Mức"
-				 },
-				 { 
-	    	    	field: "norm_items",label:"Định Mức Vật Tư"
-				 }, -->
