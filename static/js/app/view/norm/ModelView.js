@@ -70,72 +70,72 @@ define(function (require) {
             ]
         },
 
-    	tools : [
-    	    {
-    	    	name: "defaultgr",
-    	    	type: "group",
-    	    	groupClass: "toolbar-group",
-    	    	buttons: [
-					{
-						name: "back",
-						type: "button",
-						buttonClass: "btn-default btn-sm",
-						label: "TRANSLATE:BACK",
-						command: function(){
-							var self = this;
+//     	tools : [
+//     	    {
+//     	    	name: "defaultgr",
+//     	    	type: "group",
+//     	    	groupClass: "toolbar-group",
+//     	    	buttons: [
+// 					{
+// 						name: "back",
+// 						type: "button",
+// 						buttonClass: "btn-default btn-sm",
+// 						label: "TRANSLATE:BACK",
+// 						command: function(){
+// 							var self = this;
 							
-							Backbone.history.history.back();
-						}
-					},
-					{
-		    	    	name: "save",
-		    	    	type: "button",
-		    	    	buttonClass: "btn-success btn-sm",
-		    	    	label: "Lưu Thông Tin ",
-		    	    	command: function(){
-		    	    		var self = this;
-		    	    		console.log(self.model.toJSON());
+// 							Backbone.history.history.back();
+// 						}
+// 					},
+// 					{
+// 		    	    	name: "save",
+// 		    	    	type: "button",
+// 		    	    	buttonClass: "btn-success btn-sm",
+// 		    	    	label: "Lưu Thông Tin ",
+// 		    	    	command: function(){
+// 		    	    		var self = this;
+// 		    	    		console.log(self.model.toJSON());
 		    	    		
-		                    self.model.save(null,{
-		                        success: function (model, respose, options) {
-		                            self.getApp().notify("Lưu thông tin thành công");
-		                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
+// 		                    self.model.save(null,{
+// 		                        success: function (model, respose, options) {
+// 		                            self.getApp().notify("Lưu thông tin thành công");
+// 		                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
 		                            
-		                        },
-		                        error: function (model, xhr, options) {
-		                            self.getApp().notify('Lưu thông tin không thành công!');
+// 		                        },
+// 		                        error: function (model, xhr, options) {
+// 		                            self.getApp().notify('Lưu thông tin không thành công!');
 		                           
-		                        }
-		                    });
-		    	    	}
-		    	    },
-					{
-		    	    	name: "delete",
-		    	    	type: "button",
-		    	    	buttonClass: "btn-danger btn-sm",
-		    	    	label: "TRANSLATE:DELETE",
-		    	    	visible: function(){
-		    	    		return this.getApp().getRouter().getParam("id") !== null;
-		    	    	},
-		    	    	command: function(){
-		    	    		var self = this;
-		                    self.model.destroy({
-		                        success: function(model, response) {
-		                        	self.getApp().notify('Xoá dữ liệu thành công');
-		                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
-		                        },
-		                        error: function (model, xhr, options) {
-		                            self.getApp().notify('Xoá dữ liệu không thành công!');
+// 		                        }
+// 		                    });
+// 		    	    	}
+// 		    	    },
+// 					{
+// 		    	    	name: "delete",
+// 		    	    	type: "button",
+// 		    	    	buttonClass: "btn-danger btn-sm",
+// 		    	    	label: "TRANSLATE:DELETE",
+// 		    	    	visible: function(){
+// 		    	    		return this.getApp().getRouter().getParam("id") !== null;
+// 		    	    	},
+// 		    	    	command: function(){
+// 		    	    		var self = this;
+// 		                    self.model.destroy({
+// 		                        success: function(model, response) {
+// 		                        	self.getApp().notify('Xoá dữ liệu thành công');
+// 		                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
+// 		                        },
+// 		                        error: function (model, xhr, options) {
+// 		                            self.getApp().notify('Xoá dữ liệu không thành công!');
 		                            
-		                        }
-		                    });
-		    	    	}
-		    	    },
-// code them
+// 		                        }
+// 		                    });
+// 		    	    	}
+// 		    	    },
+// // code them
 
 
-    	    	],
-    	    }],
+//     	    	],
+//     	    }],
 
     	uiControl: {
             fields: [
@@ -156,6 +156,23 @@ define(function (require) {
 					// toolEl: "#add_row"
      //            },
             ]
+        },
+
+        saveModel: function(){
+        	var self = this;
+    		console.log(self.model.toJSON());
+    		
+            self.model.save(null,{
+                success: function (model, respose, options) {
+                    self.getApp().notify("Lưu thông tin thành công");
+                    self.getApp().getRouter().navigate(self.collectionName + "/collection");
+                    
+                },
+                error: function (model, xhr, options) {
+                    self.getApp().notify('Lưu thông tin không thành công!');
+                   
+                }
+            });
         },
 
 
@@ -207,6 +224,10 @@ define(function (require) {
 						break;
 					}
 				}
+    		});
+
+    		self.$el.find("#btn-save").bind("click", function(){
+    			self.saveModel();
     		});
     	},
     	getDefaultData: function(){
