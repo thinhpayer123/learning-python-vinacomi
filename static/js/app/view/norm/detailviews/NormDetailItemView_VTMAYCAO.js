@@ -7,18 +7,18 @@ define(function (require) {
 
 
   var NormDetailItemView = require("../NormDetailItemView");
-  var template = require("text!app/view/norm/tpl/norm_detail_may_cao.html");
+  var template = require("text!./detail_VTMAYCAO.html");
         
  
   
   var Model = Gonrin.Model.extend({
     defaults: Gonrin.getDefaultModel(normSchema),
     computeds: {
-      data_dinhmuc_cu_1000T: {
+      data_dinhmuc_cu_1000TT: {
        deps: ["data"],
        get: function( data ) {
          if (!!data){
-           return data.dinhmuc_cu_1000T || 0;
+           return data.dinhmuc_cu_1000TT || 0;
          }
          return null;
        },
@@ -27,19 +27,19 @@ define(function (require) {
            this.set("data",{});
          }
          if(val != null){
-           this.get("data").dinhmuc_cu_1000T = parseFloat(val);
+           this.get("data").dinhmuc_cu_1000TT = parseFloat(val);
          }else{
-           this.get("data").dinhmuc_cu_1000T = 0;
+           this.get("data").dinhmuc_cu_1000TT = 0;
          }
          this.trigger("change:data");
          // return val;
        }
      },
-     data_dinhmuc_moi_1000T: {
+     data_dinhmuc_1000TT: {
        deps: ["data"],
        get: function( data ) {
          if (!!data){
-           return data.dinhmuc_moi_1000T || 0;
+           return data.dinhmuc_1000TT || 0;
          }
          return null;
        },
@@ -48,19 +48,19 @@ define(function (require) {
            this.set("data",{});
          }
          if(val != null){
-           this.get("data").dinhmuc_moi_1000T = parseFloat(val);
+           this.get("data").dinhmuc_1000TT = parseFloat(val);
          }else{
-           this.get("data").dinhmuc_moi_1000T = 0;
+           this.get("data").dinhmuc_1000TT = 0;
          }
          this.trigger("change:data");
          // return val;
        }
      },
-     data_dinhmuc_moi_100ML_S96: {
+     data_dinhmuc_100ML_S96: {
        deps: ["data"],
        get: function( data ) {
          if (!!data){
-           return data.dinhmuc_moi_100ML_S96 || 0;
+           return data.dinhmuc_100ML_S96 || 0;
          }
          return null;
        },
@@ -69,9 +69,9 @@ define(function (require) {
            this.set("data",{});
          }
          if(val != null){
-           this.get("data").dinhmuc_moi_100ML_S96 = parseFloat(val);
+           this.get("data").dinhmuc_100ML_S96 = parseFloat(val);
          }else{
-           this.get("data").dinhmuc_moi_100ML_S96 = 0;
+           this.get("data").dinhmuc_100ML_S96 = 0;
          }
          this.trigger("change:data");
        }
