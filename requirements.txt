@@ -60,3 +60,4 @@ python-barcode
 pillow
 # international phone detect
 phonenumbers
+openpyxl

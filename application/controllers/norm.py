@@ -27,7 +27,7 @@ apimanager.create_api(collection_name='norm', model=Norm,
     )
 
 
-def get_norm(norm_id):
+async def get_norm(norm_id):
 	norm_item = Norm.query.filter(Norm.id == norm_id).first()
 
 	if norm_item is not None:
@@ -67,7 +67,7 @@ async def get_norm_api(request,id=None):
 
 	
 	if id is not None:
-		resp = get_norm(id)
+		resp = await get_norm(id)
 		if resp is not None:
 			return json(resp)
 		

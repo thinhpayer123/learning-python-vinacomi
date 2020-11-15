@@ -17,9 +17,8 @@ def init_views(app):
     import application.controllers.item
     import application.controllers.itemcategoryrelation
     import application.controllers.norm_template
-    # import application.controllers.item_class
-    # import application.controllers.norm_item
     import application.controllers.norm_document
+    import application.controllers.export_excel
     # import application.controllers.norm_decision
 
 
