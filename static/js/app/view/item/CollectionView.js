@@ -43,7 +43,7 @@ define(function (require) {
 	    	    	field: "item_name",label:"Tên Vật Tư"
 				 },
 				 { 
-	    	    	field: "brief_desc",label:"Mô Tả"
+	    	    	field: "unit_no",label:"Mã Đơn Vị Tính"
 				 },
 				 { 
 	    	    	field: "unit_name",label:"Tên Đơn Vị Tính"
