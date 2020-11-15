@@ -41,7 +41,7 @@
     },
     "sort": {
         "type": "number",
-        "default": 0
+        "default": 100
     },
     "status": {
         "type": "string",

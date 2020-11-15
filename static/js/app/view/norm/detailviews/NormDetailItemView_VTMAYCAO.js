@@ -3,8 +3,12 @@ define(function (require) {
   var $ = require("jquery");
   var _ = require("underscore");
   var Gonrin = require("gonrin");
-  var template = require("text!./detail_vat_tu_may_cao.html"),
-      normSchema = require("json!schema/NormDetailSchema.json");
+  var normSchema = require("json!schema/NormDetailSchema.json");
+
+
+  var NormDetailItemView = require("../NormDetailItemView");
+  var template = require("text!app/view/norm/tpl/norm_detail_may_cao.html");
+        
  
   
   var Model = Gonrin.Model.extend({
@@ -77,35 +81,9 @@ define(function (require) {
     
   });
 
-  return Gonrin.ItemView.extend({
-    bindings: "norm-detail-bind",
+  return NormDetailItemView.extend({
     template: template,
-    tagName: "tr",
-    modelSchema: normSchema,
-    modelClass: Model,
-    urlPrefix: "/api/v1/",
-    collectionName: "norm_details",   
-    foreignRemoteField: "id",
-    foreignField: "norm_id",
-
-    render: function () {
-      var self = this;
-      if (!self.model.get("id")) {
-          self.model.set("id", gonrin.uuid());
-          self.model.trigger("change");
-      }
-      this.applyBindings();
-
-      self.$el.find("#itemRemove").unbind("click").bind("click", function () {
-        self.model.trigger("remove", {
-          "id": self.model.get("id"),
-          "item_id": self.model.get("item_id"),
-          "category_id": self.model.get("category_id"),
-        });
-        self.remove(false);
-      });
-    },
-
+    modelClass: Model
   });
 
 });

@@ -25,7 +25,8 @@ define(function (require) {
 						label: "Tạo mới",
 						command: function(){
 							var self = this;
-							var path = self.collectionName + '/model';
+							var norm_template_no = self.getApp().getRouter().getParam("norm_template_no");
+							var path = self.collectionName + '/model?norm_template_no=' + norm_template_no;
 							self.getApp().getRouter().navigate(path);
 						}
 					},
@@ -35,6 +36,12 @@ define(function (require) {
 		],
     	uiControl:{
     		fields: [
+    			{ 
+	    	    	field: "norm_template_no",label:"Template"
+				 },	 
+				 { 
+	    	    	field: "norm_name",label:"Tên Định Mức"
+				 },
 				 { 
 	    	    	field: "norm_document_no",label:"Quyết Định Số"
 				 }, 
@@ -44,34 +51,30 @@ define(function (require) {
 				 { 
 	    	    	field: "year",label:"Năm"
 				 }, 		
-				 { 
-	    	    	field: "norm_name",label:"Tên Định Mức"
-				 },
-
+				 
+				   
 				 // { 
-	    // 	    	field: "norm_no",label:"Mã Định Mức Vật Tư Máy Cào"
-				 // },				 
-				 // { 
-	    // 	    	field: "from_time",label:"Thời Gian Lập"
+	    // 	    	field: "active",label:"Trạng Thái"
 				 // },
-				 { 
-	    	    	field: "priority",label:"Độ Ưu Tiên"
-				 },	   
-				 { 
-	    	    	field: "active",label:"Trạng Thái"
-				 },
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){
-		        		var path = this.collectionName + '/model?id='+ event.rowId;
-		        		this.getApp().getRouter().navigate(path);
+		    		var norm_template_no = this.getApp().getRouter().getParam("norm_template_no");
+		        	var path = this.collectionName + '/model?id='+ event.rowId + "&norm_template_no=" + norm_template_no;
+		        	this.getApp().getRouter().navigate(path);
 		        }
 		    	
 		    }
     	},
 	    render:function(){
-	    	 this.applyBindings();
-	    	 return this;
+	    	var self = this;
+	    	var norm_template_no = this.getApp().getRouter().getParam("norm_template_no");
+	    	if (norm_template_no){
+	    		self.uiControl.filters = {"norm_template_no": {"$eq": norm_template_no}}
+	    		this.applyBindings();
+	    	}
+	    	
+	    	return this;
     	},
     });
 

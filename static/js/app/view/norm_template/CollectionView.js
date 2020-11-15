@@ -36,10 +36,10 @@ define(function (require) {
 		uiControl: {
 			fields: [
 				{
-					field: "norm_template_no", label: "Quyết Định Số"
+					field: "norm_template_no", label: "Mã Template"
 				},
 				{
-					field: "norm_template_name", label: "Tên Quyết Định"
+					field: "norm_template_name", label: "Tên Template"
 				},
 
 			],

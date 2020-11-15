@@ -26,6 +26,8 @@
     },
     "norm_fields": {
         "type": "list"
+    },
+    "categories": {
+        "type": "list"
     }
-
 }

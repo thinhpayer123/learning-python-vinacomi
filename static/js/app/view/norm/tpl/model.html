@@ -8,37 +8,38 @@
         <div class="card-header  border-bottom">
           <div class="row">
             <div class="col-md-7">
-              <h3 class="m-0 pt-2">Thông tin Định Mức Cho Vật Tư Máy Cào</h3>
+              <h3 class="m-0 pt-2"><span data-bind="text:norm_name"> </span></h3>
             </div>
-            <div class="col-md-5 text-right">              
-              <div block-bind="toolbar">
+            <div class="col-md-5 text-right">
                 <button id="btn-back" class="btn btn-sm btn-default">Quay lại</button>
                 <button id="btn-save" class="btn btn-sm btn-success">Lưu định mức</button>
-                <button id="btn-delete" class="btn btn-sm btn-danger" style="display:none">Xóa</button>
-              </div>
+                <button id="btn-export-excel" class="btn btn-sm btn-info">Xuất excel</button>
+                <!-- <button id="btn-delete" class="btn btn-sm btn-danger" style="display:none">Xóa</button> -->
             </div>
           </div>
         </div>
+        
         <div class="card-body row">
-          <div class="col-md-6 col-lg-6 col-sm-12 col-6">
+          <div class="col-md-2 col-lg-2 col-sm-12 col-2">
             <div class="form-group">
               <label for="">Số quyết định </label>
               <input class="form-control" data-bind="value:norm_document_no" />
             </div>
           </div> 
-          <div class="col-md-3 col-lg-3 col-sm-12 col-3">
+          <div class="col-md-6 col-lg-6 col-sm-12 col-6">
+            <div class="form-group">
+              <label for="">Tên quyết định</label>
+              <input class="form-control" data-bind="value:norm_document_name" />
+            </div>
+          </div>
+          <div class="col-md-2 col-lg-2 col-sm-12 col-2">
             <div class="form-group">
               <label for="">Năm ban hành</label>
               <input class="form-control" data-bind="value:year" />
             </div>
           </div>
 
-          <div class="col-md-3 col-lg-3 col-sm-12 col-3">
-            <div class="form-group">
-              <label for="">Trạng thái</label>
-              <input class="form-control" data-bind="value:active" />
-            </div>
-          </div>
+          
         </div>
         
         <div class="row">
@@ -66,7 +67,7 @@
                 
                 <table class="table table-striped" id="norm_data">
                   <thead>
-                    <tr>
+                    <!-- <tr>
                       <th scope="col" class="text-center" style="width:100px"></th>
                       <th scope="col" class="text-center" style="width:300px">Danh Mục Quy Cách</th>
                       <th scope="col" class="text-center" >Đơn Vị Tinh</th>
@@ -76,7 +77,7 @@
                       <th scope="col" class="text-center" >Định Mức Mới/100m</th>
                       <th  scope="col" class="text-center">Ghi Chú</th>
                       <th scope="col"></th>
-                    </tr>     
+                    </tr> -->     
                   </thead>
                 </table>
               </div>

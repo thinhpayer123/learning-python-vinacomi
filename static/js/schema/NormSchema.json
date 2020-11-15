@@ -27,6 +27,10 @@
         "type": "string",
         "length": 255
     },
+    "norm_document_name": {
+        "type": "string",
+        "length": 255
+    },
     "norm_template_id": {
         "type": "string"
     },

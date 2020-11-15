@@ -155,6 +155,7 @@ class NormTemplate(CommonModel):
     norm_template_name =  db.Column(String(255),nullable = True)
     norm_template_no = db.Column(String(255),nullable = True)
     norm_fields = db.Column(JSONB())
+    categories = db.relationship("ItemCategory")
     # norm_details = db.Column(JSONB())
 
 class NormDocument(CommonModel):
@@ -172,6 +173,7 @@ class Norm(CommonModel):
 
     norm_document_id = db.Column(UUID(as_uuid=True))
     norm_document_no = db.Column(String(255),nullable = True)
+    norm_document_name = db.Column(String(255),nullable = True)
 
     norm_template_id = db.Column(UUID(as_uuid=True))
     norm_template_no = db.Column(String(255),nullable = True)

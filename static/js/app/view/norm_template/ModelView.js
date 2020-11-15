@@ -88,7 +88,7 @@ define(function (require) {
 							name: "create",
 							type: "button",
 							buttonClass: "btn btn-primary btn-sm",
-							label: "Thêm",
+							label: "Thêm trường",
 							command: "create"
 						},
 					],

@@ -5,35 +5,41 @@ define(function (require) {
         Gonrin				= require('gonrin');
     var schema 				= require('json!schema/NormSchema.json');
     
-    // var template 			= require('text!app/view/norm/tpl/model.html');
-    // var NormDetailItemView = require('./NormDetailItemView');
-
-    var norm_template_map = {
-    	"vat_tu_may_cao": {
-    		"template": require('text!app/view/norm/tpl/model_vat_tu_may_cao.html'),
-    		"ItemView": require('./detailviews/NormDetailItemView_MayCao')
-    	}
-    	
-    }
+    var template 			= require('text!app/view/norm/tpl/model.html');
 
     var cat_tpl = `
-    	<tbody data-body-type="category" cat-id="{{id}}" >
-	        <tr data-row-type="category" cat-id="{{id}}">
-	          <td colspan="8"><b>{{category_name}}</b></td>
-	        </tr>
-	    </tbody>
+        <tbody data-body-type="category" cat-id="{{id}}" >
+            <tr data-row-type="category" cat-id="{{id}}">
+              <td colspan="8"><b>{{category_name}}</b></td>
+            </tr>
+        </tbody>
     `;
     var select_cat_tpl = '<option value="{{id}}">{{category_name}}</option>';
     var select_item_tpl = '<option value="{{item_id}}">{{item_no}} - {{item_name}}</option>';
 
+
+
+
+    var norm_detail_map = {
+    	"VTMAYCAO": {
+    		"header_template": require('text!./detailviews/detail_header_VTMAYCAO.html'),
+    		"ItemView": require('./detailviews/NormDetailItemView_VTMAYCAO')
+    	},
+        "VTBANGTAI": {
+            "header_template": require('text!./detailviews/detail_header_VTMAYCAO.html'),
+            "ItemView": require('./detailviews/NormDetailItemView_VTMAYCAO')
+        }
+    	
+    }
+
+
+
+    
     return Gonrin.ModelView.extend({
-    	template : null,
+    	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
     	collectionName: "norm",
-
-
-// code them 
 
     	uiControl: {
             fields: [
@@ -47,125 +53,18 @@ define(function (require) {
 						return date.startOf('day').unix();
 					}
 				},
-            
-                
-     //            {
-					// field: "norm_details",
-					// uicontrol: false,
-					// itemView: NormDetailItemView,
-					// tools: [
-					// 	{
-					// 		name: "create",
-					// 		type: "button",
-					// 		buttonClass: "btn btn-primary btn-sm",
-					// 		label: "Thêm",
-					// 		command: "create"
-					// 	},
-					// ],
-					// toolEl: "#add_row"
-     //            },
-
-
-
             ]
         },
-
-//     	tools : [
-//     	    {
-//     	    	name: "defaultgr",
-//     	    	type: "group",
-//     	    	groupClass: "toolbar-group",
-//     	    	buttons: [
-// 					{
-// 						name: "back",
-// 						type: "button",
-// 						buttonClass: "btn-default btn-sm",
-// 						label: "TRANSLATE:BACK",
-// 						command: function(){
-// 							var self = this;
-							
-// 							Backbone.history.history.back();
-// 						}
-// 					},
-// 					{
-// 		    	    	name: "save",
-// 		    	    	type: "button",
-// 		    	    	buttonClass: "btn-success btn-sm",
-// 		    	    	label: "Lưu Thông Tin ",
-// 		    	    	command: function(){
-// 		    	    		var self = this;
-// 		    	    		console.log(self.model.toJSON());
-		    	    		
-// 		                    self.model.save(null,{
-// 		                        success: function (model, respose, options) {
-// 		                            self.getApp().notify("Lưu thông tin thành công");
-// 		                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
-		                            
-// 		                        },
-// 		                        error: function (model, xhr, options) {
-// 		                            self.getApp().notify('Lưu thông tin không thành công!');
-		                           
-// 		                        }
-// 		                    });
-// 		    	    	}
-// 		    	    },
-// 					{
-// 		    	    	name: "delete",
-// 		    	    	type: "button",
-// 		    	    	buttonClass: "btn-danger btn-sm",
-// 		    	    	label: "TRANSLATE:DELETE",
-// 		    	    	visible: function(){
-// 		    	    		return this.getApp().getRouter().getParam("id") !== null;
-// 		    	    	},
-// 		    	    	command: function(){
-// 		    	    		var self = this;
-// 		                    self.model.destroy({
-// 		                        success: function(model, response) {
-// 		                        	self.getApp().notify('Xoá dữ liệu thành công');
-// 		                            self.getApp().getRouter().navigate(self.collectionName + "/collection");
-// 		                        },
-// 		                        error: function (model, xhr, options) {
-// 		                            self.getApp().notify('Xoá dữ liệu không thành công!');
-		                            
-// 		                        }
-// 		                    });
-// 		    	    	}
-// 		    	    },
-// // code them
-
-
-//     	    	],
-//     	    }],
-
-    	uiControl: {
-            fields: [
-                
-     //            {
-					// field: "norm_details",
-					// uicontrol: false,
-					// itemView: NormDetailItemView,
-					// tools: [
-					// 	{
-					// 		name: "create",
-					// 		type: "button",
-					// 		buttonClass: "btn btn-primary btn-sm",
-					// 		label: "Thêm",
-					// 		command: "create"
-					// 	},
-					// ],
-					// toolEl: "#add_row"
-     //            },
-            ]
-        },
+        tools : null,
 
         saveModel: function(){
         	var self = this;
-    		console.log(self.model.toJSON());
     		
             self.model.save(null,{
                 success: function (model, respose, options) {
                     self.getApp().notify("Lưu thông tin thành công");
-                    self.getApp().getRouter().navigate(self.collectionName + "/collection");
+                    var norm_template_no = self.getApp().getRouter().getParam("norm_template_no");
+                    self.getApp().getRouter().navigate(self.collectionName + "/collection?norm_template_no=" + norm_template_no);
                     
                 },
                 error: function (model, xhr, options) {
@@ -179,21 +78,33 @@ define(function (require) {
     	render:function(){
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");
+            var norm_template_no = this.getApp().getRouter().getParam("norm_template_no")
+            var url = self.getApp().serviceURL + '/api/v1/get_norm';
+            if(id){
+                url = url + '/' + id;
+            }else{
+                url = url + '/?norm_template_no=' + norm_template_no;
+            }
     		$.ajax({
-				url: self.getApp().serviceURL + '/api/v1/get_norm',
+				url: url,
 				dataType: "json",
 				success: function (data) {
 					
 					self.model.set(data);
 					var template_no = self.model.get("norm_template_no");
-		    		var norm_template = norm_template_map[template_no];
-		    		if(norm_template){
-		    			self.$el.html(norm_template.template);
-						self.renderCategorieSelectBox(data.categories);
-						self.renderCategories(data.categories);
-						self.renderDetails(data.norm_details);
-						self.registerEvents();
+		    		var norm_detail_map_obj = norm_detail_map[template_no];
+		    		if(norm_detail_map_obj){
+                        var norm_detail_header_template = norm_detail_map_obj.header_template;
+		    			// self.$el.html(norm_template.template);
+                        self.$el.find("#norm_data").find("thead").html(norm_detail_header_template)
+    
+						
 					}
+                    self.renderCategorieSelectBox(data.categories);
+                    self.renderCategories(data.categories);
+                    self.renderDetails(data.norm_details);
+                    self.registerEvents();
+                    self.applyBindings();
 				},
 				error: function (XMLHttpRequest, textStatus, errorThrown) {
 					console.log("Eror get norm");
@@ -226,9 +137,24 @@ define(function (require) {
 				}
     		});
 
-    		self.$el.find("#btn-save").bind("click", function(){
+    		self.$el.find("#btn-save").unbind("click").bind("click", function(){
     			self.saveModel();
     		});
+            self.$el.find("#btn-back").unbind("click").bind("click", function(){
+                Backbone.history.history.back();
+            });
+
+            self.$el.find("#btn-export-excel").unbind("click").bind("click", function(){
+                var id = self.model.get("id");
+                if (id){
+                    var url = self.getApp().serviceURL + '/api/v1/export/norm/' + id;
+                    window.open(url, "_blank");
+                }else{
+                    self.getApp().notify('Xin mời lưu Định mức!');
+                }
+                
+            });
+            
     	},
     	getDefaultData: function(){
     		var self = this;
@@ -315,9 +241,9 @@ define(function (require) {
     		var self = this; 
     		
     		var template_no = self.model.get("norm_template_no");
-    		var norm_template = norm_template_map[template_no];
-    		if(norm_template){
-    			var ItemView = norm_template["ItemView"];
+            var norm_detail_map_obj = norm_detail_map[template_no];
+    		if(norm_detail_map_obj){
+    			var ItemView = norm_detail_map_obj["ItemView"];
     			$.each(items, function(idx, item){
 	    			// var html = '<tr><td>' + item.item_name + '</td></tr>';
 	    			var itemView = new ItemView();
