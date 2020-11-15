@@ -23,30 +23,30 @@ define(function (require) {
                     dataSource: CategorySelectView
                 },
 
-                {
-                    field: "is_machine",
-                    uicontrol: "checkbox",
-                    checkedField: "name",
-                    valueField: "value",
-                    cssClassField: "cssClass",
-                    dataSource: [
-                        { name: true, value: true, },
-                        { name: false, value: false },
-                    ],
-                    value: false
-				},
-                {
-                    field: "is_product",
-                    uicontrol: "checkbox",
-                    checkedField: "name",
-                    valueField: "value",
-                    cssClassField: "cssClass",
-                    dataSource: [
-                        { name: true, value: true, },
-                        { name: false, value: false },
-                    ],
-                    value: false
-                },
+    //             {
+    //                 field: "is_machine",
+    //                 uicontrol: "checkbox",
+    //                 checkedField: "name",
+    //                 valueField: "value",
+    //                 cssClassField: "cssClass",
+    //                 dataSource: [
+    //                     { name: true, value: true, },
+    //                     { name: false, value: false },
+    //                 ],
+    //                 value: false
+				// },
+    //             {
+    //                 field: "is_product",
+    //                 uicontrol: "checkbox",
+    //                 checkedField: "name",
+    //                 valueField: "value",
+    //                 cssClassField: "cssClass",
+    //                 dataSource: [
+    //                     { name: true, value: true, },
+    //                     { name: false, value: false },
+    //                 ],
+    //                 value: false
+    //             },
                 {
 					field: "unit_name",
 					uicontrol: "typeahead",

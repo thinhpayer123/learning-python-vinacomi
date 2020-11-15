@@ -155,7 +155,7 @@ class NormTemplate(CommonModel):
     norm_template_name =  db.Column(String(255),nullable = True)
     norm_template_no = db.Column(String(255),nullable = True)
     norm_fields = db.Column(JSONB())
-    norm_details = db.Column(JSONB())
+    # norm_details = db.Column(JSONB())
 
 class NormDocument(CommonModel):
     __tablename__ = 'norm_document' 

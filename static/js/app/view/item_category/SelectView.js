@@ -36,19 +36,23 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-				 { 
-	    	    	field: "category_no",label:"Danh Mục",
-				 },
-				 { 
-	    	    	field: "category_name",label:"Tên Nhóm Vật Tư",
-				 },
-				 { 
-	    	    	field: "category_type",label:"Phân Loại Nhóm Vật Tư",
-				 },
-				 { 
-	    	    	field: "sort_number",label:"Sắp Xếp Số",
-				 },
-		    ],
+                 { 
+                    field: "category_no",label:"Danh Mục",
+                 },
+                 { 
+                    field: "category_name",label:"Tên Nhóm Vật Tư",
+                 },
+                 { 
+                    field: "status",label:"Trạng Thái",
+                 },
+                 {
+                    field: "norm_template", textField: "norm_template_name",label:"Template",
+                 },                 
+                 { 
+                    field: "sort",label:"Sắp Xếp Số",
+                 },
+
+                 ],		    
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;
 	    		

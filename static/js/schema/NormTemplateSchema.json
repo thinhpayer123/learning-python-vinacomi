@@ -25,9 +25,7 @@
         "length": 255
     },
     "norm_fields": {
-        "type": "json"
-    },
-    "norm_details": {
-        "type": "json"
+        "type": "list"
     }
+
 }

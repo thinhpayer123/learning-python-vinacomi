@@ -16,7 +16,7 @@ def init_views(app):
     import application.controllers.unit
     import application.controllers.item
     import application.controllers.itemcategoryrelation
-    # import application.controllers.norm_template
+    import application.controllers.norm_template
     # import application.controllers.item_class
     # import application.controllers.norm_item
     import application.controllers.norm_document

@@ -1,16 +1,16 @@
 define(function (require) {
-    "use strict";
-    var $                   = require('jquery'),
-        _                   = require('underscore'),
-        Gonrin				= require('gonrin');
-    
-    var template 			= require('text!app/view/norm_template/tpl/collection.html');
-    var	schema 				= require('json!schema/NormTemplateSchema.json');
-    
-    return Gonrin.CollectionView.extend({
-    	template : template,
-    	modelSchema	: schema,
-    	urlPrefix: "/api/v1/",
+	"use strict";
+	var $ = require('jquery'),
+		_ = require('underscore'),
+		Gonrin = require('gonrin');
+
+	var template = require('text!app/view/norm_template/tpl/collection.html');
+	var schema = require('json!schema/NormTemplateSchema.json');
+
+	return Gonrin.CollectionView.extend({
+		template: template,
+		modelSchema: schema,
+		urlPrefix: "/api/v1/",
 		collectionName: "norm_template",
 		tools: [
 			{
@@ -23,42 +23,38 @@ define(function (require) {
 						type: "button",
 						buttonClass: "btn-success btn-sm",
 						label: "Tạo mới",
-						command: function(){
+						command: function () {
 							var self = this;
 							var path = self.collectionName + '/model';
 							self.getApp().getRouter().navigate(path);
 						}
 					},
-					
+
 				]
 			},
 		],
-    	uiControl:{
-    		fields: [
-                { 
-                    field: "norm_template_no",label:"Mã Định Mức"
-                 },
-                 { 
-                    field: "norm_template_name",label:"Tên Định Mức"
-                 },
-                 // { 
-                 //    field: "norm_items",label:"Định Mức Vật Tư"
-                 // },    	     
-    
+		uiControl: {
+			fields: [
+				{
+					field: "norm_template_no", label: "Quyết Định Số"
+				},
+				{
+					field: "norm_template_name", label: "Tên Quyết Định"
+				},
 
-		     ],
-		     onRowClick: function(event){
-		    	if(event.rowId){
-		        		var path = this.collectionName + '/model?id='+ event.rowId;
-		        		this.getApp().getRouter().navigate(path);
-		        }
-		    	
-		    }
-    	},
-	    render:function(){
-	    	 this.applyBindings();
-	    	 return this;
-    	},
-    });
+			],
+			onRowClick: function (event) {
+				if (event.rowId) {
+					var path = this.collectionName + '/model?id=' + event.rowId;
+					this.getApp().getRouter().navigate(path);
+				}
+
+			}
+		},
+		render: function () {
+			this.applyBindings();
+			return this;
+		},
+	});
 
 });

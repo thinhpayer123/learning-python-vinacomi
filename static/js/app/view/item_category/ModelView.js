@@ -6,6 +6,7 @@ define(function (require) {
     
     var template 			= require('text!app/view/item_category/tpl/model.html'),
     	schema 				= require('json!schema/ItemCategorySchema.json');
+    var NormTemplate = require("app/view/norm_template/SelectView");
     
     return Gonrin.ModelView.extend({
     	template : template,
@@ -74,6 +75,20 @@ define(function (require) {
 		    	    },
     	    	],
     	    }],
+        uiControl: {
+            fields: [
+		                {
+		                    field: "norm_template",
+		                    uicontrol: "ref",
+		                    textField: "norm_template_name",
+		                    // selectionMode: "multiple",
+		                    dataSource: NormTemplate,
+		                    foreignRemoteField: "id",
+    						foreignField: "norm_template_id"
+		                },
+                	],
+            	},
+
     	render:function(){
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");

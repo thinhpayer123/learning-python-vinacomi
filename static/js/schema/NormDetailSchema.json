@@ -52,7 +52,7 @@
     },
     "note": {
         "type": "string"
-    },
+    },                  
     "data": {
         "type": "json"
     }

@@ -1,0 +1,11 @@
+{
+	"name": { 
+		"type": "string"
+	},
+	"label": {
+		"type": "string"
+	},
+	"id":{
+		"type": "string"
+	}
+}
