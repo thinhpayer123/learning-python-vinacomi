@@ -47,12 +47,24 @@ class User(CommonModel):
     # company_id = db.Column(String(), index=True, nullable=False)
     extra_data = db.Column(JSONB())
 
+    department_id = db.Column(UUID(as_uuid=True), db.ForeignKey('department.id', ondelete='RESTRICT'))
+
     # Methods
     def __repr__(self):
         """ Show user object info. """
         return '<User: {}>'.format(self.id)
 
 
+class Department(CommonModel):
+    __tablename__ = 'department'
+    name = db.Column(db.String, nullable=True)
+    department_no = db.Column(db.String(63), nullable=False)
+    description = db.Column(db.String)
+
+    department_type = db.Column(db.String, nullable=True) #KHTH, PKT, VTHH, PXSX
+    address = db.Column(db.String)
+    phone = db.Column(db.String)
+    email = db.Column(db.String)
 
 # code moi 
 
@@ -139,6 +151,73 @@ class Item(CommonModel):
     package_items = db.Column(JSONB())
 
     categories = db.relationship("ItemCategory", secondary='items_categories')
+
+
+class PriceList(CommonModel):
+    __tablename__ = 'price_list'
+    price_list_no = db.Column(String(40), index=True, nullable=True)
+    price_list_name = db.Column(String())
+    price_list_year = db.Column(BigInteger(), nullable=True)
+    
+    price_type = db.Column(SmallInteger(), nullable=True) #1: ban, 2:mua
+
+    is_default = db.Column(Boolean(), default=False)
+
+    start_time = db.Column(BigInteger, index=True)
+    end_time = db.Column(BigInteger, index=True)
+
+    extra_data = db.Column(JSONB()) #TODO Remove
+    priority = db.Column(SmallInteger(), nullable=True, default=10)
+
+    active = db.Column(Boolean(), nullable=True, default=True)
+
+    extra_attributes = db.Column(JSONB())
+    # workstation_id = db.Column(UUID(as_uuid=True), ForeignKey("workstation.id", ondelete="SET NULL"))
+    # workstation = db.relationship("Workstation")
+    prices = db.relationship("ItemPrice")
+
+    tenant_id = db.Column(String(), ForeignKey("tenant.id", onupdate="RESTRICT", ondelete="RESTRICT"), nullable=True)
+    
+
+
+#IvtPrice
+class ItemPrice(CommonModel):
+    __tablename__ = 'item_price'
+    price_list_id = db.Column(UUID(as_uuid=True), ForeignKey("price_list.id", ondelete="CASCADE"))
+    price_list_no = db.Column(String(40), index=True, nullable=True)
+    price_list_name = db.Column(String())
+    price_list = db.relationship("PriceList")
+
+    item_id = db.Column(UUID(as_uuid=True), ForeignKey("item.id", ondelete="CASCADE"))
+    item_no = db.Column(String(40), index=True, nullable=True)
+    item_name = db.Column(String(150), nullable=False)
+    
+    # 1: gia ban, 2: gia mua: 3: gia von
+    price_type = db.Column(SmallInteger(), nullable=True)
+    # 1: base price, 0: normal price
+    is_default = db.Column(Boolean(), default=False)
+
+    list_price_without_vat = db.Column(FLOAT(25,8), nullable=True)
+    vat = db.Column(FLOAT(25,8), nullable=True)
+    list_price = db.Column(FLOAT(25,8), default=0)
+
+    delivery_price = db.Column(FLOAT(25,8), default=0)
+
+    priority = db.Column(SmallInteger(), nullable=True, default=10)
+    start_time = db.Column(BigInteger(), nullable=True, index=True)
+    end_time = db.Column(BigInteger(), nullable=True, index=True)
+
+    image = db.Column(Text())
+    variants = db.Column(JSONB())
+
+    unit_id = db.Column(UUID(as_uuid=True), nullable=True)
+    unit_name = db.Column(String(), nullable=True)
+    unit_no = db.Column(String(), nullable=True)
+
+    note = db.Column(Text())
+    extra_attributes = db.Column(JSONB())
+
+    active = db.Column(Boolean(), nullable=True, default=True)
    
 
 # class NormItem(CommonModel):
