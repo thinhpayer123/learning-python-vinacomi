@@ -129,7 +129,19 @@ define(function (require) {
                     parseOutputDate: function(date){
                         return date.startOf('day').unix();
                     }
-                },            
+                }, 
+                {
+                    field: "is_default",
+                    uicontrol: "checkbox",
+                    checkedField: "name",
+                    valueField: "value",
+                    cssClassField: "cssClass",
+                    dataSource: [
+                        { name: true, value: true, },
+                        { name: false, value: false },
+                    ],
+                    value: false
+                },                          
                 
                 {
 					field: "prices",
