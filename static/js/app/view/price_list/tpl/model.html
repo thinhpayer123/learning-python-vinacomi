@@ -1,0 +1,71 @@
+
+<div block-bind="content">
+  <div class="page-header row no-gutters py-2">
+  </div>
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="card  card-small mb-4" style="position: relative;">
+        <div class="card-header  border-bottom">
+          <div class="row">
+            <div class="col-md-7">
+              <h3 class="m-0 pt-2">Thông Tin Cơ Bản Bảng Giá Vật Tư</h3>
+            </div>
+            <div class="col-md-5 text-right">              
+              <div block-bind="toolbar"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body row">
+          <div class="col-md-8 col-lg-6 col-sm-12 col-12">
+            <div class="form-group">
+              <label for="">Mã Bảng Giá</label>
+              <input class="form-control" data-bind="value:price_list_no" />
+            </div>
+          </div>         
+            <div class="col-md-8 col-lg-6 col-sm-12 col-12">
+              <div class="form-group">
+                <label for="">Tên Bảng Giá</label>
+                <input class="form-control" data-bind="value:price_list_name" />
+              </div>
+            </div>
+        </div>
+          <div class="card-body row">
+          <div class="col-md-8 col-lg-6 col-sm-12 col-12">
+            <div class="form-group">
+              <label for="">Ưu Tiên</label>       
+              <input id="organization"  class="form-control" data-bind="value:priority" />
+            </div>
+          </div>
+          <div class="col-md-8 col-lg-6 col-sm-12 col-12">
+            <div class="form-group">
+              <label for="">Thời Gian Bắt Đầu</label>       
+              <input id="organization"  class="form-control" data-bind="value:start_time" />
+            </div>
+          </div>          
+          </div>
+          <div  id="add_row"></div>
+            <div class="col-12 out-click">
+              <div class="d-flex justify-content-around align-items-center w-100">
+                
+                <table class="table table-striped">
+                    <tr>
+                      <th scope="col" class="text-center" style="width:15%">Mã Vật Tư</th>
+                      <th scope="col" class="text-center" style="width:40%">Tên Vật Tư</th>
+         
+                      <th scope="col" class="text-center" style="width:10%">Đơn Vị Tính</th>
+                      <th class='text-center' style="width: 25">Đơn giá</th>
+                      <th class='text-center' style="width: 10">VAT (%)</th>
+                      
+                      <th scope="col" style="width:3%"></th>
+                    </tr> 
+                  <tbody id="" data-bind="list:prices"></tbody>
+                </table>
+              </div>
+              <div class="col-md-6 justify-content-around">
+                <div id="search-item"></div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>

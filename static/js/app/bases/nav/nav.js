@@ -52,6 +52,13 @@ define(function (require) {
 				    "route":"item_category/collection"
 				},
 				{
+					"text":"Bảng Giá",
+					// "icon":"fa fa-child",
+					"type":"view",
+					"collectionName":"price_list",
+				    "route":"price_list/collection"
+				},				
+				{
 					"text":"Đơn Vị Tính",
 					// "icon":"fa fa-child",
 					"type":"view",
@@ -92,3 +99,4 @@ define(function (require) {
 	];
 
 });
+

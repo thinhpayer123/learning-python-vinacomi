@@ -16,18 +16,27 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "norm_template_name": {
+    "name": {
+        "type": "string"
+    },
+    "department_no": {
         "type": "string",
-        "length": 255
+        "required": true,
+        "length": 63
     },
-    "norm_template_no": {
-        "type": "string",
-        "length": 255
+    "description": {
+        "type": "string"
     },
-    "norm_fields": {
-        "type": "json"
+    "department_type": {
+        "type": "string"
     },
-    "categories": {
-        "type": "list"
+    "address": {
+        "type": "string"
+    },
+    "phone": {
+        "type": "string"
+    },
+    "email": {
+        "type": "string"
     }
 }

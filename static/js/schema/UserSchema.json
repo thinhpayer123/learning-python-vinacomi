@@ -51,6 +51,9 @@
     "extra_data": {
         "type": "json"
     },
+    "department_id": {
+        "type": "string"
+    },
     "roles": {
         "type": "list"
     }

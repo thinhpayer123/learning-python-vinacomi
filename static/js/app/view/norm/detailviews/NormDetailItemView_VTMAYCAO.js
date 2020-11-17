@@ -10,7 +10,6 @@ define(function (require) {
   var template = require("text!./detail_VTMAYCAO.html");
         
  
-  
   var Model = Gonrin.Model.extend({
     defaults: Gonrin.getDefaultModel(normSchema),
     computeds: {

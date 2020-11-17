@@ -4,36 +4,26 @@ define(function (require) {
 		_ = require('underscore'),
 		Gonrin = require('gonrin');
 	return [
-		{
-			"collectionName": "company", 
-			"route": "company/collection(/:param)",
-			"$ref": "app/view/Company/CollectionView",
-		},
-		{
-			"collectionName": "company",
-			"route": "company/model(/:param)",
-			"$ref": "app/view/Company/ModelView",
-		},
-		{
-			"collectionName": "brand", 
-			"route": "brand/collection(/:param)",
-			"$ref": "app/view/Brand/CollectionView",
-		},
-		{
-			"collectionName": "brand",
-			"route": "brand/model(/:param)",
-			"$ref": "app/view/Brand/ModelView",
-		},
-		{
-			"collectionName": "membercard", 
-			"route": "membercard/collection(/:param)",
-			"$ref": "app/view/MemberCard/CollectionView",
-		},
-		{
-			"collectionName": "membercard",
-			"route": "membercard/model(/:param)",
-			"$ref": "app/view/MemberCard/ModelView",
-		},		
+		// {
+		// 	"collectionName": "company", 
+		// 	"route": "company/collection(/:param)",
+		// 	"$ref": "app/view/Company/CollectionView",
+		// },
+		// {
+		// 	"collectionName": "company",
+		// 	"route": "company/model(/:param)",
+		// 	"$ref": "app/view/Company/ModelView",
+		// },
+		// {
+		// 	"collectionName": "brand", 
+		// 	"route": "brand/collection(/:param)",
+		// 	"$ref": "app/view/Brand/CollectionView",
+		// },
+		// {
+		// 	"collectionName": "brand",
+		// 	"route": "brand/model(/:param)",
+		// 	"$ref": "app/view/Brand/ModelView",
+		// },		
 		{
 			"collectionName": "role", 
 			"route": "role/collection(/:param)",
@@ -43,36 +33,6 @@ define(function (require) {
 			"collectionName": "role",
 			"route": "role/model(/:param)",
 			"$ref": "app/view/Role/ModelView",
-		},
-		{
-			"collectionName": "order", 
-			"route": "order/collection(/:param)",
-			"$ref": "app/view/Order/CollectionView",
-		},
-		{
-			"collectionName": "order",
-			"route": "order/model(/:param)",
-			"$ref": "app/view/Order/ModelView",
-		},			
-		{
-			"collectionName": "store", 
-			"route": "store/collection(/:param)",
-			"$ref": "app/view/Store/CollectionView",
-		},
-		{
-			"collectionName": "store",
-			"route": "store/model(/:param)",
-			"$ref": "app/view/Store/ModelView",
-		},
-		{
-			"collectionName": "transaction", 
-			"route": "transaction/collection(/:param)",
-			"$ref": "app/view/Transaction/CollectionView",
-		},
-		{
-			"collectionName": "transaction",
-			"route": "transaction/model(/:param)",
-			"$ref": "app/view/Transaction/ModelView",
 		},
 		{
 			"collectionName": "users", 
@@ -201,103 +161,16 @@ define(function (require) {
 			"route": "norm_decision/model(/:id)",
 			"$ref": "app/view/norm_decision/ModelView",
 		},
-
 		{
-			"collectionName": "norm", 
-			"route": "norm_well/collection(/:id)",
-			"$ref": "app/view/norm_well/CollectionView",
+			"collectionName": "price_list", 
+			"route": "price_list/collection(/:id)",
+			"$ref": "app/view/price_list/CollectionView",
 
 		},
 		{
-			"collectionName": "norm",
-			"route": "norm_well/model(/:id)",
-			"$ref": "app/view/norm_well/ModelView",
-		},
-		{
-			"collectionName": "norm", 
-			"route": "norm_conveyor_belt/collection(/:id)",
-			"$ref": "app/view/norm_conveyor_belt/CollectionView",
-
-		},
-		{
-			"collectionName": "norm",
-			"route": "norm_conveyor_belt/model(/:id)",
-			"$ref": "app/view/norm_conveyor_belt/ModelView",
-		},
-		{
-			"collectionName": "norm", 
-			"route": "norm_hydraulic/collection(/:id)",
-			"$ref": "app/view/norm_hydraulic/CollectionView",
-
-		},
-		{
-			"collectionName": "norm",
-			"route": "norm_hydraulic/model(/:id)",
-			"$ref": "app/view/norm_hydraulic/ModelView",
-		},
-
-		{
-			"collectionName": "norm", 
-			"route": "norm_supplies/collection(/:id)",
-			"$ref": "app/view/norm_supplies/CollectionView",
-
-		},
-		{
-			"collectionName": "norm",
-			"route": "norm_supplies/model(/:id)",
-			"$ref": "app/view/norm_supplies/ModelView",
-		},
-		{
-			"collectionName": "norm", 
-			"route": "norm_maintenance_repair/collection(/:id)",
-			"$ref": "app/view/norm_maintenance_repair/CollectionView",
-
-		},
-		{
-			"collectionName": "norm",
-			"route": "norm_maintenance_repair/model(/:id)",
-			"$ref": "app/view/norm_maintenance_repair/ModelView",
-		},
-
-					
-
-
-
-
-
-
-
-
-
-		{
-			"collectionName": "khachhang",
-			"route": "khachhang/collection(/:id)",
-			"$ref": "app/view/KhachHang/CollectionView",
-		},
-		{
-			"collectionName": "khachhang",
-			"route": "khachhang/model(/:id)",
-			"$ref": "app/view/KhachHang/ModelView",
-		},
-		{
-			"collectionName": "hanghoa",
-			"route": "hanghoa/collection(/:id)",
-			"$ref": "app/view/HangHoa/CollectionView",
-		},
-		{
-			"collectionName": "hanghoa",
-			"route": "hanghoa/model(/:id)",
-			"$ref": "app/view/HangHoa/ModelView",
-		},
-		{
-			"collectionName": "hoadon",
-			"route": "hoadon/collection(/:id)",
-			"$ref": "app/view/HoaDon/CollectionView",
-		},
-		{
-			"collectionName": "hoadon",
-			"route": "hoadon/model(/:id)",
-			"$ref": "app/view/HoaDon/ModelView",
+			"collectionName": "price_list",
+			"route": "price_list/model(/:id)",
+			"$ref": "app/view/price_list/ModelView",
 		},
 		{
 			"collectionName": "unit",

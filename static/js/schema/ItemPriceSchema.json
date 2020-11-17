@@ -1,0 +1,100 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "price_list_id": {
+        "type": "string"
+    },
+    "price_list_no": {
+        "type": "string",
+        "length": 40
+    },
+    "price_list_name": {
+        "type": "string"
+    },
+    "item_id": {
+        "type": "string"
+    },
+    "item_no": {
+        "type": "string",
+        "length": 40
+    },
+    "item_name": {
+        "type": "string",
+        "required": true,
+        "length": 150
+    },
+    "price_type": {
+        "type": "number"
+    },
+    "is_default": {
+        "type": "boolean",
+        "default": false
+    },
+    "list_price_without_vat": {
+        "type": "number"
+    },
+    "vat": {
+        "type": "number"
+    },
+    "list_price": {
+        "type": "number",
+        "default": 0
+    },
+    "delivery_price": {
+        "type": "number",
+        "default": 0
+    },
+    "priority": {
+        "type": "number",
+        "default": 10
+    },
+    "start_time": {
+        "type": ""
+    },
+    "end_time": {
+        "type": ""
+    },
+    "image": {
+        "type": "string"
+    },
+    "variants": {
+        "type": "json"
+    },
+    "unit_id": {
+        "type": "string"
+    },
+    "unit_name": {
+        "type": "string"
+    },
+    "unit_no": {
+        "type": "string"
+    },
+    "note": {
+        "type": "string"
+    },
+    "extra_attributes": {
+        "type": "json"
+    },
+    "active": {
+        "type": "boolean",
+        "default": true
+    },
+    "price_list": {
+        "type": "dict"
+    }
+}

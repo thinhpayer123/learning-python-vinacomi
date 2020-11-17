@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/Role/tpl/collection.html');
-    var	schema 				= require('json!schema/RoleSchema.json');
+    var template 			= require('text!app/view/price_list/tpl/collection.html');
+    var	schema 				= require('json!schema/ItemPriceSchema.json');
     
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-		collectionName: "role",
+		collectionName: "price_list",
 		tools: [
 			{
 				name: "default",
@@ -33,16 +33,12 @@ define(function (require) {
 				]
 			},
 		],
-
-		
     	uiControl:{
     		fields: [
-	    	     // { 
-	    	    	// field: "id",label:"ID",
-	    	     // },
-	    	      { field: "name", label: "Tên Role "},
-				  { field: "display_name", label: "Tên Hiển Thị ", width:250 },
-				  { field: "description", label: "Mô Tả " },
+				{ field: "price_list_no", label: "Mã Bảng Giá" },
+				{ field: "price_list_name", label: "Tên Bảng Giá" },
+				{ field: "priority", label: "Ưu Tiên" },
+				{ field: "start_time", label: "Ngày Tạo" },
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

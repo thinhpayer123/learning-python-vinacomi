@@ -176,7 +176,7 @@ class PriceList(CommonModel):
     # workstation = db.relationship("Workstation")
     prices = db.relationship("ItemPrice")
 
-    tenant_id = db.Column(String(), ForeignKey("tenant.id", onupdate="RESTRICT", ondelete="RESTRICT"), nullable=True)
+    # tenant_id = db.Column(String(), ForeignKey("tenant.id", onupdate="RESTRICT", ondelete="RESTRICT"), nullable=True)
     
 
 

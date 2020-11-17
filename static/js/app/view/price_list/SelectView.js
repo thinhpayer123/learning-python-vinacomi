@@ -4,15 +4,15 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/Role/tpl/collection.html'),
-    	schema 				= require('json!schema/RoleSchema.json');
+    var template 			= require('text!app/view/price_list/tpl/collection.html'),
+    	schema 				= require('json!schema/ItemPriceSchema.json');
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "role",
-    	textField: "ten",
+    	collectionName: "norm",
+    	textField: "name",
     	valueField: "id",
     	tools : [
     	    {
@@ -36,10 +36,11 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-				// { field: "id", label: "ID"},
-				{ field: "name", label: "Tên Role "},
-				{ field: "display_name", label: "Tên Hiển Thị ", width:250 },
-				{ field: "description", label: "Mô Tả " },
+                { field: "price_list_no", label: "Mã Bảng Giá" },
+                { field: "price_list_name", label: "Tên Bảng Giá" },
+                { field: "priority", label: "Ưu Tiên" },
+                { field: "start_time", label: "Ngày Bắt Tạo" },
+
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;
@@ -57,3 +58,9 @@ define(function (require) {
     });
 
 });
+
+
+    // norm_no = db.Column(String(255),nullable = True)
+    // from_time = db.Column(BigInteger(), index=True)
+    // to_time = db.Column(BigInteger(), index=True)
+    // priority = db.Column(Integer(), default=10)
