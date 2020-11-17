@@ -34,7 +34,7 @@
         "default": false
     },
     "start_time": {
-        "type": "datetime"
+        "type": ""
     },
     "end_time": {
         "type": ""
