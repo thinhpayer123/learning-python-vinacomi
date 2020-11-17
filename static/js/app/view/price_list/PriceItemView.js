@@ -3,8 +3,8 @@ define(function (require) {
   var $ = require("jquery");
   var _ = require("underscore");
   var Gonrin = require("gonrin");
-  var template = require("text!app/view/price_list/tpl/norm_detail.html"),
-      normSchema = require("json!schema/ItemPriceSchema.json");
+  var template = require("text!app/view/price_list/tpl/priceitem.html"),
+      priceitemSchema = require("json!schema/ItemPriceSchema.json");
  
   
   // var Model = Gonrin.Model.extend({
@@ -41,7 +41,7 @@ define(function (require) {
     bindings: "price-item-bind",
     template: template,
     tagName: "tr",
-    modelSchema: normSchema,
+    modelSchema: priceitemSchema,
     // modelClass: Model,
     urlPrefix: "/api/v1/",
     // collectionName: "norm_detail",

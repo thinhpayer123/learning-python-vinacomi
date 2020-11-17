@@ -6,7 +6,7 @@ define(function (require) {
     
     var template 			= require('text!app/view/price_list/tpl/model.html'),
     	schema 				= require('json!schema/PriceListSchema.json');
-    var NormDetailItemView = require('./NormDetailItemView');
+    var PriceItemView = require('./PriceItemView');
 
     return Gonrin.ModelView.extend({
     	template : template,
@@ -134,7 +134,7 @@ define(function (require) {
                 {
 					field: "prices",
 					uicontrol: false,
-					itemView: NormDetailItemView,
+					itemView: PriceItemView,
 					tools: [
 						{
 							name: "create",
