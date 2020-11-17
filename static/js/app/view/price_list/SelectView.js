@@ -39,7 +39,8 @@ define(function (require) {
                 { field: "price_list_no", label: "Mã Bảng Giá" },
                 { field: "price_list_name", label: "Tên Bảng Giá" },
                 { field: "priority", label: "Ưu Tiên" },
-                { field: "start_time", label: "Ngày Bắt Tạo" },
+                { field: "start_time", label: "Ngày Tạo" },
+                { field: "end_time", label: "Ngày Kết Thúc" },  
 
 		    ],
 		    onRowClick: function(event){
