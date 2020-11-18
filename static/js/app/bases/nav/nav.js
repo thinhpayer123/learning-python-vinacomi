@@ -66,6 +66,13 @@ define(function (require) {
 				    "route":"unit/collection"
 				},
 				{
+					"text":"Nhóm Vật Tư Cho Phân Xưởng",
+					// "icon":"fa fa-child",
+					"type":"view",
+					"collectionName":"item_department",
+	    			"route":"item_department/collection?norm_template_no=VTMAYCAO"
+				},
+				{
 					"text":"Định Mức Template ",
 					// "icon":"fa fa-child",
 					"type":"view",

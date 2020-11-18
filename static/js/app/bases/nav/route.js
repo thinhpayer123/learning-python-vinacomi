@@ -14,16 +14,16 @@ define(function (require) {
 		// 	"route": "company/model(/:param)",
 		// 	"$ref": "app/view/Company/ModelView",
 		// },
-		// {
-		// 	"collectionName": "brand", 
-		// 	"route": "brand/collection(/:param)",
-		// 	"$ref": "app/view/Brand/CollectionView",
-		// },
-		// {
-		// 	"collectionName": "brand",
-		// 	"route": "brand/model(/:param)",
-		// 	"$ref": "app/view/Brand/ModelView",
-		// },		
+		{
+			"collectionName": "item_department", 
+			"route": "item_department/collection(/:param)",
+			"$ref": "app/view/item_department/CollectionView",
+		},
+		{
+			"collectionName": "item_department",
+			"route": "item_department/model(/:param)",
+			"$ref": "app/view/item_department/ModelView",
+		},		
 		{
 			"collectionName": "role", 
 			"route": "role/collection(/:param)",

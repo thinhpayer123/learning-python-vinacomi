@@ -295,9 +295,24 @@ class NormDetail(CommonModel):
     data = db.Column(JSONB())
 
 
-    # them
-    # from_time = db.Column(BigInteger(), index=True)
-    # to_time = db.Column(BigInteger(), index=True)
-    # year = db.Column(Integer(), index=True)
-    # priority = db.Column(Integer(), default=10)
-    # active = db.Column(SmallInteger(), default=1)
+# class ItemDepartment(CommonModel):
+#     __tablename__ = 'item_department' #dinh muc
+    
+#     norm_name =  db.Column(String(255),nullable = True)
+
+#     norm_document_id = db.Column(UUID(as_uuid=True))
+#     norm_document_no = db.Column(String(255),nullable = True)
+#     norm_document_name = db.Column(String(255),nullable = True)
+
+#     norm_template_id = db.Column(UUID(as_uuid=True))
+#     norm_template_no = db.Column(String(255),nullable = True)
+    
+#     from_time = db.Column(BigInteger(), index=True)
+#     to_time = db.Column(BigInteger(), index=True)
+#     year = db.Column(Integer(), index=True)
+
+#     priority = db.Column(Integer(), default=100)
+#     active = db.Column(SmallInteger(), default=1)
+
+#     norm_details = db.relationship("NormDetail")
+#     norm_fields = db.Column(JSONB())
