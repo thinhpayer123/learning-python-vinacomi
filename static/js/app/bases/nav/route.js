@@ -183,6 +183,16 @@ define(function (require) {
 			"$ref": "app/view/unit/ModelView",
 		},
 
+		{
+			"collectionName": "department",
+			"route": "department/collection(/:id)",
+			"$ref": "app/view/department/CollectionView",
+		},
+		{
+			"collectionName": "department",
+			"route": "department/model(/:id)",
+			"$ref": "app/view/department/ModelView",
+		},
 	];
 
 });
