@@ -102,6 +102,13 @@ define(function (require) {
 			"collectionName":"department",
 		    "route":"department/collection"
 		},
+		{
+			"text":"Bảng kê nhập xuất tồn",
+			"icon":`<svg class="c-sidebar-nav-icon"><use xlink:href="/static/vendor/coreui-icons/sprites/free.svg#cil-star"></use></svg>`,
+			"type":"view",
+			"collectionName":"gaio",
+		    "route":"gaio/collection"
+		},
 		
 	];
 

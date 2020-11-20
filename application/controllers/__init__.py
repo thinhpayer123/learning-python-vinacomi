@@ -7,9 +7,6 @@ def init_views(app):
 
 
     import application.controllers.role
-
-
- 
     import application.controllers.normdetail
     import application.controllers.norm
     import application.controllers.itemcategory
@@ -19,11 +16,16 @@ def init_views(app):
     import application.controllers.norm_template
     import application.controllers.norm_document
     import application.controllers.export_excel
-    # import application.controllers.norm_decision
     import application.controllers.price_list
     import application.controllers.item_price
     import application.controllers.department
+    import application.controllers.gaio
+    import application.controllers.gaio_detail
 
+    
+
+
+    # import application.controllers.norm_decision
     # import application.controllers.khachhang
     # import application.controllers.khachhang
     # import application.controllers.hanghoa

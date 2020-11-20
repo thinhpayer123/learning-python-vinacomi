@@ -1,0 +1,83 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "item_code": {
+        "type": "string"
+    },
+    "name": {
+        "type": "string",
+        "required": true,
+        "length": 255
+    },
+    "unsigned_name": {
+        "type": "string"
+    },
+    "supplier": {
+        "type": "string"
+    },
+    "supplier_id": {
+        "type": "string"
+    },
+    "item_price_id": {
+        "type": "string"
+    },
+    "organization_id": {
+        "type": "string"
+    },
+    "unit_id": {
+        "type": "string"
+    },
+    "unit": {
+        "type": "string"
+    },
+    "open_quanlity": {
+        "type": "number",
+        "default": 0
+    },
+    "receipt_quanlity": {
+        "type": "number",
+        "default": 0
+    },
+    "issue_quanlity": {
+        "type": "number",
+        "default": 0
+    },
+    "close_quanlity": {
+        "type": "number",
+        "default": 0
+    },
+    "open_amount": {
+        "type": "number",
+        "default": 0
+    },
+    "receipt_amount": {
+        "type": "number",
+        "default": 0
+    },
+    "issue_amount": {
+        "type": "number",
+        "default": 0
+    },
+    "close_amount": {
+        "type": "number",
+        "default": 0
+    },
+    "gaio_id": {
+        "type": "string"
+    }
+}

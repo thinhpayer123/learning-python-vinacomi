@@ -16,22 +16,11 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "price_list_no": {
-        "type": "string",
-        "length": 40
-    },
-    "price_list_name": {
+    "code": {
         "type": "string"
     },
-    "price_list_year": {
+    "create_date": {
         "type": ""
-    },
-    "price_type": {
-        "type": "number"
-    },
-    "is_default": {
-        "type": "boolean",
-        "default": false
     },
     "start_time": {
         "type": ""
@@ -39,21 +28,35 @@
     "end_time": {
         "type": ""
     },
-    "extra_data": {
-        "type": "json"
+    "vote": {
+        "type": "string"
     },
-    "priority": {
-        "type": "number",
-        "default": 10
+    "type_report": {
+        "type": "string"
     },
-    "active": {
+    "organization": {
+        "type": "string"
+    },
+    "tax_identification_number": {
+        "type": "string"
+    },
+    "warehouse": {
+        "type": "string"
+    },
+    "type_organization": {
+        "type": "string"
+    },
+    "maker": {
+        "type": "string"
+    },
+    "accept": {
+        "type": "string"
+    },
+    "actice": {
         "type": "boolean",
         "default": true
     },
-    "extra_attributes": {
-        "type": "json"
-    },
-    "prices": {
+    "detail": {
         "type": "list"
     }
 }

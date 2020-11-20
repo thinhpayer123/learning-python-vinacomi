@@ -1,0 +1,72 @@
+<section class="content">
+	<div class="col-lg-12">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+				<h3 class="box-title">Tạo bảng kê nhập xuất tồn</h3>
+				<div class="box-tools">
+					<div block-bind="toolbar"></div>
+				</div>
+			</div>
+
+			<div block-bind="content" class="row" style="margin-right: 0px; margin-left: 0px;">
+				<div class="col-lg-6 base-content">
+					<div class="form-group">
+						<label>Số phiếu</label>
+						<input type="text" data-bind="value:vote" class="form-control inputbox">
+					</div>
+
+					<div class="form-group">
+						<label>Thời gian tạo báo cáo</label>
+						<input type="date" data-bind="value:create_date" class="form-control inputbox">
+					</div>
+					<div class="form-group">
+						<label>Người lập</label>
+						<input type="text" data-bind="value:maker" class="form-control inputbox">
+					</div>
+
+				</div>
+				<div class="col-lg-6 base-content">
+
+					<div class="form-group">
+						<label>Tên đơn vị</label>
+						<input type="text" data-bind="value:organization" class="form-control inputbox">
+					</div>
+					<div class="form-group">
+						<label>Mã số thuế</label>
+						<input type="text" data-bind="value:tax_identification_number" class="form-control inputbox">
+					</div>
+					<div class="form-group">
+						<label>Người duyệt</label>
+						<input type="text" data-bind="value:accept" class="form-control inputbox">
+					</div>
+				</div>
+			</div>
+		</div>
+		<hr>
+	</div>
+	<div class="col-12 out-click">
+		<div class="d-flex justify-content-around align-items-center w-100">
+
+			<table class="table table-striped">
+				<tr>
+					<th scope="col" class="text-center" style="width:15%">Mã Vật Tư</th>
+					<th scope="col" class="text-center" style="width:40%">Tên Vật Tư</th>
+
+					<th scope="col" class="text-center" style="width:10%">Đơn Vị Tính</th>
+					<th class='text-center' style="width: 25">Đơn Giá</th>
+					<th class='text-center' style="width: 10">Chi tiết tồn<th>
+					<th scope="col" style="width:3%"></th>
+				</tr>
+				<tbody id="detail" data-bind="list:detail"></tbody>
+			</table>
+		</div>
+		<div class="col-md-6 justify-content-around">
+			<div id="search-item"></div>
+		</div>
+		<div class="col-md-6 justify-content-around">
+			<div id="add-item"></div>
+		</div>
+	</div>
+	</div>
+
+</section>

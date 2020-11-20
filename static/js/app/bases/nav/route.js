@@ -193,6 +193,16 @@ define(function (require) {
 			"route": "department/model(/:id)",
 			"$ref": "app/view/department/ModelView",
 		},
+		{
+			"collectionName": "gaio",
+			"route": "gaio/collection(/:id)",
+			"$ref": "app/view/gaio/CollectionView",
+		},
+		{
+			"collectionName": "gaio",
+			"route": "gaio/model(/:id)",
+			"$ref": "app/view/gaio/ModelView",
+		},
 	];
 
 });

@@ -267,6 +267,7 @@ class Norm(CommonModel):
     norm_details = db.relationship("NormDetail")
     norm_fields = db.Column(JSONB())
     
+
 class NormDetail(CommonModel):
     __tablename__ = 'norm_detail' #dinh muc
     norm_id = db.Column(UUID(as_uuid=True), db.ForeignKey('norm.id', ondelete='cascade'))
@@ -301,3 +302,66 @@ class NormDetail(CommonModel):
     # year = db.Column(Integer(), index=True)
     # priority = db.Column(Integer(), default=10)
     # active = db.Column(SmallInteger(), default=1)
+
+
+
+
+
+
+
+class GAIO(CommonModel):   # General Account of Input – Output – Inventory (tổng hợp nhập xuất tồn)
+    __tablename__ = 'gaio'
+    code = db.Column(String(), index=True, nullable=True)
+    create_date = db.Column(BigInteger(), index=True)
+
+    start_time = db.Column(BigInteger(), index=True)
+    end_time = db.Column(BigInteger(), index=True)
+
+    vote = db.Column(String(), index=True)  # so phieu
+
+    type_report = db.Column(String(), index=True)
+
+    organization = db.Column(String())
+    tax_identification_number = db.Column(String())
+    warehouse = db.Column(String())
+    type_organization = db.Column(String())
+  
+    maker = db.Column(String())
+    accept = db.Column(String())
+    active = db.Column(Boolean(),nullable=True, default=True) 
+    detail = db.relationship("GAIODetail", order_by="GAIODetail.created_at",
+                              cascade="all, delete-orphan") 
+
+
+
+
+
+class GAIODetail(CommonModel):   # tổng hợp nhập xuất tồn chi tiết
+    __tablename__ = 'gaio_detail'
+    item_code = db.Column(String(), nullable=True) 
+    name = db.Column(String(255), index=True, nullable=False)
+    unsigned_name = db.Column(String())
+
+    supplier = db.Column(String())
+    supplier_id = db.Column(String())
+    
+    item_price_id = db.Column(String())
+    item_price = db.Column(String())
+    organization_id = db.Column(String())
+    organization = db.Column(String())
+    unit_id = db.Column(String())
+    unit = db.Column(String())
+
+    open_quanlity = db.Column(DECIMAL(25, 2), default=0) # số lượng tồn đầu kì
+    receipt_quanlity = db.Column(DECIMAL(25, 3), default=0) # số lượng nhập trong kì
+    issue_quanlity = db.Column(DECIMAL(25, 3), default=0) # số lượng xuất trong kì
+    close_quanlity = db.Column(DECIMAL(25, 3), default=0) # số lượng tồn cuối kì
+
+
+    open_amount = db.Column(DECIMAL(25, 2), default=0) # giá trị tồn đầu kì
+    receipt_amount = db.Column(DECIMAL(25, 3), default=0) # giá trị nhập trong kì
+    issue_amount = db.Column(DECIMAL(25, 3), default=0) # giá trị xuất trong kì
+    close_amount = db.Column(DECIMAL(25, 3), default=0)  # giá trị tồn cuối kì
+
+    gaio_id = db.Column(String(), ForeignKey(
+        'gaio.id'),  nullable=True)  
