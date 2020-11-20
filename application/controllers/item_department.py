@@ -58,6 +58,8 @@ async def get_norm(norm_id):
 	return None
 
 
+
+
 # @app.route("/api/v1/get_norm", methods=["GET","POST"])
 @app.route("/api/v1/get_norm/<id>", methods=["GET","POST"])
 async def get_norm_api(request,id=None):

@@ -67,6 +67,23 @@ class Department(CommonModel):
     email = db.Column(db.String)
 
 # code moi 
+class Brazier(CommonModel):
+    __tablename__ = 'brazier'
+    name = db.Column(db.String, nullable=True)
+    brazier_no = db.Column(db.String(63), nullable=False)
+    brazier_type = db.Column(db.String, nullable=True)
+    
+    description = db.Column(db.String)
+
+    # brazier_type_level_1 = db.Column(db.String, nullable=True)
+    # brazier_type_level_2 = db.Column(db.String, nullable=True)
+    
+
+    address = db.Column(db.String)
+    phone = db.Column(db.String)
+    email = db.Column(db.String)
+
+
 
 
 class Unit(CommonModel):
