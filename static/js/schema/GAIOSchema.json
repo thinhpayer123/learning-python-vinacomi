@@ -52,7 +52,7 @@
     "accept": {
         "type": "string"
     },
-    "actice": {
+    "active": {
         "type": "boolean",
         "default": true
     },

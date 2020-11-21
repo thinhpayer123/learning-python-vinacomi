@@ -36,7 +36,13 @@
     "item_price_id": {
         "type": "string"
     },
+    "item_price": {
+        "type": "string"
+    },
     "organization_id": {
+        "type": "string"
+    },
+    "organization": {
         "type": "string"
     },
     "unit_id": {

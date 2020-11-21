@@ -34,6 +34,9 @@
         "type": "string",
         "length": 150
     },
+    "category_id": {
+        "type": "string"
+    },
     "brazier_id": {
         "type": "string"
     },

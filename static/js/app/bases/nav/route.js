@@ -203,7 +203,6 @@ define(function (require) {
 			"$ref": "app/view/department/ModelView",
 		},
 		{
-<<<<<<< HEAD
 			"collectionName": "plan_fuel_item",
 			"route": "plan_fuel_item/collection(/:id)",
 			"$ref": "app/view/plan_fuel_item/CollectionView",
@@ -252,7 +251,9 @@ define(function (require) {
 			"collectionName": "brazier",
 			"route": "brazier/model(/:id)",
 			"$ref": "app/view/brazier/ModelView",
-=======
+		},
+
+		{
 			"collectionName": "gaio",
 			"route": "gaio/collection(/:id)",
 			"$ref": "app/view/gaio/CollectionView",
@@ -261,8 +262,7 @@ define(function (require) {
 			"collectionName": "gaio",
 			"route": "gaio/model(/:id)",
 			"$ref": "app/view/gaio/ModelView",
->>>>>>> 9d78117bcab0efc0b7d359df44d2988e585acb72
-		},
+		}
 	];
 
 });
