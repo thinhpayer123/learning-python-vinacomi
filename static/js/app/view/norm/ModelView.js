@@ -254,7 +254,7 @@ define(function (require) {
 	    				self.onDetailChange(data.toJSON());
 	    			});
 
-	    			self.onDetailChange(item);
+	    			// self.onDetailChange(item);
 
 	    			itemView.model.on("remove", function(evt){
 	    				console.log("itemView remove",evt);
@@ -281,7 +281,8 @@ define(function (require) {
     	},
     	onDetailChange: function(item){
     		var self = this;
-    		var found = false;
+			var found = false;
+			
     		for(var i = 0; i < self.model.get("norm_details").length; i++){
     			if (self.model.get("norm_details")[i].id == item.id){
     				self.model.get("norm_details")[i].note = item.note;

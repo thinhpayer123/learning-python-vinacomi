@@ -1,0 +1,68 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "plan_id": {
+        "type": "string"
+    },
+    "item_id": {
+        "type": "string"
+    },
+    "item_no": {
+        "type": "string",
+        "length": 40
+    },
+    "item_name": {
+        "type": "string",
+        "length": 150
+    },
+    "brazier_id": {
+        "type": "string"
+    },
+    "brazier_no": {
+        "type": "string",
+        "length": 40
+    },
+    "brazier_name": {
+        "type": "string",
+        "length": 150
+    },
+    "unit_id": {
+        "type": "string"
+    },
+    "unit_no": {
+        "type": "string"
+    },
+    "unit_name": {
+        "type": "string"
+    },
+    "list_price": {
+        "type": "number",
+        "default": 0
+    },
+    "quantity": {
+        "type": "number",
+        "default": 0
+    },
+    "total_amount": {
+        "type": "number",
+        "default": 0
+    },
+    "note": {
+        "type": "string"
+    }
+}

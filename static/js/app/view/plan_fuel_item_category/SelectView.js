@@ -4,14 +4,15 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/item_category/tpl/collection.html'),
-    	schema 				= require('json!schema/ItemCategorySchema.json');
+    var template 			= require('text!app/view/plan_fuel_item_category/tpl/collection.html'),
+    	schema 				= require('json!schema/PlanFuelItemCategorySchema.json');
+    // var CategorySelectView = require("app/view/item_category/SelectView");
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "item_category",
+    	collectionName: "plan_fuel_item_category",
     	textField: "name",
     	valueField: "id",
     	tools : [
@@ -36,26 +37,19 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-                 { 
-                    field: "category_no",label:"Danh Mục",
-                 },
-                 { 
-                    field: "category_name",label:"Tên Nhóm Vật Tư",
-                 },
-                 { 
-                    field: "status",label:"Trạng Thái",
-                 },
-                 {
-                    field: "norm_template", textField: "norm_template_name",label:"Template",
+				{ 
+	    	    	field: "category_no",label:"Mã Nhóm"
+				 },
+				 { 
+	    	    	field: "category_name",label:"Tên Nhóm"
 				 },
                  {
                     field: "department", textField: "name",label:"Tên Đơn Vị",
-                 }, 				                  
-                 { 
-                    field: "sort",label:"Sắp Xếp Số",
-                 },
-
-                 ],		    
+                 }, 
+				 { 
+	    	    	field: "category_type_name",label:"Tên Loại Nhóm"
+				 },					 
+			],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;
 	    		

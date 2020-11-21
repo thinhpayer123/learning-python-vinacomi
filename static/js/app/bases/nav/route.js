@@ -182,7 +182,16 @@ define(function (require) {
 			"route": "unit/model(/:id)",
 			"$ref": "app/view/unit/ModelView",
 		},
-
+		{
+			"collectionName": "plan",
+			"route": "plan/collection(/:id)",
+			"$ref": "app/view/plan/CollectionView",
+		},
+		{
+			"collectionName": "plan",
+			"route": "plan/model(/:id)",
+			"$ref": "app/view/plan/ModelView",
+		},
 		{
 			"collectionName": "department",
 			"route": "department/collection(/:id)",
@@ -192,6 +201,56 @@ define(function (require) {
 			"collectionName": "department",
 			"route": "department/model(/:id)",
 			"$ref": "app/view/department/ModelView",
+		},
+		{
+			"collectionName": "plan_fuel_item",
+			"route": "plan_fuel_item/collection(/:id)",
+			"$ref": "app/view/plan_fuel_item/CollectionView",
+		},
+		{
+			"collectionName": "plan_fuel_item",
+			"route": "plan_fuel_item/model(/:id)",
+			"$ref": "app/view/plan_fuel_item/ModelView",
+		},
+		{
+			"collectionName": "plan_item",
+			"route": "plan_item/collection(/:id)",
+			"$ref": "app/view/plan_item/CollectionView",
+		},
+		{
+			"collectionName": "plan_item",
+			"route": "plan_item/model(/:id)",
+			"$ref": "app/view/plan_item/ModelView",
+		},
+		{
+			"collectionName": "salary_item",
+			"route": "salary_item/collection(/:id)",
+			"$ref": "app/view/salary_item/CollectionView",
+		},
+		{
+			"collectionName": "salary_item",
+			"route": "salary_item/model(/:id)",
+			"$ref": "app/view/salary_item/ModelView",
+		},
+		{
+			"collectionName": "plan_fuel_item_category",
+			"route": "plan_fuel_item_category/collection(/:id)",
+			"$ref": "app/view/plan_fuel_item_category/CollectionView",
+		},
+		{
+			"collectionName": "plan_fuel_item_category",
+			"route": "plan_fuel_item_category/model(/:id)",
+			"$ref": "app/view/plan_fuel_item_category/ModelView",
+		},
+		{
+			"collectionName": "brazier",
+			"route": "brazier/collection(/:id)",
+			"$ref": "app/view/brazier/CollectionView",
+		},
+		{
+			"collectionName": "brazier",
+			"route": "brazier/model(/:id)",
+			"$ref": "app/view/brazier/ModelView",
 		},
 	];
 

@@ -70,6 +70,12 @@
     "is_service": {
         "type": "boolean"
     },
+    "is_salary": {
+        "type": "boolean"
+    },
+    "is_cost": {
+        "type": "boolean"
+    },
     "sort": {
         "type": "number",
         "default": 100

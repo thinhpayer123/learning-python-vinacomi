@@ -4,16 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/item_category/tpl/model.html'),
-    	schema 				= require('json!schema/ItemCategorySchema.json');
-	var NormTemplate = require("app/view/norm_template/SelectView");
-	var	DepartmentTemplate = require("app/view/department/SelectView");
+    var template 			= require('text!app/view/plan_item/tpl/model.html'),
+    	schema 				= require('json!schema/PlanItemSchema.json');
     
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "item_category",
+    	collectionName: "plan_item",
     	tools : [
     	    {
     	    	name: "defaultgr",
@@ -35,7 +33,7 @@ define(function (require) {
 		    	    	name: "save",
 		    	    	type: "button",
 		    	    	buttonClass: "btn-success btn-sm",
-		    	    	label: "Lưu Thông Tin ",
+		    	    	label: "Lưu Phòng Ban",
 		    	    	command: function(){
 		    	    		var self = this;
 		    	    		
@@ -76,29 +74,6 @@ define(function (require) {
 		    	    },
     	    	],
     	    }],
-        uiControl: {
-            fields: [
-		                {
-		                    field: "norm_template",
-		                    uicontrol: "ref",
-		                    textField: "norm_template_name",
-		                    // selectionMode: "multiple",
-		                    dataSource: NormTemplate,
-		                    foreignRemoteField: "id",
-    						foreignField: "norm_template_id"
-						},
-						{
-							field: "department",
-							uicontrol: "ref",
-							textField: "name",
-							// selectionMode: "multiple",
-							dataSource: DepartmentTemplate,
-							foreignRemoteField: "id",
-    						foreignField: "department_id"
-						},
-                	],
-            	},
-
     	render:function(){
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");

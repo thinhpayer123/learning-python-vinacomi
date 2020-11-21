@@ -4,14 +4,15 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/item_category/tpl/collection.html');
-    var	schema 				= require('json!schema/ItemCategorySchema.json');
-    
+    var template 			= require('text!app/view/plan_fuel_item/tpl/collection.html');
+    var	schema 				= require('json!schema/PlanFuelItemSchema.json');
+    // var CategorySelectView = require("app/view/item_category/SelectView");
+
     return Gonrin.CollectionView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-		collectionName: "item_category",
+		collectionName: "plan_fuel_item",
 		tools: [
 			{
 				name: "default",
@@ -35,24 +36,21 @@ define(function (require) {
 		],
     	uiControl:{
     		fields: [
-                 { 
-                    field: "category_no",label:"Danh Mục",
-                 },
-                 { 
-                    field: "category_name",label:"Tên Nhóm Vật Tư",
-                 },
-                 { 
-                    field: "status",label:"Trạng Thái",
-                 },
-                 {
-                    field: "norm_template", textField: "norm_template_name",label:"Template",
+				 { 
+	    	    	field: "item_name",label:"Tên Nhiên Liệu"
 				 },
-                 {
-                    field: "department", textField: "name",label:"Tên Đơn Vị",
-                 }, 				                  
-                 { 
-                    field: "sort",label:"Sắp Xếp Số",
-                 },
+				 { 
+	    	    	field: "brazier_name",label:"Tên Lò"
+				 },
+				 { 
+	    	    	field: "unit_name",label:"Đơn Vị Tính"
+				 },
+				 { 
+	    	    	field: "total_amount",label:"Tổng Tiền"
+				 },
+				 { 
+	    	    	field: "note",label:"Ghi Chú"
+				 },			 
 		     ],
 		     onRowClick: function(event){
 		    	if(event.rowId){

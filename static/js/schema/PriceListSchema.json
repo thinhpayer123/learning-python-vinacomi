@@ -37,7 +37,7 @@
         "type": ""
     },
     "end_time": {
-        "type": "datetime"
+        "type": ""
     },
     "extra_data": {
         "type": "json"

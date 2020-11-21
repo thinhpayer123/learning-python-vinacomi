@@ -16,7 +16,19 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "category_exid": {
+    "type": {
+        "type": "string",
+        "length": 100
+    },
+    "category_type_id": {
+        "type": "string",
+        "length": 100
+    },
+    "category_type_name": {
+        "type": "string",
+        "length": 100
+    },
+    "category_type_name_1": {
         "type": "string",
         "length": 100
     },
@@ -33,9 +45,6 @@
         "type": "string",
         "length": 50
     },
-    "norm_template_id": {
-        "type": "string"
-    },
     "thumbnail": {
         "type": "string"
     },
@@ -50,9 +59,6 @@
     },
     "department_id": {
         "type": "string"
-    },
-    "norm_template": {
-        "type": "dict"
     },
     "items": {
         "type": "list"

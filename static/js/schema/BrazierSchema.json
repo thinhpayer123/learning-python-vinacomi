@@ -16,46 +16,31 @@
     "deleted_at": {
         "type": "datetime"
     },
-    "category_exid": {
-        "type": "string",
-        "length": 100
+    "name": {
+        "type": "string"
     },
-    "category_no": {
-        "type": "string",
-        "length": 100
-    },
-    "category_name": {
+    "brazier_no": {
         "type": "string",
         "required": true,
-        "length": 150
+        "length": 63
+    },
+    "brazier_type": {
+        "type": "string"
     },
     "description": {
-        "type": "string",
-        "length": 50
-    },
-    "norm_template_id": {
         "type": "string"
     },
-    "thumbnail": {
+    "address": {
         "type": "string"
     },
-    "sort": {
-        "type": "number",
-        "default": 100
+    "phone": {
+        "type": "string"
     },
-    "status": {
-        "type": "string",
-        "length": 20,
-        "default": "active"
+    "email": {
+        "type": "string"
     },
     "department_id": {
         "type": "string"
-    },
-    "norm_template": {
-        "type": "dict"
-    },
-    "items": {
-        "type": "list"
     },
     "department": {
         "type": "dict"

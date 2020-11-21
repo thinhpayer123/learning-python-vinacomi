@@ -18,66 +18,35 @@ from application.database.model import CommonModel, default_uuid
 
 
 
-roles_users = db.Table('roles_users',
-                       db.Column('user_id', String, db.ForeignKey('users.id', ondelete='cascade'), primary_key=True),
-                       db.Column('role_id', String, db.ForeignKey('role.id', onupdate='cascade'), primary_key=True))
 
-
-# class Role(CommonModel):
-#     __tablename__ = 'role'
-#     id = db.Column(String, primary_key=True, default=default_uuid)
-#     name = db.Column(String(100), index=True, nullable=False, unique=True)
-#     display_name = db.Column(String(255), nullable=False)
-#     description = db.Column(String(255))
-
-# class User(CommonModel):
-#     __tablename__ = 'users'
-#     id = db.Column(String, primary_key=True, default=default_uuid)
-#     user_name = db.Column(String(255), nullable=False, index=True)
-#     full_name = db.Column(String(255), nullable=True)
-#     email = db.Column(String(255), index=True)
-#     password = db.Column(String(255), nullable=False,default=123456)
-#     # token = db.Column(String(63))
-#     salt = db.Column(String(255), nullable=False)
-
-#     # Permission Based Attributes.
-#     active = db.Column(Boolean, default=True)
-#     roles = db.relationship('Role', secondary=roles_users, backref=db.backref('users', lazy='dynamic'))
-    
-#     # company_id = db.Column(String(), index=True, nullable=False)
-#     extra_data = db.Column(JSONB())
-
-#     department_id = db.Column(UUID(as_uuid=True), db.ForeignKey('department.id', ondelete='RESTRICT'))
-
-#     # Methods
-#     def __repr__(self):
-#         """ Show user object info. """
-#         return '<User: {}>'.format(self.id)
-
-class SalaryItem(CommonModel):
-    __tablename__ = 'salary_item'
-    item_exid = db.Column(String(100), index=True) #id tich hop tu he thong khac
-    item_no = db.Column(String(40), index=True, nullable=False)
-    item_name = db.Column(String(150), nullable=False)
+# class SalaryItem(CommonModel):
+#     __tablename__ = 'salary_item'
+#     item_exid = db.Column(String(100), index=True) #id tich hop tu he thong khac
+#     item_no = db.Column(String(40), index=True, nullable=False)
+#     item_name = db.Column(String(150), nullable=False)
    
-    description = db.Column(Text())
+#     description = db.Column(Text())
 
-    unit_id = db.Column(String(200))
-    unit_name = db.Column(String(200))
-    unit_no = db.Column(String())
-    # tax_class = db.Column(String(200))
-    # true False doi 5 dong duoi default thành nullable
+#     unit_id = db.Column(String(200))
+#     unit_name = db.Column(String(200))
+#     unit_no = db.Column(String())
+#     # tax_class = db.Column(String(200))
+#     # true False doi 5 dong duoi default thành nullable
     
-    sort = db.Column(Integer(), default=100)
+#     sort = db.Column(Integer(), default=100)
 
-    active = db.Column(Boolean(), nullable=True)
+#     active = db.Column(Boolean(), nullable=True)
 
 
 class Plan(CommonModel):
     __tablename__ = 'plan' #dinh muc
     plan_no =  db.Column(String(255),nullable = False)
     plan_name =  db.Column(String(255),nullable = True)
-    plan_type = db.Column(Integer(), default=100) # 1: thang, 2: quy, 3: nam
+    plan_type = db.Column(Integer()) # 1: thang, 2: quy, 3: nam
+
+    department_id = db.Column(UUID(as_uuid=True))
+    department_no = db.Column(String(255),nullable = False)
+    department_name = db.Column(String(255),nullable = False)
 
     # plan_template_id = db.Column(UUID(as_uuid=True))
     # plan_template_no = db.Column(String(255),nullable = True)
@@ -89,9 +58,12 @@ class Plan(CommonModel):
 
     working_days = db.Column(FLOAT(25,8), default=0)
 
+    braziers = db.Column(JSONB())
+    products = db.relationship("PlanProduct")
     items = db.relationship("PlanItem")
     other_costs = db.relationship("PlanOtherCost")
     salaries = db.relationship("PlanSalary")
+    fuel_items = db.relationship("PlanFuelItem")
     
 class PlanProduct(CommonModel):
     __tablename__ = 'plan_product' #dinh muc
@@ -116,10 +88,12 @@ class PlanProduct(CommonModel):
     note = db.Column(Text())
 
 
+#
 class PlanItem(CommonModel):
     __tablename__ = 'plan_item' #dinh muc
     plan_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan.id', ondelete='cascade'))
-    type = db.Column(String(40), index=True, nullable=True)
+    # type = db.Column(String(40), index=True, nullable=True) #''fuel_materials, materials
+
     item_id = db.Column(UUID(as_uuid=True), index=True)
     item_no = db.Column(String(40), index=True, nullable=True)
     item_name = db.Column(String(150), nullable=True)
@@ -127,6 +101,7 @@ class PlanItem(CommonModel):
     brazier_id = db.Column(UUID(as_uuid=True), index=True)
     brazier_no = db.Column(String(40), index=True, nullable=True)
     brazier_name = db.Column(String(150), nullable=True)
+    category_id = db.Column(UUID(as_uuid=True), index=True)
 
     unit_id = db.Column(UUID(as_uuid=True))
     unit_no = db.Column(String())
@@ -139,6 +114,33 @@ class PlanItem(CommonModel):
     note = db.Column(Text())
 
 
+class PlanFuelItem(CommonModel):
+    __tablename__ = 'plan_fuel_item' #dinh muc
+    plan_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan.id', ondelete='cascade'))
+    # type = db.Column(String(40), index=True, nullable=True) #''fuel_materials, materials
+    item_id = db.Column(UUID(as_uuid=True), index=True)
+    item_no = db.Column(String(40), index=True, nullable=True)
+    item_name = db.Column(String(150), nullable=True)
+
+    brazier_id = db.Column(UUID(as_uuid=True), index=True)
+    brazier_no = db.Column(String(40), index=True, nullable=True)
+    brazier_name = db.Column(String(150), nullable=True)
+
+    category_id = db.Column(UUID(as_uuid=True), index=True)
+    
+    unit_id = db.Column(UUID(as_uuid=True))
+    unit_no = db.Column(String())
+    unit_name = db.Column(String())
+
+    norm_quantity = db.Column(FLOAT(25,8), default=0)
+    quantity = db.Column(FLOAT(25,8), default=0)
+    factor = db.Column(FLOAT(25,8), default=0)
+    
+    approved_quantity = db.Column(FLOAT(25,8), default=0)
+    demand_quantity = db.Column(FLOAT(25,8), default=0)
+
+    note = db.Column(Text())
+
     #
 class PlanOtherCost(CommonModel):
     __tablename__ = 'plan_other_cost' #dinh muc
@@ -147,6 +149,7 @@ class PlanOtherCost(CommonModel):
     item_id = db.Column(UUID(as_uuid=True), index=True)
     item_no = db.Column(String(40), index=True, nullable=True)
     item_name = db.Column(String(150), nullable=True)
+    category_id = db.Column(UUID(as_uuid=True), index=True)
 
     unit_id = db.Column(UUID(as_uuid=True))
     unit_no = db.Column(String())
@@ -166,9 +169,10 @@ class PlanSalary(CommonModel):
     plan_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan.id', ondelete='cascade'))
     type = db.Column(String(40), index=True, nullable=True) #
     #item nay la cua bang salary, du lieu gom co lo_id, SalaryItem
-    salary_item_id = db.Column(UUID(as_uuid=True), index=True)
-    salary_item_no = db.Column(String(40), index=True, nullable=True)
-    salary_item_name = db.Column(String(150), nullable=True)
+    item_id = db.Column(UUID(as_uuid=True), index=True)
+    item_no = db.Column(String(40), index=True, nullable=True)
+    item_name = db.Column(String(150), nullable=True)
+    category_id = db.Column(UUID(as_uuid=True), index=True)
 
     brazier_id = db.Column(UUID(as_uuid=True), index=True)
     brazier_no = db.Column(String(40), index=True, nullable=True)
@@ -194,3 +198,25 @@ class PlanSalary(CommonModel):
     average_salary = db.Column(FLOAT(25,8), default=0)
 
     note = db.Column(Text())
+
+class PlanFuelItemCategory(CommonModel):
+    __tablename__ = 'plan_fuel_item_category' 
+    type = db.Column(String(100), nullable=True) #1: item; 2#fuel_item #3: salary; #4:other_cost
+    category_type_id = db.Column(String(100), nullable=True)
+    category_type_name = db.Column(String(100), index=True, nullable=True)
+    category_type_name_1 = db.Column(String(100), index=True, nullable=True)
+    category_no = db.Column(String(100), nullable=True)
+    category_name = db.Column(String(150), nullable=False)
+    description = db.Column(String(50))
+    thumbnail = db.Column(Text())
+    sort = db.Column(Integer(), default=100)
+    status = db.Column(String(20), default="active")
+    items = db.relationship("Item", secondary='fuelitems_categories', lazy='dynamic')
+    department_id = db.Column(UUID(as_uuid=True), db.ForeignKey("department.id"), index=True)
+    department = db.relationship("Department")
+
+
+class FuelItemCategoryRelation(CommonModel):
+    __tablename__ = 'fuelitems_categories'
+    item_id = db.Column(UUID(as_uuid=True), db.ForeignKey('item.id', ondelete='cascade'))
+    category_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan_fuel_item_category.id', ondelete='cascade'))

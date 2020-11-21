@@ -1,0 +1,69 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "plan_id": {
+        "type": "string"
+    },
+    "type": {
+        "type": "string",
+        "length": 40
+    },
+    "item_id": {
+        "type": "string"
+    },
+    "item_no": {
+        "type": "string",
+        "length": 40
+    },
+    "item_name": {
+        "type": "string",
+        "length": 150
+    },
+    "unit_id": {
+        "type": "string"
+    },
+    "unit_no": {
+        "type": "string"
+    },
+    "unit_name": {
+        "type": "string"
+    },
+    "working_days": {
+        "type": "number",
+        "default": 0
+    },
+    "list_price": {
+        "type": "number",
+        "default": 0
+    },
+    "quantity_per_day": {
+        "type": "number",
+        "default": 0
+    },
+    "quantity": {
+        "type": "number",
+        "default": 0
+    },
+    "total_amount": {
+        "type": "number",
+        "default": 0
+    },
+    "note": {
+        "type": "string"
+    }
+}

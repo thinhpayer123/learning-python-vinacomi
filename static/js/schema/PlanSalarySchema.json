@@ -1,0 +1,96 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "plan_id": {
+        "type": "string"
+    },
+    "type": {
+        "type": "string",
+        "length": 40
+    },
+    "item_id": {
+        "type": "string"
+    },
+    "item_no": {
+        "type": "string",
+        "length": 40
+    },
+    "item_name": {
+        "type": "string",
+        "length": 150
+    },
+    "brazier_id": {
+        "type": "string"
+    },
+    "brazier_no": {
+        "type": "string",
+        "length": 40
+    },
+    "brazier_name": {
+        "type": "string",
+        "length": 150
+    },
+    "unit_id": {
+        "type": "string"
+    },
+    "unit_no": {
+        "type": "string"
+    },
+    "unit_name": {
+        "type": "string"
+    },
+    "quantity": {
+        "type": "number",
+        "default": 0
+    },
+    "list_salary_price": {
+        "type": "number",
+        "default": 0
+    },
+    "list_insurance_price": {
+        "type": "number",
+        "default": 0
+    },
+    "salary_amount": {
+        "type": "number",
+        "default": 0
+    },
+    "insurance_amount": {
+        "type": "number",
+        "default": 0
+    },
+    "total_amount": {
+        "type": "number",
+        "default": 0
+    },
+    "factor": {
+        "type": "number",
+        "default": 0
+    },
+    "working_days": {
+        "type": "number",
+        "default": 0
+    },
+    "average_salary": {
+        "type": "number",
+        "default": 0
+    },
+    "note": {
+        "type": "string"
+    }
+}

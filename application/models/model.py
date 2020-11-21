@@ -66,6 +66,7 @@ class Department(CommonModel):
     phone = db.Column(db.String)
     email = db.Column(db.String)
 
+
 # code moi 
 class Brazier(CommonModel):
     __tablename__ = 'brazier'
@@ -82,7 +83,8 @@ class Brazier(CommonModel):
     address = db.Column(db.String)
     phone = db.Column(db.String)
     email = db.Column(db.String)
-
+    department_id = db.Column(UUID(as_uuid=True), db.ForeignKey("department.id"), index=True)
+    department = db.relationship("Department")
 
 
 
@@ -108,18 +110,19 @@ class ItemCategory(CommonModel):
     category_exid = db.Column(String(100), nullable=True, index=True)
     category_no = db.Column(String(100), nullable=True)
     category_name = db.Column(String(150), nullable=False)
-
     description = db.Column(String(50))
     norm_template_id = db.Column(UUID(as_uuid=True), db.ForeignKey("norm_template.id"), index=True)
     norm_template = db.relationship("NormTemplate")
-
     thumbnail = db.Column(Text())
     sort = db.Column(Integer(), default=100)
     status = db.Column(String(20), default="active")
     items = db.relationship("Item", secondary='items_categories', lazy='dynamic')
+    department_id = db.Column(UUID(as_uuid=True), db.ForeignKey("department.id"), index=True)
+    department = db.relationship("Department")
     # tenant_id = db.Column(String(), nullable=False)
     def __repr__(self):
         return '<ItemCategory: {}>'.format(self.category_name)
+    # department = db.Column(UUID(as_uuid=True), db.ForeignKey("department.id"), index=True)
 
 
 # class ItemClass(CommonModel):
@@ -160,6 +163,9 @@ class Item(CommonModel):
     is_product = db.Column(Boolean(), nullable=True)
     is_material = db.Column(Boolean(), nullable=True)
     is_service = db.Column(Boolean(), nullable=True)
+
+    is_salary = db.Column(Boolean(), nullable=True)
+    is_cost = db.Column(Boolean(), nullable=True)
     
     sort = db.Column(Integer(), default=100)
 
@@ -168,7 +174,7 @@ class Item(CommonModel):
     package_items = db.Column(JSONB())
 
     categories = db.relationship("ItemCategory", secondary='items_categories')
-
+    
 
 class PriceList(CommonModel):
     __tablename__ = 'price_list'

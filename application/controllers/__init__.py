@@ -19,16 +19,19 @@ def init_views(app):
     import application.controllers.norm_template
     import application.controllers.norm_document
     import application.controllers.export_excel
-    # import application.controllers.norm_decision
+    import application.controllers.plan_fuel_item_category
     import application.controllers.price_list
     import application.controllers.item_price
     import application.controllers.department
+    import application.controllers.plan_fuel_item
+    import application.controllers.plan
+    import application.controllers.brazier
 
-    # import application.controllers.khachhang
-    # import application.controllers.khachhang
-    # import application.controllers.hanghoa
-    # import application.controllers.hoadon
-    # import application.controllers.sinhvien
+    import application.controllers.plan_item
+    import application.controllers.plan_salary
+    import application.controllers.plan_other_cost
+    import application.controllers.plan_product
+    import application.controllers.salary_item
     
     
     @app.route('/')
