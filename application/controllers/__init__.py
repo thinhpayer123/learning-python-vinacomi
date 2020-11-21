@@ -7,9 +7,6 @@ def init_views(app):
 
 
     import application.controllers.role
-
-
- 
     import application.controllers.normdetail
     import application.controllers.norm
     import application.controllers.itemcategory
@@ -32,6 +29,9 @@ def init_views(app):
     import application.controllers.plan_other_cost
     import application.controllers.plan_product
     import application.controllers.salary_item
+
+    import application.controllers.gaio
+    import application.controllers.gaio_detail
     
     
     @app.route('/')

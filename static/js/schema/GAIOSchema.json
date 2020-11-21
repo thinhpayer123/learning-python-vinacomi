@@ -1,0 +1,62 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "code": {
+        "type": "string"
+    },
+    "create_date": {
+        "type": ""
+    },
+    "start_time": {
+        "type": ""
+    },
+    "end_time": {
+        "type": ""
+    },
+    "vote": {
+        "type": "string"
+    },
+    "type_report": {
+        "type": "string"
+    },
+    "organization": {
+        "type": "string"
+    },
+    "tax_identification_number": {
+        "type": "string"
+    },
+    "warehouse": {
+        "type": "string"
+    },
+    "type_organization": {
+        "type": "string"
+    },
+    "maker": {
+        "type": "string"
+    },
+    "accept": {
+        "type": "string"
+    },
+    "actice": {
+        "type": "boolean",
+        "default": true
+    },
+    "detail": {
+        "type": "list"
+    }
+}
