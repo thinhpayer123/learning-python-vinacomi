@@ -57,7 +57,7 @@ define(function (require) {
 
     render: function () {
       var self = this;
-      console.log(self.viewData, self.model.toJSON());
+      // console.log(self.viewData, self.model.toJSON());
       //Cong template
       
       var template = template_head;

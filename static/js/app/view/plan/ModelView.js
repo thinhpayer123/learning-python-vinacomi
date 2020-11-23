@@ -8,6 +8,8 @@ define(function (require) {
 	var template = require('text!app/view/plan/tpl/model.html');
 
 	var PlanFuelItemView = require('./PlanFuelItemView')
+	var OtherCostView = require('./OtherCostView')
+	var SalaryView = require('./SalaryView')
 
 	var bazier_plan_fuel_item_header_html = '<td colspan="3" style="color:red"style="width:300px" data-brazier-id="{{brazier_id}}">{{brazier_name}}</td>';
 	var bazier_plan_fuel_item_header_column_html = `<td style="width:300px">Định mức</td>
@@ -19,7 +21,6 @@ define(function (require) {
 	
 
 
-
 	var cat_tpl = `
 		<tbody data-body-type="category" cat-id="{{id}}" >
 			<tr data-row-type="category">
@@ -29,29 +30,27 @@ define(function (require) {
               <td colspan="{{colspan}}"><b>{{category_name}}</b></td>
             </tr>
         </tbody>
-    `;
-	// var select_cat_tpl = '<option value="{{id}}">{{category_name}}</option>';
-	// var select_item_tpl = '<option value="{{item_id}}">{{item_no}} - {{item_name}}</option>';
+	`;
+	var cat_tpl_salary = `
+		<tbody data-body-type="salary_category" cat-id="{{id}}" >
+			<tr data-row-type="salary_category">
+				<td"><b>{{category_type_name}}</b></td>
+			</tr>
+			<tr data-row-type="salary_category" cat-id="{{id}}">
+		  		<td><b>{{category_name}}</b></td>
+		</tr>
+	</tbody>
+	`; 
 
-
-
-
-	// var plan_detail_map = {
-	// 	"VTMAYCAO": {
-	// 		"header_template": require('text!./detailviews/plan_header_VTMAYCAO.html'),
-	// 		"ItemView": require('./detailviews/planDetailItemView_VTMAYCAO')
-	// 	},
-	// 	"VTBANGTAI": {
-	// 		"header_template": require('text!./detailviews/plan_header_VTMAYCAO.html'),
-	// 		"ItemView": require('./detailviews/planDetailItemView_VTMAYCAO')
-	// 	}
-
-	// }
-
-
-
-
-	return Gonrin.ModelView.extend({
+	var cat_tpl_other_cost = `
+		<tbody data-body-type="other_cost_category" cat-id="{{id}}" >
+            <tr data-row-type="other_cost_category" cat-id="{{id}}">
+              <td><b>{{category_name}}</b></td>
+            </tr>
+        </tbody>
+	`;
+	
+return Gonrin.ModelView.extend({
 		template: null,
 		modelSchema: schema,
 		urlPrefix: "/api/v1/",
@@ -124,11 +123,16 @@ define(function (require) {
 
 					}
 
-
+					
 					self.renderFuelItemCategories(data.fuel_items_categories, data.braziers);
 					self.renderFuelItems(data.fuel_items, data.braziers);
 					self.registerEvents();
 					self.applyBindings();
+					self.renderOtherCostCategories(data.fuel_items_categories);
+					self.renderOtherCostItems(data.other_costs);
+					self.renderSalaryCategories(data.fuel_items_categories);
+					self.renderSalaryItems(data.salaries);
+					
 				},
 				error: function (XMLHttpRequest, textStatus, errorThrown) {
 					console.log("Eror get plan");
@@ -269,22 +273,237 @@ define(function (require) {
 		
 
 		// Salary
+		// renderSalaryCategories: function(cats){
+		// 	var self = this;
+    	// 	var insertcat = cats.PUSH({
+		// 		// [cats.id] : salary_category,
+		// 		cats.id = salaries_category,
+
+		// 	});
+    	// 	$.each(insertcat, function(idx, cat){
+		// 		if (cat.type == "salary"){
+
+		// 			var html = gonrin.template(cat_tpl_salary)(cat);
+		// 			self.$el.find("#salary").append(html);
+					
+		// 		}				
+    	// 	});
+		// },
+		// renderSalaryItems: function(items){
+		// 	var self = this; 
+    		
+		// 	$.each(items, function(idx, item){
+		// 		var itemView = new SalaryView();
+		// 		itemView.model.set(item);
+		// 		itemView.render();
+		// 		// console.log("============")
+
+
+		// 		console.log("salary", itemView.$el)
+
+		// 		itemView.model.on("change", function(data){
+		// 			console.log(data);
+		// 			self.onSalaryItemsChange(data.toJSON());
+		// 		});
+		// 		// self.onFuelItemsChange(item);
+		// 		itemView.model.on("remove", function(evt){
+		// 			console.log("itemView remove",evt);
+		// 			self.onSalaryItemsRemove(evt);
+		// 		});
+
+				
+		// 		var cat_id = item.category_id;
+
+		// 		if(!!cat_id){
+		// 			var cat_els = self.$el.find('tbody[data-body-type="salary_category"]');
+				
+		// 			for (var i=0; i < cat_els.length; i++){
+		// 				var $cat_el = $(cat_els[i])
+		// 				if ($cat_el.attr("cat-id") == cat_id){
+		// 					$cat_el.append(itemView.$el);
+		// 				}
+		// 			}
+		// 		}else{
+		// 			var cat_els = self.$el.find('tbody[data-body-type="salary_category"]');
+				
+		// 			for (var i=0; i < cat_els.length; i++){
+		// 				var $cat_el = $(cat_els[i])
+		// 				if ($cat_el.attr("cat-id") == "salarys_category"){
+		// 					$cat_el.append(itemView.$el);
+		// 				}
+		// 			}
+		// 		}
+				
+		// 	}); 	
+		// },
+		renderSalaryCategories: function(cats){
+			var self = this;
+    		
+    		$.each(cats, function(idx, cat){
+				if (cat.type == "salary"){
+
+					var html = gonrin.template(cat_tpl_salary)(cat);
+					self.$el.find("#salary").append(html);
+					
+				}				
+    		});
+		},
+		renderSalaryItems: function(items){
+			var self = this; 
+    		
+			$.each(items, function(idx, item){
+				var itemView = new SalaryView();
+				itemView.model.set(item);
+				itemView.render();
+
+
+				// console.log("============")
+				// console.log("OtherCostView", itemView.$el)
+
+				itemView.model.on("change", function(data){
+					console.log(data);
+					self.onSalaryItemsChange(data.toJSON());
+				});
+				// self.onFuelItemsChange(item);
+				itemView.model.on("remove", function(evt){
+					console.log("itemView remove",evt);
+					self.onSalaryItemsRemove(evt);
+				});
+
+
+				var cat_id = item.category_id;
+				var cat_els = self.$el.find('tbody[data-body-type="salary_category"]');
+				
+				for (var i=0; i < cat_els.length; i++){
+					var $cat_el = $(cat_els[i])
+					if ($cat_el.attr("cat-id") == cat_id){
+						$cat_el.append(itemView.$el);
+					}
+				}
+			}); 	
+		},
+		onSalaryItemsChange: function(item){
+    		var self = this;
+			var found = false;
+    		for(var i = 0; i < self.model.get("salaries").length; i++){
+    			if (self.model.get("salaries")[i].id == item.id){
+					self.model.get("salaries")[i].quantity = item.quantity;
+					self.model.get("salaries")[i].list_salary_price = item.list_salary_price;
+					self.model.get("salaries")[i].salary_amount = item.salary_amount;
+					self.model.get("salaries")[i].list_insurance_price = item.list_insurance_price;
+					self.model.get("salaries")[i].insurance_amount = item.insurance_amount;
+					self.model.get("salaries")[i].factor = item.factor;
+					self.model.get("salaries")[i].average_salary = item.average_salary;
+					self.model.get("salaries")[i].note = item.note;
+					$.each(item, function(key, val){
+						if (key.startsWith("data_")){
+							console.log(key, val);
+							if ((val !== null) && (val !== "")){
+								self.model.get("salaries")[i][key] = parseFloat(val);
+							}
+						}
+					})
+					found = true;
+    				break;
+    			}
+    		}
+    		if(!found){
+    			self.model.get("salaries").push(item);
+			}			
+		},
+		onSalaryItemsRemove: function(item){
+    		var self = this;
+    		for(var i = 0; i < self.model.get("salaries").length; i++){
+    			if (self.model.get("salaries")[i].id == item.id){
+    				self.model.get("salaries").splice(i, 1);
+    				break;
+    			}
+    		}
+    		
+		},		
 
 		// End of salary
 
 
 		// Other Cost
+		renderOtherCostCategories: function(cats){
+			var self = this;
+    		
+    		$.each(cats, function(idx, cat){
+				if (cat.type == "other_cost"){
 
+					var html = gonrin.template(cat_tpl_other_cost)(cat);
+					self.$el.find("#othercost").append(html);
+					
+				}				
+    		});
+		},
+		renderOtherCostItems: function(items){
+			var self = this; 
+    		
+			$.each(items, function(idx, item){
+				var itemView = new OtherCostView();
+				itemView.model.set(item);
+				itemView.render();
+
+
+				// console.log("============")
+				// console.log("OtherCostView", itemView.$el)
+
+				itemView.model.on("change", function(data){
+					console.log(data);
+					self.onOtherCostItemsChange(data.toJSON());
+				});
+				// self.onFuelItemsChange(item);
+				itemView.model.on("remove", function(evt){
+					console.log("itemView remove",evt);
+					self.onOtherCostItemsRemove(evt);
+				});
+
+
+				var cat_id = item.category_id;
+				var cat_els = self.$el.find('tbody[data-body-type="other_cost_category"]');
+				
+				for (var i=0; i < cat_els.length; i++){
+					var $cat_el = $(cat_els[i])
+					if ($cat_el.attr("cat-id") == cat_id){
+						$cat_el.append(itemView.$el);
+					}
+				}
+			}); 	
+		},
+		onOtherCostItemsChange: function(item){
+    		var self = this;
+			var found = false;
+    		for(var i = 0; i < self.model.get("other_costs").length; i++){
+    			if (self.model.get("other_costs")[i].id == item.id){
+					self.model.get("other_costs")[i].quantity = item.quantity;
+					self.model.get("other_costs")[i].list_price = item.list_price;
+					self.model.get("other_costs")[i].working_days = item.working_days;
+					self.model.get("other_costs")[i].total_amount = item.total_amount;
+					
+					self.model.get("other_costs")[i].note = item.note;
+					
+					found = true;
+    				break;
+    			}
+    		}
+    		if(!found){
+    			self.model.get("other_costs").push(item);
+			}			
+		},
+		onOtherCostItemsRemove: function(item){
+    		var self = this;
+    		for(var i = 0; i < self.model.get("other_costs").length; i++){
+    			if (self.model.get("other_costs")[i].id == item.id){
+    				self.model.get("other_costs").splice(i, 1);
+    				break;
+    			}
+    		}
+    		
+		},		
+				
 		// End Other cost
-
-
-
-
-
-
-
-
-
 		
 	});
 

@@ -171,7 +171,7 @@ from datetime import datetime
 from gatco.response import json, text
 from application.server import app
 from application.extensions import apimanager
-from application.models.model_plan import Plan, PlanFuelItemCategory
+from application.models.model_plan import Plan, PlanFuelItemCategory,PlanOtherCost,PlanSalary
 from application.models.model import Department, Brazier
 from application.extensions import auth
 from gatco.exceptions import ServerError
@@ -358,6 +358,8 @@ async def get_plan(id=None):
 		resp = to_dict(plan)
 		resp["fuel_items_categories"] = []
 		resp["fuel_items"] = []
+		resp["other_costs"] = []
+		resp["salaries"] = []
 		
 		#fuel_items_category
 		fuel_item_cats = PlanFuelItemCategory.query.filter(PlanFuelItemCategory.department_id == department_id).all()
@@ -405,8 +407,12 @@ async def get_plan(id=None):
 			resp["fuel_items"].append(fuel_items_map[key])
 		#end fuel_items
 		#salary
+		for item in plan.other_costs:
+			resp["other_costs"].append(to_dict(item))
 
 		#end salary
+		for item in plan.salaries:
+			resp["salaries"].append(to_dict(item))
 		return resp
 	return None
 
@@ -578,7 +584,6 @@ async def get_plan_api(request,id=None):
 						"unit_no": itemobj["unit_no"],
 						"unit_name": itemobj["unit_name"],
 						"category_id": catobj["id"],
-
 						"working_days": None,
 						"list_price": None,
 						"quantity_per_day": None,
@@ -588,7 +593,5 @@ async def get_plan_api(request,id=None):
 					}
 					resp["other_costs"].append(obj)
 				break
-
-		
 		return json(resp)
 	return json({"error_code": "NOT_FOUND"}, status=520)

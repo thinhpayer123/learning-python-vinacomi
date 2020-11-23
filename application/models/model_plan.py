@@ -121,6 +121,11 @@ class PlanFuelItem(CommonModel):
     item_id = db.Column(UUID(as_uuid=True), index=True)
     item_no = db.Column(String(40), index=True, nullable=True)
     item_name = db.Column(String(150), nullable=True)
+    type = db.Column(String(40), index=True, nullable=True)
+    working_days = db.Column(FLOAT(25,8), default=0)
+    list_price = db.Column(FLOAT(25,8), default=0)
+    quantity_per_day = db.Column(FLOAT(25,8), default=0)
+    total_amount = db.Column(FLOAT(25,8), default=0)
 
     brazier_id = db.Column(UUID(as_uuid=True), index=True)
     brazier_no = db.Column(String(40), index=True, nullable=True)

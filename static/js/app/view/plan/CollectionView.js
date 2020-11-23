@@ -40,15 +40,10 @@ define(function (require) {
 				 { 
                     field: "plan_name",label:"Tên Kế Hoạch"
 				 },
-                //  { 
-                //     field: "norm_document_no",label:"Đơn Vị"
-                //  },  
 				{ 
                     field: "department_name",label:"Đơn Vị"
                  },  
-                //  { 
-                //     field: "working_days",label:"Ngày Tháng Lập"
-                //  }, 
+ 
 
 		     ],
 		     onRowClick: function(event){
