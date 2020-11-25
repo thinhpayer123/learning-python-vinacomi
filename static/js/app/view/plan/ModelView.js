@@ -123,7 +123,7 @@ return Gonrin.ModelView.extend({
 
 					}
 
-					
+					console.log(data);
 					self.renderFuelItemCategories(data.plan_items_categories, data.braziers);
 					self.renderFuelItems(data.fuel_items, data.braziers);
 					self.registerEvents();
@@ -185,7 +185,7 @@ return Gonrin.ModelView.extend({
 		renderFuelItemCategories: function(cats, braziers){
 			var self = this;
 			var col = braziers.length * 3 + 6;
-    		
+    		console.log("renderFuelItemCategories", cats);
     		$.each(cats, function(idx, cat){
 				if (cat.type == "fuel_item"){
 					cat.colspan = col;

@@ -48,6 +48,12 @@
     "product_id": {
         "type": "string"
     },
+    "product_no": {
+        "type": "string"
+    },
+    "product_name": {
+        "type": "string"
+    },
     "unit_id": {
         "type": "string"
     },
