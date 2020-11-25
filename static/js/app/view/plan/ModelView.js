@@ -135,7 +135,7 @@ return Gonrin.ModelView.extend({
 					
 				},
 				error: function (XMLHttpRequest, textStatus, errorThrown) {
-					console.log("Eror get plan");
+					console.log("Error get plan");
 
 				}
 			});

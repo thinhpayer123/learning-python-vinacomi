@@ -77,6 +77,7 @@ class Brazier(CommonModel):
     name = db.Column(db.String, nullable=True)
     brazier_no = db.Column(db.String(63), nullable=False)
     brazier_type = db.Column(db.String, nullable=True)
+    brazier_diameter = db.Column(FLOAT(25,8), nullable=True)
     
     description = db.Column(db.String)
 

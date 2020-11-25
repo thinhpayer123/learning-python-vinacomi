@@ -246,12 +246,14 @@ class Settlement(CommonModel):
 class SettlementBrazier(CommonModel):
     __tablename__ = 'settlement_brazier' # quyết toán công đoạn
     settlement_id = db.Column(UUID(as_uuid=True), db.ForeignKey('settlement.id', ondelete='cascade'))
-    type = db.Column(String(40), index=True, nullable=True)
-
+    # type = db.Column(String(40), index=True, nullable=True)
+    settlement_quantity = db.Column(FLOAT(25,8), default=0) #khối lượng
     #lò
     brazier_id = db.Column(UUID(as_uuid=True), index=True)
     brazier_no = db.Column(String(40), index=True, nullable=True)
     brazier_name = db.Column(String(150), nullable=True)
+    brazier_type = db.Column(db.String, nullable=True)
+    brazier_diameter = db.Column(FLOAT(25,8), nullable=True)
     
     #công đoạn
     stage_id = db.Column(UUID(as_uuid=True))
@@ -267,9 +269,9 @@ class SettlementBrazier(CommonModel):
     unit_no = db.Column(String())
     unit_name = db.Column(String())
 
-    list_price = db.Column(FLOAT(25,8), default=0)
+    list_price = db.Column(FLOAT(25,8), default=0) #đơn giá
     # amount = db.Column(FLOAT(25,8), default=0)
-    total_amount = db.Column(FLOAT(25,8), default=0)
+    total_amount = db.Column(FLOAT(25,8), default=0) #tổng chi phí
 
     #vat lieu
     item_list_price = db.Column(FLOAT(25,8), default=0)

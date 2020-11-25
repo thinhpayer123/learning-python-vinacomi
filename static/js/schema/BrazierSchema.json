@@ -27,6 +27,9 @@
     "brazier_type": {
         "type": "string"
     },
+    "brazier_diameter": {
+        "type": "number"
+    },
     "description": {
         "type": "string"
     },

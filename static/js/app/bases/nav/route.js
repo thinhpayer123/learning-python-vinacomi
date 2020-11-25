@@ -277,16 +277,16 @@ define(function (require) {
 		// },
 		
 		
-		{
-			"collectionName": "product_cost_settle",
-			"route": "product_cost_settle/collection(/:id)",
-			"$ref": "app/view/product_cost_settle/CollectionView",
-		},
-		{
-			"collectionName": "product_cost_settle",
-			"route": "product_cost_settle/model(/:id)",
-			"$ref": "app/view/product_cost_settle/ModelView",
-		},
+		// {
+		// 	"collectionName": "product_cost_settle",
+		// 	"route": "product_cost_settle/collection(/:id)",
+		// 	"$ref": "app/view/product_cost_settle/CollectionView",
+		// },
+		// {
+		// 	"collectionName": "product_cost_settle",
+		// 	"route": "product_cost_settle/model(/:id)",
+		// 	"$ref": "app/view/product_cost_settle/ModelView",
+		// },
 
 		{
 			"collectionName": "settlement",

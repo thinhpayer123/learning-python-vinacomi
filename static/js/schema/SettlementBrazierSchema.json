@@ -19,9 +19,9 @@
     "settlement_id": {
         "type": "string"
     },
-    "type": {
-        "type": "string",
-        "length": 40
+    "settlement_quantity": {
+        "type": "number",
+        "default": 0
     },
     "brazier_id": {
         "type": "string"
@@ -33,6 +33,12 @@
     "brazier_name": {
         "type": "string",
         "length": 150
+    },
+    "brazier_type": {
+        "type": "string"
+    },
+    "brazier_diameter": {
+        "type": "number"
     },
     "stage_id": {
         "type": "string"

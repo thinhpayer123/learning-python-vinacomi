@@ -138,13 +138,13 @@ define(function (require) {
 					"collectionName":"settlement",
 	    			"route":"settlement/collection"
 				},
-				{
-					"text":"Quyết Toán Chi Phí Sản Phẩm",
-					// "icon":"fa fa-child",
-					"type":"view",
-					"collectionName":"product_cost_settle",
-	    			"route":"product_cost_settle/collection"
-				},
+				// {
+				// 	"text":"Quyết Toán Chi Phí Sản Phẩm",
+				// 	// "icon":"fa fa-child",
+				// 	"type":"view",
+				// 	"collectionName":"product_cost_settle",
+	    		// 	"route":"product_cost_settle/collection"
+				// },
 				
 			]
 		},
