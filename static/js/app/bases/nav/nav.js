@@ -135,8 +135,8 @@ define(function (require) {
 					"text":"Quyết Toán Công Đoạn",
 					// "icon":"fa fa-child",
 					"type":"view",
-					"collectionName":"settlement_brazier",
-	    			"route":"settlement_brazier/collection"
+					"collectionName":"settlement",
+	    			"route":"settlement/collection"
 				},
 				{
 					"text":"Quyết Toán Chi Phí Sản Phẩm",

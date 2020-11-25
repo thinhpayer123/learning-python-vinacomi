@@ -4,14 +4,14 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/settlement_brazier/tpl/model.html'),
-    	schema 				= require('json!schema/SettlementBrazierSchema.json');
+    var template 			= require('text!app/view/settlement/tpl/model.html'),
+    	schema 				= require('json!schema/SettlementSchema.json');
     
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "settlement_brazier",
+    	collectionName: "settlement",
     	tools : [
     	    {
     	    	name: "defaultgr",
@@ -75,22 +75,6 @@ define(function (require) {
     	    	],
 			}
 		],
-		uiControl: {
-			fields: [
-				{
-					field: "department_type",
-					uicontrol: "combobox",
-					textField: "text",
-					valueField: "value",
-					dataSource: [
-						{ text: "Kế hoạch tổng hợp", value: "KHTH" },
-						{ text: "Phòng kỹ thuật", value: "PKT" },
-						{ text: "Phòng vật tư", value: "VTHH" },
-						{ text: "Phân xưởng sản xuất", value: "PXSX" },
-					]
-				},
-			]
-		},
 			
 			
     	render:function(){

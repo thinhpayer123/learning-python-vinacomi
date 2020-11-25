@@ -289,14 +289,14 @@ define(function (require) {
 		},
 
 		{
-			"collectionName": "settlement_brazier",
-			"route": "settlement_brazier/collection(/:id)",
-			"$ref": "app/view/settlement_brazier/CollectionView",
+			"collectionName": "settlement",
+			"route": "settlement/collection(/:id)",
+			"$ref": "app/view/settlement/CollectionView",
 		},
 		{
-			"collectionName": "settlement_brazier",
-			"route": "settlement_brazier/model(/:id)",
-			"$ref": "app/view/settlement_brazier/ModelView",
+			"collectionName": "settlement",
+			"route": "settlement/model(/:id)",
+			"$ref": "app/view/settlement/ModelView",
 		}
 	];
 

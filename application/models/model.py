@@ -67,7 +67,7 @@ class Department(CommonModel):
     email = db.Column(db.String)
 
 class Stage(CommonModel):
-    __tablename__ = 'stage' #danh sach lo
+    __tablename__ = 'stage' #công đoạn
     name = db.Column(db.String, nullable=True)
     stage_no = db.Column(db.String(63), nullable=False)
     description = db.Column(db.String)
@@ -92,7 +92,7 @@ class Brazier(CommonModel):
 
 
 class BrazierStage(CommonModel):
-    __tablename__ = 'brazier_stage' #danh sach lo
+    __tablename__ = 'brazier_stage' #
     name = db.Column(db.String, nullable=True)
     brazier_id = db.Column(UUID(as_uuid=True), db.ForeignKey('brazier.id'), index=True,nullable = False)
     brazier = db.relationship("Brazier")

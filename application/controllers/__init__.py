@@ -33,7 +33,8 @@ def init_views(app):
     import application.controllers.gaio
     import application.controllers.gaio_detail
     
-    
+    import application.controllers.settlement
+
     @app.route('/')
     def index(request):
         #return text("Index")

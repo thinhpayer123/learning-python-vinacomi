@@ -248,17 +248,20 @@ class SettlementBrazier(CommonModel):
     settlement_id = db.Column(UUID(as_uuid=True), db.ForeignKey('settlement.id', ondelete='cascade'))
     type = db.Column(String(40), index=True, nullable=True)
 
+    #lò
     brazier_id = db.Column(UUID(as_uuid=True), index=True)
     brazier_no = db.Column(String(40), index=True, nullable=True)
     brazier_name = db.Column(String(150), nullable=True)
-
+    
+    #công đoạn
     stage_id = db.Column(UUID(as_uuid=True))
     stage_no = db.Column(String(255),nullable = True)
     stage_name = db.Column(String(255),nullable = True)
 
+
     product_id = db.Column(UUID(as_uuid=True), index=True)
     product_no = db.Column(String())
-    product_name = db.Column(String())
+    product_name = db.Column(String()) #tấn than, mét lò...
 
     unit_id = db.Column(UUID(as_uuid=True))
     unit_no = db.Column(String())
