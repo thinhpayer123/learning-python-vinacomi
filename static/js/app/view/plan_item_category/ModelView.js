@@ -5,7 +5,7 @@ define(function (require) {
         Gonrin				= require('gonrin');
     
     var template 			= require('text!app/view/plan_item_category/tpl/model.html'),
-    	schema 				= require('json!schema/PlanFuelItemCategorySchema.json');
+    	schema 				= require('json!schema/PlanItemCategorySchema.json');
 	var	DepartmentTemplate = require("app/view/department/SelectView");
 	var ItemView = require('./ItemView');
 

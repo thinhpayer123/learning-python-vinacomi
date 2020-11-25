@@ -66,8 +66,12 @@ class Department(CommonModel):
     phone = db.Column(db.String)
     email = db.Column(db.String)
 
-
-# code moi 
+class Stage(CommonModel):
+    __tablename__ = 'stage' #danh sach lo
+    name = db.Column(db.String, nullable=True)
+    stage_no = db.Column(db.String(63), nullable=False)
+    description = db.Column(db.String)
+  
 class Brazier(CommonModel):
     __tablename__ = 'brazier' #danh sach lo
     name = db.Column(db.String, nullable=True)
@@ -85,6 +89,23 @@ class Brazier(CommonModel):
     email = db.Column(db.String)
     department_id = db.Column(UUID(as_uuid=True), db.ForeignKey("department.id"), index=True)
     department = db.relationship("Department")
+
+
+class BrazierStage(CommonModel):
+    __tablename__ = 'brazier_stage' #danh sach lo
+    name = db.Column(db.String, nullable=True)
+    brazier_id = db.Column(UUID(as_uuid=True), db.ForeignKey('brazier.id'), index=True,nullable = False)
+    brazier = db.relationship("Brazier")
+    department_id = db.Column(UUID(as_uuid=True), db.ForeignKey("department.id"), index=True,nullable = False)
+    department = db.relationship("Department")
+    description = db.Column(db.String)
+    from_time = db.Column(BigInteger())
+    to_time = db.Column(BigInteger())
+
+    stage_id = db.Column(UUID(as_uuid=True))
+    stage_no = db.Column(String(255),nullable = False)
+    stage_name = db.Column(String(255),nullable = False)
+
 
 
 

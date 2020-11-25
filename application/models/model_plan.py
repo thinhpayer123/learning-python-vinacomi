@@ -252,6 +252,10 @@ class SettlementBrazier(CommonModel):
     brazier_no = db.Column(String(40), index=True, nullable=True)
     brazier_name = db.Column(String(150), nullable=True)
 
+    stage_id = db.Column(UUID(as_uuid=True))
+    stage_no = db.Column(String(255),nullable = True)
+    stage_name = db.Column(String(255),nullable = True)
+
     product_id = db.Column(UUID(as_uuid=True), index=True)
 
     unit_id = db.Column(UUID(as_uuid=True))
