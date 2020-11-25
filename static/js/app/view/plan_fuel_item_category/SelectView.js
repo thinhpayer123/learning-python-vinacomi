@@ -4,15 +4,15 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/plan_fuel_item_category/tpl/collection.html'),
-    	schema 				= require('json!schema/PlanFuelItemCategorySchema.json');
+    var template 			= require('text!app/view/plan_item_category/tpl/collection.html'),
+    	schema 				= require('json!schema/PlanItemCategorySchema.json');
     // var CategorySelectView = require("app/view/item_category/SelectView");
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "plan_fuel_item_category",
+    	collectionName: "plan_item_category",
     	textField: "name",
     	valueField: "id",
     	tools : [

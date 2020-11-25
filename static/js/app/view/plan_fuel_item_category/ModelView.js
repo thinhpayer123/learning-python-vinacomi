@@ -4,7 +4,7 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/plan_fuel_item_category/tpl/model.html'),
+    var template 			= require('text!app/view/plan_item_category/tpl/model.html'),
     	schema 				= require('json!schema/PlanFuelItemCategorySchema.json');
 	var	DepartmentTemplate = require("app/view/department/SelectView");
 	var ItemView = require('./ItemView');
@@ -13,7 +13,7 @@ define(function (require) {
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "plan_fuel_item_category",
+    	collectionName: "plan_item_category",
     	tools : [
     	    {
     	    	name: "defaultgr",

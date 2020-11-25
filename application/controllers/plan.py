@@ -171,7 +171,7 @@ from datetime import datetime
 from gatco.response import json, text
 from application.server import app
 from application.extensions import apimanager
-from application.models.model_plan import Plan, PlanFuelItemCategory,PlanOtherCost,PlanSalary
+from application.models.model_plan import Plan, PlanItemCategory,PlanOtherCost,PlanSalary
 from application.models.model import Department, Brazier
 from application.extensions import auth
 from gatco.exceptions import ServerError
@@ -362,7 +362,7 @@ async def get_plan(id=None):
 		resp["salaries"] = []
 		
 		#fuel_items_category
-		fuel_item_cats = PlanFuelItemCategory.query.filter(PlanFuelItemCategory.department_id == department_id).all()
+		fuel_item_cats = PlanItemCategory.query.filter(PlanItemCategory.department_id == department_id).all()
 		for cat in fuel_item_cats:
 			obj = to_dict(cat)
 			obj["items"] = []
@@ -419,7 +419,7 @@ async def get_plan(id=None):
 @app.route("/api/v1/get_plan", methods=["GET","POST"])
 @app.route("/api/v1/get_plan/<id>", methods=["GET","POST"])
 async def get_plan_api(request,id=None):
-	department_id = "b54c0bf9-5f1a-4c4d-880a-41dbae06949f"
+	department_id = "cb208970-2087-4321-a678-91a8f14af692"
 
 	if id is not None:
 		resp = await get_plan(id)
@@ -465,7 +465,7 @@ async def get_plan_api(request,id=None):
 			
 			resp["braziers"].append(obj)
 
-		fuel_item_cats = PlanFuelItemCategory.query.filter(PlanFuelItemCategory.department_id == department_id).all()
+		fuel_item_cats = PlanItemCategory.query.filter(PlanItemCategory.department_id == department_id).all()
 		for cat in fuel_item_cats:
 			obj = to_dict(cat)
 			obj["items"] = []

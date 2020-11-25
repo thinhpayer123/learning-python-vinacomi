@@ -234,14 +234,14 @@ define(function (require) {
 			"$ref": "app/view/salary_item/ModelView",
 		},
 		{
-			"collectionName": "plan_fuel_item_category",
-			"route": "plan_fuel_item_category/collection(/:id)",
-			"$ref": "app/view/plan_fuel_item_category/CollectionView",
+			"collectionName": "plan_item_category",
+			"route": "plan_item_category/collection(/:id)",
+			"$ref": "app/view/plan_item_category/CollectionView",
 		},
 		{
-			"collectionName": "plan_fuel_item_category",
-			"route": "plan_fuel_item_category/model(/:id)",
-			"$ref": "app/view/plan_fuel_item_category/ModelView",
+			"collectionName": "plan_item_category",
+			"route": "plan_item_category/model(/:id)",
+			"$ref": "app/view/plan_item_category/ModelView",
 		},
 		{
 			"collectionName": "brazier",

@@ -3,7 +3,7 @@ define(function (require) {
     var $ = require("jquery");
     var _ = require("underscore");
     var Gonrin = require("gonrin");
-    var template = require("text!app/view/plan_fuel_item_category/tpl/items.html"),
+    var template = require("text!app/view/plan_item_category/tpl/items.html"),
         itemSchema = require("json!schema/ItemSchema.json");
     return Gonrin.ItemView.extend({
       bindings: "item-bind",

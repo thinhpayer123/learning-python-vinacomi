@@ -124,13 +124,13 @@ return Gonrin.ModelView.extend({
 					}
 
 					
-					self.renderFuelItemCategories(data.fuel_items_categories, data.braziers);
+					self.renderFuelItemCategories(data.plan_items_categories, data.braziers);
 					self.renderFuelItems(data.fuel_items, data.braziers);
 					self.registerEvents();
 					self.applyBindings();
-					self.renderOtherCostCategories(data.fuel_items_categories);
+					self.renderOtherCostCategories(data.plan_items_categories);
 					self.renderOtherCostItems(data.other_costs);
-					self.renderSalaryCategories(data.fuel_items_categories);
+					self.renderSalaryCategories(data.plan_items_categories);
 					self.renderSalaryItems(data.salaries);
 					
 				},

@@ -73,7 +73,26 @@ define(function (require) {
 		    	    	}
 		    	    },
     	    	],
-    	    }],
+			}
+		],
+		uiControl: {
+			fields: [
+				{
+					field: "department_type",
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [
+						{ text: "Kế hoạch tổng hợp", value: "KHTH" },
+						{ text: "Phòng kỹ thuật", value: "PKT" },
+						{ text: "Phòng vật tư", value: "VTHH" },
+						{ text: "Phân xưởng sản xuất", value: "PXSX" },
+					]
+				},
+			]
+		},
+			
+			
     	render:function(){
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");

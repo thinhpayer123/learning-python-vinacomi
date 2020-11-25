@@ -204,8 +204,8 @@ class PlanSalary(CommonModel):
 
     note = db.Column(Text())
 
-class PlanFuelItemCategory(CommonModel):
-    __tablename__ = 'plan_fuel_item_category' 
+class PlanItemCategory(CommonModel):
+    __tablename__ = 'plan_item_category' 
     type = db.Column(String(100), nullable=True) #1: item; 2#fuel_item #3: salary; #4:other_cost
     category_type_id = db.Column(String(100), nullable=True)
     category_type_name = db.Column(String(100), index=True, nullable=True)
@@ -216,12 +216,12 @@ class PlanFuelItemCategory(CommonModel):
     thumbnail = db.Column(Text())
     sort = db.Column(Integer(), default=100)
     status = db.Column(String(20), default="active")
-    items = db.relationship("Item", secondary='fuelitems_categories', lazy='dynamic')
+    items = db.relationship("Item", secondary='plan_item_categorie_rel', lazy='dynamic')
     department_id = db.Column(UUID(as_uuid=True), db.ForeignKey("department.id"), index=True)
     department = db.relationship("Department")
 
 
-class FuelItemCategoryRelation(CommonModel):
-    __tablename__ = 'fuelitems_categories'
+class PlanItemCategoryRelation(CommonModel):
+    __tablename__ = 'plan_item_categorie_rel'
     item_id = db.Column(UUID(as_uuid=True), db.ForeignKey('item.id', ondelete='cascade'))
-    category_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan_fuel_item_category.id', ondelete='cascade'))
+    category_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan_item_category.id', ondelete='cascade'))

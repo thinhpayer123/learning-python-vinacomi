@@ -16,7 +16,7 @@ def init_views(app):
     import application.controllers.norm_template
     import application.controllers.norm_document
     import application.controllers.export_excel
-    import application.controllers.plan_fuel_item_category
+    import application.controllers.plan_item_category
     import application.controllers.price_list
     import application.controllers.item_price
     import application.controllers.department
