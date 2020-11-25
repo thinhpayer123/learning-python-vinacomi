@@ -224,4 +224,18 @@ class PlanItemCategory(CommonModel):
 class PlanItemCategoryRelation(CommonModel):
     __tablename__ = 'plan_item_categorie_rel'
     item_id = db.Column(UUID(as_uuid=True), db.ForeignKey('item.id', ondelete='cascade'))
-    category_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan_item_category.id', ondelete='cascade'))
+    category_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan_fuel_item_category.id', ondelete='cascade'))
+
+class Settlement(CommonModel):
+    __tablename__ = 'settlement'
+    settlement_name = db.Column(String(100), index=True, nullable=True)
+    implement_costs = db.Column(FLOAT(25,8), default=0)
+
+    department_id = db.Column(UUID(as_uuid=True), db.ForeignKey("department.id"), index=True)
+    department = db.relationship("Department")
+
+    unit_id = db.Column(UUID(as_uuid=True), db.ForeignKey("unit.id"), index=True)
+    unit = db.relationship("Unit")
+
+    plan = db.relationship("Plan")
+
