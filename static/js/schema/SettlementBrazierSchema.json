@@ -34,6 +34,17 @@
         "type": "string",
         "length": 150
     },
+    "stage_id": {
+        "type": "string"
+    },
+    "stage_no": {
+        "type": "string",
+        "length": 255
+    },
+    "stage_name": {
+        "type": "string",
+        "length": 255
+    },
     "product_id": {
         "type": "string"
     },
