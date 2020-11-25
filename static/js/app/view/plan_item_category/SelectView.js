@@ -47,7 +47,7 @@ define(function (require) {
                     field: "department", textField: "name",label:"Tên Đơn Vị",
                  }, 
 				 { 
-	    	    	field: "category_type_name",label:"Tên Loại Nhóm"
+	    	    	field: "category_group_name",label:"Tên Loại Nhóm"
 				 },					 
 			],
 		    onRowClick: function(event){
