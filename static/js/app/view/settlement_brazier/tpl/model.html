@@ -51,14 +51,14 @@
         <div class="col-1 text-center"> <button id="add_item" class="btn btn-sm btn-success">Thêm</div>
         <div class="col-3">
           <select class="form-control" id="select_cat">
-            <option value="cat_id_1">Vật tư máy cào SGB620/40</option>
-              <option value="cat_id_2">Vật tư máy cào C14</option>
+            <!-- <option value="cat_id_1">Vật tư máy cào SGB620/40</option>
+              <option value="cat_id_2">Vật tư máy cào C14</option> -->
           </select>
         </div>
         <div class="col-3">
           <select class="form-control" id="select_item">
-            <option value="cat_id_1">Vật tư máy cào SGB620/40</option>
-              <option value="cat_id_2">Vật tư máy cào C14</option>
+            <!-- <option value="cat_id_1">Vật tư máy cào SGB620/40</option>
+              <option value="cat_id_2">Vật tư máy cào C14</option> -->
           </select>
         </div>
         <div class="col-5">
@@ -76,20 +76,44 @@
               <table class="table table-striped" id="plan_fuel_item">
                 <thead>
                   <tr>
-                    <!-- <th scope="col" class="text-center" style="width:100px"></th> -->
-                    <th rowspan="2" scope="col" class="text-center" style="width:900px; vertical-align: middle;">Chỉ tiêu-Nội dung</th>
-                    <th rowspan="2" scope="col" class="text-center" style="width:300px; vertical-align: middle;">ĐVT</th>
-					<th rowspan="2" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Chi Phí Định Mức(KH)</th>
-                    <th rowspan="2" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Chi Phí Thực Hiện</th>
-					<th colspan="2" scope="col" class="text-center" style="width:300px; vertical-align: middle;">So Sánh</th>
-					
-                    <th rowspan="2" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Ghi Chú</th>
-                  
+					<th rowspan="3" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Mã công đoạn</th>
+					<th rowspan="3" scope="col" class="text-center" style="width:900px; vertical-align: middle;">Nội dung</th>
+					<th rowspan="3" scope="col" class="text-center" style="width:300px; vertical-align: middle;">ĐVT</th>
+					<th rowspan="3" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Tiết diện</th>
+					<th rowspan="3" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Khối Lượng</th>
+					<th rowspan="3" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Đơn giá</th>
+					<th rowspan="3" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Tổng chi phí</th>
+
+					<th colspan="12" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Chi phí thực hiện</th>
+
+                    
                     <!-- <th scope="col"></th> -->
 				  </tr>
 				  <tr>
-					<th scope="col" class="text-center" style="width:900px; vertical-align: middle;">( +; - )</th>
-                    <th scope="col" class="text-center" style="width:900px; vertical-align: middle;">Tỷ Lệ<br>(%)</th>
+					<th colspan="2" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Vật liệu</th>
+					<th colspan="2" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Nhiên liệu</th>
+					<!-- <th colspan="2" scope="col" class="text-center" style="width:900px; vertical-align: middle;">Động lưc</th> -->
+					<th colspan="2" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Tiền lương</th>
+					<th colspan="2" scope="col" class="text-center" style="width:300px; vertical-align: middle;">BHXH</th>
+					<th colspan="2" scope="col" class="text-center" style="width:300px; vertical-align: middle;">KHTS</th>
+					<th colspan="2" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Chi khác</th>
+
+				  </tr>
+				  <tr>
+					<th scope="col" class="text-center" style="width:300px; vertical-align: middle;">Đơn giá</th>
+					<th scope="col" class="text-center" style="width:300px; vertical-align: middle;">Thành tiền</th>
+					<!-- <th scope="col" class="text-center" style="width:300px; vertical-align: middle;">Đơn giá</th>
+					<th scope="col" class="text-center" style="width:300px; vertical-align: middle;">Thành tiền</th> -->
+					<th scope="col" class="text-center" style="width:300px; vertical-align: middle;">Đơn giá</th>
+					<th scope="col" class="text-center" style="width:300px; vertical-align: middle;">Thành tiền</th>
+					<th scope="col" class="text-center" style="width:300px; vertical-align: middle;">Đơn giá</th>
+					<th scope="col" class="text-center" style="width:300px; vertical-align: middle;">Thành tiền</th>
+					<th scope="col" class="text-center" style="width:300px; vertical-align: middle;">Đơn giá</th>
+					<th scope="col" class="text-center" style="width:300px; vertical-align: middle;">Thành tiền</th>
+					<th scope="col" class="text-center" style="width:300px; vertical-align: middle;">Đơn giá</th>
+					<th scope="col" class="text-center" style="width:300px; vertical-align: middle;">Thành tiền</th>
+					<th scope="col" class="text-center" style="width:300px; vertical-align: middle;">Đơn giá</th>
+					<th scope="col" class="text-center" style="width:300px; vertical-align: middle;">Thành tiền</th>
 				  </tr>
                 </thead>
               </table>

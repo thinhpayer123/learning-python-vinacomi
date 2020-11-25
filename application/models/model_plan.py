@@ -82,7 +82,7 @@ class PlanProduct(CommonModel):
     unit_name = db.Column(String())
 
     list_price = db.Column(FLOAT(25,8), default=0)
-    quantity = db.Column(FLOAT(25,8), default=0)
+    quantity = db.Column(FLOAT(25,8), default=0) #ddinh luong
     total_amount = db.Column(FLOAT(25,8), default=0)
 
     note = db.Column(Text())
@@ -148,7 +148,7 @@ class PlanFuelItem(CommonModel):
 
     #
 class PlanOtherCost(CommonModel):
-    __tablename__ = 'plan_other_cost' #dinh muc
+    __tablename__ = 'plan_other_cost' #ke hoach chi phi khac
     plan_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan.id', ondelete='cascade'))
     type = db.Column(String(40), index=True, nullable=True)
     item_id = db.Column(UUID(as_uuid=True), index=True)
