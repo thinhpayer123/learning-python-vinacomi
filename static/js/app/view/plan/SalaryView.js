@@ -2,6 +2,7 @@ define(function (require) {
   "use strict";
   var $ = require("jquery");
   var _ = require("underscore");
+  var Gonrin = require("gonrin");
   var planSchema = require("json!schema/PlanSalarySchema.json");
   var template = require('text!./tpl/salary_item.html');
  
