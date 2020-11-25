@@ -62,7 +62,7 @@ def model_onupdate_listener(mapper, connection, instance):
 class CommonModel(db.Model):
     __abstract__ = True
     # id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
-    id = db.Column(String(), primary_key=True, default=default_uuid)
+    id = db.Column(UUID(as_uuid=True), primary_key=True, default=default_uuid)
     created_at = db.Column(DateTime)
     updated_at = db.Column(DateTime)
     deleted = db.Column(Boolean, default=False)

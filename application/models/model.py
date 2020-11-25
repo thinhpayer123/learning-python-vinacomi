@@ -386,5 +386,5 @@ class GAIODetail(CommonModel):   # tổng hợp nhập xuất tồn chi tiết
     issue_amount = db.Column(DECIMAL(25, 3), default=0) # giá trị xuất trong kì
     close_amount = db.Column(DECIMAL(25, 3), default=0)  # giá trị tồn cuối kì
 
-    gaio_id = db.Column(String(), ForeignKey(
+    gaio_id = db.Column(UUID(as_uuid=True), ForeignKey(
         'gaio.id'),  nullable=True)  

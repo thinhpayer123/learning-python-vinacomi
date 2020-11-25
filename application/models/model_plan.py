@@ -39,7 +39,7 @@ from application.database.model import CommonModel, default_uuid
 
 
 class Plan(CommonModel):
-    __tablename__ = 'plan' #dinh muc
+    __tablename__ = 'plan' #ke hoach #cong doan sx
     plan_no =  db.Column(String(255),nullable = False)
     plan_name =  db.Column(String(255),nullable = True)
     plan_type = db.Column(Integer()) # 1: thang, 2: quy, 3: nam
@@ -66,7 +66,7 @@ class Plan(CommonModel):
     fuel_items = db.relationship("PlanFuelItem")
     
 class PlanProduct(CommonModel):
-    __tablename__ = 'plan_product' #dinh muc
+    __tablename__ = 'plan_product' #kế hoạch sản phẩm
     plan_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan.id', ondelete='cascade'))
     type = db.Column(String(40), index=True, nullable=True)
     item_id = db.Column(UUID(as_uuid=True), index=True)
@@ -90,7 +90,7 @@ class PlanProduct(CommonModel):
 
 #
 class PlanItem(CommonModel):
-    __tablename__ = 'plan_item' #dinh muc
+    __tablename__ = 'plan_item' # muc ke hoach
     plan_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan.id', ondelete='cascade'))
     # type = db.Column(String(40), index=True, nullable=True) #''fuel_materials, materials
 
@@ -115,7 +115,7 @@ class PlanItem(CommonModel):
 
 
 class PlanFuelItem(CommonModel):
-    __tablename__ = 'plan_fuel_item' #dinh muc
+    __tablename__ = 'plan_fuel_item' #Kế Hoạch Nhiên Liệu Tiêu Hao
     plan_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan.id', ondelete='cascade'))
     # type = db.Column(String(40), index=True, nullable=True) #''fuel_materials, materials
     item_id = db.Column(UUID(as_uuid=True), index=True)
@@ -170,7 +170,7 @@ class PlanOtherCost(CommonModel):
     note = db.Column(Text())
 
 class PlanSalary(CommonModel):
-    __tablename__ = 'plan_salary' #dinh muc
+    __tablename__ = 'plan_salary' #Kế hoạch lương
     plan_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan.id', ondelete='cascade'))
     type = db.Column(String(40), index=True, nullable=True) #
     #item nay la cua bang salary, du lieu gom co lo_id, SalaryItem

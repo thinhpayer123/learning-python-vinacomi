@@ -212,6 +212,7 @@ define(function (require) {
 			"route": "plan_fuel_item/model(/:id)",
 			"$ref": "app/view/plan_fuel_item/ModelView",
 		},
+
 		{
 			"collectionName": "plan_item",
 			"route": "plan_item/collection(/:id)",
@@ -262,6 +263,29 @@ define(function (require) {
 			"collectionName": "gaio",
 			"route": "gaio/model(/:id)",
 			"$ref": "app/view/gaio/ModelView",
+		},
+
+		// {
+		// 	"collectionName": "plan_contruct_item",
+		// 	"route": "plan_contruct_item/collection(/:id)",
+		// 	"$ref": "app/view/plan_contruct_item/CollectionView",
+		// },
+		// {
+		// 	"collectionName": "plan_contruct_item",
+		// 	"route": "plan_contruct_item/model(/:id)",
+		// 	"$ref": "app/view/plan_contruct_item/ModelView",
+		// },
+		
+		
+		{
+			"collectionName": "product_cost_settle",
+			"route": "product_cost_settle/collection(/:id)",
+			"$ref": "app/view/product_cost_settle/CollectionView",
+		},
+		{
+			"collectionName": "product_cost_settle",
+			"route": "product_cost_settle/model(/:id)",
+			"$ref": "app/view/product_cost_settle/ModelView",
 		}
 	];
 
