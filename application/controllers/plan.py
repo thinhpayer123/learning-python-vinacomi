@@ -182,8 +182,8 @@ def auth_func(request=None, **kw):
     pass
 
 def convert_model_input(request=None, data=None, **kw):
-	if "fuel_items_categories" in data:
-		del(data["fuel_items_categories"])
+	if "plan_items_categories" in data:
+		del(data["plan_items_categories"])
 	
 	fuel_items = []
 
@@ -356,7 +356,7 @@ async def get_plan(id=None):
 	if plan is not None:
 		department_id = plan.department_id
 		resp = to_dict(plan)
-		resp["fuel_items_categories"] = []
+		resp["plan_items_categories"] = []
 		resp["fuel_items"] = []
 		resp["other_costs"] = []
 		resp["salaries"] = []
@@ -366,17 +366,17 @@ async def get_plan(id=None):
 		for cat in fuel_item_cats:
 			obj = to_dict(cat)
 			obj["items"] = []
-			for it in cat.items:
-				itobj = {
-						"item_id": str(it.id),
-						"item_no": it.item_no,
-						"item_name": it.item_name,
-						"unit_id": str(it.unit_id),
-						"unit_no": it.unit_no,
-						"unit_name": it.unit_name,
-					}
-				obj["items"].append(itobj)
-			resp["fuel_items_categories"].append(obj)
+			# for it in cat.items:
+			# 	itobj = {
+			# 			"item_id": str(it.id),
+			# 			"item_no": it.item_no,
+			# 			"item_name": it.item_name,
+			# 			"unit_id": str(it.unit_id),
+			# 			"unit_no": it.unit_no,
+			# 			"unit_name": it.unit_name,
+			# 		}
+			# 	obj["items"].append(itobj)
+			resp["plan_items_categories"].append(obj)
 		#end_fuel_items_category
 
 		#fuel_items
@@ -449,7 +449,7 @@ async def get_plan_api(request,id=None):
 
 			"fuel_items":[],
 
-			"fuel_items_categories":[]
+			"plan_items_categories":[]
 		}
 		department = Department.query.filter(Department.id == department_id).first()
 		if department is not None:
@@ -471,15 +471,15 @@ async def get_plan_api(request,id=None):
 			obj["items"] = []
 			for it in cat.items:
 				
-				itobj = {
-						"item_id": str(it.id),
-						"item_no": it.item_no,
-						"item_name": it.item_name,
-						"unit_id": str(it.unit_id),
-						"unit_no": it.unit_no,
-						"unit_name": it.unit_name,
-					}
-				obj["items"].append(itobj)
+				# itobj = {
+				# 		"item_id": str(it.id),
+				# 		"item_no": it.item_no,
+				# 		"item_name": it.item_name,
+				# 		"unit_id": str(it.unit_id),
+				# 		"unit_no": it.unit_no,
+				# 		"unit_name": it.unit_name,
+				# 	}
+				# obj["items"].append(itobj)
 
 				plan_item_obj = {
 					"id": str(uuid.uuid4()),
@@ -503,7 +503,7 @@ async def get_plan_api(request,id=None):
 
 				resp["fuel_items"].append(plan_item_obj)
 
-			resp["fuel_items_categories"].append(obj)
+			resp["plan_items_categories"].append(obj)
 		
 		#salary
 		for bz in braziers:
@@ -536,7 +536,7 @@ async def get_plan_api(request,id=None):
 			resp["salaries"].append(obj)
 
 
-		for catobj in resp["fuel_items_categories"]:
+		for catobj in resp["plan_items_categories"]:
 			if catobj["type"] == "salary":
 				for itemobj in catobj["items"]:
 					obj = {
@@ -571,7 +571,7 @@ async def get_plan_api(request,id=None):
 			
 		#end salary
 		#other cost
-		for catobj in resp["fuel_items_categories"]:
+		for catobj in resp["plan_items_categories"]:
 			if catobj["type"] == "other_cost":
 				for itemobj in catobj["items"]:
 					obj = {
