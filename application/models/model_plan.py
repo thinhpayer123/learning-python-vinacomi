@@ -269,16 +269,19 @@ class SettlementBrazier(CommonModel):
     fuel_item_list_price = db.Column(FLOAT(25,8), default=0)
     fuel_item_amount = db.Column(FLOAT(25,8), default=0)
 
-    #nhien lieu
+    #tien luong
     salary_list_price = db.Column(FLOAT(25,8), default=0)
     salary_amount = db.Column(FLOAT(25,8), default=0)
 
+    #BHXH
     insurance_list_price = db.Column(FLOAT(25,8), default=0)
     insurance_amount = db.Column(FLOAT(25,8), default=0)
 
+    # KHTS
     depreciation_list_price = db.Column(FLOAT(25,8), default=0)
     depreciation_amount = db.Column(FLOAT(25,8), default=0)
 
+    #chi khac
     other_cost_list_price = db.Column(FLOAT(25,8), default=0)
     other_cost_amount = db.Column(FLOAT(25,8), default=0)
 
