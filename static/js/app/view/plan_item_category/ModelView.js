@@ -78,41 +78,44 @@ define(function (require) {
 			}],
 		uiControl: {
 			fields: [
-						// {
-						// 	field: "norm_template",
-						// 	uicontrol: "ref",
-						// 	textField: "norm_template_name",
-						// 	// selectionMode: "multiple",
-						// 	dataSource: NormTemplate,
-						// 	foreignRemoteField: "id",
-						// 	foreignField: "norm_template_id"
-						// },
+				{
+					field: "type",
+					uicontrol: "combobox",
+					textField: "text",
+					valueField: "value",
+					dataSource: [
+						{ text: "Vật liệu", value: "item" },
+						{ text: "Nhiên liệu", value: "fuel_item" },
+						{ text: "Tiền lương", value: "salary" },
+						{ text: "Chi phí khác", value: "other_cost" },
+					]
+				},
+				{
+					field: "department",
+					uicontrol: "ref",
+					textField: "name",
+					// selectionMode: "multiple",
+					dataSource: DepartmentTemplate,
+					foreignRemoteField: "id",
+					foreignField: "department_id"
+				},
+				{
+					field: "items",
+					uicontrol: false,
+					itemView:ItemView,
+					tools: [
 						{
-							field: "department",
-							uicontrol: "ref",
-							textField: "name",
-							// selectionMode: "multiple",
-							dataSource: DepartmentTemplate,
-							foreignRemoteField: "id",
-							foreignField: "department_id"
-						},
-						{
-							field: "items",
-							uicontrol: false,
-							itemView:ItemView,
-							tools: [
-								{
-									name: "create",
-									type: "button",
-									buttonClass: "btn btn-primary btn-sm",
-									label: "Thêm",
-									command: "create"
-								},
-							],
-							toolEl: "#add_row"
+							name: "create",
+							type: "button",
+							buttonClass: "btn btn-primary btn-sm",
+							label: "Thêm",
+							command: "create"
 						},
 					],
+					toolEl: "#add_row"
 				},
+			],
+		},
     	render:function(){
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");

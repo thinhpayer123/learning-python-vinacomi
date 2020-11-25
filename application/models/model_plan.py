@@ -207,9 +207,9 @@ class PlanSalary(CommonModel):
 class PlanItemCategory(CommonModel):
     __tablename__ = 'plan_item_category' 
     type = db.Column(String(100), nullable=True) #1: item; 2#fuel_item #3: salary; #4:other_cost
-    category_type_id = db.Column(String(100), nullable=True)
-    category_type_name = db.Column(String(100), index=True, nullable=True)
-    category_type_name_1 = db.Column(String(100), index=True, nullable=True)
+    category_group_id = db.Column(String(100), nullable=True)
+    category_group_name = db.Column(String(100), index=True, nullable=True)
+    category_group_name_1 = db.Column(String(100), index=True, nullable=True)
     category_no = db.Column(String(100), nullable=True)
     category_name = db.Column(String(150), nullable=False)
     description = db.Column(String(50))

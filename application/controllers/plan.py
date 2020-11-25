@@ -129,7 +129,7 @@
 # 			"category_name": "Vật tư máy xúc lật hông ZCY-60",
 # 			"sort": 100,
 #             "category_type_id": "BDSCTX",
-#             "category_type_name": "Vật tư thay thế BDTX",
+#             "category_group_name": "Vật tư thay thế BDTX",
 # 			"items": [
 # 				{
 # 					"item_id": "9d1124de-f1d7-4641-8f57-1ceead007af4",
@@ -327,7 +327,7 @@ testdata = {
 			"category_name": "Vật tư máy xúc lật hông ZCY-60",
 			"sort": 100,
             "category_type_id": "BDSCTX",
-            "category_type_name": "Vật tư thay thế BDTX",
+            "category_group_name": "Vật tư thay thế BDTX",
 			"items": [
 				{
 					"item_id": "9d1124de-f1d7-4641-8f57-1ceead007af4",

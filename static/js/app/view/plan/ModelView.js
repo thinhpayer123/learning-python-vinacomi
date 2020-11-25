@@ -24,7 +24,7 @@ define(function (require) {
 	var cat_tpl = `
 		<tbody data-body-type="category" cat-id="{{id}}" >
 			<tr data-row-type="category">
-				<td colspan="{{colspan}}"><b>{{category_type_name}}</b></td>
+				<td colspan="{{colspan}}"><b>{{category_group_name}}</b></td>
 			</tr>
             <tr data-row-type="category" cat-id="{{id}}">
               <td colspan="{{colspan}}"><b>{{category_name}}</b></td>
@@ -34,7 +34,7 @@ define(function (require) {
 	var cat_tpl_salary = `
 		<tbody data-body-type="salary_category" cat-id="{{id}}" >
 			<tr data-row-type="salary_category">
-				<td"><b>{{category_type_name}}</b></td>
+				<td"><b>{{category_group_name}}</b></td>
 			</tr>
 			<tr data-row-type="salary_category" cat-id="{{id}}">
 		  		<td><b>{{category_name}}</b></td>
