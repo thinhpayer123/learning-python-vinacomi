@@ -20,7 +20,7 @@
         "type": "string",
         "length": 100
     },
-    "category_type_id": {
+    "category_group_id": {
         "type": "string",
         "length": 100
     },
