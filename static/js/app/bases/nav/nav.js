@@ -132,12 +132,20 @@ define(function (require) {
 			"type": "category",
 			"entries": [
 				{
+					"text":"Quyết Toán Công Đoạn",
+					// "icon":"fa fa-child",
+					"type":"view",
+					"collectionName":"settlement_brazier",
+	    			"route":"settlement_brazier/collection"
+				},
+				{
 					"text":"Quyết Toán Chi Phí Sản Phẩm",
 					// "icon":"fa fa-child",
 					"type":"view",
 					"collectionName":"product_cost_settle",
 	    			"route":"product_cost_settle/collection"
 				},
+				
 			]
 		},
 

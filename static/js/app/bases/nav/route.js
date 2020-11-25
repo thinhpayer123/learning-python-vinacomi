@@ -286,6 +286,17 @@ define(function (require) {
 			"collectionName": "product_cost_settle",
 			"route": "product_cost_settle/model(/:id)",
 			"$ref": "app/view/product_cost_settle/ModelView",
+		},
+
+		{
+			"collectionName": "settlement_brazier",
+			"route": "settlement_brazier/collection(/:id)",
+			"$ref": "app/view/settlement_brazier/CollectionView",
+		},
+		{
+			"collectionName": "settlement_brazier",
+			"route": "settlement_brazier/model(/:id)",
+			"$ref": "app/view/settlement_brazier/ModelView",
 		}
 	];
 

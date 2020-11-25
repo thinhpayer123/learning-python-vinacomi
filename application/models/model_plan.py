@@ -227,7 +227,7 @@ class PlanItemCategoryRelation(CommonModel):
     category_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan_item_category.id', ondelete='cascade'))
 
 class Settlement(CommonModel):
-    __tablename__ = 'settlement'
+    __tablename__ = 'settlement' #quyet toan
     settlement_no =  db.Column(String(255),nullable = False)
     settlement_name =  db.Column(String(255),nullable = True)
     settlement_type = db.Column(Integer()) # 1: thang, 2: quy, 3: nam
@@ -244,7 +244,7 @@ class Settlement(CommonModel):
     # braziers = db.Column(JSONB())
 
 class SettlementBrazier(CommonModel):
-    __tablename__ = 'settlement_brazier' #kế hoạch sản phẩm
+    __tablename__ = 'settlement_brazier' # quyết toán công đoạn
     settlement_id = db.Column(UUID(as_uuid=True), db.ForeignKey('settlement.id', ondelete='cascade'))
     type = db.Column(String(40), index=True, nullable=True)
 
