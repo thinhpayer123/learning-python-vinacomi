@@ -69,7 +69,7 @@ class Department(CommonModel):
 
 # code moi 
 class Brazier(CommonModel):
-    __tablename__ = 'brazier'
+    __tablename__ = 'brazier' #danh sach lo
     name = db.Column(db.String, nullable=True)
     brazier_no = db.Column(db.String(63), nullable=False)
     brazier_type = db.Column(db.String, nullable=True)
@@ -89,7 +89,7 @@ class Brazier(CommonModel):
 
 
 class Unit(CommonModel):
-    __tablename__ = 'unit'
+    __tablename__ = 'unit' #don vi tinh
     name = db.Column(db.String, nullable=True)
     unit_no = db.Column(db.String(63), nullable=False)
     description = db.Column(db.String)
@@ -106,7 +106,7 @@ class ItemCategoryRelation(CommonModel):
 
 
 class ItemCategory(CommonModel):
-    __tablename__ = 'item_category'
+    __tablename__ = 'item_category' #Nhóm Vật Tư Tiêu Hao
     category_exid = db.Column(String(100), nullable=True, index=True)
     category_no = db.Column(String(100), nullable=True)
     category_name = db.Column(String(150), nullable=False)
@@ -142,7 +142,8 @@ class ItemCategory(CommonModel):
 
 
 class Item(CommonModel):
-    __tablename__ = 'item'
+    __tablename__ = 'item' #Vật Tư Tiêu Hao
+
     item_exid = db.Column(String(100), index=True) #id tich hop tu he thong khac
     item_no = db.Column(String(40), index=True, nullable=False)
     item_name = db.Column(String(150), nullable=False)
@@ -160,7 +161,7 @@ class Item(CommonModel):
     unit_no = db.Column(String())
     tax_class = db.Column(String(200))
     # true False doi 5 dong duoi default thành nullable
-    is_product = db.Column(Boolean(), nullable=True)
+    is_product = db.Column(Boolean(), nullable=True) # loai san pham
     is_material = db.Column(Boolean(), nullable=True)
     is_service = db.Column(Boolean(), nullable=True)
 
@@ -177,7 +178,7 @@ class Item(CommonModel):
     
 
 class PriceList(CommonModel):
-    __tablename__ = 'price_list'
+    __tablename__ = 'price_list' #Bảng Giá Vật Tư
     price_list_no = db.Column(String(40), index=True, nullable=True)
     price_list_name = db.Column(String())
     price_list_year = db.Column(BigInteger(), nullable=True)
@@ -253,7 +254,7 @@ class ItemPrice(CommonModel):
 #     description = db.Column(Text())
 
 class NormTemplate(CommonModel):
-    __tablename__ = 'norm_template' 
+    __tablename__ = 'norm_template' #dinh muc template
     norm_template_name =  db.Column(String(255),nullable = True)
     norm_template_no = db.Column(String(255),nullable = True)
     norm_fields = db.Column(JSONB())
@@ -292,7 +293,7 @@ class Norm(CommonModel):
     
 
 class NormDetail(CommonModel):
-    __tablename__ = 'norm_detail' #dinh muc
+    __tablename__ = 'norm_detail' #dinh muc chi tiet
     norm_id = db.Column(UUID(as_uuid=True), db.ForeignKey('norm.id', ondelete='cascade'))
     # norm_no = db.Column(String(255),nullable = True)
 
@@ -333,7 +334,7 @@ class NormDetail(CommonModel):
 
 
 class GAIO(CommonModel):   # General Account of Input – Output – Inventory (tổng hợp nhập xuất tồn)
-    __tablename__ = 'gaio'
+    __tablename__ = 'gaio' 
     code = db.Column(String(), index=True, nullable=True)
     create_date = db.Column(BigInteger(), index=True)
 
