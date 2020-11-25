@@ -224,18 +224,62 @@ class PlanItemCategory(CommonModel):
 class PlanItemCategoryRelation(CommonModel):
     __tablename__ = 'plan_item_categorie_rel'
     item_id = db.Column(UUID(as_uuid=True), db.ForeignKey('item.id', ondelete='cascade'))
-    category_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan_fuel_item_category.id', ondelete='cascade'))
+    category_id = db.Column(UUID(as_uuid=True), db.ForeignKey('plan_item_category.id', ondelete='cascade'))
 
 class Settlement(CommonModel):
     __tablename__ = 'settlement'
-    settlement_name = db.Column(String(100), index=True, nullable=True)
-    implement_costs = db.Column(FLOAT(25,8), default=0)
+    settlement_no =  db.Column(String(255),nullable = False)
+    settlement_name =  db.Column(String(255),nullable = True)
+    settlement_type = db.Column(Integer()) # 1: thang, 2: quy, 3: nam
 
-    department_id = db.Column(UUID(as_uuid=True), db.ForeignKey("department.id"), index=True)
-    department = db.relationship("Department")
+    department_id = db.Column(UUID(as_uuid=True))
+    department_no = db.Column(String(255),nullable = False)
+    department_name = db.Column(String(255),nullable = False)
 
-    unit_id = db.Column(UUID(as_uuid=True), db.ForeignKey("unit.id"), index=True)
-    unit = db.relationship("Unit")
+    from_time = db.Column(BigInteger(), index=True)
+    to_time = db.Column(BigInteger(), index=True)
+    
+    active = db.Column(SmallInteger(), default=1)
 
-    plan = db.relationship("Plan")
+    # braziers = db.Column(JSONB())
 
+class SettlementBrazier(CommonModel):
+    __tablename__ = 'settlement_brazier' #kế hoạch sản phẩm
+    settlement_id = db.Column(UUID(as_uuid=True), db.ForeignKey('settlement.id', ondelete='cascade'))
+    type = db.Column(String(40), index=True, nullable=True)
+
+    brazier_id = db.Column(UUID(as_uuid=True), index=True)
+    brazier_no = db.Column(String(40), index=True, nullable=True)
+    brazier_name = db.Column(String(150), nullable=True)
+
+    product_id = db.Column(UUID(as_uuid=True), index=True)
+
+    unit_id = db.Column(UUID(as_uuid=True))
+    unit_no = db.Column(String())
+    unit_name = db.Column(String())
+
+    list_price = db.Column(FLOAT(25,8), default=0)
+    # amount = db.Column(FLOAT(25,8), default=0)
+    total_amount = db.Column(FLOAT(25,8), default=0)
+
+    #vat lieu
+    item_list_price = db.Column(FLOAT(25,8), default=0)
+    item_amount = db.Column(FLOAT(25,8), default=0)
+    #nhien lieu
+    fuel_item_list_price = db.Column(FLOAT(25,8), default=0)
+    fuel_item_amount = db.Column(FLOAT(25,8), default=0)
+
+    #nhien lieu
+    salary_list_price = db.Column(FLOAT(25,8), default=0)
+    salary_amount = db.Column(FLOAT(25,8), default=0)
+
+    insurance_list_price = db.Column(FLOAT(25,8), default=0)
+    insurance_amount = db.Column(FLOAT(25,8), default=0)
+
+    depreciation_list_price = db.Column(FLOAT(25,8), default=0)
+    depreciation_amount = db.Column(FLOAT(25,8), default=0)
+
+    other_cost_list_price = db.Column(FLOAT(25,8), default=0)
+    other_cost_amount = db.Column(FLOAT(25,8), default=0)
+
+    note = db.Column(Text())
