@@ -6,11 +6,12 @@ define(function (require) {
     
     var template 			= require('text!app/view/TinhThanh/tpl/model.html'),
     	schema 				= require('json!schema/TinhThanhSchema.json');
-	var	QuocGiaTemplate = require("app/view/QuocGia/SelectView");
+    var QuocGiaSelectView   = require('app/view/QuocGia/SelectView');
     
     return Gonrin.ModelView.extend({
     	template : template,
     	modelSchema	: schema,
+    	// modelClass: Model,
     	urlPrefix: "/api/v1/",
     	collectionName: "tinhthanh",
     	tools : [
@@ -34,7 +35,7 @@ define(function (require) {
 		    	    	name: "save",
 		    	    	type: "button",
 		    	    	buttonClass: "btn-success btn-sm",
-		    	    	label: "Lưu ",
+		    	    	label: "TRANSLATE:SAVE",
 		    	    	command: function(){
 		    	    		var self = this;
 		    	    		
@@ -74,22 +75,17 @@ define(function (require) {
 		    	    	}
 		    	    },
     	    	],
-			}],
-			uiControl: {
-				fields: [
-							
-							{
-								field: "quocgia",
-								uicontrol: "ref",
-								textField: "ten",
-								// selectionMode: "multiple",
-								dataSource: QuocGiaTemplate,
-								foreignRemoteField: "id",
-								foreignField: "quocgia_id"
-							},
-						],
-					},			
-
+    	    }],
+    	uiControl:{
+    		fields:[
+        		{
+    				field:"quocgia",
+    				uicontrol:"ref",
+    				textField: "ten",
+    				dataSource: QuocGiaSelectView
+    			},
+        	]
+    	},
     	render:function(){
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");
@@ -101,7 +97,7 @@ define(function (require) {
         				self.applyBindings();
         			},
         			error:function(){
-    					self.getApp().notify("Get data Error");
+    					self.getApp().notify("Không tìm thấy dữ liệu!");
     				},
         		});
     		}else{

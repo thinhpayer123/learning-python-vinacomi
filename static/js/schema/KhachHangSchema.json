@@ -13,15 +13,23 @@
         "type": "datetime"
     },
     "id": {
-        "type": "string",
+        "type": "number",
         "primary": true
     },
-    "user_name": {
+    "ma": {
+        "type": "string",
+        "length": 255
+    },
+    "ten": {
         "type": "string",
         "required": true,
         "length": 255
     },
-    "full_name": {
+    "quocgia_id": {
+        "type": "number",
+        "required": true
+    },
+    "sodienthoai": {
         "type": "string",
         "length": 255
     },
@@ -29,26 +37,11 @@
         "type": "string",
         "length": 255
     },
-    "password": {
-        "type": "string",
-        "required": true,
-        "length": 255,
-        "default": 123456
-    },
-    "confirm_password": {
+    "diachi": {
         "type": "string",
         "length": 255
     },
-    "salt": {
-        "type": "string",
-        "required": true,
-        "length": 255
-    },
-    "active": {
-        "type": "boolean",
-        "default": true
-    },
-    "roles": {
-        "type": "list"
+    "quocgia": {
+        "type": "dict"
     }
 }

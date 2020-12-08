@@ -12,7 +12,7 @@ define(function (require) {
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
     	collectionName: "quocgia",
-    	textField: "ten",
+    	textField: "name",
     	valueField: "id",
     	tools : [
     	    {
@@ -36,8 +36,17 @@ define(function (require) {
     	],
     	uiControl:{
     		fields: [
-	    	     { field: "ma", label: "Mã", width:150},
-		     	 { field: "ten", label: "Tên", width:250 },
+	    	    { 
+	    	    	field: "id",label:"ID",
+				 },
+				 { 
+	    	    	field: "ma",label:"Mã",
+				 },
+				 { 
+	    	    	field: "ten",label:"Tên Quốc Gia",
+				 },
+	    	     { field: "mota", label: "Mô Tả"},
+
 		    ],
 		    onRowClick: function(event){
 	    		this.uiControl.selectedItems = event.selectedItems;
