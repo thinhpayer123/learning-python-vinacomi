@@ -1,0 +1,43 @@
+<section class="content">
+	<div class="col-lg-12">
+		<div class="box box-primary">
+			<div class="box-header with-border">
+				<h3 class="box-title">Định Mức Chi Tiết</h3>
+				<div class="box-tools">
+					<div block-bind="toolbar"></div>
+				</div>
+			</div>
+			<div class="box-body table-responsive">
+				<div block-bind="content" class="row" style="margin-right: 0px; margin-left: 0px;">
+					<div class="col-lg-6 base-content">
+						<div class="form-group text-center">
+							<label>Mã Template</label>
+							<input type="text" data-bind="value:norm_template_no" class="form-control inputbox">
+						</div>
+					</div>
+					<div class="col-lg-6 base-content">
+						<div class="form-group text-center">
+							<label>Tên Template</label>
+							<input type="text" data-bind="value:norm_template_name" class="form-control inputbox">
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-1 text-center" id="add_row"></div>
+			</div>
+			<div class="col-12 out-click">
+				<div class="d-flex justify-content-around align-items-center w-100">
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th scope="col" class="text-center" style="width:50%">Tên Trường</th>
+								<th scope="col" class="text-center" style="width:50%">Tiêu Đề</th>
+							</tr>
+						</thead>
+						<tbody id="" data-bind="list:norm_fields"></tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+</section>

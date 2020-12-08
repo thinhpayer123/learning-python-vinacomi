@@ -1,0 +1,179 @@
+<div block-bind="content">
+
+</div>
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="card  card-small mb-4" style="position: relative;">
+      <div class="card-header  border-bottom">
+        <div class="row">
+          <div class="col-md-7">
+            <h3 class="box-title">Kế Hoạch Công Đoạn Sản Xuất</h3>
+            <!-- <h3 class="m-0 pt-2"><span data-bind="text:norm_name"> </span></h3> -->
+          </div>
+          <div class="col-md-5 text-right">
+            <button id="btn-back" class="btn btn-sm btn-default">Quay lại</button>
+            <button id="btn-save" class="btn btn-sm btn-success">Lưu kế hoạch</button>
+            <button id="btn-export-excel" class="btn btn-sm btn-info">Xuất excel</button>
+            <!-- <button id="btn-delete" class="btn btn-sm btn-danger" style="display:none">Xóa</button> -->
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body row">
+        <div class="col-md-2 col-lg-2 col-sm-12 col-2">
+          <div class="form-group">
+            <label for="">Mã Kế Hoạch</label>
+            <input class="form-control"  data-bind="value:plan_no"/>
+          </div>
+        </div>
+        <div class="col-md-2 col-lg-2 col-sm-12 col-2">
+          <div class="form-group">
+            <label for="">Tên Kế Hoạch</label>
+            <input class="form-control"  data-bind="value:plan_name"/>
+          </div>
+        </div>
+        <div class="col-md-2 col-lg-2 col-sm-12 col-2">
+          <div class="form-group">
+            <label for="">Mã Đơn vị</label>
+            <input class="form-control" data-bind="value:department_no" readonly/>
+          </div>
+        </div>
+        <div class="col-md-2 col-lg-2 col-sm-12 col-2">
+          <div class="form-group">
+            <label for="">Tên Đơn vị</label>
+            <input class="form-control" data-bind="value:department_name" readonly/>
+          </div>
+        </div>
+      </div>
+  
+
+      <div class="row">
+        <div class="col-1 text-center"> <button id="add_item" class="btn btn-sm btn-success">Thêm</div>
+        <div class="col-3">
+          <select class="form-control" id="select_cat">
+            <!-- <option value="cat_id_1">Vật tư máy cào SGB620/40</option>
+              <option value="cat_id_2">Vật tư máy cào C14</option> -->
+          </select>
+        </div>
+        <div class="col-3">
+          <select class="form-control" id="select_item">
+            <!-- <option value="cat_id_1">Vật tư máy cào SGB620/40</option>
+              <option value="cat_id_2">Vật tư máy cào C14</option> -->
+          </select>
+        </div>
+        <div class="col-5">
+          <span id="add_item_error_message" style="display: none">(*) Vật tư đã tồn tại trong bảng định mức</span>
+        </div>
+      </div>
+
+      <h3>KẾ HOẠCH VẬT TƯ, NHIÊN LIỆU</h3>
+
+      <div class="box-body table-responsive no-padding" style="min-height:600px;">
+        <div class="card-body row">
+          <div class="col-12 out-click">
+            <div class="d-flex justify-content-around align-items-center w-100">
+
+              <table class="table table-striped" id="plan_fuel_item">
+                <thead>
+                  <tr>
+                    <!-- <th scope="col" class="text-center" style="width:100px"></th> -->
+                    <th rowspan="4" scope="col" class="text-center" style="width:900px; vertical-align: middle;">Tên Mã Hiệu Quy Cách Vật Tư</th>
+                    <th rowspan="4" scope="col" class="text-center" style="width:300px; vertical-align: middle;">ĐVT</th>
+                    <th rowspan="4" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Nhu Cầu VT Tháng</th>
+                    
+                    
+                    <th colspan="{{baziers_colspan}}" scope="col" class="text-center" style="width:300px">Danh mục vị trí thi công</th>
+
+
+                    <th rowspan="4" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Số lượng duyệt</th>
+                    <th rowspan="4" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Ghi Chú</th>
+                  
+                    <th scope="col"></th>
+                  </tr>
+
+                  <tr id="bazier_plan_fuel_item_header">
+                  </tr>
+                  <!-- <tr id="bazier_fuel_item_header">
+                    <th colspan="1" scope="col1" class="text-center" style="width:300px; vertical-align: middle;">Tong Tien</th>
+                  </tr> -->
+                  <tr id="bazier_plan_fuel_item_header_column">
+                  
+                  </tr>
+                  <tr id="bazier_plan_fuel_item_header_norm">
+                  </tr>
+                </thead>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <h3>KẾ HOẠCH CHI PHÍ TIỀN LƯƠNG VÀ BHXH, YT </h3>
+      <div class="box-body table-responsive no-padding" style="min-height:600px;">
+        <div class="card-body row">
+          <div class="col-12 out-click">
+            <div class="d-flex justify-content-around align-items-center w-100">
+
+              <table class="table table-striped" id="salary">
+                <thead>
+                  <tr>
+                    <th rowspan="4" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Danh Mục</th>
+                    <th rowspan="4" scope="col" class="text-center" style="width:150px; vertical-align: middle;">ĐVT</th>
+                    <th rowspan="4" scope="col" class="text-center" style="width:150px; vertical-align: middle;">Số lượng</th>
+                    
+                    
+                    <th colspan="2" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Chi phí Tiền lương</th>
+                    <th colspan="2" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Chi phí BHXH</th>
+
+                    <th rowspan="4" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Công KH</th>
+                    <th rowspan="4" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Tiền lương BQ</th>
+                    <th rowspan="4" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Ghi Chú</th>
+                  
+                    <th scope="col"></th>
+                  </tr>
+                  <tr id="salary_header">
+                    <th rowspan="2" scope="col" class="text-center">Đơn giá</th>
+                    <th rowspan="2" scope="col" class="text-center">Thành Tiền</th>
+                    <th rowspan="2" scope="col" class="text-center">Đơn giá</th>
+                    <th rowspan="2" scope="col" class="text-center">Thành Tiền</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+
+           
+          </div>
+        </div>
+      </div>
+
+      <h3>BẢNG TÍNH KẾ HOẠCH CHI PHÍ KHÁC</h3>
+      <div class="box-body table-responsive no-padding" style="min-height:600px;">
+        <div class="card-body row">
+          <div class="col-12 out-click">
+            <div class="d-flex justify-content-around align-items-center w-100">
+
+              <table class="table table-striped" id="othercost">
+                <thead>
+                  <tr>
+                    <th rowspan="4" scope="col" class="text-center" style="width:900px; vertical-align: middle;">Danh mục</th>
+                    <th rowspan="4" scope="col" class="text-center" style="width:300px; vertical-align: middle;">ĐVT</th>
+                    <th rowspan="4" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Đơn giá</th>
+                    <th rowspan="4" scope="col" class="text-center" style="width:300px">Số lượng</th>
+                    <th rowspan="4" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Số ngày làm việc</th>
+                    <th rowspan="4" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Thành tiền</th>
+                    <th rowspan="4" scope="col" class="text-center" style="width:300px; vertical-align: middle;">Ghi Chú</th>
+                  
+                    <!-- <th scope="col"></th> -->
+                  </tr>
+                </thead>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+</div>

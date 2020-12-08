@@ -56,7 +56,7 @@ def add_user():
 @manager.command
 def run():
     """ Starts server on port 8000. """
-    run_app(host="0.0.0.0", port=2207)
+    run_app(host="0.0.0.0", port=7001)
 
 
 @manager.command

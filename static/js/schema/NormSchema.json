@@ -1,0 +1,64 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "norm_name": {
+        "type": "string",
+        "length": 255
+    },
+    "norm_document_id": {
+        "type": "string"
+    },
+    "norm_document_no": {
+        "type": "string",
+        "length": 255
+    },
+    "norm_document_name": {
+        "type": "string",
+        "length": 255
+    },
+    "norm_template_id": {
+        "type": "string"
+    },
+    "norm_template_no": {
+        "type": "string",
+        "length": 255
+    },
+    "from_time": {
+        "type": ""
+    },
+    "to_time": {
+        "type": ""
+    },
+    "year": {
+        "type": "number"
+    },
+    "priority": {
+        "type": "number",
+        "default": 100
+    },
+    "active": {
+        "type": "number",
+        "default": 1
+    },
+    "norm_fields": {
+        "type": "json"
+    },
+    "norm_details": {
+        "type": "list"
+    }
+}

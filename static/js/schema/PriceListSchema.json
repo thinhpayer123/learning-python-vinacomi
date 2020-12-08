@@ -1,0 +1,59 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "price_list_no": {
+        "type": "string",
+        "length": 40
+    },
+    "price_list_name": {
+        "type": "string"
+    },
+    "price_list_year": {
+        "type": ""
+    },
+    "price_type": {
+        "type": "number"
+    },
+    "is_default": {
+        "type": "boolean",
+        "default": false
+    },
+    "start_time": {
+        "type": ""
+    },
+    "end_time": {
+        "type": ""
+    },
+    "extra_data": {
+        "type": "json"
+    },
+    "priority": {
+        "type": "number",
+        "default": 10
+    },
+    "active": {
+        "type": "boolean",
+        "default": true
+    },
+    "extra_attributes": {
+        "type": "json"
+    },
+    "prices": {
+        "type": "list"
+    }
+}

@@ -1,0 +1,58 @@
+{
+    "id": {
+        "type": "string",
+        "primary": true
+    },
+    "created_at": {
+        "type": "datetime"
+    },
+    "updated_at": {
+        "type": "datetime"
+    },
+    "deleted": {
+        "type": "boolean",
+        "default": false
+    },
+    "deleted_at": {
+        "type": "datetime"
+    },
+    "name": {
+        "type": "string"
+    },
+    "brazier_id": {
+        "type": "string",
+        "required": true
+    },
+    "department_id": {
+        "type": "string",
+        "required": true
+    },
+    "description": {
+        "type": "string"
+    },
+    "from_time": {
+        "type": ""
+    },
+    "to_time": {
+        "type": ""
+    },
+    "stage_id": {
+        "type": "string"
+    },
+    "stage_no": {
+        "type": "string",
+        "required": true,
+        "length": 255
+    },
+    "stage_name": {
+        "type": "string",
+        "required": true,
+        "length": 255
+    },
+    "brazier": {
+        "type": "dict"
+    },
+    "department": {
+        "type": "dict"
+    }
+}

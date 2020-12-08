@@ -1,7 +1,7 @@
 class Config(object):
     DEBUG = True
     STATIC_URL = "/static"
-    SQLALCHEMY_DATABASE_URI = 'postgresql://framework_user:123456@localhost:5432/test_db_framework'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://quanlythanuser:123456@localhost:5432/quanlythandb'
     AUTH_LOGIN_ENDPOINT = 'login'
     AUTH_PASSWORD_HASH = 'sha512_crypt'
     AUTH_PASSWORD_SALT = 'ruewhndjsa17heaw'
