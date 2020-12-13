@@ -479,7 +479,7 @@ async def get_plan_api(request,id=None):
 	user = current_user(request)
 	if user is not None:
 		#department_id = "cb208970-2087-4321-a678-91a8f14af692"
-		department_id = user.department_id
+		department_id = str(user.department_id)
 	if department_id is None:
 		return json({"error_code": "NOT_FOUND", "error_message": "Department not found"}, status=520)
 
