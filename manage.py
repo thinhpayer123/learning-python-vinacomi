@@ -185,5 +185,30 @@ def create_admin(password='123456'):
 
     return
 
+@manager.command
+def create_user(user_name=None, password='123456', department_no=None):
+    from application.models.model import Department
+    role_user = Role.query.filter(Role.name == "user").first()
+    if(role_user is None):
+        role_user = Role(name='user', display_name="User")
+        db.session.add(role_user)
+        db.session.flush() 
+    if (user_name is None) or (department_no is None):
+        print("parram not correct")
+    department = Department.query.filter(Department.department_no == department_no).first()
+    if department is None:
+        print("parram not correct")
+
+    # create salt
+    letters = string.ascii_lowercase
+    user_salt = ''.join(random.choice(letters) for i in range(64))
+
+    user_password=auth.encrypt_password(password, user_salt)
+    user = User(user_name=user_name, full_name="user_name", email=user_name + "@gonrin.com",\
+            password=user_password, salt=user_salt, department_id= department.id)
+
+    db.session.add(user)
+    db.session.commit()
+
 if __name__ == '__main__':
     manager.main()
