@@ -4,15 +4,15 @@ define(function (require) {
         _                   = require('underscore'),
         Gonrin				= require('gonrin');
     
-    var template 			= require('text!app/view/department/tpl/collection.html'),
-    	schema 				= require('json!schema/DepartmentSchema.json');
+    var template 			= require('text!./tpl/item.html'),
+    	schema 				= require('json!schema/GAIODetailSchema.json');
     // var CategorySelectView = require("app/view/item_category/SelectView");
 
     return Gonrin.CollectionDialogView.extend({
     	template : template,
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
-    	collectionName: "department",
+    	collectionName: "gaio",
     	textField: "name",
     	valueField: "id",
     	tools : [

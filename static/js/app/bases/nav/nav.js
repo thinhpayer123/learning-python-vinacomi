@@ -8,6 +8,20 @@ define(function (require) {
 			"type":"category",
 			"entries":[
 				{
+					"text":"Phân nhóm vật tư",
+					// "icon":"fa fa-child",
+					"type":"view",
+					"collectionName":"item_category",
+				    "route":"item_category/collection"
+				},
+				{
+					"text":"Định Mức Template ",
+					// "icon":"fa fa-child",
+					"type":"view",
+					"collectionName":"norm_template",
+				    "route":"norm_template/collection"
+				},
+				{
 					"text":"Định Mức Vật Tư Máy Cào",
 					// "icon":"fa fa-child",
 					"type":"view",
@@ -20,7 +34,9 @@ define(function (require) {
 					"type":"view",
 					"collectionName":"norm",
 				    "route":"norm/collection?norm_template_no=VTBANGTAI"
-				}
+				},
+
+				
 			]
 		},
 		{
@@ -46,7 +62,7 @@ define(function (require) {
 			"type": "category",
 			"entries": [
 				{
-					"text":"Kế Hoạch Nhóm Vật Tư",
+					"text":"Phân nhóm Vật tư",
 					// "icon":"fa fa-child",
 					"type":"view",
 					"collectionName":"plan_item_category",
@@ -112,13 +128,6 @@ define(function (require) {
 	    			"route":"item/collection"
 				},
 
-				{
-					"text":"Nhóm Vật Tư Tiêu Hao",
-					// "icon":"fa fa-child",
-					"type":"view",
-					"collectionName":"item_category",
-				    "route":"item_category/collection"
-				},
 				
 							
 				{
@@ -135,13 +144,7 @@ define(function (require) {
 				// 	"collectionName":"item_department",
 	    		// 	"route":"item_department/collection?norm_template_no=VTMAYCAO"
 				// },
-				{
-					"text":"Định Mức Template ",
-					// "icon":"fa fa-child",
-					"type":"view",
-					"collectionName":"norm_template",
-				    "route":"norm_template/collection"
-				},
+				
 
 				{
 					"text":"Lò",

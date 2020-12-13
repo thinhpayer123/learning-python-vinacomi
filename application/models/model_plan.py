@@ -17,27 +17,6 @@ from application.database import db
 from application.database.model import CommonModel, default_uuid
 
 
-
-
-# class SalaryItem(CommonModel):
-#     __tablename__ = 'salary_item'
-#     item_exid = db.Column(String(100), index=True) #id tich hop tu he thong khac
-#     item_no = db.Column(String(40), index=True, nullable=False)
-#     item_name = db.Column(String(150), nullable=False)
-   
-#     description = db.Column(Text())
-
-#     unit_id = db.Column(String(200))
-#     unit_name = db.Column(String(200))
-#     unit_no = db.Column(String())
-#     # tax_class = db.Column(String(200))
-#     # true False doi 5 dong duoi default thành nullable
-    
-#     sort = db.Column(Integer(), default=100)
-
-#     active = db.Column(Boolean(), nullable=True)
-
-
 class Plan(CommonModel):
     __tablename__ = 'plan' #ke hoach #cong doan sx
     plan_no =  db.Column(String(255),nullable = False)
@@ -101,6 +80,7 @@ class PlanItem(CommonModel):
     brazier_id = db.Column(UUID(as_uuid=True), index=True)
     brazier_no = db.Column(String(40), index=True, nullable=True)
     brazier_name = db.Column(String(150), nullable=True)
+
     category_id = db.Column(UUID(as_uuid=True), index=True)
 
     unit_id = db.Column(UUID(as_uuid=True))
@@ -110,6 +90,10 @@ class PlanItem(CommonModel):
     list_price = db.Column(FLOAT(25,8), default=0)
     quantity = db.Column(FLOAT(25,8), default=0)
     total_amount = db.Column(FLOAT(25,8), default=0)
+
+    norm = db.Column(FLOAT(25,8), default=0)
+    norm_quantity = db.Column(FLOAT(25,8), default=0)
+    approved_quantity = db.Column(FLOAT(25,8), default=0)
 
     note = db.Column(Text())
 
@@ -241,7 +225,7 @@ class Settlement(CommonModel):
     
     active = db.Column(SmallInteger(), default=1)
 
-    # braziers = db.Column(JSONB())
+    braziers = db.Column(JSONB())
 
 class SettlementBrazier(CommonModel):
     __tablename__ = 'settlement_brazier' # quyết toán công đoạn

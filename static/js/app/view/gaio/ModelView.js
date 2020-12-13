@@ -5,8 +5,8 @@ define(function (require) {
         Gonrin				= require('gonrin');
     
     var template 			= require('text!app/view/gaio/tpl/model.html'),
-    	schema 				= require('json!schema/GAIODetailSchema.json');
-	var ChiTietBangKeItemView = require("app/view/gaio/itemView")
+    	schema 				= require('json!schema/GAIOSchema.json');
+	var GAIOItemView = require("app/view/gaio/itemView")
     return Gonrin.ModelView.extend({
 	
     	template : template,
@@ -78,7 +78,37 @@ define(function (require) {
 		    	    	}
 		    	    },
     	    	],
-    	    }],
+			}],
+		uiControl: {
+			fields: [
+				{
+					field: "detail",
+					uicontrol: false,
+					itemView: GAIOItemView,
+					tools: [{
+						name: "create",
+						type: "button",
+						buttonClass: "btn btn-outline-success btn-sm",
+						label: "<span class='fa fa-plus'>Thêm</span>",
+						command: "create"
+					}],
+					toolEl: "#add-item"
+				},
+
+				{
+					field: "create_date",
+					uicontrol: "datetimepicker",
+					textFormat: "DD/MM/YYYY",
+					extraFormats: ["DDMMYYYY"],
+					parseInputDate: function (val) {
+						return moment.unix(val);
+					},
+					parseOutputDate: function (start_time) {
+						return start_time.unix();
+					},
+				}
+			],
+		},
     	render:function(){
     		var self = this;
     		var id = this.getApp().getRouter().getParam("id");
@@ -98,36 +128,7 @@ define(function (require) {
     		}
     		
 		},
-		uiControl: {
-			fields: [
-			  {
-						  field: "detail",
-						  uicontrol: false,
-						  itemView: ChiTietBangKeItemView,
-						  tools: [{
-							  name: "create",
-							  type: "button",
-							  buttonClass: "btn btn-outline-success btn-sm",
-							  label: "<span class='fa fa-plus'></span>",
-							  command: "create"
-						  }],
-						  toolEl: "#add-item"
-					  },
-			 
-			  {
-				field: "create_date",
-				uicontrol: "datetimepicker",
-				textFormat: "DD/MM/YYYY",
-				extraFormats: ["DDMMYYYY"],
-				parseInputDate: function (val) {
-				  return moment.unix(val);
-				},
-				parseOutputDate: function (start_time) {
-				  return start_time.unix();
-				},
-			  }
-			],
-		  },
+		
     });
 
 });

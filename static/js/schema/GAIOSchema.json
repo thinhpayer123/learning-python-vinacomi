@@ -20,13 +20,13 @@
         "type": "string"
     },
     "create_date": {
-        "type": ""
+        "type": "number"
     },
     "start_time": {
-        "type": ""
+        "type": "number"
     },
     "end_time": {
-        "type": ""
+        "type": "number"
     },
     "vote": {
         "type": "string"

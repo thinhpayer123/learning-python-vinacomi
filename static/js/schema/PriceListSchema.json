@@ -34,10 +34,10 @@
         "default": false
     },
     "start_time": {
-        "type": ""
+        "type": "number"
     },
     "end_time": {
-        "type": ""
+        "type": "number"
     },
     "extra_data": {
         "type": "json"

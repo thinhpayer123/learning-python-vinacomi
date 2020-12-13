@@ -7,48 +7,64 @@ define(function (require) {
 
 	var template = require('text!app/view/plan/tpl/model.html');
 
-	var PlanFuelItemView = require('./PlanFuelItemView')
-	var OtherCostView = require('./OtherCostView')
+	var PlanItemView = require('./PlanItemView');
+	var PlanFuelItemView = require('./PlanFuelItemView');
+	var OtherCostView = require('./OtherCostView');
+	var SalaryBrazierView = require('./SalaryBrazierView');
 	var SalaryView = require('./SalaryView')
+
+	//fuel item html
+	var cat_fuel_item_tpl = `
+		<tbody data-body-type="category" cat-id="{{id}}" >
+            <tr data-row-type="category" cat-id="{{id}}">
+              <td colspan="{{colspan}}"><b>{{category_name}} - {{category_group_name}}</b></td>
+            </tr>
+        </tbody>`;
 
 	var bazier_plan_fuel_item_header_html = '<td colspan="3" style="color:red"style="width:300px" data-brazier-id="{{brazier_id}}">{{brazier_name}}</td>';
 	var bazier_plan_fuel_item_header_column_html = `<td style="width:300px">Định mức</td>
-	<td rowspan="2"style="width:300px">Hệ số thiết bị</td>
-	<td rowspan="2"style="width:300px">Số lượng </td>`;
+													<td rowspan="2"style="width:300px">Hệ số thiết bị</td>
+													<td rowspan="2"style="width:300px">Số lượng </td>`;
 
 	var bazier_plan_fuel_item_header_norm_html = '<td>1</td>';
-	
-	
 
-
-	var cat_tpl = `
-		<tbody data-body-type="category" cat-id="{{id}}" >
-			<tr data-row-type="category">
-				<td colspan="{{colspan}}"><b>{{category_group_name}}</b></td>
-			</tr>
-            <tr data-row-type="category" cat-id="{{id}}">
-              <td colspan="{{colspan}}"><b>{{category_name}}</b></td>
+	//item html
+	var cat_item_tpl = `
+		<tbody data-body-type="item-category" item-cat-id="{{id}}" >
+            <tr data-row-type="item-category" item-cat-id="{{id}}">
+              <td colspan="{{colspan}}"><b>{{category_name}} - {{category_group_name}}</b></td>
             </tr>
-        </tbody>
-	`;
+        </tbody>`;
+
+	var bazier_plan_item_header_html = '<td colspan="3" style="color:red"style="width:300px" data-brazier-id="{{brazier_id}}">{{brazier_name}}</td>';
+	var bazier_plan_item_header_column_html = `<td style="width:300px">Định mức</td>
+													<td rowspan="2"style="width:300px">Số lượng theo mức</td>
+													<td rowspan="2"style="width:300px">Số lượng duyệt</td>`;
+
+	var bazier_plan_item_header_norm_html = '<td>1</td>';
+	
+	
+
+
+	//salary html
 	var cat_tpl_salary = `
 		<tbody data-body-type="salary_category" cat-id="{{id}}" >
 			<tr data-row-type="salary_category">
-				<td"><b>{{category_group_name}}</b></td>
+				<td colspan="4"><b>{{category_group_name}}</b></td>
 			</tr>
 			<tr data-row-type="salary_category" cat-id="{{id}}">
-		  		<td><b>{{category_name}}</b></td>
+		  		<td colspan="4"><b>{{category_name}}</b></td>
 		</tr>
-	</tbody>
-	`; 
+	</tbody>`; 
 
+
+	//othercost
 	var cat_tpl_other_cost = `
 		<tbody data-body-type="other_cost_category" cat-id="{{id}}" >
             <tr data-row-type="other_cost_category" cat-id="{{id}}">
               <td><b>{{category_name}}</b></td>
             </tr>
-        </tbody>
-	`;
+        </tbody>`;
 	
 return Gonrin.ModelView.extend({
 		template: null,
@@ -106,32 +122,28 @@ return Gonrin.ModelView.extend({
 					self.model.set(data);
 
 					var tpl = gonrin.template(template)({
-						baziers_colspan: data.braziers.length * 3
+						fuel_item_baziers_colspan: data.braziers.length * 3,
+						item_baziers_colspan: data.braziers.length * 3,
 					});
 					self.$el.html(tpl);
 
-					self.$el.find("#bazier_plan_fuel_item_header").empty();
-					self.$el.find("#bazier_plan_fuel_item_header_column").empty();
-					self.$el.find("#bazier_plan_fuel_item_header_norm").empty();
-					for(var i =0; i < data.braziers.length; i++){
-						var html = gonrin.template(bazier_plan_fuel_item_header_html)(data.braziers[i]);
-						self.$el.find("#bazier_plan_fuel_item_header").append(html);
-						var column_html = gonrin.template(bazier_plan_fuel_item_header_column_html)({});
-						self.$el.find("#bazier_plan_fuel_item_header_column").append(column_html);
-						var norm_html = gonrin.template(bazier_plan_fuel_item_header_norm_html)({});
-						self.$el.find("#bazier_plan_fuel_item_header_norm").append(norm_html);
+					self.renderItemHeader(data.braziers);
+					self.renderItems(data.items, data.braziers);
 
-					}
-
-					console.log(data);
+					self.renderFuelItemHeader(data.braziers);
 					self.renderFuelItemCategories(data.plan_items_categories, data.braziers);
 					self.renderFuelItems(data.fuel_items, data.braziers);
-					self.registerEvents();
-					self.applyBindings();
+
+
 					self.renderOtherCostCategories(data.plan_items_categories);
 					self.renderOtherCostItems(data.other_costs);
+
+
 					self.renderSalaryCategories(data.plan_items_categories);
 					self.renderSalaryItems(data.salaries);
+
+					self.registerEvents();
+					self.applyBindings();
 					
 				},
 				error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -181,15 +193,119 @@ return Gonrin.ModelView.extend({
 			});
 
 		},
+		//Items
+		renderItemHeader: function(braziers){
+			var self = this;
+			self.$el.find("#bazier_plan_item_header").empty();
+			self.$el.find("#bazier_plan_item_header_column").empty();
+			self.$el.find("#bazier_plan_item_header_norm").empty();
+			for(var i =0; i < braziers.length; i++){
+				var html = gonrin.template(bazier_plan_item_header_html)(braziers[i]);
+				self.$el.find("#bazier_plan_item_header").append(html);
+				var column_html = gonrin.template(bazier_plan_item_header_column_html)({});
+				self.$el.find("#bazier_plan_item_header_column").append(column_html);
+				
+			}
+		},
+
+		renderItems: function(items, braziers){
+			var self = this; 
+    		
+			$.each(items, function(idx, item){
+				// var html = '<tr><td>' + item.item_name + '</td></tr>';
+				var itemView = new PlanItemView({
+					viewData: {
+						"braziers": braziers
+					}
+				});
+
+				itemView.model.set(item);
+				itemView.render();
+				itemView.model.on("change", function(data){
+					self.onItemsChange(data.toJSON());
+				});
+
+				itemView.model.on("remove", function(evt){
+					self.onItemsRemove(evt);
+				});
+
+				var cat_id = item.category_id;
+				var cat_els = self.$el.find('tbody[data-body-type="category"]');
+				
+				for (var i=0; i < cat_els.length; i++){
+					var $cat_el = $(cat_els[i])
+					if ($cat_el.attr("cat-id") == "plan-item-cat"){
+						$cat_el.append(itemView.$el);
+
+					}
+				}
+		
+
+			}); 
+    		
+		},
+		onItemsChange: function(item){
+    		var self = this;
+			var found = false;
+    		for(var i = 0; i < self.model.get("items").length; i++){
+    			if (self.model.get("items")[i].id == item.id){
+					self.model.get("items")[i].list_price = item.list_price;
+					self.model.get("items")[i].quantity = item.quantity;
+					self.model.get("items")[i].total_amount = item.total_amount;
+					self.model.get("items")[i].note = item.note;
+					$.each(item, function(key, val){
+						if (key.startsWith("data_")){
+							if ((val !== null) && (val !== "")){
+								self.model.get("items")[i][key] = parseFloat(val);
+							}
+						}
+					})
+					found = true;
+    				break;
+    			}
+    		}
+    		if(!found){
+    			self.model.get("items").push(item);
+			}
+			
+		},
+		onItemsRemove: function(item){
+    		var self = this;
+    		for(var i = 0; i < self.model.get("items").length; i++){
+    			if (self.model.get("items")[i].id == item.id){
+    				self.model.get("items").splice(i, 1);
+    				break;
+    			}
+    		}
+    		
+		},
+
+		//Fuel Items
+
+		renderFuelItemHeader: function(braziers){
+			var self = this;
+			self.$el.find("#bazier_plan_fuel_item_header").empty();
+			self.$el.find("#bazier_plan_fuel_item_header_column").empty();
+			self.$el.find("#bazier_plan_fuel_item_header_norm").empty();
+			for(var i =0; i < braziers.length; i++){
+				var html = gonrin.template(bazier_plan_fuel_item_header_html)(braziers[i]);
+				self.$el.find("#bazier_plan_fuel_item_header").append(html);
+				var column_html = gonrin.template(bazier_plan_fuel_item_header_column_html)({});
+				self.$el.find("#bazier_plan_fuel_item_header_column").append(column_html);
+				var norm_html = gonrin.template(bazier_plan_fuel_item_header_norm_html)({});
+				self.$el.find("#bazier_plan_fuel_item_header_norm").append(norm_html);
+
+			}
+		},
 
 		renderFuelItemCategories: function(cats, braziers){
 			var self = this;
 			var col = braziers.length * 3 + 6;
-    		console.log("renderFuelItemCategories", cats);
+    		// console.log("renderFuelItemCategories", cats);
     		$.each(cats, function(idx, cat){
 				if (cat.type == "fuel_item"){
 					cat.colspan = col;
-					var html = gonrin.template(cat_tpl)(cat);
+					var html = gonrin.template(cat_fuel_item_tpl)(cat);
 					self.$el.find("#plan_fuel_item").append(html);
 				}
 				
@@ -273,75 +389,11 @@ return Gonrin.ModelView.extend({
 		
 
 		// Salary
-		// renderSalaryCategories: function(cats){
-		// 	var self = this;
-    	// 	var insertcat = cats.PUSH({
-		// 		// [cats.id] : salary_category,
-		// 		cats.id = salaries_category,
-
-		// 	});
-    	// 	$.each(insertcat, function(idx, cat){
-		// 		if (cat.type == "salary"){
-
-		// 			var html = gonrin.template(cat_tpl_salary)(cat);
-		// 			self.$el.find("#salary").append(html);
-					
-		// 		}				
-    	// 	});
-		// },
-		// renderSalaryItems: function(items){
-		// 	var self = this; 
-    		
-		// 	$.each(items, function(idx, item){
-		// 		var itemView = new SalaryView();
-		// 		itemView.model.set(item);
-		// 		itemView.render();
-		// 		// console.log("============")
-
-
-		// 		console.log("salary", itemView.$el)
-
-		// 		itemView.model.on("change", function(data){
-		// 			console.log(data);
-		// 			self.onSalaryItemsChange(data.toJSON());
-		// 		});
-		// 		// self.onFuelItemsChange(item);
-		// 		itemView.model.on("remove", function(evt){
-		// 			console.log("itemView remove",evt);
-		// 			self.onSalaryItemsRemove(evt);
-		// 		});
-
-				
-		// 		var cat_id = item.category_id;
-
-		// 		if(!!cat_id){
-		// 			var cat_els = self.$el.find('tbody[data-body-type="salary_category"]');
-				
-		// 			for (var i=0; i < cat_els.length; i++){
-		// 				var $cat_el = $(cat_els[i])
-		// 				if ($cat_el.attr("cat-id") == cat_id){
-		// 					$cat_el.append(itemView.$el);
-		// 				}
-		// 			}
-		// 		}else{
-		// 			var cat_els = self.$el.find('tbody[data-body-type="salary_category"]');
-				
-		// 			for (var i=0; i < cat_els.length; i++){
-		// 				var $cat_el = $(cat_els[i])
-		// 				if ($cat_el.attr("cat-id") == "salarys_category"){
-		// 					$cat_el.append(itemView.$el);
-		// 				}
-		// 			}
-		// 		}
-				
-		// 	}); 	
-		// },
 		renderSalaryCategories: function(cats){
 			var self = this;
     		
     		$.each(cats, function(idx, cat){
 				if (cat.type == "salary"){
-
 					var html = gonrin.template(cat_tpl_salary)(cat);
 					self.$el.find("#salary").append(html);
 					
@@ -352,7 +404,13 @@ return Gonrin.ModelView.extend({
 			var self = this; 
     		
 			$.each(items, function(idx, item){
-				var itemView = new SalaryView();
+				var itemView = null;
+				if (!!item.brazier_id){
+					itemView = new SalaryBrazierView();
+				}else{
+					itemView = new SalaryView();
+				}
+				
 				itemView.model.set(item);
 				itemView.render();
 
@@ -361,7 +419,7 @@ return Gonrin.ModelView.extend({
 				// console.log("OtherCostView", itemView.$el)
 
 				itemView.model.on("change", function(data){
-					console.log(data);
+					// console.log(data);
 					self.onSalaryItemsChange(data.toJSON());
 				});
 				// self.onFuelItemsChange(item);
@@ -373,13 +431,22 @@ return Gonrin.ModelView.extend({
 
 				var cat_id = item.category_id;
 				var cat_els = self.$el.find('tbody[data-body-type="salary_category"]');
-				
-				for (var i=0; i < cat_els.length; i++){
-					var $cat_el = $(cat_els[i])
-					if ($cat_el.attr("cat-id") == cat_id){
-						$cat_el.append(itemView.$el);
+				if (!!item.brazier_id){
+					for (var i=0; i < cat_els.length; i++){
+						var $cat_el = $(cat_els[i])
+						if ($cat_el.attr("cat-id") == "brazier_category"){
+							$cat_el.append(itemView.$el);
+						}
+					}
+				}else{
+					for (var i=0; i < cat_els.length; i++){
+						var $cat_el = $(cat_els[i])
+						if ($cat_el.attr("cat-id") == cat_id){
+							$cat_el.append(itemView.$el);
+						}
 					}
 				}
+				
 			}); 	
 		},
 		onSalaryItemsChange: function(item){
@@ -420,8 +487,7 @@ return Gonrin.ModelView.extend({
     			}
     		}
     		
-		},		
-
+		},
 		// End of salary
 
 

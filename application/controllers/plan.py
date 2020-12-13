@@ -182,10 +182,30 @@ def auth_func(request=None, **kw):
     pass
 
 def convert_model_input(request=None, data=None, **kw):
-	if "plan_items_categories" in data:
-		del(data["plan_items_categories"])
+	if "plan_items_categories" in data:
+		del(data["plan_items_categories"])
 	
 	fuel_items = []
+	items = []
+
+	for it in data["items"]:
+		for bz in data["braziers"]:
+			obj = {}
+			for key in it:
+				if not key.startswith("data_"):
+					obj[key] = it[key]
+			
+			obj["id"] = str(uuid.uuid4())
+			obj["brazier_id"] = bz["brazier_id"]
+			obj["brazier_no"] = bz["brazier_no"]
+			obj["brazier_name"] = bz["brazier_name"]
+			obj["norm_quantity"] = it.get("data_norm_quantity_" + bz["brazier_id_dash"])
+			obj["approved_quantity"] = it.get("data_approved_quantity_" + bz["brazier_id_dash"])
+			obj["norm"] = it.get("data_norm_" + bz["brazier_id_dash"])
+			items.append(obj)
+	
+	data["items"] = items
+
 
 	for it in data["fuel_items"]:
 		for bz in data["braziers"]:
@@ -204,6 +224,8 @@ def convert_model_input(request=None, data=None, **kw):
 			fuel_items.append(obj)
 	
 	data["fuel_items"] = fuel_items
+
+	print("data", data)
 	
     
 
@@ -360,24 +382,52 @@ async def get_plan(id=None):
 		resp["fuel_items"] = []
 		resp["other_costs"] = []
 		resp["salaries"] = []
+		resp["items"] = []
 		
 		#fuel_items_category
-		fuel_item_cats = PlanItemCategory.query.filter(PlanItemCategory.department_id == department_id).all()
-		for cat in fuel_item_cats:
+		plan_item_cats = PlanItemCategory.query.filter(PlanItemCategory.department_id == department_id).all()
+		for cat in plan_item_cats:
 			obj = to_dict(cat)
 			obj["items"] = []
-			# for it in cat.items:
-			# 	itobj = {
-			# 			"item_id": str(it.id),
-			# 			"item_no": it.item_no,
-			# 			"item_name": it.item_name,
-			# 			"unit_id": str(it.unit_id),
-			# 			"unit_no": it.unit_no,
-			# 			"unit_name": it.unit_name,
-			# 		}
-			# 	obj["items"].append(itobj)
+			for it in cat.items:
+				itobj = {
+						"item_id": str(it.id),
+						"item_no": it.item_no,
+						"item_name": it.item_name,
+						"unit_id": str(it.unit_id),
+						"unit_no": it.unit_no,
+						"unit_name": it.unit_name,
+					}
+				obj["items"].append(itobj)
 			resp["plan_items_categories"].append(obj)
 		#end_fuel_items_category
+
+		#items
+		items_map = {}
+		for item in plan.items:
+			map_key = (str(item.item_id) + "_" + str(item.category_id))
+			if map_key not in items_map:
+				items_map[map_key] = {
+					'plan_id': item.plan_id,
+					'item_id': item.item_id,
+					'item_no': item.item_no,
+					'item_name': item.item_name,
+				}
+				itemobj = to_dict(item)
+				for key in itemobj:
+					if key not in ["id", "norm_quantity", "approved_quantity", "norm", "brazier_id", "brazier_no", "brazier_name"]:
+						items_map[map_key][key] = itemobj[key]
+				items_map[map_key]["id"] = str(uuid.uuid4())
+
+			brazier_id = str(item.brazier_id)
+			items_map[map_key]["data_norm_quantity_" + brazier_id.replace("-", "_")] = item.norm_quantity
+			items_map[map_key]["data_norm_" + brazier_id.replace("-", "_")] = item.norm
+			items_map[map_key]["data_approved_quantity_" + brazier_id.replace("-", "_")] = item.approved_quantity
+			
+		
+		for key in items_map:
+			resp["items"].append(items_map[key])
+		#end items
 
 		#fuel_items
 		fuel_items_map = {}
@@ -406,13 +456,17 @@ async def get_plan(id=None):
 		for key in fuel_items_map:
 			resp["fuel_items"].append(fuel_items_map[key])
 		#end fuel_items
-		#salary
-		for item in plan.other_costs:
-			resp["other_costs"].append(to_dict(item))
 
-		#end salary
+
+		#salary
 		for item in plan.salaries:
 			resp["salaries"].append(to_dict(item))
+
+		#end salary
+		
+		
+		for item in plan.other_costs:
+			resp["other_costs"].append(to_dict(item))
 		return resp
 	return None
 
@@ -433,23 +487,16 @@ async def get_plan_api(request,id=None):
 			"department_id": department_id,
 			"department_no": None,
 			"department_name": None,
-
 			"plan_no": None,
 			"plan_name": None,
-			# "plan_type": "PX 1",
-
-			# "norm_type_name": "Vật tư máy cào",
 			"braziers": [],
+			"plan_items_categories":[],
 
 			"products":[],
 			"items":[],
-			
 			"other_costs": [],
 			"salaries": [],
-
 			"fuel_items":[],
-
-			"plan_items_categories":[]
 		}
 		department = Department.query.filter(Department.id == department_id).first()
 		if department is not None:
@@ -465,45 +512,49 @@ async def get_plan_api(request,id=None):
 			
 			resp["braziers"].append(obj)
 
-		fuel_item_cats = PlanItemCategory.query.filter(PlanItemCategory.department_id == department_id).all()
-		for cat in fuel_item_cats:
+		item_cats = PlanItemCategory.query.filter(PlanItemCategory.department_id == department_id).all()
+		for cat in item_cats:
 			obj = to_dict(cat)
 			obj["items"] = []
 			for it in cat.items:
-				
-				# itobj = {
-				# 		"item_id": str(it.id),
-				# 		"item_no": it.item_no,
-				# 		"item_name": it.item_name,
-				# 		"unit_id": str(it.unit_id),
-				# 		"unit_no": it.unit_no,
-				# 		"unit_name": it.unit_name,
-				# 	}
-				# obj["items"].append(itobj)
-
-				plan_item_obj = {
-					"id": str(uuid.uuid4()),
-					"plan_id": None,
-					"item_id": str(it.id),
-					"item_no": it.item_no,
-					"item_name": it.item_name,
-					"unit_id": str(it.unit_id),
-					"unit_no": it.unit_no,
-					"unit_name": it.unit_name,
-					"category_id": str(cat.id),
-					
-					"demand_quantity": None,
-					"approved_quantity": None,
-					"note": None
-				}
-				for britem in braziers:
-					plan_item_obj["data_norm_quantity_" + str(britem.id).replace("-", "_")] = None
-					plan_item_obj["data_factor_" + str(britem.id).replace("-", "_")] = None
-					plan_item_obj["data_quantity_" + str(britem.id).replace("-", "_")] = None
-
-				resp["fuel_items"].append(plan_item_obj)
-
+				itobj = {
+						"item_id": str(it.id),
+						"item_no": it.item_no,
+						"item_name": it.item_name,
+						"unit_id": str(it.unit_id),
+						"unit_no": it.unit_no,
+						"unit_name": it.unit_name,
+					}
+				obj["items"].append(itobj)
 			resp["plan_items_categories"].append(obj)
+
+		#fuel_items:
+		for catobj in resp["plan_items_categories"]:
+			if catobj["type"] == "fuel_item":
+				for it in catobj["items"]:
+					plan_item_obj = {
+						"id": str(uuid.uuid4()),
+						"plan_id": None,
+						"item_id": str(it["item_id"]),
+						"item_no": it["item_no"],
+						"item_name": it["item_name"],
+						"unit_id": str(it["unit_id"]),
+						"unit_no": it["unit_no"],
+						"unit_name": it["unit_name"],
+						"category_id": str(catobj["id"]),
+						
+						"demand_quantity": None,
+						"approved_quantity": None,
+						"note": None
+					}
+					for britem in braziers:
+						plan_item_obj["data_norm_quantity_" + str(britem.id).replace("-", "_")] = None
+						plan_item_obj["data_factor_" + str(britem.id).replace("-", "_")] = None
+						plan_item_obj["data_quantity_" + str(britem.id).replace("-", "_")] = None
+
+					resp["fuel_items"].append(plan_item_obj)
+
+		#end of fuel_items
 		
 		#salary
 		for bz in braziers:
@@ -592,6 +643,35 @@ async def get_plan_api(request,id=None):
 						"note": None
 					}
 					resp["other_costs"].append(obj)
+				break
+
+		#items
+		for catobj in resp["plan_items_categories"]:
+			if catobj["type"] == "item":
+				for itemobj in catobj["items"]:
+					obj = {
+						"id": str(uuid.uuid4()),
+						"plan_id": None,
+						"item_id": itemobj["item_id"],
+						"item_no": itemobj["item_no"],
+						"item_name": itemobj["item_name"],
+						"unit_id": itemobj["unit_id"],
+						"unit_no": itemobj["unit_no"],
+						"unit_name": itemobj["unit_name"],
+						"category_id": catobj["id"],
+					
+						"list_price": None,
+						"quantity": None,
+						"total_amount": None,
+						"note": None
+					}
+
+					for britem in braziers:
+						obj["data_norm_quantity_" + str(britem.id).replace("-", "_")] = None
+						obj["data_norm_" + str(britem.id).replace("-", "_")] = None
+						obj["data_approved_quantity_" + str(britem.id).replace("-", "_")] = None
+
+					resp["items"].append(obj)
 				break
 		return json(resp)
 	return json({"error_code": "NOT_FOUND"}, status=520)

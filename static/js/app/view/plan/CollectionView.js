@@ -37,16 +37,25 @@ define(function (require) {
 		],
     	uiControl:{
     		fields: [
-				 { 
+				{ 
                     field: "plan_name",label:"Tên Kế Hoạch"
-				 },
+				},
 				{ 
                     field: "department_name",label:"Đơn Vị"
-                 },  
- 
-
-		     ],
-		     onRowClick: function(event){
+                }, 
+				{ 
+					field: "plan_type",
+					label:"Loại",
+					foreignValues: [
+						{value: 1, text: "Tháng"},
+						{value: 2, text: "Quý"},
+						{value: 3, text: "Năm"},
+					],
+					foreignValueField: "value",
+					foreignTextField: "text",
+                },
+		    ],
+		    onRowClick: function(event){
 		    	if(event.rowId){
 					var path = this.collectionName + '/model?id='+ event.rowId ;
 					// var path =  '/plan/model?id='+ event.rowId + "&norm_template_no=" + norm_template_no;

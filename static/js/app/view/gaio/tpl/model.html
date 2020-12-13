@@ -12,41 +12,35 @@
 				<div class="col-lg-6 base-content">
 					<div class="form-group">
 						<label>Số phiếu</label>
-						<input type="text" data-bind="value:vote" class="form-control inputbox">
+						<input type="text" data-bind="value:code" class="form-control inputbox">
 					</div>
 
 					<div class="form-group">
 						<label>Thời gian tạo báo cáo</label>
 						<input type="text" data-bind="value:create_date" class="form-control inputbox">
 					</div>
+					
+
+				</div>
+				<div class="col-lg-6 base-content">
 					<div class="form-group">
 						<label>Người lập</label>
 						<input type="text" data-bind="value:maker" class="form-control inputbox">
 					</div>
-
-				</div>
-				<div class="col-lg-6 base-content">
-
 					<div class="form-group">
 						<label>Tên đơn vị</label>
 						<input type="text" data-bind="value:organization" class="form-control inputbox">
-					</div>
-					<div class="form-group">
-						<label>Mã số thuế</label>
-						<input type="text" data-bind="value:tax_identification_number" class="form-control inputbox">
-					</div>
-					<div class="form-group">
-						<label>Người duyệt</label>
-						<input type="text" data-bind="value:accept" class="form-control inputbox">
 					</div>
 				</div>
 			</div>
 		</div>
 		<hr>
 	</div>
+	<div class="col-md-12 justify-content-around">
+		<div id="add-item"></div>
+	</div>
 	<div class="col-12 out-click">
 		<div class="d-flex justify-content-around align-items-center w-100">
-
 			<table class="table table-striped">
 				<tr>
 					<th scope="col" class="text-center" style="width:15%">Mã Vật Tư</th>
@@ -60,12 +54,7 @@
 				<tbody id="detail" data-bind="list:detail"></tbody>
 			</table>
 		</div>
-		<div class="col-md-6 justify-content-around">
-			<div id="search-item"></div>
-		</div>
-		<div class="col-md-6 justify-content-around">
-			<div id="add-item"></div>
-		</div>
+		
 	</div>
 	</div>
 

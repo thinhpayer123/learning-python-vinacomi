@@ -3,41 +3,47 @@ define(function (require) {
   var $ = require("jquery");
   var _ = require("underscore");
   var Gonrin = require("gonrin");
-  var planSchema = require("json!schema/PlanFuelItemSchema.json");
+  var planSchema = require("json!schema/PlanItemSchema.json");
   // var template = require('text!./tpl/plan_fuel_item.html');
  
-  var template_head = `<td class="row-item">
-    <input class=" form-control text-center" readonly fuel-item-bind="value:item_name">
+  var template_head = `
+  <td class="row-item">
+    <input class=" form-control text-center" readonly item-bind="value:item_no">
   </td>
   <td class="row-item">
-    <input class=" form-control text-center" readonly fuel-item-bind="value:unit_name">
-  </td>`;
+    <input class=" form-control text-center" readonly item-bind="value:item_name">
+  </td>
+  <td class="row-item">
+    <input class=" form-control text-center" readonly item-bind="value:unit_name">
+  </td>
+  <td class="row-item">
+    <input class=" form-control text-center" item-bind="value:list_price">
+  </td>
+  <td class="row-item">
+    <input class=" form-control text-center" item-bind="value:quantity">
+  </td>
+  <td class="row-item">
+    <input class=" form-control text-center" item-bind="value:total_amount">
+  </td>
+  `;
 
   var template_mid = `<td class="row-item">
-  <input class=" form-control text-center" fuel-item-bind="value:data_norm_quantity_{{brazier_id_dash}}">
+  <input class=" form-control text-center" item-bind="value:data_norm_{{brazier_id_dash}}">
 </td>
 
 <td class="row-item">
-  <input class=" form-control text-center" fuel-item-bind="value:data_factor_{{brazier_id_dash}}">
+  <input class=" form-control text-center" item-bind="value:data_norm_quantity_{{brazier_id_dash}}">
 </td>
 
 <td class="row-item">
-  <input class=" form-control text-center" fuel-item-bind="value:data_quantity_{{brazier_id_dash}}">
+  <input class=" form-control text-center" item-bind="value:data_approved_quantity_{{brazier_id_dash}}">
 </td>`;
 
 
 
   var template_tail = `<td class="row-item" id=''>
-    <input class=" form-control text-center" fuel-item-bind="value:demand_quantity">
+    <input class=" form-control text-center" item-bind="value:note">
   </td>
-
-  <td class="row-item">
-    <input class=" form-control text-center" fuel-item-bind="value:approved_quantity">
-  </td>
-  <td class="row-item">
-    <input class=" form-control text-center" fuel-item-bind="value:note">
-  </td>
-
   <td class="row-item">
     <button type="button" class="btn btn-sm btn-outline-danger" id="itemRemove">
         <i class="cil-x"></i>
@@ -45,13 +51,13 @@ define(function (require) {
   </td>`;
 
   return Gonrin.ItemView.extend({
-    bindings: "fuel-item-bind",
+    bindings: "item-bind",
     template: null,
     tagName: "tr",
     modelSchema: planSchema,
     // modelClass: null,
     urlPrefix: "/api/v1/",
-    collectionName: "plan_fuel_item",   
+    collectionName: "plan_item",   
     foreignRemoteField: "id",
     foreignField: "plan_id",
 

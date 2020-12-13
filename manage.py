@@ -80,7 +80,7 @@ def generate_schema(path = "static/js/schema", exclude = None, prettyprint = Tru
             schema_type = ''
             if 'DECIMAL' in col_type:
                 schema_type = 'number'
-            if col_type in ['INTEGER','SMALLINT', 'FLOAT' ]:
+            if col_type in ['INTEGER','SMALLINT', 'FLOAT', 'BIGINT' ]:
                 schema_type = 'number'
             if col_type == 'DATETIME':
                 schema_type = 'datetime'

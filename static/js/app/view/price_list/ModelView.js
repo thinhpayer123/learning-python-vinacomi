@@ -13,45 +13,6 @@ define(function (require) {
     	modelSchema	: schema,
     	urlPrefix: "/api/v1/",
     	collectionName: "price_list",
-
-
-// code them 
-
-    // 	uiControl: {
-    //         fields: [
-				// {
-				// 	field: "from_time",
-				// 	uicontrol: "datetimepicker",
-				// 	parseInputDate: function (val) {
-				// 		return moment.unix(val)
-				// 	},
-				// 	parseOutputDate: function (date) {
-				// 		return date.startOf('day').unix();
-				// 	}
-				// },
-            
-                
-    //             {
-				// 	field: "norm_details",
-				// 	uicontrol: false,
-				// 	itemView: NormDetailItemView,
-				// 	tools: [
-				// 		{
-				// 			name: "create",
-				// 			type: "button",
-				// 			buttonClass: "btn btn-primary btn-sm",
-				// 			label: "Thêm",
-				// 			command: "create"
-				// 		},
-				// 	],
-				// 	toolEl: "#add_row2"
-    //             },
-
-
-
-    //         ]
-    //     },
-
     	tools : [
     	    {
     	    	name: "defaultgr",
@@ -112,9 +73,6 @@ define(function (require) {
 		                    });
 		    	    	}
 		    	    },
-// code them
-
-
     	    	],
     	    }],
 
@@ -122,6 +80,16 @@ define(function (require) {
             fields: [
                 {
                     field: "start_time",
+                    uicontrol: "datetimepicker",
+                    parseInputDate: function(val){
+                        return moment.unix(val)
+                    },
+                    parseOutputDate: function(date){
+                        return date.startOf('day').unix();
+                    }
+				}, 
+				{
+                    field: "end_time",
                     uicontrol: "datetimepicker",
                     parseInputDate: function(val){
                         return moment.unix(val)
