@@ -177,6 +177,8 @@ from application.extensions import auth
 from gatco.exceptions import ServerError
 from gatco_apimanager.views.sqlalchemy.helpers import to_dict
 
+from .user import current_user
+
 def auth_func(request=None, **kw):
     
     pass
@@ -473,15 +475,19 @@ async def get_plan(id=None):
 @app.route("/api/v1/get_plan", methods=["GET","POST"])
 @app.route("/api/v1/get_plan/<id>", methods=["GET","POST"])
 async def get_plan_api(request,id=None):
-	department_id = "cb208970-2087-4321-a678-91a8f14af692"
+	department_id = None
+	user = current_user(request)
+	if user is not None:
+		#department_id = "cb208970-2087-4321-a678-91a8f14af692"
+		department_id = user.department_id
+	if department_id is None:
+		return json({"error_code": "NOT_FOUND", "error_message": "Department not found"}, status=520)
 
 	if id is not None:
 		resp = await get_plan(id)
 		if resp is not None:
 			return json(resp)
 	else:
-		
-	
 		resp = {
 			"id": None,
 			"department_id": department_id,

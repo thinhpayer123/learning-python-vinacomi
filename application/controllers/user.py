@@ -13,6 +13,13 @@ from application.models.model import User, Role
 
 # from application.models.model import User, Role
 
+def current_user(request):
+    user_id = auth.current_user(request)
+    if user_id is not None:
+        user = db.session.query(User).filter(User.id == user_id).first()
+        return user
+    return None
+
 def generate_user_token(uid, expire_time=86400):
     token = binascii.hexlify(uuid.uuid4().bytes).decode()
     session_key = "sessions:" + token
