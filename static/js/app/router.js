@@ -33,7 +33,7 @@ define(function (require) {
         logout: function () {
             var self = this;
             $.ajax({
-                url: self.getApp().serviceURL + '/api/logout',
+                url: self.getApp().serviceURL + '/user/logout',
                 dataType: "json",
                 success: function (data) {
                     self.navigate("login");
